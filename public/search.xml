@@ -30,22 +30,16 @@
       </tags>
   </entry>
   <entry>
-    <title>博客搭建教程1 - 准备阶段</title>
-    <url>/2023/01/09/bo-ke-da-jian-jiao-cheng-1-zhun-bei-jie-duan/</url>
-    <content><![CDATA[<p>在一切开始之前，我们先来回答几个关键问题。</p>
+    <title></title>
+    <url>/2024/01/08/bo-ke-da-jian-jiao-cheng-1-zhun-bei-jie-duan/</url>
+    <content><![CDATA[<h2 id="title-博客搭建教程1-准备阶段author-epya15tags-博客categories-博客搭建date-2023-01-09-01-00-00img-https-picx-zhimg-com-v2-f03ff2911a65b4be8134688969712666-1440w-jpg-source-172ae18bexcerpt-‘从明天开始搭建一个属于自己的博客。’"><a href="#title-博客搭建教程1-准备阶段author-epya15tags-博客categories-博客搭建date-2023-01-09-01-00-00img-https-picx-zhimg-com-v2-f03ff2911a65b4be8134688969712666-1440w-jpg-source-172ae18bexcerpt-‘从明天开始搭建一个属于自己的博客。’" class="headerlink" title="title: 博客搭建教程1 - 准备阶段author: epya15tags:  - 博客categories:  - 博客搭建date: 2023-01-09 01:00:00img: https://picx.zhimg.com/v2-f03ff2911a65b4be8134688969712666_1440w.jpg?source=172ae18bexcerpt: ‘从明天开始搭建一个属于自己的博客。’"></a>title: 博客搭建教程1 - 准备阶段<br>author: epya15<br>tags:<br>  - 博客<br>categories:<br>  - 博客搭建<br>date: 2023-01-09 01:00:00<br>img: <a href="https://picx.zhimg.com/v2-f03ff2911a65b4be8134688969712666_1440w.jpg?source=172ae18b">https://picx.zhimg.com/v2-f03ff2911a65b4be8134688969712666_1440w.jpg?source=172ae18b</a><br>excerpt: ‘从明天开始搭建一个属于自己的博客。’</h2><p>在一切开始之前，我们先来回答几个关键问题。</p>
 <p>Q：搭建个人博客需要花钱吗？<br>A：不需要。如果我们依赖Github，则可以不花一分钱搭建好自己的博客网站。但是如果你想拥有自己的域名，购买图床，或者使用云服务器，那么需要支付一定的费用，在刚刚起步的阶段，开销不会很大。</p>
 <p>Q：搭建个人博客需要会写代码吗？<br>A：不需要。但本教程建议有代码基础的读者观看，因为教程有的介绍并不详尽，比如教程内不会专门介绍Linux操作系统，命令行的概念。由于在搭建博客过程中会涉及到在操作系统终端执行命令，如果有代码基础，则遇到卡点的几率会低一些，并且发现自己操作的结果和教程不一致时有能力自查问题。本教程尽可能提供了完整的命令语句和配置文件写法，在搭建时只需要复制粘贴即可。<br>你不需要掌握网页设计语言，绚丽的网站并不需要由我们自己编码实现，本教程使用的Hexo博客自身提供了非常多的主题，就像手机更换壁纸一样，你只需要像文本一样更改几个配置文件即可应用全新主题。如果你有代码基础，则可以尝试进行更深入的页面定制。</p>
 <p>Q：搭建个人博客需要多少时间？<br>A：这个难以预估，如果你有代码基础，具备一定的debug能力，那么初次的搭建过程只需要几天的时间，当踩过一些坑，经历了一些试错后，后续再次重新搭建，一天之内即可完成。如果你是非技术人员，或许需要结合一些其它网络上的教程来搭建，本教程更多作为建站的备忘录，对于一些细节可能会直接略过，而这些通常成为读者理解的卡点。</p>
 <p>如果你决定开始搭建个人博客，那么接下来按照教程顺序，一步一步开始吧。</p>
 <p>本教程搭建博客的技术涉及到：<br>1.搭建Github仓库托管博客，包含一些Git操作<br>2.安装node.js和npm，Hexo，Hexo-admin<br>3.租用Linux云服务器实现博客远程部署</p>
-<p>建议读者可以先对以上技术有一些了解。<br>接下来就可以正式开始建站流程了。4<br><img src="/:/images/vlogcover_vol2.jpg" class="lazyload placeholder" data-srcset="/:/images/vlogcover_vol2.jpg" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif"><br><img src="https://bbs-img.huaweicloud.com/blogs/img/1524448379249080.png" class="lazyload placeholder" data-srcset="https://bbs-img.huaweicloud.com/blogs/img/1524448379249080.png" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" alt="avatar"></p>
+<p>建议读者可以先对以上技术有一些了解。<br>接下来就可以正式开始建站流程了。<br><img src="D:\cpblog-hexo\source\images\20231218-155939.png" class="lazyload placeholder" data-srcset="D:\cpblog-hexo\source\images\20231218-155939.png" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" alt="20231218-155939"></p>
 ]]></content>
-      <categories>
-        <category>博客搭建</category>
-      </categories>
-      <tags>
-        <tag>博客</tag>
-      </tags>
   </entry>
   <entry>
     <title>博客搭建教程10 - 将托管在Github的Hexo博客迁移到个人云服务器</title>
