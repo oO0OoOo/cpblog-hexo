@@ -2,7 +2,7 @@
 
 echo "===================  Step1  < hexo generate >  ==================="
 cd D:\cpblog-hexo
-hexo clean
+#hexo clean
 hexo g
 
 echo "===================  Step2  < local git push >  ==================="
