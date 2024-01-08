@@ -102,9 +102,9 @@ theme: bamboo
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
-- type: git
-  repository: git@github.com:oO0OoOo/cpblog-hexo  #git仓库地址
-  branch: main
+- #type: git
+  #repository: git@github.com:oO0OoOo/cpblog-hexo  #git仓库地址
+  #branch: main
   
 ##hexo-generator-search 本地检索插件,ocean主题需要
 search:
