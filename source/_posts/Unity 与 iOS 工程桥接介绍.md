@@ -6,7 +6,7 @@ tags:
 categories:
   - sdk
 date: 2024-01-09 15:15:34
-img: https://picx.zhimg.com/v2-f03ff2911a65b4be8134688969712666_1440w.jpg?source=172ae18b
+img: https://img.3dmgame.com/uploads/images/news/20220816/1660607710_789544.jpg
 excerpt: 'Unity与iOS。'
 ---
 
