@@ -1,0 +1,2064 @@
+<!DOCTYPE html>
+<html>
+  <!-- meta/link... -->
+  
+
+
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+  <title>Unity 与 iOS 工程桥接介绍 | 赛朋博客</title>
+
+  <link rel="icon" type="image/jpeg" href="/favicon.jpg">
+  <link rel="stylesheet" href="https://at.alicdn.com/t/font_1911880_c1nvbyezg17.css">
+  <link href="https://unpkg.com/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+  <link href="/js/swiper/swiper@5.4.1.min.css" rel="stylesheet">
+  
+  
+  
+  
+<link rel="stylesheet" href="/css/animate.min.css">
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+    
+<link rel="stylesheet" href="/js/fancybox/jquery.fancybox.min.css">
+
+  
+  
+    
+<link rel="stylesheet" href="/js/shareJs/share.min.css">
+
+  
+  <style>
+        @media (max-width: 992px) {
+            #waifu {
+                display: none;
+            }
+        }
+    </style>
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+
+    
+
+    <!-- import link -->
+    
+        
+            
+        
+            
+        
+    
+    <!-- import script -->
+    
+        
+            
+        
+            
+        
+    
+
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="赛朋博客" type="application/atom+xml">
+</head>
+
+  
+  <!-- 依赖于jquery和vue -->
+  
+    
+<script src="https://unpkg.com/jquery@3.5.1/dist/jquery.min.js"></script>
+
+  
+
+  
+    
+<script src="https://unpkg.com/vue@2.6.11/dist/vue.min.js"></script>
+
+  
+  
+  <body>
+    <!-- 预加载动画 -->
+    <!-- 页面预加载动画 -->
+
+  
+    <div class="preloader_6" id="loader">
+  <div class="loader"></div>
+</div>
+  
+<script>
+  var endLoading = function () {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loader').classList.add("loading");
+  }
+  window.addEventListener('DOMContentLoaded',endLoading);
+</script>
+
+    
+    <!-- 判断是否为暗黑风格 -->
+    <!-- 判断是否为黑夜模式 -->
+<script>
+  let isDark = JSON.parse(localStorage.getItem('dark')) || JSON.parse('false');
+
+  if (isDark) {
+    $(document.body).addClass('darkModel');
+  }
+</script>
+
+    <!-- 需要在上面加载的js -->
+    <script>
+  function loadScript(src, cb) {
+    return new Promise(resolve => {
+      setTimeout(function () {
+        var HEAD = document.getElementsByTagName("head")[0] || document.documentElement;
+        var script = document.createElement("script");
+        script.setAttribute("type", "text/javascript");
+        if (cb) {
+          if (JSON.stringify(cb)) {
+            for (let p in cb) {
+              if (p == "onload") {
+                script[p] = () => {
+                  cb[p]()
+                  resolve()
+                }
+              } else {
+                script[p] = cb[p]
+                script.onload = resolve
+              }
+            }
+          } else {
+            script.onload = () => {
+              cb()
+              resolve()
+            };
+          }
+        } else {
+          script.onload = resolve
+        }
+        script.setAttribute("src", src);
+        HEAD.appendChild(script);
+      });
+    });
+  }
+
+  //https://github.com/filamentgroup/loadCSS
+  var loadCSS = function (src) {
+    return new Promise(resolve => {
+      setTimeout(function () {
+        var link = document.createElement('link');
+        link.rel = "stylesheet";
+        link.href = src;
+        link.onload = resolve;
+        document.getElementsByTagName("head")[0].appendChild(link);
+      });
+    });
+  };
+
+</script> 
+
+<!-- 轮播图所需要的js -->
+<script src="/js/swiper/swiper.min.js"></script>
+<script src="/js/swiper/vue-awesome-swiper.js"></script>
+<script src="/js/swiper/swiper.animate1.0.3.min.js"></script>
+
+<script type="text/javascript">
+  Vue.use(window.VueAwesomeSwiper)
+</script>
+
+
+  <script src="/js/vue-typed-js/index.js"></script>
+
+
+<!-- 首页的公告滚动插件的js需要重新加载 -->
+<script src="/js/vue-seamless-scroll/index.js"></script>
+
+<!-- 打字机效果js -->
+<script src="https://unpkg.com/typed.js@2.0.11"></script>
+
+
+    <div id="safearea">
+      <main class="main" id="pjax-container">
+        <!-- 头部导航 -->
+        
+<header class="header   " 
+  id="navHeader"
+  style="position: fixed;
+  left: 0; top: 0; z-index: 10;width: 100%;"
+>
+  <div class="header-content">
+    <div class="bars">
+      <div id="appDrawer" class="sidebar-image">
+  <div class="drawer-box-icon">
+    <i class="fas fa-bars" aria-hidden="true" @click="showDialogDrawer"></i>
+  </div>
+  
+  <transition name="fade">
+    <div class="drawer-box_mask" v-cloak style="display: none;" v-show="visible" @click.self="cancelDialogDrawer">
+    </div>
+  </transition>
+  <div class="drawer-box" :class="{'active': visible}">
+    <div class="drawer-box-head bg-color">
+      <img class="drawer-box-head_logo lazyload placeholder" src="/null" class="lazyload placeholder" data-srcset="/null" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" alt="logo">
+      <h4 class="drawer-box-head_title">赛朋博客</h4>
+      <h5 class="drawer-box-head_desc"></h5>
+    </div>
+    
+    <div class="drawer-box-content">
+      <ul class="drawer-box-content_menu">
+        
+          
+            <li class="drawer-box-content_item" style="position: relative;">
+              
+                <a href="/" class="drawer-menu-item-link">
+                  
+                    <i class="fas fa-home" aria-hidden="true"></i>
+                  
+                  <span class="name">主页</span>
+                </a>
+              
+            </li>
+          
+            <li class="drawer-box-content_item" style="position: relative;">
+              
+                <a href="/categories" class="drawer-menu-item-link">
+                  
+                    <i class="fas fa-bookmark" aria-hidden="true"></i>
+                  
+                  <span class="name">分类</span>
+                </a>
+              
+            </li>
+          
+            <li class="drawer-box-content_item" style="position: relative;">
+              
+                <a href="/gallery" class="drawer-menu-item-link">
+                  
+                    <i class="fas fa-camera-retro" aria-hidden="true"></i>
+                  
+                  <span class="name">画廊</span>
+                </a>
+              
+            </li>
+          
+            <li class="drawer-box-content_item" style="position: relative;">
+              
+                <a href="/vlog" class="drawer-menu-item-link">
+                  
+                    <i class="fas fa-video-camera" aria-hidden="true"></i>
+                  
+                  <span class="name">影像</span>
+                </a>
+              
+            </li>
+          
+            <li class="drawer-box-content_item" style="position: relative;">
+              
+                <a href="/creation" class="drawer-menu-item-link">
+                  
+                    <i class="fas fa-paper-plane" aria-hidden="true"></i>
+                  
+                  <span class="name">创造</span>
+                </a>
+              
+            </li>
+          
+            <li class="drawer-box-content_item" style="position: relative;">
+              
+                <a href="javascript:;" class="drawer-menu-item-link has-children" @click="openOrCloseMenu(5)">
+                  <span>
+                    
+                      <i class="fas fa-link"></i>
+                    
+                    <span class="name">更多</span>
+                  </span>
+                  <i class="fas fa-chevron-left arrow " :class="{'icon-rotate': isOpen(5)}" aria-hidden="true"></i>
+                </a>
+                <ul class="drawer-sub-menu" v-if="isOpen(5)">
+                  
+                  <li>
+                    <a href="/tags">
+                      
+                      <i class="fas fa-tags" style="margin-top: -20px;"></i>
+                      
+                      <span>标签</span>
+                    </a>
+                  </li>
+                  
+                  <li>
+                    <a href="/archives">
+                      
+                      <i class="fas fa-archive" style="margin-top: -20px;"></i>
+                      
+                      <span>归档</span>
+                    </a>
+                  </li>
+                  
+                  <li>
+                    <a target="_blank" rel="noopener" href="https://github.com/oO0OoOo/oO0OoOo.github.io">
+                      
+                      <i class="fas fa-bug" style="margin-top: -20px;"></i>
+                      
+                      <span>Github</span>
+                    </a>
+                  </li>
+                  
+                  <li>
+                    <a target="_blank" rel="noopener" href="https://cy.surprising.studio/">
+                      
+                      <i class="fas fa-link" style="margin-top: -20px;"></i>
+                      
+                      <span>词影</span>
+                    </a>
+                  </li>
+                  
+                  <li>
+                    <a target="_blank" rel="noopener" href="https://handle.antfu.me/">
+                      
+                      <i class="fas fa-link" style="margin-top: -20px;"></i>
+                      
+                      <span>汉兜</span>
+                    </a>
+                  </li>
+                  
+                </ul>
+              
+            </li>
+          
+        
+        
+      </ul>
+    </div>
+  </div>
+</div>
+
+<script>
+  var body = document.body || document.documentElement || window;
+  var vm = new Vue({
+    el: '#appDrawer',
+    data: {
+      visible: false,
+      top: 0,
+      openArr: [],
+    },
+    computed: {
+    },
+    mounted() {
+    },
+    methods: {
+      isOpen(index) {
+        if (this.openArr.includes(index)) {
+          return true;
+        } else {
+          return false;
+        }
+      },
+      openOrCloseMenu(curIndex) {
+        const index = this.openArr.indexOf(curIndex);
+        if (index !== -1) {
+          this.openArr.splice(index, 1);
+        } else {
+          this.openArr.push(curIndex);
+        }
+      },
+      showDialogDrawer() {
+        this.visible = true;
+        // 防止页面滚动，只能让弹框滚动
+        this.top = $(document).scrollTop()
+        body.style.cssText = 'width: 100%; height: 100%;overflow: hidden;';
+      },
+      cancelDialogDrawer() {
+        this.visible = false;
+        body.removeAttribute('style');
+        $(document).scrollTop(this.top)
+      }
+    },
+    created() {}
+  })
+</script>
+
+    </div>
+    <div class="blog-title" id="author-avatar">
+      
+      <a href="/" class="logo">赛朋博客</a>
+    </div>
+    <nav class="navbar">
+      <ul class="menu">
+        
+          
+            <li class="menu-item" style="position: relative;">
+              
+                <a href="/" class="menu-item-link" title="主页">
+                  
+                    <i class="fas fa-home" aria-hidden="true"></i>
+                  
+                  <span class="name">主页</span>
+                </a>
+              
+            </li>
+          
+            <li class="menu-item" style="position: relative;">
+              
+                <a href="/categories" class="menu-item-link" title="分类">
+                  
+                    <i class="fas fa-bookmark" aria-hidden="true"></i>
+                  
+                  <span class="name">分类</span>
+                </a>
+              
+            </li>
+          
+            <li class="menu-item" style="position: relative;">
+              
+                <a href="/gallery" class="menu-item-link" title="画廊">
+                  
+                    <i class="fas fa-camera-retro" aria-hidden="true"></i>
+                  
+                  <span class="name">画廊</span>
+                </a>
+              
+            </li>
+          
+            <li class="menu-item" style="position: relative;">
+              
+                <a href="/vlog" class="menu-item-link" title="影像">
+                  
+                    <i class="fas fa-video-camera" aria-hidden="true"></i>
+                  
+                  <span class="name">影像</span>
+                </a>
+              
+            </li>
+          
+            <li class="menu-item" style="position: relative;">
+              
+                <a href="/creation" class="menu-item-link" title="创造">
+                  
+                    <i class="fas fa-paper-plane" aria-hidden="true"></i>
+                  
+                  <span class="name">创造</span>
+                </a>
+              
+            </li>
+          
+            <li class="menu-item" style="position: relative;">
+              
+                <a href="javascript:;" class="menu-item-link" title="更多">
+                  
+                    <i class="fas fa-link"></i>
+                  
+                  <span class="name">更多</span>
+                  <i class="fas fa-chevron-down arrow" aria-hidden="true"></i>
+                </a>
+                <ul class="sub-menu">
+                  
+                  <li>
+                    <a href="/tags">
+                      
+                      <i class="fas fa-tags" style="margin-top: -20px;"></i>
+                      
+                      <span>标签</span>
+                    </a>
+                  </li>
+                  
+                  <li>
+                    <a href="/archives">
+                      
+                      <i class="fas fa-archive" style="margin-top: -20px;"></i>
+                      
+                      <span>归档</span>
+                    </a>
+                  </li>
+                  
+                  <li>
+                    <a target="_blank" rel="noopener" href="https://github.com/oO0OoOo/oO0OoOo.github.io">
+                      
+                      <i class="fas fa-bug" style="margin-top: -20px;"></i>
+                      
+                      <span>Github</span>
+                    </a>
+                  </li>
+                  
+                  <li>
+                    <a target="_blank" rel="noopener" href="https://cy.surprising.studio/">
+                      
+                      <i class="fas fa-link" style="margin-top: -20px;"></i>
+                      
+                      <span>词影</span>
+                    </a>
+                  </li>
+                  
+                  <li>
+                    <a target="_blank" rel="noopener" href="https://handle.antfu.me/">
+                      
+                      <i class="fas fa-link" style="margin-top: -20px;"></i>
+                      
+                      <span>汉兜</span>
+                    </a>
+                  </li>
+                  
+                </ul>
+              
+            </li>
+          
+        
+      </ul>
+      
+      
+        <div id="appSearch">
+  <div class="search"  @click="showDialog()"><i class="fas fa-search" aria-hidden="true"></i></div>
+  <transition name="fade">
+    <div class="message-box_wrapper" style="display: none;" v-cloak v-show="dialogVisible" @click.self="cancelDialogVisible()">
+      <div class="message-box animated bounceInDown">
+        <h2>
+          <span>
+            <i class="fas fa-search" aria-hidden="true"></i>
+            <span class="title">Search</span>
+          </span>
+          <i class="fas fa-times close" pointer style="float:right;" aria-hidden="true" @click.self="cancelDialogVisible()"></i>
+        </h2>
+        <form class="site-search-form">
+          <input type="text"
+            placeholder="Please enter keywords"
+            id="local-search-input" 
+            @click="getSearchFile()"
+            class="st-search-input"
+            v-model="searchInput"
+          />
+        </form>
+        <div class="result-wrapper">
+          <div id="local-search-result" class="local-search-result-cls"></div>
+        </div>
+      </div>
+    </div>
+  </transition>
+</div>
+<script src="/js/local_search.js"></script>
+<script>
+  var body = document.body || document.documentElement || window;
+  var vm = new Vue({
+    el: '#appSearch',
+    data: {
+      dialogVisible: false,
+      searchInput: '',
+      top: 0,
+    },
+    computed: {
+    },
+    mounted() {
+      window.addEventListener('pjax:complete', () => {
+        this.cancelDialogVisible();
+      })
+    },
+    methods: {
+      showDialog() {
+        this.dialogVisible = true;
+        // 防止页面滚动，只能让弹框滚动
+        this.top = $(document).scrollTop()
+        body.style.cssText = 'overflow: hidden;';
+      },
+      getSearchFile() {
+        if (!this.searchInput) {
+          getSearchFile("/search.xml");
+        }
+      },
+      cancelDialogVisible() {
+        this.dialogVisible = false;
+        body.removeAttribute('style');
+        $(document).scrollTop(this.top)
+      },
+    },
+    created() {}
+  })
+</script>
+<!-- 解决刷新页面闪烁问题，可以在元素上添加display: none, 或者用vue.extend方法，详情：https://blog.csdn.net/qq_31393401/article/details/81017912 -->
+<!-- 下面是搜索基本写法 -->
+<!-- <script type="text/javascript" id="local.search.active">
+  var inputArea = document.querySelector("#local-search-input");
+  inputArea.onclick   = function(){ getSearchFile(); this.onclick = null }
+  inputArea.onkeydown = function(){ if(event.keyCode == 13) return false }
+</script> -->
+
+      
+
+    </nav>
+  </div>
+  
+  
+    <div id="he-plugin-simple"></div>
+    <script>
+      WIDGET = {
+        CONFIG: {
+          "modules": "012",
+          "background": 5,
+          "tmpColor": "4A4A4A",
+          "tmpSize": 16,
+          "cityColor": "4A4A4A",
+          "citySize": 16,
+          "aqiSize": 16,
+          "weatherIconSize": 24,
+          "alertIconSize": 18,
+          "padding": "10px 10px 10px 10px",
+          "shadow": "1",
+          "language": "auto",
+          "borderRadius": 5,
+          "fixed": "false",
+          "vertical": "middle",
+          "horizontal": "center",
+          "key": "2784dd3fcb1e4f0f9a9b579bf69641f2"
+        }
+      }
+    </script>
+    <script src="https://widget.qweather.net/simple/static/js/he-simple-common.js?v=2.0"></script> 
+    
+</header>
+        <!-- 内容区域 -->
+        
+ <!-- prismjs 代码高亮 -->
+ 
+
+
+<div class="bg-dark-floor" style="position: fixed;left: 0;top: 0;width: 100%;height: 100%;z-index: -1;"></div>
+
+
+  <!-- 文章详情页顶部图片和标题 -->
+
+
+
+
+<div class="post-detail-header" id="thumbnail_canvas" style="background-repeat: no-repeat; background-size: cover; 
+  background-position: center center;position: relative;background-image:url('https://picx.zhimg.com/v2-f03ff2911a65b4be8134688969712666_1440w.jpg?source=172ae18b')">
+  <div class="post-detail-header-mask"></div>
+  <canvas id="header_canvas"style="position:absolute;bottom:0;pointer-events:none;"></canvas>
+  
+  <div class="post-detail-header_info-box">
+    <div class="title-box">
+      <span class="title">
+        Unity 与 iOS 工程桥接介绍
+      </span>
+    </div>
+    
+    
+      
+        <span class="post-detail-header_date">
+          <i class="fas fa-calendar"></i> Published in：2024-01-09 |
+        </span>
+      
+
+      
+        <span class="post-detail-header_categories">
+          <i class="iconfont iconbookmark1"></i> category：
+          
+            <a href="/categories/sdk/" class="post-detail-header_category">
+              sdk
+            </a>
+          
+        </span>
+      
+
+      
+          
+            <span class="reading">
+              <i class="fas fa-eye"></i> reading：<span id="busuanzi_value_page_pv"></span>
+            </span>
+          
+      
+    
+  </div>
+  
+  
+    <script src="/js/bubble/bubble.js"></script>
+  
+</div>
+
+
+
+
+
+<div class="post-detail-content post-row" 
+  style="padding-top: 0px;">
+  <div class="main-content">
+    <article class="post post-detail">
+      <div class="post-content">
+        <h3 id="Unity-侧"><a href="#Unity-侧" class="headerlink" title="Unity 侧"></a>Unity 侧</h3><h4 id="ipa-包体构建流程"><a href="#ipa-包体构建流程" class="headerlink" title="ipa 包体构建流程"></a>ipa 包体构建流程</h4><ol>
+<li>在 Mac 上启动 Unity，在 Unity 的 BuildSettings 界面选择 iOS 平台，点击 Build 按钮后即开始导出 XCode 工程。或调用 Unity 命令行工具完成此步操作。</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/oO0OoOo/cpblog-hexo/main/source/images/202401091514334.png" class="lazyload placeholder" data-srcset="https://raw.githubusercontent.com/oO0OoOo/cpblog-hexo/main/source/images/202401091514334.png" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif"></p>
+<p>导出后的 Xcode 工程结构如下图</p>
+<p><img src="https://raw.githubusercontent.com/oO0OoOo/cpblog-hexo/main/source/images/202401091514088.png" class="lazyload placeholder" data-srcset="https://raw.githubusercontent.com/oO0OoOo/cpblog-hexo/main/source/images/202401091514088.png" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif"></p>
+<p>2.双击 Unity-iPhone.xcodeproj，打开 Xcode，在 Xcode 顶部栏点击 Product&#x2F;Archive 开始构建档案。或调用 Xcode 命令行工具完成此步操作。</p>
+<p><img src="https://raw.githubusercontent.com/oO0OoOo/cpblog-hexo/main/source/images/202401091514353.png" class="lazyload placeholder" data-srcset="https://raw.githubusercontent.com/oO0OoOo/cpblog-hexo/main/source/images/202401091514353.png" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif"></p>
+<p>3.在 Xcode 顶部栏点击 Window&#x2F;Organizer 进行分发，根据出包需求选择不同的证书导出对应 ipa 安装包文件。或调用 Xcode 命令行工具完成此步操作。</p>
+<p><img src="https://raw.githubusercontent.com/oO0OoOo/cpblog-hexo/main/source/images/202401091514124.png" class="lazyload placeholder" data-srcset="https://raw.githubusercontent.com/oO0OoOo/cpblog-hexo/main/source/images/202401091514124.png" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif"></p>
+<p>最终导出的 ipa 文件和日志文件如下图</p>
+<p><img src="https://raw.githubusercontent.com/oO0OoOo/cpblog-hexo/main/source/images/202401091514818.png" class="lazyload placeholder" data-srcset="https://raw.githubusercontent.com/oO0OoOo/cpblog-hexo/main/source/images/202401091514818.png" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif"></p>
+<p>总结：对于使用 Unity 开发的游戏，每次打包都相当于重新产生一个 Xcode 工程。当游戏的美术资源，代码文件，配置文件发生变更后，通常需要重新导出一份新的 Xcode 工程。</p>
+<h4 id="Unity-工程目录结构简介"><a href="#Unity-工程目录结构简介" class="headerlink" title="Unity 工程目录结构简介"></a>Unity 工程目录结构简介</h4><p>不同游戏的 Unity 目录结构不同，其中 Unity 对一些目录做了特殊定义，此类文件夹不能更名，否则 Unity 会识别不到。</p>
+<p>以下列举了一个 Unity 游戏工程的大概目录结构（加粗的为 Unity 特殊定义的目录名）</p>
+<p><strong>Assets</strong></p>
+<p><strong>Library</strong>  &#x2F;&#x2F;Unity 针对 Assets 下的文件生成的适合自身读写的中间文件</p>
+<p><strong>Packages</strong>  &#x2F;&#x2F;存放 Unity Package Manager 扩展包文件</p>
+<p><strong>ProjectSettings</strong>  &#x2F;&#x2F;存放 Unity 项目设置文件</p>
+<p><strong>Temp</strong>  &#x2F;&#x2F;存放临时文件，随 Unity 进程关闭被清空</p>
+<h4 id="创建桥接文件"><a href="#创建桥接文件" class="headerlink" title="创建桥接文件"></a>创建桥接文件</h4><p>1.在 <strong>Assets&#x2F;Plugins&#x2F;iOS</strong> 目录下创建以下文件（文件名称随意）</p>
+<p>2.编辑 MyAppController.h（属于各 Unity 项目的通用做法，网上有很多示例）</p>
+<p>注意点：</p>
+<p>（1）必须继承自 UnityAppController</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="comment">//  MyAppController.h</span></span><br><span class="line"><span class="comment">//  Unity-iPhone</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">ifndef</span> MyAppController_h</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> MyAppController_h</span></span><br><span class="line"><span class="meta">#import <span class="string">&quot;UnityAppController.h&quot;</span></span></span><br><span class="line"></span><br><span class="line">@interface MyAppController : UnityAppController</span><br><span class="line">- (NSString*)BOOLToNSString:(BOOL)val;</span><br><span class="line">@end</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">endif</span> <span class="comment">/* MyAppController_h */</span></span></span><br></pre></td></tr></table></figure>
+
+<p>3.编辑 MyAppController.mm（也属于各 Unity 项目的通用做法，网上有很多示例）</p>
+<p>注意点：</p>
+<p>（1）最后一行必须写 IMPL_APP_CONTROLLER_SUBCLASS，这是 Unity 提供的宏。Unity 通过这个宏知道要使用我们定制的 MyAppController 而不是使用默认的 UnityAppController。</p>
+<p>（2）新建的函数必须在对应的头文件里提前声明</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="comment">//  MyAppController.mm</span></span><br><span class="line"><span class="comment">//  Unity-iPhone</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#import <span class="string">&lt;Foundation/Foundation.h&gt;</span></span></span><br><span class="line"><span class="meta">#import <span class="string">&lt;UIKit/UIKit.h&gt;</span></span></span><br><span class="line"><span class="meta">#import <span class="string">&quot;MyAppController.h&quot;</span></span></span><br><span class="line"><span class="meta">#import <span class="string">&quot;UnityAppController.h&quot;</span></span></span><br><span class="line"><span class="meta">#import <span class="string">&lt;SDK/SDK.h&gt;</span></span></span><br><span class="line"><span class="meta">#import <span class="string">&quot;UnityInterface.h&quot;</span></span></span><br><span class="line"></span><br><span class="line">@implementation MyAppController</span><br><span class="line"></span><br><span class="line"><span class="comment">//注册app生命周期函数，调用对应的sdk代码</span></span><br><span class="line"><span class="comment">//例如重载程序启动成功之后自动调用的方法</span></span><br><span class="line">- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions &#123;</span><br><span class="line">    [[NSNotificationCenter defaultCenter] addObserver:self selector:@<span class="built_in">selector</span>(paySuc:) name:kPaySuccNotification object:nil];</span><br><span class="line">    [[NSNotificationCenter defaultCenter] addObserver:self selector:@<span class="built_in">selector</span>(payFail:) name:kPayErrorNotification object:nil];</span><br><span class="line">    <span class="keyword">return</span> [[SDK instance] application:application didFinishLaunchingWithOptions:launchOptions];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//也可以写自己开发的代码，BOOL转NSString*，函数需要提前在MyAppController.h声明</span></span><br><span class="line">- (NSString*) BOOLToNSString:(BOOL)val</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span>(val == <span class="literal">true</span>)</span><br><span class="line">    &#123; <span class="keyword">return</span> @<span class="string">&quot;true&quot;</span>; &#125;</span><br><span class="line">    <span class="keyword">return</span> @<span class="string">&quot;false&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (<span class="type">void</span>)paySuc:(NSNotification *)notify</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span>(logToggle)</span><br><span class="line">    &#123; <span class="built_in">NSLog</span>(@<span class="string">&quot;paySuc:%@&quot;</span>, notify.object); &#125;</span><br><span class="line">    NSString *str =  [notify.object description];</span><br><span class="line">    <span class="type">char</span>* arg0 = (<span class="type">char</span>*)[[NSString stringWithFormat:@<span class="string">&quot;paySuc#%@&quot;</span>, str] cStringUsingEncoding:NSUTF8StringEncoding];</span><br><span class="line">    <span class="built_in">UnitySendMessage</span>(<span class="string">&quot;IosMessageReceiver&quot;</span>, <span class="string">&quot;Call&quot;</span>, arg0);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (<span class="type">void</span>)payFail:(NSNotification *)notify</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span>(logToggle)</span><br><span class="line">    &#123; <span class="built_in">NSLog</span>(@<span class="string">&quot;payFail:%@&quot;</span>,notify.object); &#125;</span><br><span class="line">    NSString *str =  [notify.object description];</span><br><span class="line">    <span class="type">char</span>* arg0 = (<span class="type">char</span>*)[[NSString stringWithFormat:@<span class="string">&quot;payFail#%@&quot;</span>, str] cStringUsingEncoding:NSUTF8StringEncoding];</span><br><span class="line">    <span class="built_in">UnitySendMessage</span>(<span class="string">&quot;IosMessageReceiver&quot;</span>, <span class="string">&quot;Call&quot;</span>, arg0);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@<span class="function">end</span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"><span class="title">IMPL_APP_CONTROLLER_SUBCLASS</span><span class="params">(MyAppController)</span></span>;<span class="comment">//*以MyAppController为启动项</span></span><br></pre></td></tr></table></figure>
+
+<p>4.编辑 NativeCallProxy.h</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="comment">//  NativeCallProxy.h</span></span><br><span class="line"><span class="comment">//  Unity-iPhone</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">ifndef</span> NativeCallProxy_h</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> NativeCallProxy_h</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#import <span class="string">&lt;Foundation/Foundation.h&gt;</span></span></span><br><span class="line"><span class="meta">#import <span class="string">&quot;NativeCallProxy.h&quot;</span></span></span><br><span class="line">@protocol NativeCallsProtocol</span><br><span class="line"></span><br><span class="line">@required</span><br><span class="line"></span><br><span class="line">@end</span><br><span class="line"></span><br><span class="line">__attribute__ ((<span class="built_in">visibility</span>(<span class="string">&quot;default&quot;</span>)))</span><br><span class="line"></span><br><span class="line">@interface FrameworkLibAPI : NSObject</span><br><span class="line"><span class="comment">// call it any time after UnityFrameworkLoad to set object implementing NativeCallsProtocol methods</span></span><br><span class="line">+(<span class="type">void</span>) registerAPIforNativeCalls:(id&lt;NativeCallsProtocol&gt;) aApi;</span><br><span class="line"></span><br><span class="line"><span class="keyword">extern</span> BOOL logToggle;</span><br><span class="line"></span><br><span class="line">@end</span><br><span class="line"></span><br><span class="line">@interface NativeCallProxy : NSObject</span><br><span class="line"></span><br><span class="line">@end</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">endif</span> <span class="comment">/* NativeCallProxy_h */</span></span></span><br></pre></td></tr></table></figure>
+
+<p>5.编辑 NativeCallProxy.mm</p>
+<p>注意点：</p>
+<p>(1)被 C#调用的代码必须用 extern “C”包围</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="comment">//  NativeCallProxy.m</span></span><br><span class="line"><span class="comment">//  Unity-iPhone</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#import <span class="string">&lt;Foundation/Foundation.h&gt;</span></span></span><br><span class="line"><span class="meta">#import <span class="string">&quot;NativeCallProxy.h&quot;</span></span></span><br><span class="line"><span class="meta">#import <span class="string">&quot;MyAppController.h&quot;</span></span></span><br><span class="line"></span><br><span class="line">@implementation FrameworkLibAPI</span><br><span class="line"></span><br><span class="line">id&lt;NativeCallsProtocol&gt; api = <span class="literal">NULL</span>;</span><br><span class="line">+(<span class="type">void</span>) registerAPIforNativeCalls:(id&lt;NativeCallsProtocol&gt;) aApi</span><br><span class="line">&#123;</span><br><span class="line">    api = aApi;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">BOOL logToggle = <span class="literal">true</span>;         <span class="comment">//全局变量：日志开关</span></span><br><span class="line"></span><br><span class="line">@end</span><br><span class="line"></span><br><span class="line"><span class="keyword">extern</span> <span class="string">&quot;C&quot;</span> &#123;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">char</span>* <span class="title">invokeMethod</span><span class="params">(<span class="type">const</span> <span class="type">char</span> *method, <span class="type">const</span> <span class="type">char</span> *arg0)</span></span>;</span><br><span class="line"><span class="function"><span class="type">char</span>* <span class="title">makeStringCopy</span><span class="params">(<span class="type">const</span> <span class="type">char</span>* string)</span></span>;</span><br><span class="line"><span class="function"><span class="type">char</span>* <span class="title">pay</span><span class="params">(<span class="type">const</span> <span class="type">char</span>* data)</span></span>;</span><br><span class="line"><span class="function"><span class="type">char</span>* <span class="title">toggleLog</span><span class="params">(<span class="type">const</span> <span class="type">char</span> *data)</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">char</span>* <span class="title">invokeMethod</span><span class="params">(<span class="type">const</span> <span class="type">char</span> *method, <span class="type">const</span> <span class="type">char</span> *arg0)</span></span>&#123;</span><br><span class="line">    </span><br><span class="line">    NSString *methodStr = [NSString stringWithUTF8String:method];</span><br><span class="line">    NSString *arg0Str = [NSString stringWithUTF8String:arg0];</span><br><span class="line">    <span class="type">char</span>* returnChar = (<span class="type">char</span>*)<span class="built_in">malloc</span>(<span class="number">1024</span> * <span class="built_in">sizeof</span>(<span class="type">char</span>));</span><br><span class="line">    <span class="built_in">strncpy</span>(returnChar, <span class="string">&quot;&quot;</span>, <span class="number">1024</span>);</span><br><span class="line">    <span class="keyword">if</span>(<span class="built_in">strcmp</span>(method, <span class="string">&quot;pay&quot;</span>) == <span class="number">0</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">pay</span>(arg0);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(<span class="built_in">strcmp</span>(method, <span class="string">&quot;toggleLog&quot;</span>) == <span class="number">0</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">toggleLog</span>(arg0);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> (<span class="type">char</span>*)[[NSString stringWithFormat:@<span class="string">&quot;[invokeMethod] method missing:%@&quot;</span>, methodStr] cStringUsingEncoding:NSUTF8StringEncoding];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">char</span>* <span class="title">toggleLog</span><span class="params">(<span class="type">const</span> <span class="type">char</span> *data)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    NSString *string = [NSString stringWithUTF8String:data];</span><br><span class="line">    logToggle = [string isEqualToString:@<span class="string">&quot;1&quot;</span>];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">char</span>* <span class="title">pay</span><span class="params">(<span class="type">const</span> <span class="type">char</span> *data)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    NSString *string = [NSString stringWithUTF8String:data];</span><br><span class="line">    NSArray *array = [string componentsSeparatedByString:@<span class="string">&quot;,&quot;</span>];</span><br><span class="line">    PayParams *params = [PayParams <span class="keyword">new</span>];</span><br><span class="line">    params.roleID = [array objectAtIndex:<span class="number">0</span>];</span><br><span class="line">    params.orderID = [array objectAtIndex:<span class="number">1</span>];</span><br><span class="line">    params.price = @([[array objectAtIndex:<span class="number">2</span>] floatValue]);</span><br><span class="line">    </span><br><span class="line">    [[SDK instance] pay:params];</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span>(logToggle)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">NSLog</span>(@<span class="string">&quot;invoke pay interface success. roleId = %@, orderID = %@, price = %@&quot;</span>, params.roleID, params.orderID, params.price);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">makeStringCopy</span>(<span class="string">&quot;&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">char</span>* <span class="title">makeStringCopy</span><span class="params">(<span class="type">const</span> <span class="type">char</span>* string)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(string == <span class="literal">NULL</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">    <span class="type">char</span>* res = (<span class="type">char</span>*)<span class="built_in">malloc</span>(<span class="built_in">strlen</span>(string)+<span class="number">1</span>);</span><br><span class="line">    <span class="built_in">strcpy</span>(res, string);</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@implementation NativeCallProxy</span><br><span class="line"></span><br><span class="line">@end</span><br></pre></td></tr></table></figure>
+
+<p>6.在 Assets&#x2F;Scripts 目录下创建以下文件（文件名称随意）</p>
+<p>SdkBridge_iOS.cs  &#x2F;&#x2F;调用 C 代码的 C#文件</p>
+<p>IosMessageReceiver.cs  &#x2F;&#x2F;接收 iOS 代码发送的消息</p>
+<p>7.编辑 SdkBridge_iOS.cs</p>
+<p>注意点：</p>
+<p>（1）invokeMethod 必须用 UNITY_IOS 宏包围，并且与 NativeCallProxy.mm 内的 invokeMethod 完全同名，参数一致（C#的 string 对应 C 的 char*）</p>
+<p>（2）invokeMethod 必须加 extern 关键字，并且加[DllImport(“__Internal”)]特性标签</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> System;</span><br><span class="line"><span class="keyword">using</span> System.Collections.Generic;</span><br><span class="line"><span class="keyword">using</span> UnityEngine;</span><br><span class="line"><span class="meta">#<span class="keyword">if</span> UNITY_IOS</span></span><br><span class="line"><span class="keyword">using</span> System.Runtime.InteropServices;</span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">SdkBridge_iOS</span></span><br><span class="line">    &#123;</span><br><span class="line"><span class="meta">#<span class="keyword">if</span> UNITY_IOS</span></span><br><span class="line">        [<span class="meta">DllImport(<span class="string">&quot;__Internal&quot;</span>)</span>] <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">extern</span> <span class="built_in">string</span> <span class="title">invokeMethod</span>(<span class="params"><span class="built_in">string</span> method, <span class="built_in">string</span> arg0</span>)</span>;</span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Init</span>()</span></span><br><span class="line">        &#123;</span><br><span class="line">            GameObject go = <span class="keyword">new</span> GameObject(<span class="string">&quot;IosMessageReceiver&quot;</span>);</span><br><span class="line">            go.AddComponent&lt;IosMessageReceiver&gt;();</span><br><span class="line">            IosMessageReceiver.Event_paySuc += IosMessageReceiver_Event_paySuc;</span><br><span class="line">            IosMessageReceiver.Event_payFail += IosMessageReceiver_Event_payFail;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="built_in">string</span> <span class="title">InvokeMethod</span>(<span class="params"><span class="built_in">string</span> method, <span class="built_in">string</span> arg0</span>)</span></span><br><span class="line">        &#123;</span><br><span class="line"><span class="meta">#<span class="keyword">if</span> UNITY_IOS</span></span><br><span class="line">            Debug.LogFormat(<span class="string">&quot;ready invoke method: &#123;0&#125;, arg0: &#123;1&#125;&quot;</span>, method, arg0);</span><br><span class="line">            <span class="built_in">string</span> returnVal = invokeMethod(method, arg0);</span><br><span class="line">            Debug.LogFormat(<span class="string">&quot;got return value: &#123;0&#125;&quot;</span>, returnVal);</span><br><span class="line">            <span class="keyword">return</span> returnVal;</span><br><span class="line"><span class="meta">#<span class="keyword">else</span></span></span><br><span class="line">            <span class="keyword">return</span> <span class="built_in">string</span>.Empty;</span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Pay</span>(<span class="params"><span class="built_in">float</span> price, <span class="built_in">string</span> orderId, <span class="built_in">string</span> roleId</span>)</span></span><br><span class="line">        &#123;</span><br><span class="line">            StringBuilder sb = <span class="keyword">new</span> StringBuilder();</span><br><span class="line">            sb.Append(roleId).Append(<span class="string">&#x27;,&#x27;</span>);</span><br><span class="line">            sb.Append(orderId).Append(<span class="string">&#x27;,&#x27;</span>);</span><br><span class="line">            sb.Append(price);</span><br><span class="line">            <span class="built_in">string</span> arg0 = sb.ToString();</span><br><span class="line">            Debug.LogFormat(<span class="string">&quot;pay. arg0 = &#123;0&#125;&quot;</span>, arg0); </span><br><span class="line">            InvokeMethod(<span class="string">&quot;pay&quot;</span>, arg0);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">IosMessageReceiver_Event_payFail</span>(<span class="params"><span class="built_in">string</span> obj</span>)</span></span><br><span class="line">        &#123;</span><br><span class="line">            Debug.LogFormat(<span class="string">&quot;Received payFail. arg = &#123;0&#125;&quot;</span>, obj);</span><br><span class="line">            <span class="comment">//向游戏内发送支付失败消息</span></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">IosMessageReceiver_Event_paySuc</span>(<span class="params"><span class="built_in">string</span> obj</span>)</span></span><br><span class="line">        &#123;</span><br><span class="line">            Debug.LogFormat(<span class="string">&quot;Received paySuc. arg = &#123;0&#125;&quot;</span>, obj);</span><br><span class="line">            <span class="comment">//向游戏内发送支付成功消息</span></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>8.编辑 IosMessageReceiver.cs</p>
+<p>注意点：</p>
+<p>（1）Call 方法名必须与 MyAppController.mm 的 Call 函数名一致，参数也必须一致。</p>
+<p>（2）IosMessageReceiver.cs 被实例化至 Unity 的场景中的哪个 GameObject 节点下，就要把这个 GameObject 的全路径填到 MyAppController.mm 的 UnitySendMessage 函数的第一个参数内。</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> System.Collections;</span><br><span class="line"><span class="keyword">using</span> System.Collections.Generic;</span><br><span class="line"><span class="keyword">using</span> UnityEngine;</span><br><span class="line"><span class="keyword">using</span> System.Reflection;</span><br><span class="line"><span class="keyword">using</span> System;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">IosMessageReceiver</span> : <span class="title">MonoBehaviour</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">event</span> Action&lt;<span class="built_in">string</span>&gt; Event_paySuc;</span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">event</span> Action&lt;<span class="built_in">string</span>&gt; Event_payFail;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//invoked by C</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Call</span>(<span class="params"><span class="built_in">string</span> arg0</span>)</span></span><br><span class="line">        &#123;</span><br><span class="line">            Debug.LogFormat(<span class="string">&quot;[IosMessageReceiver] received arg0:&#123;0&#125;&quot;</span>, arg0);</span><br><span class="line">            <span class="keyword">if</span> (<span class="built_in">string</span>.IsNullOrEmpty(arg0))</span><br><span class="line">            &#123;</span><br><span class="line">                Debug.LogError(<span class="string">&quot;[IosMessageReceiver] arg0 is empty.&quot;</span>);</span><br><span class="line">                <span class="keyword">return</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="built_in">string</span>[] args = arg0.Split(<span class="string">&#x27;#&#x27;</span>);</span><br><span class="line">            <span class="built_in">string</span> method = args[<span class="number">0</span>];</span><br><span class="line">            <span class="built_in">object</span>[] parameters = <span class="keyword">new</span> <span class="built_in">object</span>[args.Length - <span class="number">1</span>];</span><br><span class="line">            <span class="keyword">if</span> (args.Length &gt; <span class="number">1</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">for</span> (<span class="built_in">int</span> i = <span class="number">1</span>; i &lt; args.Length; i++)</span><br><span class="line">                &#123;</span><br><span class="line">                    parameters[i - <span class="number">1</span>] = args[i];</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            MethodInfo methodInfo = <span class="keyword">this</span>.GetType().GetMethod(method, BindingFlags.Instance | BindingFlags.NonPublic);</span><br><span class="line">            <span class="keyword">try</span></span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">if</span> (parameters.Length == <span class="number">0</span>)</span><br><span class="line">                &#123;</span><br><span class="line">                    methodInfo.Invoke(<span class="keyword">this</span>, <span class="literal">null</span>);</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span></span><br><span class="line">                &#123;</span><br><span class="line">                    methodInfo.Invoke(<span class="keyword">this</span>, parameters);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">catch</span> (TargetInvocationException e)</span><br><span class="line">            &#123;</span><br><span class="line">                Debug.LogErrorFormat(<span class="string">&quot;[IosMessageReceiver] &#123;0&#125;&quot;</span>, e.Message);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">paySuc</span>(<span class="params"><span class="built_in">string</span> arg0</span>)</span></span><br><span class="line">        &#123;</span><br><span class="line">            Event_paySuc?.Invoke(arg0);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">payFail</span>(<span class="params"><span class="built_in">string</span> arg0</span>)</span></span><br><span class="line">        &#123;</span><br><span class="line">            Event_payFail?.Invoke(arg0);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>总结：</p>
+<p>（1）每次 Unity 导出 Xcode 工程后 UnityAppController 都会被复位成模版自动生成的代码，Unity 通过 IMPL_APP_CONTROLLER_SUBCLASS 帮我们解决了想要扩展 UnityAppController 代码的需求。</p>
+<p>（2）在 C#侧使用 string invokeMethod(string arg0)可以完成大部分情况下的 C#到 C 的通信，在 C 侧使用 UnitySendMessage 可以实现 C 到 C#的通信。</p>
+<h4 id="在-Unity-设置-Xcode-工程参数"><a href="#在-Unity-设置-Xcode-工程参数" class="headerlink" title="在 Unity 设置 Xcode 工程参数"></a>在 Unity 设置 Xcode 工程参数</h4><p>可直接在 Unity 编辑器内设置一部分 Xcodeproj 参数，剩下的部分只能通过代码设置。</p>
+<ol>
+<li>Unity 的 ProjectSettings 可以设置项目层面的参数。</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/oO0OoOo/cpblog-hexo/main/source/images/202401091515516.png" class="lazyload placeholder" data-srcset="https://raw.githubusercontent.com/oO0OoOo/cpblog-hexo/main/source/images/202401091515516.png" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif"></p>
+<ol>
+<li>在 Unity 内选中*.framework 文件，可以设置依赖的其它 framework。</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/oO0OoOo/cpblog-hexo/main/source/images/202401091515023.png" class="lazyload placeholder" data-srcset="https://raw.githubusercontent.com/oO0OoOo/cpblog-hexo/main/source/images/202401091515023.png" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif"></p>
+<ol>
+<li>选中*.mm 文件，可以填写编译选项</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/oO0OoOo/cpblog-hexo/main/source/images/202401091515486.png" class="lazyload placeholder" data-srcset="https://raw.githubusercontent.com/oO0OoOo/cpblog-hexo/main/source/images/202401091515486.png" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif"></p>
+<p>以上是能通过 Unity 编辑器直接设置的部分，接下来是使用代码挂接 Unity 的打包后处理钩子函数实现更多参数注入。</p>
+<p>在 Assets&#x2F;Scripts&#x2F;Editor 文件夹下创建 XcodeBuildPostprocess.cs（名字随意）</p>
+<p>下面的代码示例了如何使用 UnityAPI 对 Xcode 工程进行修改。</p>
+<p>注意点：</p>
+<p>（1）方法必须声明为 static 类型，且添加 PostProcessBuildAttribute 特性。Unity 会在打 Xcode 工程的尾声阶段（Xcode 工程已被完整导出）调用所有带该特性标签的方法。</p>
+<p>（2）该代码文件必须放在 Editor 文件夹下，或者其路径中必须包含 Editor，例如 Assets&#x2F;Scripts&#x2F;Editor。</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> UnityEngine;</span><br><span class="line"><span class="keyword">using</span> UnityEditor;</span><br><span class="line"><span class="keyword">using</span> System.IO;</span><br><span class="line"><span class="keyword">using</span> System;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">if</span> UNITY_IOS</span></span><br><span class="line"><span class="keyword">using</span> UnityEditor.iOS.Xcode;</span><br><span class="line"><span class="keyword">using</span> UnityEditor.Callbacks;</span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">XcodeBuildPostprocess</span></span><br><span class="line">    &#123;</span><br><span class="line"><span class="meta">#<span class="keyword">if</span> UNITY_IOS</span></span><br><span class="line">        [<span class="meta">PostProcessBuildAttribute(100)</span>]</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">OnPostprocessBuild</span>(<span class="params">BuildTarget buildTarget, <span class="built_in">string</span> pathToBuiltProject</span>)</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="comment">// BuildTarget需为iOS</span></span><br><span class="line">            <span class="keyword">if</span> (buildTarget != BuildTarget.iOS)</span><br><span class="line">                <span class="keyword">return</span>;</span><br><span class="line">            <span class="comment">//pathToBuiltProject示例  /Users/user/Documents/build</span></span><br><span class="line">            Debug.Log(<span class="string">&quot;XcodeBuildPostprocess:OnPostprocessBuild start, pathToBuiltProject = &quot;</span> + pathToBuiltProject);</span><br><span class="line">            <span class="comment">// 初始化</span></span><br><span class="line">            <span class="keyword">var</span> projectPath = pathToBuiltProject + <span class="string">&quot;/Unity-iPhone.xcodeproj/project.pbxproj&quot;</span>;</span><br><span class="line">            PBXProject pbxProject = <span class="keyword">new</span> PBXProject();</span><br><span class="line">            pbxProject.ReadFromFile(projectPath);</span><br><span class="line">            <span class="built_in">string</span> projectGuid = pbxProject.ProjectGuid();</span><br><span class="line">            <span class="built_in">string</span> unityIphoneGuid = pbxProject.GetUnityMainTargetGuid();</span><br><span class="line">            <span class="built_in">string</span> unityFrameworkGuid = pbxProject.GetUnityFrameworkTargetGuid();</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 添加flag</span></span><br><span class="line">            pbxProject.AddBuildProperty(unityFrameworkGuid, <span class="string">&quot;OTHER_LDFLAGS&quot;</span>, <span class="string">&quot;-ObjC&quot;</span>);</span><br><span class="line">            <span class="comment">// 关闭Bitcode</span></span><br><span class="line">            pbxProject.SetBuildProperty(unityFrameworkGuid, <span class="string">&quot;ENABLE_BITCODE&quot;</span>, <span class="string">&quot;NO&quot;</span>);</span><br><span class="line">            pbxProject.SetBuildProperty(projectGuid, <span class="string">&quot;ENABLE_BITCODE&quot;</span>, <span class="string">&quot;NO&quot;</span>);</span><br><span class="line"></span><br><span class="line">            <span class="comment">//设置app名</span></span><br><span class="line">            pbxProject.SetBuildProperty(projectGuid, <span class="string">&quot;PRODUCT_NAME_APP&quot;</span>, <span class="string">&quot;mygame&quot;</span>);</span><br><span class="line"></span><br><span class="line">            <span class="comment">//编译去除arm-v7</span></span><br><span class="line">            <span class="comment">// pbxProject.SetBuildProperty(projectGuid, &quot;VALID_ARCHS&quot;, &quot;arm64&quot;);</span></span><br><span class="line">            <span class="comment">// pbxProject.SetBuildProperty(projectGuid, &quot;VALID_ARCHS&quot;, &quot;arm64e&quot;);</span></span><br><span class="line"></span><br><span class="line">            <span class="comment">//设置DEBUG_INFORMATION_FORMAT</span></span><br><span class="line">            <span class="comment">//pbxProject.SetBuildProperty(projectGuid, &quot;DEBUG_INFORMATION_FORMAT&quot;, &quot;dwarf&quot;);</span></span><br><span class="line">            <span class="comment">//打开Enable Objective-C Exceptions</span></span><br><span class="line">            pbxProject.SetBuildProperty(projectGuid, <span class="string">&quot;GCC_ENABLE_OBJC_EXCEPTIONS&quot;</span>, <span class="string">&quot;YES&quot;</span>);</span><br><span class="line"></span><br><span class="line">            <span class="comment">//添加lib       </span></span><br><span class="line">            AddLibToProject(pbxProject, unityFrameworkGuid, <span class="string">&quot;libc++.tbd&quot;</span>);</span><br><span class="line">            AddLibToProject(pbxProject, unityFrameworkGuid, <span class="string">&quot;libz.tbd&quot;</span>);</span><br><span class="line">            AddLibToProject(pbxProject, unityFrameworkGuid, <span class="string">&quot;libresolv.tbd&quot;</span>);</span><br><span class="line">            AddLibToProject(pbxProject, unityFrameworkGuid, <span class="string">&quot;libsqlite3.tbd&quot;</span>);</span><br><span class="line"></span><br><span class="line">            <span class="comment">//将.bundle从UnityFramework的Copy Bundle Resources转移到Unity-iPhone的Copy Bundle Resources下</span></span><br><span class="line">            MoveBundleTo(pbxProject, unityFrameworkGuid, unityIphoneGuid, <span class="string">&quot;whateverSdk.bundle&quot;</span>, <span class="string">&quot;assets/jackSdk.bundle&quot;</span>);</span><br><span class="line">            MoveBundleTo(pbxProject, unityFrameworkGuid, unityIphoneGuid, <span class="string">&quot;TencentOpenApi_IOS_Bundle.bundle&quot;</span>, <span class="string">&quot;UMSocial/SocialLibraries/QQ/QQSDK/TencentOpenApi_IOS_Bundle.bundle&quot;</span>);</span><br><span class="line">            MoveBundleTo(pbxProject, unityFrameworkGuid, unityIphoneGuid, <span class="string">&quot;WeiboSDK.bundle&quot;</span>, <span class="string">&quot;UMSocial/SocialLibraries/Sina/SinaSDK/WeiboSDK.bundle&quot;</span>);</span><br><span class="line">            MoveBundleTo(pbxProject, unityFrameworkGuid, unityIphoneGuid, <span class="string">&quot;UMSocialSDKResources.bundle&quot;</span>, <span class="string">&quot;UMSocial/UMSocialUI/UMSocialSDKResources.bundle&quot;</span>);</span><br><span class="line"></span><br><span class="line">            <span class="comment">//转移plist文件到Xcode工程</span></span><br><span class="line">            AddFileToProject(pbxProject, unityIphoneGuid, <span class="string">&quot;Frameworks/Plugins/iOS/whatever_data_list.plist&quot;</span>, Application.dataPath + <span class="string">&quot;/Plugins/iOS/whatever_data_list.plist&quot;</span>);</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 应用修改</span></span><br><span class="line">            File.WriteAllText(projectPath, pbxProject.WriteToString());</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 修改Info.plist文件</span></span><br><span class="line">            <span class="keyword">var</span> plistPath = Path.Combine(pathToBuiltProject, <span class="string">&quot;Info.plist&quot;</span>);</span><br><span class="line">            <span class="keyword">var</span> plist = <span class="keyword">new</span> PlistDocument();</span><br><span class="line">            plist.ReadFromFile(plistPath);</span><br><span class="line"></span><br><span class="line">            <span class="comment">//plist植入sdk参数</span></span><br><span class="line">            plist.root.SetString(<span class="string">&quot;SDK_AppID&quot;</span>, <span class="string">&quot;FFHkfDiesj3-sn2n79khf&quot;</span>);</span><br><span class="line">            plist.root.SetString(<span class="string">&quot;SDK_AppKEY&quot;</span>, <span class="string">&quot;kDkctwv8FzkSFc63fvf-sSFhbM47Oas0dQfZf&quot;</span>);</span><br><span class="line">            PlistElementArray plistArray = plist.root.CreateArray(<span class="string">&quot;LSApplicationQueriesSchemes&quot;</span>);</span><br><span class="line">            plistArray.AddString(<span class="string">&quot;wechat&quot;</span>);</span><br><span class="line">            plistArray.AddString(<span class="string">&quot;mqq&quot;</span>);</span><br><span class="line">            plistArray.AddString(<span class="string">&quot;weibosdk&quot;</span>);</span><br><span class="line"></span><br><span class="line">            <span class="comment">//设置Info的URL Types （分享外链）</span></span><br><span class="line">            PlistElementArray urlTypes = plist.root.CreateArray(<span class="string">&quot;CFBundleURLTypes&quot;</span>);</span><br><span class="line"></span><br><span class="line">            PlistElementDict url1 = urlTypes.AddDict();</span><br><span class="line">            url1.SetString(<span class="string">&quot;CFBundleTypeRole&quot;</span>, <span class="string">&quot;Editor&quot;</span>);</span><br><span class="line">            PlistElementArray urlSchemes1 = url1.CreateArray(<span class="string">&quot;CFBundleURLSchemes&quot;</span>);</span><br><span class="line">            urlSchemes1.AddString(<span class="string">&quot;tencent12345678&quot;</span>);</span><br><span class="line"></span><br><span class="line">            PlistElementDict url2 = urlTypes.AddDict();</span><br><span class="line">            url2.SetString(<span class="string">&quot;CFBundleTypeRole&quot;</span>, <span class="string">&quot;Editor&quot;</span>);</span><br><span class="line">            PlistElementArray urlSchemes2 = url2.CreateArray(<span class="string">&quot;CFBundleURLSchemes&quot;</span>);</span><br><span class="line">            urlSchemes2.AddString(<span class="string">&quot;QQ99999&quot;</span>);</span><br><span class="line"></span><br><span class="line">            <span class="comment">//如果plist文件里没有下面的字段，则打开下面代码，若有则注释掉，无需重复添加</span></span><br><span class="line">            <span class="comment">//var dict = plist.root.CreateDict(&quot;App Transport Security Settings&quot;);</span></span><br><span class="line">            <span class="comment">//dict.SetBoolean(&quot;Allow Arbitrary Loads&quot;, true);</span></span><br><span class="line"></span><br><span class="line">            plist.root.SetString(<span class="string">&quot;NSUserTrackingUsageDescription&quot;</span>, <span class="string">&quot;此APP需要您同意才能使用数据收集功能，收集数据的作用是以便我们对您提供更好的游戏体验&quot;</span>);</span><br><span class="line">            plist.root.SetString(<span class="string">&quot;NSPhotoLibraryUsageDescription&quot;</span>, <span class="string">&quot;此App需要您的同意才能访问相册&quot;</span>);</span><br><span class="line">            plist.root.SetString(<span class="string">&quot;NSPhotoLibraryAddUsageDescription&quot;</span>, <span class="string">&quot;此App需要您的同意才能保存截屏图片&quot;</span>);</span><br><span class="line"></span><br><span class="line">            <span class="comment">//设置app在应用商店显示的语言</span></span><br><span class="line">            plist.root.SetString(<span class="string">&quot;CFBundleDevelopmentRegion&quot;</span>, <span class="string">&quot;zh_CN&quot;</span>);</span><br><span class="line">            PlistElementArray plistArray_bundleLocalization = plist.root.CreateArray(<span class="string">&quot;CFBundleLocalizations&quot;</span>);</span><br><span class="line">            plistArray_bundleLocalization.AddString(<span class="string">&quot;zh_CN&quot;</span>);</span><br><span class="line"></span><br><span class="line">            <span class="comment">//添加Cpability</span></span><br><span class="line">            ProjectCapabilityManager pcm = <span class="keyword">new</span> ProjectCapabilityManager(projectPath, <span class="string">&quot;Unity-iPhone.entitlements&quot;</span>, <span class="string">&quot;Unity-iPhone&quot;</span>);</span><br><span class="line">            pcm.AddAssociatedDomains(<span class="keyword">new</span> <span class="built_in">string</span>[] &#123; <span class="string">&quot;applinks:mygame.links.com&quot;</span> &#125;);</span><br><span class="line">            pcm.AddPushNotifications(<span class="literal">false</span>);</span><br><span class="line">            pcm.WriteToFile();</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 应用修改</span></span><br><span class="line">            plist.WriteToFile(plistPath);</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//添加lib方法</span></span><br><span class="line">        <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">AddLibToProject</span>(<span class="params">PBXProject inst, <span class="built_in">string</span> targetGuid, <span class="built_in">string</span> lib</span>)</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">string</span> fileGuid = inst.AddFile(<span class="string">&quot;usr/lib/&quot;</span> + lib, <span class="string">&quot;Frameworks/&quot;</span> + lib, PBXSourceTree.Sdk);</span><br><span class="line">            inst.AddFileToBuild(targetGuid, fileGuid);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">AddLocalFrameworkToProject</span>(<span class="params">PBXProject inst, <span class="built_in">string</span> targetGuid, <span class="built_in">string</span> fileName, <span class="built_in">string</span> filePath</span>)</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">string</span> fileGuid = inst.AddFile(filePath, <span class="string">&quot;Frameworks/&quot;</span> + fileName, PBXSourceTree.Source);</span><br><span class="line">            inst.AddFileToBuild(targetGuid, fileGuid);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">AddFileToProject</span>(<span class="params">PBXProject inst, <span class="built_in">string</span> targetGuid, <span class="built_in">string</span> filePathInXcodeProj, <span class="built_in">string</span> filePathInUnityproj</span>)</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">string</span> fileGuid = inst.AddFile(filePathInUnityproj, filePathInXcodeProj, PBXSourceTree.Source);</span><br><span class="line">            inst.AddFileToBuild(targetGuid, fileGuid);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">AddBundleToProject</span>(<span class="params">PBXProject inst, <span class="built_in">string</span> targetGuid, <span class="built_in">string</span> fileName, <span class="built_in">string</span> filePath</span>)</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">string</span> fileGuid = inst.AddFile(filePath, fileName, PBXSourceTree.Source);</span><br><span class="line">            inst.AddFileToBuild(targetGuid, fileGuid);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">RemoveBundleFromProject</span>(<span class="params">PBXProject inst, <span class="built_in">string</span> targetGuid, <span class="built_in">string</span> fileProjectPath</span>)</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">string</span> fileGuid = inst.FindFileGuidByProjectPath(fileProjectPath);</span><br><span class="line">            <span class="keyword">if</span> (fileGuid == <span class="literal">null</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                Debug.LogErrorFormat(<span class="string">&quot;RemoveBundleFromProject failed. fileProjectPath: &#123;0&#125;&quot;</span>, fileProjectPath);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">            &#123;</span><br><span class="line">                inst.RemoveFileFromBuild(targetGuid, fileGuid);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">MoveBundleTo</span>(<span class="params">PBXProject pbxProject, <span class="built_in">string</span> fromTargetGuid, <span class="built_in">string</span> toTargrtGuid, <span class="built_in">string</span> bundleName, <span class="built_in">string</span> bundlePathRelativeIOS</span>)</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">string</span> path_aofeibundle = Application.dataPath + <span class="string">&quot;/Plugins/iOS/&quot;</span> + bundlePathRelativeIOS;</span><br><span class="line">            Debug.LogFormat(<span class="string">&quot;XcodeBuildPostprocess:OnPostprocessBuild bundleName = &#123;0&#125;, bundlePathInUnity = &#123;1&#125;&quot;</span>, bundleName, path_aofeibundle);</span><br><span class="line"></span><br><span class="line">            AddBundleToProject(pbxProject, toTargrtGuid, bundleName, path_aofeibundle);</span><br><span class="line">            RemoveBundleFromProject(pbxProject, fromTargetGuid, <span class="string">&quot;Frameworks/Plugins/iOS/&quot;</span> + bundlePathRelativeIOS);</span><br><span class="line">        &#125;</span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Xcode-侧"><a href="#Xcode-侧" class="headerlink" title="Xcode 侧"></a>Xcode 侧</h3><p>在打 ipa 包的流程中，Xcode 侧无需进行任何 plist，xcodeproj，工程资源文件&#x2F;代码的修改。</p>
+<p>一般在接入 sdk 的过程中，我们仍会使用 Xcode 进行调试，例如在接入某 sdk 时，要求在 plist 中添加参数，那么可以先用 Unity 导出一个 Xcode 工程，在此 Xcode 工程上进行 plist 修改，再打真机包调试，无需重复从 Unity 重新导出工程。</p>
+<p>需要注意的是，在 Xcode 调试期间作出的任何 plist 改动，必须转化为 XcodeBuildPostprocess 的代码。在 Xcode 调试期间新增或修改的任何代码，也要拷贝回 Unity 的工程目录下。</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>从本文可以看出，ipa 包体构建的绝大部分的配置操作都是在 Unity 侧实现的，这也就降低了不熟悉 iOS 开发的 Unity 游戏开发人员打 ipa 包的难度。虽然接入一些特殊功能的 sdk 无可避免地要写 native 端的代码，但通常 sdk 方会提供完整的接入代码甚至工程示例。为了方便管理，将 native 端的代码放在 Unity 工程内利于整体维护和项目组成员 review。在 Xcode 侧进行构建和分发只需要少量的点击操作，这个过程越简单，越方便以命令的形式集成至 CI&#x2F;CD 流水线。</p>
+<p>例如按照本文介绍的方法接入 sdk，从 Unity 构建 Xcode 工程，再到 Xcode 打出 ipa 包只需要依次执行以下命令：</p>
+<ol>
+<li>Unity 打 Xcode 工程</li>
+</ol>
+<p>&#x2F;Applications&#x2F;Unity&#x2F;Unity.app&#x2F;Contents&#x2F;MacOS&#x2F;Unity  -batchmode -quit -nographics -executeMethod ProjectBuild.ExportXcodeProject</p>
+<ol>
+<li>归档</li>
+</ol>
+<p>xcodebuild archive -archivePath &#x2F;Users&#x2F;user&#x2F;build&#x2F;mygame -project &#x2F;Users&#x2F;user&#x2F;Documents&#x2F;build&#x2F;Unity-iPhone.xcodeproj -scheme Unity-iPhone</p>
+<ol>
+<li>分发 adhoc</li>
+</ol>
+<p>xcodebuild -exportArchive -archivePath &#x2F;Users&#x2F;user&#x2F;build&#x2F;mygame.xcarchive -exportPath &#x2F;Users&#x2F;user&#x2F;build -exportOptionsPlist &#x2F;Users&#x2F;user&#x2F;User&#x2F;ExportOptions_adhoc.plist</p>
+<ol>
+<li>分发 dis</li>
+</ol>
+<p>xcodebuild -exportArchive -archivePath &#x2F;Users&#x2F;user&#x2F;build&#x2F;mygame.xcarchive -exportPath &#x2F;Users&#x2F;user&#x2F;build -exportOptionsPlist &#x2F;Users&#x2F;user&#x2F;User&#x2F;ExportOptions_appstore.plist</p>
+<ol>
+<li>清理 Xcode 工程</li>
+</ol>
+<p>xcodebuild clean -project &#x2F;Users&#x2F;user&#x2F;Documents&#x2F;build&#x2F;Unity-iPhone.xcodeproj -scheme Unity-iPhone</p>
+<p>受项目复杂度和计算机性能影响，从 Unity 构建一个 ipa 包花费的时间有很大不同。例如一个普通的中型手游项目 + 高性能打包机，完整的出包时间会在 1 小时左右，其中 Unity 的游戏资源打包花费 30 分钟左右，导出 Xcode 工程花费 10 分钟左右，从 Xcode 构建出最终 ipa 包花费 10 分钟左右，杂项（进程启动，git 操作，日志归档，发送报告…）花费 10 分钟左右。</p>
+
+      </div>
+      <div class="post-tags-categories">
+        
+        <div class="tags">
+          
+            <a href="/tags/%E5%8D%9A%E5%AE%A2/" class="">
+              博客
+            </a>
+          
+        </div>
+        
+      </div>
+      
+        <div class="copyright">
+  <ul class="post-copyright">
+    <li class="post-copyright-author">
+    <strong>author:  </strong>cypunberk.admin</a>
+    </li>
+    <li class="post-copyright-link">
+    <strong>link:  </strong>
+    <a href="/2024/01/09/unity-yu-ios-gong-cheng-qiao-jie-jie-shao/" target="_blank" title="Unity 与 iOS 工程桥接介绍">http://epya15.fun/2024/01/09/unity-yu-ios-gong-cheng-qiao-jie-jie-shao/</a>
+    </li>
+    <li class="post-copyright-license">
+      <strong>Copyright notice:   </strong>
+      All articles on this website, unless otherwise stated, adopt <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">CC BY-NC-ND 4.0</a>
+      reprint policy. If reproduced, please indicate source!
+    </li>
+  </ul>
+<div>
+      
+    </article>
+    <!-- 上一篇文章和下一篇文章 -->
+    
+      <!-- 文章详情页的上一页和下一页 -->
+<div class="post-nav">
+
+
+
+
+
+  
+  <div class="post-nav-next post-nav-item">
+    <div class="post-nav-img" style="background-size: cover; 
+      background-position: center center;">
+      <img class="lazyload lazyload placeholder" src="/medias/1.jpg" class="lazyload placeholder" data-srcset="/medias/1.jpg" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" src="" alt="">
+    </div>
+    <a href="/2023/04/20/android-yu-unity-jiao-hu-zhi-androidjavaproxy-hui-diao-de-shi-yong/" class="post-nav-link">
+      <div class="title">
+        Next: <i class="fas fa-angle-right"></i>
+        <div class="title-text">Android与Unity交互之AndroidJavaProxy回调的使用</div>
+      </div>
+      <!-- <div class="content">
+        以实际需求为例，比如要实现一个Android原生的Dialog弹窗，通过Unity调用使其打开，同时注册弹窗上【确定】和
+      </div> -->
+    </a>
+  </div>
+
+</div>
+
+    
+    
+
+    <!-- 打赏 -->
+    
+
+    <!-- 分享 -->
+    
+      <!-- https://github.com/overtrue/share.js -->
+<!-- 文章详情页的分享 -->
+<div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+
+<script src="/js/shareJs/social-share.min.js"></script>
+</script>
+
+<style>
+  .social-share {
+    margin: 20px 0;
+  }
+</style>
+
+
+    
+    
+    <!-- 评论 -->
+    <!-- 评论 -->
+
+  <div id="myComment">
+    
+      <div id="gitment-container"></div>
+
+    
+  </div>
+
+<!-- comment script in themes\hexo-theme-bamboo\layout\_partial\scripts\index.ejs -->
+
+
+  </div>
+
+  <!-- 目录 -->
+  
+<aside id='l_side'>
+  
+    
+      
+        <section class="widget side_blogger">
+  <div class='content'>
+    
+      
+        <a class='avatar flat-box rectangle' href='/about/'>
+          <img src='/medias/logo.jpg'/>
+        </a>
+      
+    
+    
+      <div class='text'>
+        
+        
+          <p>今天是最后一天.</p>
+
+        
+        
+      </div>
+    
+    
+      <div class="social-wrapper">
+        
+          
+            <a href="/atom.xml"
+              class="social fas fa-rss flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+              
+            </a>
+          
+        
+          
+            <a href="mailto:epya15@gmail.com"
+              class="social fas fa-envelope flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+              
+            </a>
+          
+        
+          
+            <a href="https://github.com/oO0OoOo/oO0OoOo.github.io"
+              class="social fab fa-github flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+              
+            </a>
+          
+        
+          
+            <a href="tencent://AddContact/?fromId=50&amp;fromSubId=1&amp;subcmd=all&amp;uin=747873399"
+              class="social fab fa-qq flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+              
+            </a>
+          
+        
+      </div>
+    
+  </div>
+</section>
+
+      
+    
+  
+  
+  
+
+  <div class="layout_sticky">    
+    
+      
+<section class="widget side_toc">
+  
+  <header>
+    
+      <i style="color: " class="fas fa-list fa-fw" aria-hidden="true"></i><span class='name'>本文目录</span>
+    
+  </header>
+
+
+  <div class='content'>
+    <div class="toc-main">
+      <div class="toc-content">
+        <!-- <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Unity-%E4%BE%A7"><span class="toc-text">Unity 侧</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#ipa-%E5%8C%85%E4%BD%93%E6%9E%84%E5%BB%BA%E6%B5%81%E7%A8%8B"><span class="toc-text">ipa 包体构建流程</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Unity-%E5%B7%A5%E7%A8%8B%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84%E7%AE%80%E4%BB%8B"><span class="toc-text">Unity 工程目录结构简介</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E6%A1%A5%E6%8E%A5%E6%96%87%E4%BB%B6"><span class="toc-text">创建桥接文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9C%A8-Unity-%E8%AE%BE%E7%BD%AE-Xcode-%E5%B7%A5%E7%A8%8B%E5%8F%82%E6%95%B0"><span class="toc-text">在 Unity 设置 Xcode 工程参数</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Xcode-%E4%BE%A7"><span class="toc-text">Xcode 侧</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-text">总结</span></a></li></ol> -->
+        <div class="toc"></div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- 手机端目录按钮 -->
+<div id="toc-mobile-btn">
+  <i class="fas fa-list-ul" aria-hidden="true"></i>
+</div>
+
+      
+  <section class="widget side_recent_post">
+    
+  <header>
+    
+      <a style="color: " href='/tags/'><i class="fas fa-book fa-fw" aria-hidden="true"></i><span class='name'>最新文章</span></a>
+    
+  </header>
+
+
+    <div class='content'>
+      
+      <!-- hash算法 -->
+      
+      <div class="aside-list">
+        
+          <div class="aside-list-item">
+            
+            
+            
+
+            <div class="post-img-box">
+              <a href="/2024/01/09/unity-yu-ios-gong-cheng-qiao-jie-jie-shao/" class="post-img " style="background-size: cover; 
+                background-position: center center;">
+                <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="https://picx.zhimg.com/v2-f03ff2911a65b4be8134688969712666_1440w.jpg?source=172ae18b" class="lazyload placeholder" data-srcset="https://picx.zhimg.com/v2-f03ff2911a65b4be8134688969712666_1440w.jpg?source=172ae18b" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" alt="">
+              </a>
+            </div>
+            <div class="post-date-title">
+              <div>
+                
+                  <span class="post-date">01-09</span>
+                
+              </div>
+              <a class="post-title" href="/2024/01/09/unity-yu-ios-gong-cheng-qiao-jie-jie-shao/">Unity 与 iOS 工程桥接介绍</a>
+            </div>
+          </div>
+        
+          <div class="aside-list-item">
+            
+            
+            
+
+            <div class="post-img-box">
+              <a href="/2023/04/20/android-yu-unity-jiao-hu-zhi-androidjavaproxy-hui-diao-de-shi-yong/" class="post-img " style="background-size: cover; 
+                background-position: center center;">
+                <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="/medias/1.jpg" class="lazyload placeholder" data-srcset="/medias/1.jpg" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" alt="">
+              </a>
+            </div>
+            <div class="post-date-title">
+              <div>
+                
+                  <span class="post-date">04-20</span>
+                
+              </div>
+              <a class="post-title" href="/2023/04/20/android-yu-unity-jiao-hu-zhi-androidjavaproxy-hui-diao-de-shi-yong/">Android与Unity交互之AndroidJavaProxy回调的使用</a>
+            </div>
+          </div>
+        
+          <div class="aside-list-item">
+            
+            
+            
+
+            <div class="post-img-box">
+              <a href="/2023/04/20/dui-chao-guo-2g-de-apk-chong-xin-jin-xing-4-zi-jie-dui-qi-bing-zuo-v1-v2-qian-ming/" class="post-img " style="background-size: cover; 
+                background-position: center center;">
+                <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="/medias/8.jpg" class="lazyload placeholder" data-srcset="/medias/8.jpg" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" alt="">
+              </a>
+            </div>
+            <div class="post-date-title">
+              <div>
+                
+                  <span class="post-date">04-20</span>
+                
+              </div>
+              <a class="post-title" href="/2023/04/20/dui-chao-guo-2g-de-apk-chong-xin-jin-xing-4-zi-jie-dui-qi-bing-zuo-v1-v2-qian-ming/">对超过2G的apk重新进行4字节对齐并做v1+v2签名</a>
+            </div>
+          </div>
+        
+          <div class="aside-list-item">
+            
+            
+            
+
+            <div class="post-img-box">
+              <a href="/2023/02/07/wang-qi-feng-mian-2023-02-07-sha-te-mao/" class="post-img " style="background-size: cover; 
+                background-position: center center;">
+                <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="https://i.328888.xyz/2023/02/08/rQNjH.jpeg" class="lazyload placeholder" data-srcset="https://i.328888.xyz/2023/02/08/rQNjH.jpeg" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" alt="">
+              </a>
+            </div>
+            <div class="post-date-title">
+              <div>
+                
+                  <span class="post-date">02-07</span>
+                
+              </div>
+              <a class="post-title" href="/2023/02/07/wang-qi-feng-mian-2023-02-07-sha-te-mao/">往期封面2023/02/07 沙特猫</a>
+            </div>
+          </div>
+        
+          <div class="aside-list-item">
+            
+            
+            
+
+            <div class="post-img-box">
+              <a href="/2023/01/18/wang-qi-feng-mian-2023-01-18-xiong-mao-tu-zhen-gui-ying-xiang-zi-liao/" class="post-img " style="background-size: cover; 
+                background-position: center center;">
+                <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="/images/cover_rebbitbg.jpg" class="lazyload placeholder" data-srcset="/images/cover_rebbitbg.jpg" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" alt="">
+              </a>
+            </div>
+            <div class="post-date-title">
+              <div>
+                
+                  <span class="post-date">01-18</span>
+                
+              </div>
+              <a class="post-title" href="/2023/01/18/wang-qi-feng-mian-2023-01-18-xiong-mao-tu-zhen-gui-ying-xiang-zi-liao/">往期封面2023/01/18 熊猫兔珍贵影像资料</a>
+            </div>
+          </div>
+        
+      </div>
+    </div>
+  </section>
+
+    
+  </div>
+</aside>
+
+
+  <!-- 图片放大 Wrap images with fancybox support -->
+  <script src="/js/wrapImage.js"></script>
+</div>
+
+<!-- 文章详情页背景图 -->
+<div id="appBgSwiper" style="position: fixed;left: 0;top: 0;width: 100%;height: 100%;z-index: -2;"
+	:style="{'background-color': bgColor ? bgColor : 'transparent'}">
+	<transition-group tag="ul" :name="names">
+		<li v-for='(image,index) in img' :key='index' v-show="index === mark" class="bg-swiper-box">
+			<img :src="image" class="bg-swiper-img no-lazy">
+		</li>
+	</transition-group>
+</div>
+<script>
+	var vm = new Vue({
+		el: '#appBgSwiper',
+		data: {
+			names: '' || 'fade' || 'fade', // translate-fade fade
+			mark: 0,
+			img: [],
+			bgColor: '',
+			time: null
+		},
+		methods: {   //添加方法
+			change(i, m) {
+				if (i > m) {
+					// this.names = 'fade';
+				} else if (i < m) {
+					// this.names = 'fade';
+				} else {
+					return;
+				}
+				this.mark = i;
+			},
+			prev() {
+				// this.names = 'fade';
+				this.mark--;
+				if (this.mark === -1) {
+					this.mark = 3;
+					return
+				}
+			},
+			next() {
+				// this.names = 'fade';
+				this.mark++;
+				if (this.mark === this.img.length) {
+					this.mark = 0;
+					return
+				}
+			},
+			autoPlay() {
+				// this.names = 'fade';
+				this.mark++;
+				if (this.mark === this.img.length) {
+					this.mark = 0;
+					return
+				}
+			},
+			play() {
+				let bgImgDelay = '' || '180000'
+				let delay = parseInt(bgImgDelay) || 180000;
+				this.time = setInterval(this.autoPlay, delay);
+			},
+			enter() {
+				clearInterval(this.time);
+			},
+			leave() {
+				this.play();
+			}
+		},
+		created() {
+			this.play()
+		},
+		beforeDestroy() {
+			clearInterval(this.time);
+		},
+		mounted() {
+			let prop = '' || 'url(&#34;/medias/pageBg2.jpg&#34;)';
+			let isImg = prop.includes('.bmp') || prop.includes('.jpg') || prop.includes('.png') || prop.includes('.tif') || prop.includes('.gif') || prop.includes('.pcx') || prop.includes('.tga') || prop.includes('.exif') || prop.includes('.fpx') || prop.includes('.psd') || prop.includes('.cdr') || prop.includes('.pcd') || prop.includes('.dxf') || prop.includes('.ufo') || prop.includes('.eps') || prop.includes('.ai') || prop.includes('.raw') || prop.includes('.WMF') || prop.includes('.webp') || prop.includes('.jpeg') || prop.includes('http://') || prop.includes('https://')
+			if (isImg) {
+				let img = prop.split(',');
+				let configRoot = '/'
+				let arrImg = [];
+				img.forEach(el => {
+					var Expression = /http(s)?:\/\/([\w-]+\.)+[\w-]+(\/[\w- .\/?%&=]*)?/;
+					var objExp = new RegExp(Expression);
+
+					if (objExp.test(el)) {
+						// http or https
+						arrImg.push(el);
+					} else {
+						// 非http or https开头
+						// 本地文件
+						let firstStr = el.charAt(0);
+						if (firstStr == '/') {
+							el = el.substr(1); // 删除第一个字符 '/',因为 configRoot最后一个字符为 /
+						}
+						el = configRoot + el;
+						arrImg.push(el);
+					}
+				})
+				this.img = arrImg;
+			} else {
+				this.bgColor = prop;
+			}
+		}
+	})
+</script>
+
+<style>
+	.bg-swiper-box {
+		position: absolute;
+		display: block;
+		width: 100%;
+		height: 100%;
+	}
+
+	.bg-swiper-img {
+		object-fit: cover;
+		width: 100%;
+		height: 100%;
+	}
+</style>
+
+
+
+
+  <script>
+  function loadMermaid() {
+    if (document.getElementsByClassName('mermaid').length) {
+      if (window.mermaidJsLoad) mermaid.init()
+      else {
+        loadScript('https://unpkg.com/mermaid/dist/mermaid.min.js').then(() => {
+          window.mermaidJsLoad = true
+          mermaid.initialize({
+            theme: 'default',
+          })
+          if ('true') {
+            mermaid.init();
+          }
+        })
+      }
+    }
+  };
+  document.addEventListener("DOMContentLoaded", function () {
+    loadMermaid();
+  })
+
+  document.addEventListener('pjax:complete', function () {
+    loadMermaid();
+  })
+  
+</script>
+
+
+      </main>
+    </div>
+
+    <!-- 页脚 -->
+    
+  
+  
+    <!-- 底部鱼儿跳动效果，依赖于jquery-->
+<div id="j-fish-skip" style=" position: relative;height: 153px;width: auto;"></div>
+<script>
+  var RENDERER = {
+    POINT_INTERVAL: 5,
+    FISH_COUNT: 3,
+    MAX_INTERVAL_COUNT: 50,
+    INIT_HEIGHT_RATE: .5,
+    THRESHOLD: 50,
+    FISH_COLOR: '',
+    init: function () {
+      this.setFishColor(); this.setParameters(), this.reconstructMethods(), this.setup(), this.bindEvent(), this.render()
+    },
+    setFishColor: function () {
+      let isDark = JSON.parse(localStorage.getItem('dark')) || JSON.parse('false');
+      if (isDark) {
+        this.FISH_COLOR = '#222'; // 暗黑色，有时间把这整成一个变量
+      } else {
+        this.FISH_COLOR = '' || '#5CACEE';
+      }
+    },
+    setParameters: function () {
+      this.$window = $(window), this.$container = $("#j-fish-skip"), this.$canvas = $("<canvas />"), this.context = this.$canvas.appendTo(this.$container).get(0).getContext("2d"), this.points = [], this.fishes = [], this.watchIds = []
+    },
+    createSurfacePoints: function () {
+      var t = Math.round(this.width / this.POINT_INTERVAL);
+      this.pointInterval = this.width / (t - 1), this.points.push(new SURFACE_POINT(this, 0));
+      for (var i = 1; i < t; i++) {
+        var e = new SURFACE_POINT(this, i * this.pointInterval),
+          h = this.points[i - 1];
+        e.setPreviousPoint(h), h.setNextPoint(e), this.points.push(e)
+      }
+    },
+    reconstructMethods: function () {
+      this.watchWindowSize = this.watchWindowSize.bind(this), this.jdugeToStopResize = this.jdugeToStopResize.bind(this), this.startEpicenter = this.startEpicenter.bind(this), this.moveEpicenter = this.moveEpicenter.bind(this), this.reverseVertical = this.reverseVertical.bind(this), this.render = this.render.bind(this)
+    },
+    setup: function () {
+      this.points.length = 0, this.fishes.length = 0, this.watchIds.length = 0, this.intervalCount = this.MAX_INTERVAL_COUNT, this.width = this.$container.width(), this.height = this.$container.height(), this.fishCount = this.FISH_COUNT * this.width / 500 * this.height / 500, this.$canvas.attr({
+        width: this.width,
+        height: this.height
+      }), this.reverse = !1, this.fishes.push(new FISH(this)), this.createSurfacePoints()
+    },
+    watchWindowSize: function () {
+      this.clearTimer(), this.tmpWidth = this.$window.width(), this.tmpHeight = this.$window.height(), this.watchIds.push(setTimeout(this.jdugeToStopResize, this.WATCH_INTERVAL))
+    },
+    clearTimer: function () {
+      for (; this.watchIds.length > 0;) clearTimeout(this.watchIds.pop())
+    },
+    jdugeToStopResize: function () {
+      var t = this.$window.width(),
+        i = this.$window.height(),
+        e = t == this.tmpWidth && i == this.tmpHeight;
+      this.tmpWidth = t, this.tmpHeight = i, e && this.setup()
+    },
+    bindEvent: function () {
+      this.$window.on("resize", this.watchWindowSize), this.$container.on("mouseenter", this.startEpicenter), this.$container.on("mousemove", this.moveEpicenter)
+    },
+    getAxis: function (t) {
+      var i = this.$container.offset();
+      return {
+        x: t.clientX - i.left + this.$window.scrollLeft(),
+        y: t.clientY - i.top + this.$window.scrollTop()
+      }
+    },
+    startEpicenter: function (t) {
+      this.axis = this.getAxis(t)
+    },
+    moveEpicenter: function (t) {
+      var i = this.getAxis(t);
+      this.axis || (this.axis = i), this.generateEpicenter(i.x, i.y, i.y - this.axis.y), this.axis = i
+    },
+    generateEpicenter: function (t, i, e) {
+      if (!(i < this.height / 2 - this.THRESHOLD || i > this.height / 2 + this.THRESHOLD)) {
+        var h = Math.round(t / this.pointInterval);
+        h < 0 || h >= this.points.length || this.points[h].interfere(i, e)
+      }
+    },
+    reverseVertical: function () {
+      this.reverse = !this.reverse;
+      for (var t = 0, i = this.fishes.length; t < i; t++) this.fishes[t].reverseVertical()
+    },
+    controlStatus: function () {
+      for (var t = 0, i = this.points.length; t < i; t++) this.points[t].updateSelf();
+      for (t = 0, i = this.points.length; t < i; t++) this.points[t].updateNeighbors();
+      this.fishes.length < this.fishCount && 0 == --this.intervalCount && (this.intervalCount = this.MAX_INTERVAL_COUNT, this.fishes.push(new FISH(this)))
+    },
+    render: function () {
+      requestAnimationFrame(this.render), this.controlStatus(), this.context.clearRect(0, 0, this.width, this.height), this.context.fillStyle = this.FISH_COLOR;
+      for (var t = 0, i = this.fishes.length; t < i; t++) this.fishes[t].render(this.context);
+      this.context.save(), this.context.globalCompositeOperation = "xor", this.context.beginPath(), this.context.moveTo(0, this.reverse ? 0 : this.height);
+      for (t = 0, i = this.points.length; t < i; t++) this.points[t].render(this.context);
+      this.context.lineTo(this.width, this.reverse ? 0 : this.height), this.context.closePath(), this.context.fill(), this.context.restore()
+    }
+  },
+  SURFACE_POINT = function (t, i) {
+    this.renderer = t, this.x = i, this.init()
+  };
+  SURFACE_POINT.prototype = {
+    SPRING_CONSTANT: .03,
+    SPRING_FRICTION: .9,
+    WAVE_SPREAD: .3,
+    ACCELARATION_RATE: .01,
+    init: function () {
+      this.initHeight = this.renderer.height * this.renderer.INIT_HEIGHT_RATE, this.height = this.initHeight, this.fy = 0, this.force = {
+        previous: 0,
+        next: 0
+      }
+    },
+    setPreviousPoint: function (t) {
+      this.previous = t
+    },
+    setNextPoint: function (t) {
+      this.next = t
+    },
+    interfere: function (t, i) {
+      this.fy = this.renderer.height * this.ACCELARATION_RATE * (this.renderer.height - this.height - t >= 0 ? -1 : 1) * Math.abs(i)
+    },
+    updateSelf: function () {
+      this.fy += this.SPRING_CONSTANT * (this.initHeight - this.height), this.fy *= this.SPRING_FRICTION, this.height += this.fy
+    },
+    updateNeighbors: function () {
+      this.previous && (this.force.previous = this.WAVE_SPREAD * (this.height - this.previous.height)), this.next && (this.force.next = this.WAVE_SPREAD * (this.height - this.next.height))
+    },
+    render: function (t) {
+      this.previous && (this.previous.height += this.force.previous, this.previous.fy += this.force.previous), this.next && (this.next.height += this.force.next, this.next.fy += this.force.next), t.lineTo(this.x, this.renderer.height - this.height)
+    }
+  };
+  var FISH = function (t) {
+    this.renderer = t, this.init()
+  };
+  FISH.prototype = {
+    GRAVITY: .4,
+    init: function () {
+      this.direction = Math.random() < .5, this.x = this.direction ? this.renderer.width + this.renderer.THRESHOLD : -this.renderer.THRESHOLD, this.previousY = this.y, this.vx = this.getRandomValue(4, 10) * (this.direction ? -1 : 1), this.renderer.reverse ? (this.y = this.getRandomValue(1 * this.renderer.height / 10, 4 * this.renderer.height / 10), this.vy = this.getRandomValue(2, 5), this.ay = this.getRandomValue(.05, .2)) : (this.y = this.getRandomValue(6 * this.renderer.height / 10, 9 * this.renderer.height / 10), this.vy = this.getRandomValue(-5, -2), this.ay = this.getRandomValue(-.2, -.05)), this.isOut = !1, this.theta = 0, this.phi = 0
+    },
+    getRandomValue: function (t, i) {
+      return t + (i - t) * Math.random()
+    },
+    reverseVertical: function () {
+      this.isOut = !this.isOut, this.ay *= -1
+    },
+    controlStatus: function (t) {
+      this.previousY = this.y, this.x += this.vx, this.y += this.vy, this.vy += this.ay, this.renderer.reverse ? this.y > this.renderer.height * this.renderer.INIT_HEIGHT_RATE ? (this.vy -= this.GRAVITY, this.isOut = !0) : (this.isOut && (this.ay = this.getRandomValue(.05, .2)), this.isOut = !1) : this.y < this.renderer.height * this.renderer.INIT_HEIGHT_RATE ? (this.vy += this.GRAVITY, this.isOut = !0) : (this.isOut && (this.ay = this.getRandomValue(-.2, -.05)), this.isOut = !1), this.isOut || (this.theta += Math.PI / 20, this.theta %= 2 * Math.PI, this.phi += Math.PI / 30, this.phi %= 2 * Math.PI), this.renderer.generateEpicenter(this.x + (this.direction ? -1 : 1) * this.renderer.THRESHOLD, this.y, this.y - this.previousY), (this.vx > 0 && this.x > this.renderer.width + this.renderer.THRESHOLD || this.vx < 0 && this.x < -this.renderer.THRESHOLD) && this.init()
+    },
+    render: function (t) {
+      t.save(), t.translate(this.x, this.y), t.rotate(Math.PI + Math.atan2(this.vy, this.vx)), t.scale(1, this.direction ? 1 : -1), t.beginPath(), t.moveTo(-30, 0), t.bezierCurveTo(-20, 15, 15, 10, 40, 0), t.bezierCurveTo(15, -10, -20, -15, -30, 0), t.fill(), t.save(), t.translate(40, 0), t.scale(.9 + .2 * Math.sin(this.theta), 1), t.beginPath(), t.moveTo(0, 0), t.quadraticCurveTo(5, 10, 20, 8), t.quadraticCurveTo(12, 5, 10, 0), t.quadraticCurveTo(12, -5, 20, -8), t.quadraticCurveTo(5, -10, 0, 0), t.fill(), t.restore(), t.save(), t.translate(-3, 0), t.rotate((Math.PI / 3 + Math.PI / 10 * Math.sin(this.phi)) * (this.renderer.reverse ? -1 : 1)), t.beginPath(), this.renderer.reverse ? (t.moveTo(5, 0), t.bezierCurveTo(10, 10, 10, 30, 0, 40), t.bezierCurveTo(-12, 25, -8, 10, 0, 0)) : (t.moveTo(-5, 0), t.bezierCurveTo(-10, -10, -10, -30, 0, -40), t.bezierCurveTo(12, -25, 8, -10, 0, 0)), t.closePath(), t.fill(), t.restore(), t.restore(), this.controlStatus(t)
+    }
+  }, $(function () {
+    RENDERER.init()
+    $('.dark').click(function () {
+      setTimeout(() => {
+        RENDERER.setFishColor();
+        RENDERER.context.fill();
+      });
+    })
+  });
+</script>
+  
+  <div class="footer bg-color">
+    <div class="footer-main">
+      
+        
+          <div class="link">
+            
+              
+                <a href="/atom.xml" class="social">
+                  
+                    <i class="fas fa-rss" aria-hidden="true"></i>
+                  
+                </a>
+              
+            
+              
+                <a href="mailto:epya15@gmail.com" class="social">
+                  
+                    <i class="fas fa-envelope" aria-hidden="true"></i>
+                  
+                </a>
+              
+            
+              
+                <a target="_blank" rel="noopener" href="https://github.com/oO0OoOo/oO0OoOo.github.io" class="social">
+                  
+                    <i class="fab fa-github" aria-hidden="true"></i>
+                  
+                </a>
+              
+            
+              
+                <a href="tencent://AddContact/?fromId=50&amp;fromSubId=1&amp;subcmd=all&amp;uin=747873399" class="social">
+                  
+                    <i class="fab fa-qq" aria-hidden="true"></i>
+                  
+                </a>
+              
+            
+          </div>
+        
+      
+        
+          <div class="footer-copyright">
+            <p>Copyright © 2023 <a target="_blank" rel="noopener" href="https://github.com/oO0OoOo">oO0OoOo</a> | Powered by <a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/">Hexo</a> | Theme based <a target="_blank" rel="noopener" href="https://github.com/yuang01/theme">Bamboo</a> </p>
+
+          </div>
+        
+      
+        
+          <div class="footer-custom">
+            
+          </div>
+        
+      
+    </div>
+  </div>
+
+
+
+    <!-- 渲染暗黑按钮 -->
+    
+      <div class="dark">
+  <div class="dark-content">
+    <i class="fas fa-moon" aria-hidden="true"></i>
+    <!-- <span>关灯</span> -->
+  </div>
+  
+</div>
+
+<script>
+  $(function() {
+    let isDark = JSON.parse(localStorage.getItem('dark'))  || JSON.parse('false');
+    if (isDark) {
+      $(".dark-content").replaceWith(
+          `
+          <div class='dark-content'>
+            <i class="fas fa-lightbulb" aria-hidden="true"></i>
+          </div>
+          `
+        );
+    }
+    $('.dark').click(function() {
+      if ($(document.body).is('.darkModel')) {
+        $(document.body).removeClass('darkModel');
+        localStorage.setItem('dark', false);
+        $(".dark-content").replaceWith(
+          `
+          <div class='dark-content'>
+            <i class="fas fa-moon" aria-hidden="true"></i>
+          </div>
+          `
+        );
+      } else {
+        $(document.body).addClass('darkModel');
+        localStorage.setItem('dark', true);
+        $(".dark-content").replaceWith(
+          `
+          <div class='dark-content'>
+            <i class="fas fa-lightbulb" aria-hidden="true"></i>
+          </div>
+          `
+        );
+      }
+    })
+  })
+</script>
+    
+    <!-- 渲染回到顶部按钮 -->
+    
+      <div class="goTop top-btn-color" pointer>
+  <i class="fas fa-arrow-up" aria-hidden="true"></i>
+</div>
+<script src="/js/goTop.js"></script>
+
+    
+    <!-- 渲染左下角音乐播放器 -->
+    
+
+    <!-- 图片放大 -->
+    
+      <script src="/js/fancybox/jquery.fancybox.min.js"></script>
+    
+
+    <!-- 百度解析 -->
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <!-- 背景彩带 -->
+    
+
+    <script src="/js/utils/index.js"></script>
+    <script src="/js/app.js"></script>
+    
+    <!-- 文章目录所需js -->
+<!-- <link href="/js/tocbot/tocbot.css" rel="stylesheet">
+<script src="/js/tocbot/tocbot.min.js"></script> -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.18.2/tocbot.min.js"></script>
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.18.2/tocbot.css">
+
+<script>
+  var headerEl = 'h2, h3, h4',  //headers 
+    content = '.post-detail',//文章容器
+    idArr = {};  //标题数组以确定是否增加索引id
+  //add #id
+  var option = {
+    // Where to render the table of contents.
+    tocSelector: '.toc',
+    // Where to grab the headings to build the table of contents.
+    contentSelector: content,
+    // Which headings to grab inside of the contentSelector element.
+    headingSelector: headerEl,
+    scrollSmooth: true,
+    scrollSmoothOffset: -70,
+    // headingsOffset: -($(window).height() * 0.4 - 45),
+    headingsOffset: -($(window).height() * 0.4 - 70),
+    // positionFixedSelector: '.toc-main',
+    // positionFixedClass: 'is-position-fixed',
+    fixedSidebarOffset: 'auto',
+    activeLinkClass: 'is-active-link',
+    orderedList: true,
+    collapseDepth: 20,
+    // onClick: function (e) {},
+  }
+  if ($('.toc').length > 0) {
+
+    $(content).children(headerEl).each(function () {
+      //去除空格以及多余标点
+      var headerId = $(this).text().replace(/[\s|\~|`|\!|\@|\#|\$|\%|\^|\&|\*|\(|\)|\_|\+|\=|\||\|\[|\]|\{|\}|\;|\:|\"|\'|\,|\<|\.|\>|\/|\?|\：|\，|\。]/g, '');
+
+      headerId = headerId.toLowerCase();
+      if (idArr[headerId]) {
+        //id已经存在
+        $(this).attr('id', headerId + '-' + idArr[headerId]);
+        idArr[headerId]++;
+      }
+      else {
+        //id未存在
+        idArr[headerId] = 1;
+        $(this).attr('id', headerId);
+      }
+    });
+
+    document.addEventListener("DOMContentLoaded", function () {
+      tocbot.init(option);
+      mobileTocClick();
+    });
+
+  }
+
+  window.tocScrollFn = function () {
+    return bamboo.throttle(function () {
+      findHeadPosition();
+    }, 100)()
+  }
+  window.addEventListener('scroll', tocScrollFn);
+
+  const findHeadPosition = function (top) {
+    if ($('.toc-list').length <= 0) {
+      return false;
+    }
+    setTimeout(() => {  // or DOMContentLoaded 
+      autoScrollToc();
+    }, 0);
+  }
+
+  const autoScrollToc = function () {
+    const $activeItem = document.querySelector('.is-active-link');
+    const $cardToc = document.querySelector('.toc-content');
+    const activePosition = $activeItem.getBoundingClientRect().top
+    const sidebarScrollTop = $cardToc.scrollTop
+    if (activePosition > (document.documentElement.clientHeight - 100)) {
+      $cardToc.scrollTop = sidebarScrollTop + 150
+    }
+    if (activePosition < 150) {
+      $cardToc.scrollTop = sidebarScrollTop - 150
+    }
+  }
+
+  document.addEventListener('pjax:send', function () {
+    if ($('.toc').length) {
+      tocbot.destroy();
+    }
+  });
+
+  document.addEventListener('pjax:complete', function () {
+    if ($('.toc').length) {
+      tocbot.init(option);
+      mobileTocClick();
+    }
+  });
+  
+  // 手机端toc按钮点击出现目录
+  const mobileTocClick = function () {
+    const $cardTocLayout = document.getElementsByClassName('side_toc')[0];
+    const $cardToc = $cardTocLayout.getElementsByClassName('toc-content')[0];
+    let right = '45px';
+    if (window.innerWidth >= 551 && window.innerWidth <= 992) {
+      right = '100px'
+    }
+    const mobileToc = {
+      open: () => {
+        $cardTocLayout.style.cssText = 'animation: toc-open .3s; opacity: 1; right: ' + right
+      },
+
+      close: () => {
+        $cardTocLayout.style.animation = 'toc-close .2s'
+        setTimeout(() => {
+          $cardTocLayout.style.cssText = "opacity:''; animation: ''; right: ''"
+        }, 100)
+      }
+    }
+    document.getElementById('toc-mobile-btn').addEventListener('click', () => {
+      if (window.getComputedStyle($cardTocLayout).getPropertyValue('opacity') === '0') mobileToc.open()
+      else mobileToc.close()
+    })
+
+    $cardToc.addEventListener('click', (e) => {
+      if (window.innerWidth < 992) { // 小于992px的时候
+        mobileToc.close()
+      }
+    })
+  }
+</script>
+
+<style>
+  /* .is-position-fixed {
+    position: sticky !important;
+    top: 74px;
+  }
+
+  .toc-main ul {
+    counter-reset: show-list;
+  }
+
+  .toc-main ul li::before {
+    content: counter(item)".";
+    display: block;
+    position: absolute;
+    left: 12px;
+    top: 0;
+  } */
+</style> 
+
+<!-- 设置导航背景 -->
+<script>
+  let setHeaderClass = () => {
+    const headerMenuTransparent = true;
+    if (!headerMenuTransparent) { return; }
+    const nav = $('#navHeader');
+    const navTop = nav.outerHeight();
+    const winTop = $(window).scrollTop();
+    if(winTop > navTop) {
+      nav.addClass('header-bg-color');
+    }
+    else {
+      nav.removeClass('header-bg-color');
+    }
+  };
+
+  let scrollCollect = () => {
+    return bamboo.throttle(function (e) {
+      setHeaderClass();
+    }, 200)()
+  }
+
+  let initHeaderBg = () => {
+    setHeaderClass();
+  }
+
+  setHeaderClass();
+  window.addEventListener('scroll', scrollCollect);
+
+  document.addEventListener('pjax:send', function () {
+    window.removeEventListener('scroll', scrollCollect)
+  })
+  document.addEventListener('pjax:complete', function () {
+    window.addEventListener('scroll', scrollCollect);
+    setHeaderClass();
+  })
+</script> 
+
+<!-- 渲染issues标签里的内容 -->
+<script>
+  function loadIssuesJS() {
+    if ($(".post-detail").find(".issues-api").length == 0) {
+      return;
+    } 
+    loadScript('/js/issues/index.js');
+  };
+  $(function () {
+    loadIssuesJS();
+  });
+  document.addEventListener('pjax:complete', function () {
+    if (typeof IssuesAPI == "undefined") {
+      loadIssuesJS();
+    }
+  })
+</script>
+
+<!-- 输入框打字特效 -->
+<!-- 输入框打字特效 -->
+
+  <script src="/js/activate-power-mode.js"></script>
+  <script>
+    POWERMODE.colorful = true;  // 打开随机颜色特效
+    POWERMODE.shake = false;    // 关闭输入框抖动
+    document.body.addEventListener('input', POWERMODE);//监听打字事件
+  </script>
+
+
+<!-- markdown代码一键复制功能 -->
+
+
+<!-- 图片懒加载 -->
+<script defer src="https://unpkg.com/vanilla-lazyload@17.1.0/dist/lazyload.min.js"></script>
+<script>
+  // https://www.npmjs.com/package/vanilla-lazyload
+  // Set the options globally
+  // to make LazyLoad self-initialize
+  window.lazyLoadOptions = {
+    elements_selector: ".lazyload",
+    threshold: 0
+  };
+  // Listen to the initialization event
+  // and get the instance of LazyLoad
+  window.addEventListener(
+    "LazyLoad::Initialized",
+    function (event) {
+      window.lazyLoadInstance = event.detail.instance;
+    },
+    false
+  );
+  document.addEventListener('DOMContentLoaded', function () {
+    lazyLoadInstance.update();
+  });
+  document.addEventListener('pjax:complete', function () {
+    lazyLoadInstance.update();
+  });
+</script>
+
+
+<!-- 卡片滚动动画 -->
+   
+
+<!-- 评论所需js -->
+
+  
+    <script type="text/javascript">
+  var utteranceCommon = {};
+
+  function check_utterance() {
+    let isDark = JSON.parse(localStorage.getItem('dark')) || JSON.parse('false');
+    if (isDark) {
+      utteranceCommon.Theme = 'github-dark';
+    } else {
+      utteranceCommon.Theme = 'github-light';
+    }
+
+    return document.getElementById("gitment-container");
+  }
+  comment_el = '#gitment-container';
+  load_utterance = function () {
+    if ($(comment_el).length) {
+      // 匿名函数，防止污染全局变量
+      const HEAD = check_utterance();
+
+      var utterances = document.createElement('script');
+      utterances.type = 'text/javascript';
+      utterances.async = true;
+      utterances.setAttribute('issue-term', 'pathname')
+      utterances.setAttribute('theme', utteranceCommon.Theme)
+      utterances.setAttribute('repo', '')
+      utterances.crossorigin = 'anonymous';
+      utterances.src = 'https://utteranc.es/client.js';
+      // content 是要插入评论的地方
+      document.getElementById('gitment-container').appendChild(utterances);
+
+    }
+  }
+
+  function dark_utterance() {
+    const HEAD = check_utterance();
+    if (!HEAD) return;
+    const message = {
+      type: 'set-theme',
+      theme: utteranceCommon.Theme
+    };
+    const utteranceIframe = document.querySelector('iframe');
+    utteranceIframe.contentWindow.postMessage(message, 'https://utteranc.es');
+  }
+
+  $(document).ready(load_utterance);
+  document.addEventListener('pjax:complete', function () {
+    load_utterance();
+  });
+
+  $('.dark').click(function () {
+    setTimeout(() => {
+      dark_utterance();
+    });
+  })
+
+</script>
+
+<style>
+  .utterances {
+    max-width: inherit !important;
+  }
+</style>
+  
+
+
+<!-- 鼠标点击特效 -->
+<!-- 爱心点击 -->
+
+
+
+
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" data-pjax></script>
+
+
+<!-- 轮播图标签 -->
+<script>
+  var bambooSwiperTag = {};
+  function load_swiper() {
+    if (!document.querySelectorAll(".post-swiper-container")[0]) return;
+    loadCSS("https://unpkg.com/swiper@6/swiper-bundle.min.css")
+    loadScript("https://unpkg.com/swiper@6/swiper-bundle.min.js").then(() => {
+      pjax_swiper();
+    });
+  }
+
+  load_swiper();
+
+  function pjax_swiper() {
+    bambooSwiperTag.swiper = new Swiper('.post-swiper-container', {
+      slidesPerView: 'auto',
+      spaceBetween: 8,
+      centeredSlides: true,
+      loop: true,
+      autoplay: true ? {
+        delay: 3000,
+        stopOnLastSlide: false,
+        disableOnInteraction: false,
+      } : false,
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+      },
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+      on:{
+        init: function(){
+          swiperAnimateCache(this); //隐藏动画元素 
+          swiperAnimate(this); //初始化完成开始动画
+        }, 
+        slideChangeTransitionEnd: function(){ 
+          swiperAnimate(this); //每个slide切换结束时也运行当前slide动画
+          //this.slides.eq(this.activeIndex).find('.ani').removeClass('ani'); 动画只展现一次，去除ani类名
+        } 
+      }
+    });
+  }
+
+  document.addEventListener('pjax:complete', function () {
+    if (!document.querySelectorAll(".post-swiper-container")[0]) return;
+    if (typeof bambooSwiperTag.swiper === "undefined") {
+      load_swiper();
+    } else {
+      pjax_swiper();
+    }
+  });
+</script>
+    <!-- pjax -->
+    
+
+<!-- pjax -->
+
+
+  <script src="/js/pjax@0.2.8/index.js"></script>
+  
+    <!-- 样式位于：source/css/_third-party/pjaxanimate.styl -->
+
+<div class="pjax-animate">
+  
+    <div class="loading-circle"><div id="loader-circle"></div></div>
+    <script>
+      window.ShowLoading = function() {
+        $(".loading-circle").css("display", "block");
+      };
+      window.HideLoading = function() {
+        $(".loading-circle").css("display", "none");
+      }
+    </script>
+  
+	<script>
+    document.addEventListener('pjax:complete', function () {
+      window.HideLoading();
+    })
+    document.addEventListener('pjax:send', function () {
+      window.ShowLoading();
+    })
+    document.addEventListener('pjax:error', function () {
+      window.HideLoading();
+    })
+	</script>
+</div>
+
+  
+
+  <script>
+    var pjax = new Pjax({
+      elements: 'a[href]:not([href^="#"]):not([href="javascript:void(0)"]):not([no-pjax])',   // 拦截正常带链接的 a 标签
+      selectors: ["#pjax-container","title"],                                   // 根据实际需要确认重载区域
+      cacheBust: false,   // url 地址追加时间戳，用以避免浏览器缓存
+      timeout: 5000
+    });
+
+    document.addEventListener('pjax:send', function (e) {
+
+      try {
+        var currentUrl = window.location.pathname;
+        var targetUrl = e.triggerElement.href;
+        var banUrl = [""];
+        if (banUrl[0] != "") {
+          banUrl.forEach(item => {
+            if(currentUrl.indexOf(item) != -1 || targetUrl.indexOf(item) != -1) {
+              window.location.href = targetUrl;
+            }
+          });
+        }
+      } catch (error) {}
+
+      $(window).unbind('resize');
+      $(window).unbind('scroll');
+      $(document).unbind('scroll');
+      $(document).unbind('click');
+      $('body').unbind('click');
+
+    })
+    
+    document.addEventListener('pjax:complete', function () {
+      $('script[data-pjax], .pjax-reload script').each(function () {
+        $(this).parent().append($(this).remove());
+      });
+    });
+
+    document.addEventListener('pjax:error', function (e) {
+      window.location.href = e.triggerElement.href;
+    })
+    
+    // 刷新不从顶部开始
+    document.addEventListener("DOMContentLoaded", function () {
+      history.scrollRestoration = 'auto';
+    })
+  </script>
+
+
+
+  </body>
+</html>

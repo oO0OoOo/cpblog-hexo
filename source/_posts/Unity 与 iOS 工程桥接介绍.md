@@ -3,12 +3,11 @@ author: epya15
 tags:
 
   - 博客
-    categories:
+categories:
   - sdk
-    date: 2024-01-09 15:15:34
-    img: https://picx.zhimg.com/v2-f03ff2911a65b4be8134688969712666_1440w.jpg?source=172ae18b
-    excerpt: 'Unity与iOS。'
-
+date: 2024-01-09 15:15:34
+img: https://picx.zhimg.com/v2-f03ff2911a65b4be8134688969712666_1440w.jpg?source=172ae18b
+excerpt: 'Unity与iOS。'
 ---
 
 ### Unity 侧

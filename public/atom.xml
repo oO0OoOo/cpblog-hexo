@@ -6,7 +6,7 @@
   <link href="http://epya15.fun/atom.xml" rel="self"/>
   
   <link href="http://epya15.fun/"/>
-  <updated>2024-01-08T07:19:50.767Z</updated>
+  <updated>2024-01-09T09:46:50.236Z</updated>
   <id>http://epya15.fun/</id>
   
   <author>
@@ -15,6 +15,25 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Unity 与 iOS 工程桥接介绍</title>
+    <link href="http://epya15.fun/2024/01/09/unity-yu-ios-gong-cheng-qiao-jie-jie-shao/"/>
+    <id>http://epya15.fun/2024/01/09/unity-yu-ios-gong-cheng-qiao-jie-jie-shao/</id>
+    <published>2024-01-09T07:15:34.000Z</published>
+    <updated>2024-01-09T09:46:50.236Z</updated>
+    
+    
+    <summary type="html">Unity与iOS。</summary>
+    
+    
+    
+    <category term="sdk" scheme="http://epya15.fun/categories/sdk/"/>
+    
+    
+    <category term="博客" scheme="http://epya15.fun/tags/%E5%8D%9A%E5%AE%A2/"/>
+    
+  </entry>
   
   <entry>
     <title>Android与Unity交互之AndroidJavaProxy回调的使用</title>
@@ -404,25 +423,6 @@
     
     
     <summary type="html">在阅读本章前，我们默认你已经了解了Git的概念。</summary>
-    
-    
-    
-    <category term="博客搭建" scheme="http://epya15.fun/categories/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/"/>
-    
-    
-    <category term="博客" scheme="http://epya15.fun/tags/%E5%8D%9A%E5%AE%A2/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>博客搭建教程1 - 准备阶段</title>
-    <link href="http://epya15.fun/2023/01/09/bo-ke-da-jian-jiao-cheng-1-zhun-bei-jie-duan/"/>
-    <id>http://epya15.fun/2023/01/09/bo-ke-da-jian-jiao-cheng-1-zhun-bei-jie-duan/</id>
-    <published>2023-01-08T17:00:00.000Z</published>
-    <updated>2024-01-09T06:25:51.394Z</updated>
-    
-    
-    <summary type="html">从明天开始搭建一个属于自己的博客。</summary>
     
     
     
