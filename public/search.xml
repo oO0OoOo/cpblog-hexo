@@ -518,7 +518,8 @@
 <p>如果你决定开始搭建个人博客，那么接下来按照教程顺序，一步一步开始吧。</p>
 <p>本教程搭建博客的技术涉及到：<br>1.搭建Github仓库托管博客，包含一些Git操作<br>2.安装node.js和npm，Hexo，Hexo-admin<br>3.租用Linux云服务器实现博客远程部署</p>
 <p>建议读者可以先对以上技术有一些了解。  </p>
-<p>接下来就可以正式开始建站流程了。<br><img src="/images/20231218-155939.png" class="lazyload placeholder" data-srcset="/images/20231218-155939.png" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" alt="20231218-155939"></p>
+<p>接下来就可以正式开始建站流程了。</p>
+<p><img src="/./../images/20231218-155939.png" class="lazyload placeholder" data-srcset="/./../images/20231218-155939.png" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" alt="20231218-155939"></p>
 ]]></content>
       <categories>
         <category>博客搭建</category>
