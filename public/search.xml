@@ -519,7 +519,7 @@
 <p>本教程搭建博客的技术涉及到：<br>1.搭建Github仓库托管博客，包含一些Git操作<br>2.安装node.js和npm，Hexo，Hexo-admin<br>3.租用Linux云服务器实现博客远程部署</p>
 <p>建议读者可以先对以上技术有一些了解。  </p>
 <p>接下来就可以正式开始建站流程了。</p>
-<p><img src="https://raw.githubusercontent.com/oO0OoOo/cpblog-hexo/main/mu%E6%97%A0%E6%A0%87%E9%A2%985.png" class="lazyload placeholder" data-srcset="https://raw.githubusercontent.com/oO0OoOo/cpblog-hexo/main/mu%E6%97%A0%E6%A0%87%E9%A2%985.png" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" alt="无标题5"></p>
+<p><img src="https://raw.githubusercontent.com/oO0OoOo/cpblog-hexo/main/source/images/img_v3_026u_2f775e7d-d026-4120-bff1-1714c8ec2c6g-1704771305112-9.gif" class="lazyload placeholder" data-srcset="https://raw.githubusercontent.com/oO0OoOo/cpblog-hexo/main/source/images/img_v3_026u_2f775e7d-d026-4120-bff1-1714c8ec2c6g-1704771305112-9.gif" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" alt="img_v3_026u_2f775e7d-d026-4120-bff1-1714c8ec2c6g"></p>
 ]]></content>
       <categories>
         <category>博客搭建</category>
