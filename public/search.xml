@@ -1,18 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title></title>
-    <url>/2024/01/09/ce-shi-wen-dang/</url>
-    <content><![CDATA[<p>title: 测试文档<br>author: epya15<br>tags:</p>
-<ul>
-<li>博客<br>categories:</li>
-<li>博客搭建<br>date: 2023-01-09 01:00:00<br>img: <a href="https://picx.zhimg.com/v2-f03ff2911a65b4be8134688969712666_1440w.jpg?source=172ae18b">https://picx.zhimg.com/v2-f03ff2911a65b4be8134688969712666_1440w.jpg?source=172ae18b</a><br>excerpt: ‘从明天开始搭建一个属于自己的博客。’</li>
-</ul>
-<p>撒大声地</p>
-<p><img src="https://raw.githubusercontent.com/oO0OoOo/cpblog-hexo/main/source/images/202401091427211.png" class="lazyload placeholder" data-srcset="https://raw.githubusercontent.com/oO0OoOo/cpblog-hexo/main/source/images/202401091427211.png" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" alt="20231218-155939"></p>
-]]></content>
-  </entry>
-  <entry>
     <title>Android与Unity交互之AndroidJavaProxy回调的使用</title>
     <url>/2023/04/20/android-yu-unity-jiao-hu-zhi-androidjavaproxy-hui-diao-de-shi-yong/</url>
     <content><![CDATA[<p>以实际需求为例，比如要实现一个Android原生的Dialog弹窗，通过Unity调用使其打开，同时注册弹窗上【确定】和【返回】键的点击回调。<br>首先创建一个C#类，继承自AndroidJavaProxy<br>注意构造函数内的参数，后续会在java端创建一个与之同名的接口</p>
@@ -530,6 +518,19 @@
 <p>如果你决定开始搭建个人博客，那么接下来按照教程顺序，一步一步开始吧。</p>
 <p>本教程搭建博客的技术涉及到：<br>1.搭建Github仓库托管博客，包含一些Git操作<br>2.安装node.js和npm，Hexo，Hexo-admin<br>3.租用Linux云服务器实现博客远程部署</p>
 <p>建议读者可以先对以上技术有一些了解。  </p>
+]]></content>
+      <categories>
+        <category>博客搭建</category>
+      </categories>
+      <tags>
+        <tag>博客</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>测试文档</title>
+    <url>/2023/01/09/ce-shi-wen-dang/</url>
+    <content><![CDATA[<p>撒大声地</p>
+<p><img src="https://raw.githubusercontent.com/oO0OoOo/cpblog-hexo/main/source/images/202401091427211.png" class="lazyload placeholder" data-srcset="https://raw.githubusercontent.com/oO0OoOo/cpblog-hexo/main/source/images/202401091427211.png" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" alt="20231218-155939"></p>
 ]]></content>
       <categories>
         <category>博客搭建</category>
