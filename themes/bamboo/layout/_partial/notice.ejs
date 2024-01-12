@@ -97,7 +97,6 @@
 
 <script>
   var seamless = JSON.parse('<%= theme.notice.seamless %>');
-  var scrollWaitTime = JSON.parse('<%= theme.notice.waitTime %>');
   seamless = seamless ? 0 : 30;
   var listData = '<%= theme.notice.list %>' || '';
   listData = listData.split(',');
@@ -108,7 +107,6 @@
       moveNum: 2,
       classOption: {
         singleHeight: seamless,
-        waitTime: scrollWaitTime,
         limitMoveNum: listData.length
       },
     },
