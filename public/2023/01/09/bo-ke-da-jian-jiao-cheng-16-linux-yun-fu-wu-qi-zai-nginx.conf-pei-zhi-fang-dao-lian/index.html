@@ -693,13 +693,13 @@
       <div class="post-content">
         <p>简单的防盗链设置，可参考如下文章<br><a target="_blank" rel="noopener" href="https://www.huati365.com/16b0661323e8cec6">https://www.huati365.com/16b0661323e8cec6</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_52162404/article/details/127051356">https://blog.csdn.net/qq_52162404/article/details/127051356</a><br><a target="_blank" rel="noopener" href="https://www.jb51.net/article/251177.htm">https://www.jb51.net/article/251177.htm</a>  </p>
 <p>总结下来写法，以经由博主验证<br>编辑…&#x2F;nginx&#x2F;conf&#x2F;nginx.conf文件，<br>如果下面这段代码是注释的状态，则将其打开  </p>
-<div class="img-wrap"><div class="img-bg"><img class="img lazyload placeholder" src="/images/nginxconfopensf.png" class="lazyload placeholder" data-srcset="/images/nginxconfopensf.png" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" style="width:80%;"/></div></div>  
+<img src="/images/nginxconfopensf.png," class="lazyload placeholder" data-srcset="/images/nginxconfopensf.png," srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" class=" lazyload placeholder" title="width&#x3D;80%, alt&#x3D;">  
 <p>再增加下面代码  </p>
-<div class="img-wrap"><div class="img-bg"><img class="img lazyload placeholder" src="/images/nginxsetlocation.png" class="lazyload placeholder" data-srcset="/images/nginxsetlocation.png" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" style="width:80%;"/></div></div>  
+<img src="/images/nginxsetlocation.png," class="lazyload placeholder" data-srcset="/images/nginxsetlocation.png," srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" class=" lazyload placeholder" title="width&#x3D;80%, alt&#x3D;">  
 <p>然后重启nginx<br>nginx -s reload<br>如果自己的网站能显示图片，其它网站CNAME过来的就不显示图片，就说明配置成功<br>盗链网站效果如下  </p>
-<div class="img-wrap"><div class="img-bg"><img class="img lazyload placeholder" src="/images/otherwebsitelocaitionnginx.png" class="lazyload placeholder" data-srcset="/images/otherwebsitelocaitionnginx.png" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" style="width:80%;"/></div></div>  
+<img src="/images/otherwebsitelocaitionnginx.png," class="lazyload placeholder" data-srcset="/images/otherwebsitelocaitionnginx.png," srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" class=" lazyload placeholder" title="width&#x3D;80%, alt&#x3D;">  
 <p>这里实现了如果检测到盗链行为就用一张图片回击，也可以只return 403，显示一张裂开的图片<br>盗链提示图片资源  </p>
-<div class="img-wrap"><div class="img-bg"><img class="img lazyload placeholder" src="/images/invalid_referer_tip.png" class="lazyload placeholder" data-srcset="/images/invalid_referer_tip.png" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" style="width:80%;"/></div></div>
+<img src="/images/invalid_referer_tip.png," class="lazyload placeholder" data-srcset="/images/invalid_referer_tip.png," srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" class=" lazyload placeholder" title="width&#x3D;80%, alt&#x3D;">
       </div>
       <div class="post-tags-categories">
         
