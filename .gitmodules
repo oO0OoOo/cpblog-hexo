@@ -1,0 +1,3 @@
+[submodule "themes/hexo-theme-bamboo"]
+	path = themes/hexo-theme-bamboo
+	url = https://github.com/yuang01/hexo-theme-bamboo.git
