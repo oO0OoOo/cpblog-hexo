@@ -11,7 +11,7 @@
   <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-  <title>博客搭建教程17 - 云服务器搭建博客网站全套流程 | 赛朋博客</title>
+  <title>云服务器搭建博客网站全套流程浓缩版 | 赛朋博客</title>
 
   <link rel="icon" type="image/jpeg" href="/favicon.jpg">
   <link rel="stylesheet" href="https://at.alicdn.com/t/font_1911880_c1nvbyezg17.css">
@@ -647,14 +647,14 @@
 
 
 <div class="post-detail-header" id="thumbnail_canvas" style="background-repeat: no-repeat; background-size: cover; 
-  background-position: center center;position: relative;background-image:url('https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2019/4/17/16a2a86415e2db30~tplv-t2oaga2asx-zoom-crop-mark:3024:3024:3024:1702.awebp')">
+  background-position: center center;position: relative;background-image:url('https://lmg.jj20.com/up/allimg/4k/s/01/2109241124345426-0-lp.jpg')">
   <div class="post-detail-header-mask"></div>
   <canvas id="header_canvas"style="position:absolute;bottom:0;pointer-events:none;"></canvas>
   
   <div class="post-detail-header_info-box">
     <div class="title-box">
       <span class="title">
-        博客搭建教程17 - 云服务器搭建博客网站全套流程
+        云服务器搭建博客网站全套流程浓缩版
       </span>
     </div>
     
@@ -691,19 +691,51 @@
   <div class="main-content">
     <article class="post post-detail">
       <div class="post-content">
-        <p><img src="https://raw.githubusercontent.com/oO0OoOo/cpblog-hexo/main/source/images/202402011754207.png" class="lazyload placeholder" data-srcset="https://raw.githubusercontent.com/oO0OoOo/cpblog-hexo/main/source/images/202402011754207.png" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" alt="显示二维码的"></p>
-<p>1.安装宝塔，使用在线安装或者键入命令<br>配置安全组，放开【入方向规则】指定或全部端口以正常安装宝塔<br>yum install -y wget &amp;&amp; wget -O install.sh <a target="_blank" rel="noopener" href="https://download.bt.cn/install/install_6.0.sh">https://download.bt.cn/install/install_6.0.sh</a> &amp;&amp; sh install.sh ed8484bec</p>
-<p>2.安装nginx</p>
-<p>&#x2F;&#x2F;一键安装全部依赖<br>yum -y install gcc zlib zlib-devel pcre-devel opensslopenssl-devel</p>
-<p>&#x2F;&#x2F;创建一个文件夹<br>cd &#x2F;usr&#x2F;local<br>mkdir nginx<br>cd nginx<br>&#x2F;&#x2F;下载tar包<br>wget <a target="_blank" rel="noopener" href="http://nginx.org/download/nginx-1.13.7.tar.gz">http://nginx.org/download/nginx-1.13.7.tar.gz</a><br>tar -xvf nginx-1.13.7.tar.gz</p>
-<p>&#x2F;&#x2F;进入nginx目录<br>cd &#x2F;usr&#x2F;local&#x2F;nginx<br>&#x2F;&#x2F;进入目录<br>cd nginx-1.13.7<br>&#x2F;&#x2F;执行命令考虑到后续安装ssl证书 添加两个模块<br>.&#x2F;configure –with-http_stub_status_module –with-http_ssl_module<br>&#x2F;&#x2F;执行make命令<br>make<br>&#x2F;&#x2F;执行make install命令<br>make install</p>
+        <h3 id="1-配置安全组"><a href="#1-配置安全组" class="headerlink" title="1.配置安全组"></a>1.配置安全组</h3><p>租用云服务器，安装centOS 7系统，配置安全组，放开【入方向规则】指定或全部端口以正常安装宝塔运维工具</p>
+<h3 id="2-安装宝塔"><a href="#2-安装宝塔" class="headerlink" title="2.安装宝塔"></a>2.安装宝塔</h3><p>使用在线安装或者键入命令</p>
+<blockquote>
+<p>yum install -y wget &amp;&amp; wget -O install.sh <a target="_blank" rel="noopener" href="https://download.bt.cn/install/install_6.0.sh">https://download.bt.cn/install/install_6.0.sh</a> &amp;&amp; sh install.sh ed8484bec</p>
+</blockquote>
+<h3 id="3-安装Nginx"><a href="#3-安装Nginx" class="headerlink" title="3.安装Nginx"></a>3.安装Nginx</h3><p>&#x2F;&#x2F;一键安装全部依赖</p>
+<blockquote>
+<p>yum -y install gcc zlib zlib-devel pcre-devel opensslopenssl-devel</p>
+</blockquote>
+<p>&#x2F;&#x2F;创建一个Nginx文件夹</p>
+<blockquote>
+<p>cd &#x2F;usr&#x2F;local<br>mkdir nginx<br>cd nginx</p>
+</blockquote>
+<p>&#x2F;&#x2F;下载tar包</p>
+<blockquote>
+<p>wget <a target="_blank" rel="noopener" href="http://nginx.org/download/nginx-1.13.7.tar.gz">http://nginx.org/download/nginx-1.13.7.tar.gz</a></p>
+<p>tar -xvf nginx-1.13.7.tar.gz</p>
+</blockquote>
+<p>&#x2F;&#x2F;进入nginx目录</p>
+<blockquote>
+<p>cd &#x2F;usr&#x2F;local&#x2F;nginx</p>
+</blockquote>
+<p>&#x2F;&#x2F;进入目录（以实际安装版本号为准）</p>
+<blockquote>
+<p>cd nginx-1.13.7</p>
+</blockquote>
+<p>&#x2F;&#x2F;执行命令考虑到后续安装ssl证书 添加两个模块</p>
+<blockquote>
+<p>.&#x2F;configure –with-http_stub_status_module –with-http_ssl_module</p>
+</blockquote>
+<p>&#x2F;&#x2F;执行make命令</p>
+<blockquote>
+<p>make</p>
+</blockquote>
+<p>&#x2F;&#x2F;执行make install命令</p>
+<blockquote>
+<p>make install</p>
+</blockquote>
 <p>&#x2F;&#x2F;nginx安装完毕后，为了今后使用方便，将nginx配置到环境变量<br>echo ‘export PATH&#x3D;&#x2F;usr&#x2F;local&#x2F;nginx&#x2F;sbin:$PATH’ &gt;&gt; &#x2F;etc&#x2F;profile<br>&#x2F;&#x2F;并使其生效<br>source &#x2F;etc&#x2F;profile<br>&#x2F;&#x2F;接下来直接输入nginx -v,看看环境变量有没有配置成功<br>nginx -v<br>编辑nginx.config文件</p>
 <p>3.配置防火墙<br>&#x2F;&#x2F;在服务器控制台的安全组中创建规则，在【入方向规则】中添加对应的端口</p>
 <p>&#x2F;&#x2F;查看防火墙开启状态<br>systemctl status firewalld<br>&#x2F;&#x2F;开启防火墙，没有任何提示则为开启成功<br>systemctl start firewalld<br>&#x2F;&#x2F;如果要关闭防火墙设置,可能通过systemctl stop firewalld这条指令来关闭该功能,没有任何提示则关闭成功<br>systemctl stop firewalld<br>&#x2F;&#x2F;开启80端口<br>firewall-cmd –permanent –zone&#x3D;public –add-port&#x3D;80&#x2F;tcp –permanent<br>&#x2F;&#x2F;查看80端口是否开启<br>firewall-cmd –permanent –query-port&#x3D;80&#x2F;tcp<br>&#x2F;&#x2F;重启防火墙<br>firewall-cmd –reload</p>
 <p>在云服武器上ping 百度看看能不能ping通，在其它电脑上ping云服务器看看能不能ping通</p>
 <p>4.云服务器安装git（本地写文-&gt;上传github-&gt;云服务器拉新git-&gt;刷新网站）<br>yum –y install git<br>键入git指令验证是否安装成功<br>创建git用户，先不创建密码<br>adduser git<br>检查是否创建成功 cd &#x2F;home &amp;&amp; ls -al<br>如果显示有git则说明用户创建成功<br>接下来找一个喜欢的目录，创建一个新的git库，需要你自己起一个喜欢的名字，我起名为cpblog.git，注意.git后缀不要变<br>git init –bare cpblog.git<br>此时终端提示你创建了一个空的git库，这就说明操作对了。<br>新建文件夹作为博客根目录<br>mkdir cpblog_webroot<br>chmod 777 cpblog_webroot</p>
 <p>使用Git-Hooks同步网站根目录，这里使用的是Git中的“post-receive”，当有Git收发的时候会调用该脚本，自动将最新内容同步到网站根目录中<br>用下面的指令新建勾子文件<br>vim cpblog.git&#x2F;hooks&#x2F;post-receive<br>将以下语句写入文件<br>#!&#x2F;bin&#x2F;sh<br>git –work-tree&#x3D;&#x2F;usr&#x2F;local&#x2F;cpblog_webroot –git-dir&#x3D;&#x2F;root&#x2F;cpblog.git checkout -f<br>(注意博客路径和当前用户)<br>保存并赋予执行权限<br>chmod +x cpblog.git&#x2F;hooks&#x2F;post-receive<br>sudo chown -R git:git cpblog.git<br>sudo chown -R git:git cpblog_webroot</p>
-<p>生成ssh密钥<br>ssh-keygen -t ecdsa -b 521 -C ‘<a href="mailto:&#x65;&#x70;&#121;&#97;&#49;&#x35;&#64;&#x67;&#x6d;&#x61;&#x69;&#x6c;&#x2e;&#99;&#111;&#109;">&#x65;&#x70;&#121;&#97;&#49;&#x35;&#64;&#x67;&#x6d;&#x61;&#x69;&#x6c;&#x2e;&#99;&#111;&#109;</a>‘ -f ~&#x2F;.ssh&#x2F;id_ecdsa<br>连按3次回车<br>接着提取公钥<br>cat ~&#x2F;.ssh&#x2F;id_ecdsa.pub<br>将公钥填到github的ssh列表中（具体过程略）<br>输入<br>ssh -T <a href="mailto:&#x67;&#x69;&#116;&#x40;&#x67;&#x69;&#x74;&#x68;&#117;&#98;&#46;&#x63;&#111;&#109;">&#x67;&#x69;&#116;&#x40;&#x67;&#x69;&#x74;&#x68;&#117;&#98;&#46;&#x63;&#111;&#109;</a><br>提示Successfully即为完成配置<br>进入www&#x2F;wwwroot目录，克隆git仓库，本地仓库名为cpblog<br>git clone <a href="mailto:&#103;&#x69;&#116;&#64;&#103;&#105;&#116;&#104;&#117;&#x62;&#x2e;&#99;&#x6f;&#109;">&#103;&#x69;&#116;&#64;&#103;&#105;&#116;&#104;&#117;&#x62;&#x2e;&#99;&#x6f;&#109;</a>:oO0OoOo&#x2F;oO0OoOo.github.io.git cpblog</p>
+<p>生成ssh密钥<br>ssh-keygen -t ecdsa -b 521 -C ‘<a href="mailto:&#101;&#112;&#x79;&#x61;&#49;&#53;&#x40;&#x67;&#109;&#x61;&#x69;&#108;&#46;&#x63;&#111;&#109;">&#101;&#112;&#x79;&#x61;&#49;&#53;&#x40;&#x67;&#109;&#x61;&#x69;&#108;&#46;&#x63;&#111;&#109;</a>‘ -f ~&#x2F;.ssh&#x2F;id_ecdsa<br>连按3次回车<br>接着提取公钥<br>cat ~&#x2F;.ssh&#x2F;id_ecdsa.pub<br>将公钥填到github的ssh列表中（具体过程略）<br>输入<br>ssh -T <a href="mailto:&#x67;&#x69;&#116;&#x40;&#103;&#x69;&#x74;&#x68;&#x75;&#x62;&#46;&#x63;&#x6f;&#x6d;">&#x67;&#x69;&#116;&#x40;&#103;&#x69;&#x74;&#x68;&#x75;&#x62;&#46;&#x63;&#x6f;&#x6d;</a><br>提示Successfully即为完成配置<br>进入www&#x2F;wwwroot目录，克隆git仓库，本地仓库名为cpblog<br>git clone <a href="mailto:&#x67;&#105;&#116;&#x40;&#x67;&#105;&#x74;&#104;&#x75;&#98;&#x2e;&#99;&#x6f;&#109;">&#x67;&#105;&#116;&#x40;&#x67;&#105;&#x74;&#104;&#x75;&#98;&#x2e;&#99;&#x6f;&#109;</a>:oO0OoOo&#x2F;oO0OoOo.github.io.git cpblog</p>
 <p>配置账户免密码登录<br>创建 ssh 的默认目录<br>进入 git 账户的主目录<br>cd &#x2F;home&#x2F;git<br>创建 .ssh 的配置，如果此文件夹已经存在请忽略此步<br>mkdir .ssh<br>创建校验公钥的配置文件<br>进入 .ssh 目录并创建 authorized_keys 文件，此文件存放客户端远程访问的 ssh 的公钥<br>cd .ssh<br>touch authorized_keys<br>cd ..<br>设置权限<br>chmod 700 .ssh&#x2F;<br>chmod 600 .ssh&#x2F;authorized_keys</p>
 <p>启动网站</p>
 <p>修改&#x2F;usr&#x2F;local&#x2F;nginx&#x2F;conf&#x2F;nginx.conf<br>将里面的地址改为cpblog的位置</p>
@@ -736,7 +768,7 @@
     </li>
     <li class="post-copyright-link">
     <strong>link:  </strong>
-    <a href="/2024/02/01/bo-ke-da-jian-jiao-cheng-17-yun-fu-wu-qi-da-jian-bo-ke-wang-zhan-quan-tao-liu-cheng/" target="_blank" title="博客搭建教程17 - 云服务器搭建博客网站全套流程">http://epya15.fun/2024/02/01/bo-ke-da-jian-jiao-cheng-17-yun-fu-wu-qi-da-jian-bo-ke-wang-zhan-quan-tao-liu-cheng/</a>
+    <a href="/2024/02/01/bo-ke-da-jian-jiao-cheng-17-yun-fu-wu-qi-da-jian-bo-ke-wang-zhan-quan-tao-liu-cheng/" target="_blank" title="云服务器搭建博客网站全套流程浓缩版">http://epya15.fun/2024/02/01/bo-ke-da-jian-jiao-cheng-17-yun-fu-wu-qi-da-jian-bo-ke-wang-zhan-quan-tao-liu-cheng/</a>
     </li>
     <li class="post-copyright-license">
       <strong>Copyright notice:   </strong>
@@ -905,7 +937,7 @@
   <div class='content'>
     <div class="toc-main">
       <div class="toc-content">
-        <!--  -->
+        <!-- <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E9%85%8D%E7%BD%AE%E5%AE%89%E5%85%A8%E7%BB%84"><span class="toc-text">1.配置安全组</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%AE%89%E8%A3%85%E5%AE%9D%E5%A1%94"><span class="toc-text">2.安装宝塔</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E5%AE%89%E8%A3%85Nginx"><span class="toc-text">3.安装Nginx</span></a></li></ol> -->
         <div class="toc"></div>
       </div>
     </div>
@@ -940,7 +972,7 @@
             <div class="post-img-box">
               <a href="/2024/02/01/bo-ke-da-jian-jiao-cheng-17-yun-fu-wu-qi-da-jian-bo-ke-wang-zhan-quan-tao-liu-cheng/" class="post-img " style="background-size: cover; 
                 background-position: center center;">
-                <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2019/4/17/16a2a86415e2db30~tplv-t2oaga2asx-zoom-crop-mark:3024:3024:3024:1702.awebp" class="lazyload placeholder" data-srcset="https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2019/4/17/16a2a86415e2db30~tplv-t2oaga2asx-zoom-crop-mark:3024:3024:3024:1702.awebp" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" alt="">
+                <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="https://lmg.jj20.com/up/allimg/4k/s/01/2109241124345426-0-lp.jpg" class="lazyload placeholder" data-srcset="https://lmg.jj20.com/up/allimg/4k/s/01/2109241124345426-0-lp.jpg" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" alt="">
               </a>
             </div>
             <div class="post-date-title">
@@ -949,7 +981,7 @@
                   <span class="post-date">02-01</span>
                 
               </div>
-              <a class="post-title" href="/2024/02/01/bo-ke-da-jian-jiao-cheng-17-yun-fu-wu-qi-da-jian-bo-ke-wang-zhan-quan-tao-liu-cheng/">博客搭建教程17 - 云服务器搭建博客网站全套流程</a>
+              <a class="post-title" href="/2024/02/01/bo-ke-da-jian-jiao-cheng-17-yun-fu-wu-qi-da-jian-bo-ke-wang-zhan-quan-tao-liu-cheng/">云服务器搭建博客网站全套流程浓缩版</a>
             </div>
           </div>
         
