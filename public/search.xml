@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>云服务器搭建博客网站全套流程浓缩版</title>
+    <title>云服务器搭建博客网站全套流程（浓缩版）</title>
     <url>/2024/02/01/bo-ke-da-jian-jiao-cheng-17-yun-fu-wu-qi-da-jian-bo-ke-wang-zhan-quan-tao-liu-cheng/</url>
     <content><![CDATA[<h3 id="1-配置安全组"><a href="#1-配置安全组" class="headerlink" title="1.配置安全组"></a>1.配置安全组</h3><p>租用云服务器，安装centOS 7系统，配置安全组，放开【入方向规则】指定或全部端口以正常安装宝塔运维工具</p>
 <h3 id="2-安装宝塔"><a href="#2-安装宝塔" class="headerlink" title="2.安装宝塔"></a>2.安装宝塔</h3><p>使用在线安装或者键入命令</p>
@@ -41,24 +41,134 @@
 <blockquote>
 <p>make install</p>
 </blockquote>
-<p>&#x2F;&#x2F;nginx安装完毕后，为了今后使用方便，将nginx配置到环境变量<br>echo ‘export PATH&#x3D;&#x2F;usr&#x2F;local&#x2F;nginx&#x2F;sbin:$PATH’ &gt;&gt; &#x2F;etc&#x2F;profile<br>&#x2F;&#x2F;并使其生效<br>source &#x2F;etc&#x2F;profile<br>&#x2F;&#x2F;接下来直接输入nginx -v,看看环境变量有没有配置成功<br>nginx -v<br>编辑nginx.config文件</p>
-<p>3.配置防火墙<br>&#x2F;&#x2F;在服务器控制台的安全组中创建规则，在【入方向规则】中添加对应的端口</p>
-<p>&#x2F;&#x2F;查看防火墙开启状态<br>systemctl status firewalld<br>&#x2F;&#x2F;开启防火墙，没有任何提示则为开启成功<br>systemctl start firewalld<br>&#x2F;&#x2F;如果要关闭防火墙设置,可能通过systemctl stop firewalld这条指令来关闭该功能,没有任何提示则关闭成功<br>systemctl stop firewalld<br>&#x2F;&#x2F;开启80端口<br>firewall-cmd –permanent –zone&#x3D;public –add-port&#x3D;80&#x2F;tcp –permanent<br>&#x2F;&#x2F;查看80端口是否开启<br>firewall-cmd –permanent –query-port&#x3D;80&#x2F;tcp<br>&#x2F;&#x2F;重启防火墙<br>firewall-cmd –reload</p>
-<p>在云服武器上ping 百度看看能不能ping通，在其它电脑上ping云服务器看看能不能ping通</p>
-<p>4.云服务器安装git（本地写文-&gt;上传github-&gt;云服务器拉新git-&gt;刷新网站）<br>yum –y install git<br>键入git指令验证是否安装成功<br>创建git用户，先不创建密码<br>adduser git<br>检查是否创建成功 cd &#x2F;home &amp;&amp; ls -al<br>如果显示有git则说明用户创建成功<br>接下来找一个喜欢的目录，创建一个新的git库，需要你自己起一个喜欢的名字，我起名为cpblog.git，注意.git后缀不要变<br>git init –bare cpblog.git<br>此时终端提示你创建了一个空的git库，这就说明操作对了。<br>新建文件夹作为博客根目录<br>mkdir cpblog_webroot<br>chmod 777 cpblog_webroot</p>
-<p>使用Git-Hooks同步网站根目录，这里使用的是Git中的“post-receive”，当有Git收发的时候会调用该脚本，自动将最新内容同步到网站根目录中<br>用下面的指令新建勾子文件<br>vim cpblog.git&#x2F;hooks&#x2F;post-receive<br>将以下语句写入文件<br>#!&#x2F;bin&#x2F;sh<br>git –work-tree&#x3D;&#x2F;usr&#x2F;local&#x2F;cpblog_webroot –git-dir&#x3D;&#x2F;root&#x2F;cpblog.git checkout -f<br>(注意博客路径和当前用户)<br>保存并赋予执行权限<br>chmod +x cpblog.git&#x2F;hooks&#x2F;post-receive<br>sudo chown -R git:git cpblog.git<br>sudo chown -R git:git cpblog_webroot</p>
-<p>生成ssh密钥<br>ssh-keygen -t ecdsa -b 521 -C ‘<a href="mailto:&#101;&#112;&#x79;&#x61;&#49;&#53;&#x40;&#x67;&#109;&#x61;&#x69;&#108;&#46;&#x63;&#111;&#109;">&#101;&#112;&#x79;&#x61;&#49;&#53;&#x40;&#x67;&#109;&#x61;&#x69;&#108;&#46;&#x63;&#111;&#109;</a>‘ -f ~&#x2F;.ssh&#x2F;id_ecdsa<br>连按3次回车<br>接着提取公钥<br>cat ~&#x2F;.ssh&#x2F;id_ecdsa.pub<br>将公钥填到github的ssh列表中（具体过程略）<br>输入<br>ssh -T <a href="mailto:&#x67;&#x69;&#116;&#x40;&#103;&#x69;&#x74;&#x68;&#x75;&#x62;&#46;&#x63;&#x6f;&#x6d;">&#x67;&#x69;&#116;&#x40;&#103;&#x69;&#x74;&#x68;&#x75;&#x62;&#46;&#x63;&#x6f;&#x6d;</a><br>提示Successfully即为完成配置<br>进入www&#x2F;wwwroot目录，克隆git仓库，本地仓库名为cpblog<br>git clone <a href="mailto:&#x67;&#105;&#116;&#x40;&#x67;&#105;&#x74;&#104;&#x75;&#98;&#x2e;&#99;&#x6f;&#109;">&#x67;&#105;&#116;&#x40;&#x67;&#105;&#x74;&#104;&#x75;&#98;&#x2e;&#99;&#x6f;&#109;</a>:oO0OoOo&#x2F;oO0OoOo.github.io.git cpblog</p>
-<p>配置账户免密码登录<br>创建 ssh 的默认目录<br>进入 git 账户的主目录<br>cd &#x2F;home&#x2F;git<br>创建 .ssh 的配置，如果此文件夹已经存在请忽略此步<br>mkdir .ssh<br>创建校验公钥的配置文件<br>进入 .ssh 目录并创建 authorized_keys 文件，此文件存放客户端远程访问的 ssh 的公钥<br>cd .ssh<br>touch authorized_keys<br>cd ..<br>设置权限<br>chmod 700 .ssh&#x2F;<br>chmod 600 .ssh&#x2F;authorized_keys</p>
-<p>启动网站</p>
-<p>修改&#x2F;usr&#x2F;local&#x2F;nginx&#x2F;conf&#x2F;nginx.conf<br>将里面的地址改为cpblog的位置</p>
-<p>主要修改的部分</p>
+<p>&#x2F;&#x2F;nginx安装完毕后，为了今后使用方便，将nginx配置到环境变量</p>
+<blockquote>
+<p>echo ‘export PATH&#x3D;&#x2F;usr&#x2F;local&#x2F;nginx&#x2F;sbin:$PATH’ &gt;&gt; &#x2F;etc&#x2F;profile</p>
+</blockquote>
+<p>&#x2F;&#x2F;并使其生效</p>
+<blockquote>
+<p>source &#x2F;etc&#x2F;profile</p>
+</blockquote>
+<p>&#x2F;&#x2F;接下来直接输入nginx -v,看看环境变量有没有配置成功</p>
+<blockquote>
+<p>nginx -v</p>
+</blockquote>
+<p>修改&#x2F;usr&#x2F;local&#x2F;nginx&#x2F;conf&#x2F;nginx.conf</p>
+<p>将里面的地址改为网站目录位置</p>
+<p>主要修改的部分（示例）</p>
+<blockquote>
 <p>location &#x2F; {<br>    root   &#x2F;www&#x2F;wwwroot&#x2F;cpblog-hexo&#x2F;public;<br>    index  index.html index.htm;<br>}</p>
-<p>#防盗链设置，只允许cypunberk.cn自己网站访问<br>location ~*.(png|jpg|jpeg|gif|mp4){<br>    root &#x2F;www&#x2F;wwwroot&#x2F;epya15.fun;<br>    valid_referers none blocked <a href="http://www.epya15.fun/">www.epya15.fun</a> epya15.fun;<br>    if ($invalid_referer) {<br>        #return 403;    #可以返回403，盗链网页显示的是一个裂开的图<br>        rewrite ^&#x2F; &#x2F;images&#x2F;invalid_referer_tip.png break;  #返回一个自己定制的图片<br>    }<br>}</p>
-<p>&#x2F;&#x2F;本地电脑环境（Windows电脑，需要装git，nodejs，hexo，不需要nginx）<br>装nodejs(为避免执行cmd权限不足，最好装到D盘，例如D:\nodejs，且放开这个目录的用户访问权限)<br><a href="https://nodejs.org/en/">https://nodejs.org/en/</a><br>在 nodejs 文件夹中新建两个空文件夹node_cache、node_global，执行<br>npm config set prefix “D:\nodejs\node_global”<br>npm config set cache “D:\nodejs\node_cache”<br>装hexo<br>npm install -g hexo-cli<br>配置hexo到环境变量PATH中<br>D:\nodejs\node_global<br>D盘新建目录D:\cpblog-hexo<br>在这个目录下执行Git Bash，执行以下命令<br>npm install -g hexo-cli<br>hexo g<br>hexo s<br>然后在浏览器输入<a href="http://localhost:4000/">http://localhost:4000/</a><br>看能不能看见网页</p>
-<p>云服务器拉新<br>本地全套hexo工程+hexo环境，服务器全套hexo工程，本地使用hexo g生成网页，直接提交到git上<br>每次执行本地脚本完成服务器更新</p>
-<p>做法：<br>1.ssh免密登录<br>将本地电脑的.ssh&#x2F;id_rsa.pub的内容粘贴至服务器的&#x2F;root&#x2F;.ssh&#x2F;authorized_keys文件中，这个文件可以粘贴多个key，换行即可<br>2.给shell目录777权限<br>chmod 777 &#x2F;www&#x2F;wwwroot&#x2F;cpblog-hexo&#x2F;shell<br>3.本地写文章D:\cpblog-hexo\source_posts<br>4.双击‪D:\cpblog-hexo\shell\deploy.sh执行（全套流程）<br>5.执行完毕后网页就变更了</p>
-<p>Typora + PicGo + github 实现最舒服的图片引用姿势</p>
-<p>飞书云文档转markdown<br><a href="https://feishu2md.onrender.com/">https://feishu2md.onrender.com/</a></p>
+<p>#防盗链设置，只允许自己网站访问自己的多媒体资源<br>location ~*.(png|jpg|jpeg|gif|mp4){<br>    root &#x2F;www&#x2F;wwwroot&#x2F;epya15.fun;<br>    valid_referers none blocked <a href="http://www.epya15.fun/">www.epya15.fun</a> epya15.fun;<br>    if ($invalid_referer) {<br>        #return 403;    #可以返回403，盗链网页显示的是一个裂开的图<br>        rewrite ^&#x2F; &#x2F;images&#x2F;invalid_referer_tip.png break;  #返回一个自己定制的图片<br>    }<br>}</p>
+</blockquote>
+<h3 id="4-配置防火墙"><a href="#4-配置防火墙" class="headerlink" title="4.配置防火墙"></a>4.配置防火墙</h3><p>&#x2F;&#x2F;查看防火墙开启状态</p>
+<blockquote>
+<p>systemctl status firewalld</p>
+</blockquote>
+<p>&#x2F;&#x2F;开启防火墙，没有任何提示则为开启成功</p>
+<blockquote>
+<p>systemctl start firewalld</p>
+</blockquote>
+<p>&#x2F;&#x2F;如果要关闭防火墙设置,可能通过systemctl stop firewalld这条指令来关闭该功能,没有任何提示则关闭成功</p>
+<blockquote>
+<p>systemctl stop firewalld</p>
+</blockquote>
+<p>&#x2F;&#x2F;永久开启80端口</p>
+<blockquote>
+<p>firewall-cmd –permanent –zone&#x3D;public –add-port&#x3D;80&#x2F;tcp –permanent</p>
+</blockquote>
+<p>&#x2F;&#x2F;查看80端口是否开启</p>
+<blockquote>
+<p>firewall-cmd –permanent –query-port&#x3D;80&#x2F;tcp</p>
+</blockquote>
+<p>&#x2F;&#x2F;重启防火墙</p>
+<blockquote>
+<p>firewall-cmd –reload</p>
+</blockquote>
+<p>在云服武器上ping 百度看看能不能ping通，在其它电脑上ping云服务器看看能不能ping通</p>
+<h3 id="5-云服务器安装git及ssh免密"><a href="#5-云服务器安装git及ssh免密" class="headerlink" title="5.云服务器安装git及ssh免密"></a>5.云服务器安装git及ssh免密</h3><p>云服务器只负责拉取，不负责推送。</p>
+<p>先安装git</p>
+<blockquote>
+<p>yum –y install git</p>
+</blockquote>
+<p>键入git指令验证是否安装成功</p>
+<p>新建文件夹作为网站根目录</p>
+<blockquote>
+<p>mkdir www&#x2F;wwwroot</p>
+<p>chmod 777 www&#x2F;wwwroot</p>
+</blockquote>
+<p>生成ssh密钥</p>
+<blockquote>
+<p>ssh-keygen -t ecdsa -b 521 -C ‘<a href="mailto:&#121;&#x6f;&#x75;&#x72;&#109;&#97;&#105;&#x6c;&#x61;&#x64;&#x64;&#x72;&#x65;&#x73;&#x73;&#64;&#103;&#109;&#x61;&#x69;&#108;&#x2e;&#x63;&#x6f;&#x6d;">&#121;&#x6f;&#x75;&#x72;&#109;&#97;&#105;&#x6c;&#x61;&#x64;&#x64;&#x72;&#x65;&#x73;&#x73;&#64;&#103;&#109;&#x61;&#x69;&#108;&#x2e;&#x63;&#x6f;&#x6d;</a>‘ -f ~&#x2F;.ssh&#x2F;id_ecdsa</p>
+</blockquote>
+<p>连按3次回车</p>
+<p>接着提取公钥</p>
+<blockquote>
+<p>cat ~&#x2F;.ssh&#x2F;id_ecdsa.pub</p>
+</blockquote>
+<p>将公钥填到github的ssh列表中（在网页端配置，具体过程略）</p>
+<p>输入</p>
+<blockquote>
+<p>ssh -T <a href="mailto:&#103;&#105;&#x74;&#x40;&#x67;&#x69;&#x74;&#x68;&#x75;&#x62;&#x2e;&#99;&#x6f;&#109;">&#103;&#105;&#x74;&#x40;&#x67;&#x69;&#x74;&#x68;&#x75;&#x62;&#x2e;&#99;&#x6f;&#109;</a></p>
+</blockquote>
+<p>提示Successfully即为完成配置</p>
+<p>进入www&#x2F;wwwroot目录，克隆自己的git仓库，本地仓库名比如为cpblog</p>
+<blockquote>
+<p>git clone <a href="mailto:&#103;&#105;&#116;&#x40;&#103;&#105;&#x74;&#x68;&#117;&#x62;&#x2e;&#x63;&#x6f;&#109;">&#103;&#105;&#116;&#x40;&#103;&#105;&#x74;&#x68;&#117;&#x62;&#x2e;&#x63;&#x6f;&#109;</a>:xxxxxxx&#x2F;xxxxxx.github.io.git cpblog</p>
+</blockquote>
+<h3 id="6-本地环境安装"><a href="#6-本地环境安装" class="headerlink" title="6.本地环境安装"></a>6.本地环境安装</h3><p>本地电脑环境简介</p>
+<p>（Windows系统，需要git，nodejs，hexo，不需要Nginx）</p>
+<h4 id="装git"><a href="#装git" class="headerlink" title="装git"></a>装git</h4><p>本地也需安装git，主要负责内容推送，具体过程可参考互联网，本文略</p>
+<p>git可视化工具可使用GitExtension（Windows）或SourceTree（mac）</p>
+<h4 id="装nodejs"><a href="#装nodejs" class="headerlink" title="装nodejs"></a>装nodejs</h4><p>(为避免执行cmd权限不足，最好不要装到C盘，建议路径 D:\nodejs，且放开这个目录的用户访问权限)</p>
+<p><a href="https://nodejs.org/en/">https://nodejs.org/en/</a></p>
+<p>在 nodejs 文件夹中新建两个空文件夹node_cache、node_global，执行</p>
+<blockquote>
+<p>npm config set prefix “D:\nodejs\node_global”<br>npm config set cache “D:\nodejs\node_cache”</p>
+</blockquote>
+<h4 id="装hexo"><a href="#装hexo" class="headerlink" title="装hexo"></a>装hexo</h4><blockquote>
+<p>npm install -g hexo-cli</p>
+</blockquote>
+<p>配置hexo到环境变量PATH中</p>
+<p>D:\nodejs\node_global</p>
+<p>D盘新建目录D:\cpblog-hexo</p>
+<p>在这个目录下执行Git Bash，执行以下命令</p>
+<blockquote>
+<p>npm install -g hexo-cli<br>hexo g<br>hexo s</p>
+</blockquote>
+<p>然后在浏览器输入<a href="http://localhost:4000/">http://localhost:4000/</a></p>
+<p>看能不能看见网页</p>
+<h3 id="7-部署自动化"><a href="#7-部署自动化" class="headerlink" title="7.部署自动化"></a>7.部署自动化</h3><p>最终效果：本地写文 -&gt; <u>上传github -&gt; 云服务器拉新git -&gt; 刷新网站</u></p>
+<p>下划线的部分均通过自动化命令实现</p>
+<p>主体思想：本地持有全套hexo工程+hexo环境，服务器有全套hexo工程，本地使用hexo g生成网页，将产生的修改全部推送到git上，再调用服务器的git命令进行拉取</p>
+<h4 id="设置本地免密操作服务器git命令"><a href="#设置本地免密操作服务器git命令" class="headerlink" title="设置本地免密操作服务器git命令"></a>设置本地免密操作服务器git命令</h4><p>将本地电脑的.ssh&#x2F;id_rsa.pub的内容粘贴至服务器的&#x2F;root&#x2F;.ssh&#x2F;authorized_keys文件中，这个文件可以粘贴多个key，换行即可</p>
+<h4 id="云服务器开放shell目录"><a href="#云服务器开放shell目录" class="headerlink" title="云服务器开放shell目录"></a>云服务器开放shell目录</h4><p>在本地操作</p>
+<p>在cpblog-hexo的git工程下创建shell文件夹，进入shell文件夹新建两个脚本文件deploy-server.sh和deploy.sh</p>
+<p>deploy-server.sh内容如下</p>
+<blockquote>
+<p>#服务器拉新<br>cd &#x2F;www&#x2F;wwwroot&#x2F;cpblog-hexo<br>git reset –hard<br>git clean -df<br>git pull</p>
+</blockquote>
+<p>deploy.sh内容如下</p>
+<blockquote>
+<p>#本地进行hexo发布 -&gt; 上传至git -&gt; 远端服务器拉新</p>
+<p>echo “&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;  Step1  &lt; hexo generate &gt;  &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;”<br>cd D:\cpblog-hexo<br>#hexo clean<br>hexo g</p>
+<p>echo “&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;  Step2  &lt; local git push &gt;  &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;”<br>git pull<br>git add -A<br>git commit -m “conventional update by deploy.sh”<br>git push</p>
+<p>echo “&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;  Step3  &lt; server git pull &gt;  &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;”<br>ssh root@服务器ip地址 bash &#x2F;www&#x2F;wwwroot&#x2F;cpblog-hexo&#x2F;shell&#x2F;deploy-server.sh</p>
+<p>echo “&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;           Finished           &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;”</p>
+</blockquote>
+<p>deploy.sh的作用：由本地调用，实现网站一键生成和部署</p>
+<p>deploy-server.sh的作用：由deploy.sh内部调用，实际发生在服务器端，用于拉新git</p>
+<p>因为本地脚本会调用服务器的deploy-server.sh，所以现在要去云服务器，给shell目录赋予777权限</p>
+<blockquote>
+<p>chmod 777 &#x2F;www&#x2F;wwwroot&#x2F;cpblog-hexo&#x2F;shell</p>
+</blockquote>
+<h4 id="最佳实践"><a href="#最佳实践" class="headerlink" title="最佳实践"></a>最佳实践</h4><p>本地写一篇文章，放在D:\cpblog-hexo\source\_posts路径下</p>
+<p>双击deploy.sh执行部署</p>
+<p>执行完毕后，就会发现网页刷新了</p>
+<h3 id="8-写文工具链"><a href="#8-写文工具链" class="headerlink" title="8.写文工具链"></a>8.写文工具链</h3><p>Typora + PicGo + github 实现最舒服的图片引用姿势</p>
+<p>Typora支持mac和Windows，但要收费（淘宝80元一个激活码）</p>
+<p>PicGo用于上传图片到github，相当于用github当图床</p>
+<p>Typora 和PicGo有很好的适性，只要拖拽一张图片到Typora里，就能自动上传到github</p>
+<p>最后提供一个飞书云文档转markdown工具<br><a href="https://feishu2md.onrender.com/">https://feishu2md.onrender.com/</a></p>
 ]]></content>
       <tags>
         <tag>博客</tag>
