@@ -6,7 +6,7 @@
   <link href="http://epya15.fun/atom.xml" rel="self"/>
   
   <link href="http://epya15.fun/"/>
-  <updated>2024-01-12T08:40:49.740Z</updated>
+  <updated>2024-02-01T09:52:19.207Z</updated>
   <id>http://epya15.fun/</id>
   
   <author>
@@ -15,6 +15,23 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>博客搭建教程16 - linux云服务器在nginx.conf配置防盗链</title>
+    <link href="http://epya15.fun/2024/02/01/bo-ke-da-jian-jiao-cheng-17-yun-fu-wu-qi-da-jian-bo-ke-wang-zhan-quan-tao-liu-cheng/"/>
+    <id>http://epya15.fun/2024/02/01/bo-ke-da-jian-jiao-cheng-17-yun-fu-wu-qi-da-jian-bo-ke-wang-zhan-quan-tao-liu-cheng/</id>
+    <published>2024-02-01T08:00:00.000Z</published>
+    <updated>2024-02-01T09:52:19.207Z</updated>
+    
+    
+    <summary type="html">防止多媒体资源被其它网站引用从而占据流失用户或占据带宽</summary>
+    
+    
+    
+    
+    <category term="博客" scheme="http://epya15.fun/tags/%E5%8D%9A%E5%AE%A2/"/>
+    
+  </entry>
   
   <entry>
     <title>Unity 与 iOS 工程桥接介绍</title>
@@ -146,23 +163,6 @@
     <id>http://epya15.fun/2023/01/09/bo-ke-da-jian-jiao-cheng-16-linux-yun-fu-wu-qi-zai-nginx.conf-pei-zhi-fang-dao-lian/</id>
     <published>2023-01-09T08:00:00.000Z</published>
     <updated>2024-01-12T09:14:32.842Z</updated>
-    
-    
-    <summary type="html">防止多媒体资源被其它网站引用从而占据流失用户或占据带宽</summary>
-    
-    
-    
-    
-    <category term="博客" scheme="http://epya15.fun/tags/%E5%8D%9A%E5%AE%A2/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>博客搭建教程16 - linux云服务器在nginx.conf配置防盗链</title>
-    <link href="http://epya15.fun/2023/01/09/bo-ke-da-jian-jiao-cheng-17-yun-fu-wu-qi-da-jian-bo-ke-wang-zhan-quan-tao-liu-cheng/"/>
-    <id>http://epya15.fun/2023/01/09/bo-ke-da-jian-jiao-cheng-17-yun-fu-wu-qi-da-jian-bo-ke-wang-zhan-quan-tao-liu-cheng/</id>
-    <published>2023-01-09T08:00:00.000Z</published>
-    <updated>2024-02-01T09:49:11.336Z</updated>
     
     
     <summary type="html">防止多媒体资源被其它网站引用从而占据流失用户或占据带宽</summary>
