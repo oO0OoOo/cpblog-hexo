@@ -13,11 +13,26 @@
 
   <title>赛朋博客</title>
 
-  <link rel="icon" type="image/x-icon, image/vnd.microsoft.icon" href="/favicon.ico">
+  <link rel="icon" type="image/jpeg" href="/favicon.jpg">
   <link rel="stylesheet" href="https://at.alicdn.com/t/font_1911880_c1nvbyezg17.css">
   <link href="https://unpkg.com/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
   <link href="/js/swiper/swiper@5.4.1.min.css" rel="stylesheet">
   
+  
+    <script>
+        var themeModelId = '0';
+        if (themeModelId) {
+            localStorage.setItem('modelId', themeModelId);
+        }
+    </script>
+    
+    <script src="https://cdn.jsdelivr.net/gh/yuang01/live2d-widget@latest/autoload.js"></script>
+    <script>
+        var live2dOpen = eval('false') || false;
+        if (!live2dOpen) {
+            localStorage.setItem('waifu-display', 1609323474481);
+        }
+    </script>
   
   
   
@@ -28,7 +43,9 @@
 
   
   
-    <link href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css" rel="stylesheet">
+    
+<link rel="stylesheet" href="/js/fancybox/jquery.fancybox.min.css">
+
   
   
     
@@ -42,18 +59,9 @@
             }
         }
     </style>
-    <script defer src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
     <link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
 
-    
-    
-    <!-- 依赖于jquery和vue -->
-    
-        <script src="https://unpkg.com/jquery@3.5.1/dist/jquery.min.js"></script>
-    
-
-    
-        <script src="https://unpkg.com/vue@2.6.11/dist/vue.min.js"></script>
     
 
     <!-- import link -->
@@ -77,14 +85,27 @@
 </head>
 
   
-  <!-- 预加载动画 -->
-  <!-- 页面预加载动画 -->
+  <!-- 依赖于jquery和vue -->
+  
+    
+<script src="https://unpkg.com/jquery@3.5.1/dist/jquery.min.js"></script>
 
   
-    <div class="preloader_2" id="loader">
+
+  
+    
+<script src="https://unpkg.com/vue@2.6.11/dist/vue.min.js"></script>
+
+  
+  
+  <body>
+    <!-- 预加载动画 -->
+    <!-- 页面预加载动画 -->
+
+  
+    <div class="preloader_6" id="loader">
   <div class="loader"></div>
 </div>
-
   
 <script>
   var endLoading = function () {
@@ -94,7 +115,7 @@
   window.addEventListener('DOMContentLoaded',endLoading);
 </script>
 
-  <body>
+    
     <!-- 判断是否为暗黑风格 -->
     <!-- 判断是否为黑夜模式 -->
 <script>
@@ -180,7 +201,7 @@
       <main class="main" id="pjax-container">
         <!-- 头部导航 -->
         
-<header class="header  " 
+<header class="header   " 
   id="navHeader"
   style="position: fixed;
   left: 0; top: 0; z-index: 10;width: 100%;"
@@ -198,21 +219,133 @@
   </transition>
   <div class="drawer-box" :class="{'active': visible}">
     <div class="drawer-box-head bg-color">
-      <img class="drawer-box-head_logo lazyload placeholder" src="/medias/logo.png" class="lazyload placeholder" data-srcset="/medias/logo.png" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="logo">
-      <h3 class="drawer-box-head_title">赛朋博客</h3>
+      <img class="drawer-box-head_logo lazyload placeholder" src="/null" class="lazyload placeholder" data-srcset="/null" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" alt="logo">
+      <h4 class="drawer-box-head_title">赛朋博客</h4>
       <h5 class="drawer-box-head_desc"></h5>
     </div>
     
     <div class="drawer-box-content">
       <ul class="drawer-box-content_menu">
         
+          
+            <li class="drawer-box-content_item" style="position: relative;">
+              
+                <a href="/" class="drawer-menu-item-link">
+                  
+                    <i class="fas fa-home" aria-hidden="true"></i>
+                  
+                  <span class="name">主页</span>
+                </a>
+              
+            </li>
+          
+            <li class="drawer-box-content_item" style="position: relative;">
+              
+                <a href="/categories" class="drawer-menu-item-link">
+                  
+                    <i class="fas fa-bookmark" aria-hidden="true"></i>
+                  
+                  <span class="name">分类</span>
+                </a>
+              
+            </li>
+          
+            <li class="drawer-box-content_item" style="position: relative;">
+              
+                <a href="/gallery" class="drawer-menu-item-link">
+                  
+                    <i class="fas fa-camera-retro" aria-hidden="true"></i>
+                  
+                  <span class="name">画廊</span>
+                </a>
+              
+            </li>
+          
+            <li class="drawer-box-content_item" style="position: relative;">
+              
+                <a href="/vlog" class="drawer-menu-item-link">
+                  
+                    <i class="fas fa-video-camera" aria-hidden="true"></i>
+                  
+                  <span class="name">影像</span>
+                </a>
+              
+            </li>
+          
+            <li class="drawer-box-content_item" style="position: relative;">
+              
+                <a href="/creation" class="drawer-menu-item-link">
+                  
+                    <i class="fas fa-paper-plane" aria-hidden="true"></i>
+                  
+                  <span class="name">创造</span>
+                </a>
+              
+            </li>
+          
+            <li class="drawer-box-content_item" style="position: relative;">
+              
+                <a href="javascript:;" class="drawer-menu-item-link has-children" @click="openOrCloseMenu(5)">
+                  <span>
+                    
+                      <i class="fas fa-link"></i>
+                    
+                    <span class="name">更多</span>
+                  </span>
+                  <i class="fas fa-chevron-left arrow " :class="{'icon-rotate': isOpen(5)}" aria-hidden="true"></i>
+                </a>
+                <ul class="drawer-sub-menu" v-if="isOpen(5)">
+                  
+                  <li>
+                    <a href="/tags">
+                      
+                      <i class="fas fa-tags" style="margin-top: -20px;"></i>
+                      
+                      <span>标签</span>
+                    </a>
+                  </li>
+                  
+                  <li>
+                    <a href="/archives">
+                      
+                      <i class="fas fa-archive" style="margin-top: -20px;"></i>
+                      
+                      <span>归档</span>
+                    </a>
+                  </li>
+                  
+                  <li>
+                    <a target="_blank" rel="noopener" href="https://github.com/oO0OoOo/oO0OoOo.github.io">
+                      
+                      <i class="fas fa-bug" style="margin-top: -20px;"></i>
+                      
+                      <span>Github</span>
+                    </a>
+                  </li>
+                  
+                  <li>
+                    <a target="_blank" rel="noopener" href="https://cy.surprising.studio/">
+                      
+                      <i class="fas fa-link" style="margin-top: -20px;"></i>
+                      
+                      <span>词影</span>
+                    </a>
+                  </li>
+                  
+                  <li>
+                    <a target="_blank" rel="noopener" href="https://handle.antfu.me/">
+                      
+                      <i class="fas fa-link" style="margin-top: -20px;"></i>
+                      
+                      <span>汉兜</span>
+                    </a>
+                  </li>
+                  
+                </ul>
+              
+            </li>
+          
         
-          <li class="drawer-box-content_item">
-            <a target="_blank" rel="noopener" href="https://github.com/yuang01/hexo-theme-bamboo">
-              <i class="fas fa-github" aria-hidden="true"></i>
-              <span>Github</span>
-            </a>
-          </li>
         
       </ul>
     </div>
@@ -267,14 +400,127 @@
     </div>
     <div class="blog-title" id="author-avatar">
       
-        <div class="avatar">
-          <img src="/medias/logo.png" class="lazyload placeholder" data-srcset="/medias/logo.png" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="logo">
-        </div>
-      
       <a href="/" class="logo">赛朋博客</a>
     </div>
     <nav class="navbar">
       <ul class="menu">
+        
+          
+            <li class="menu-item" style="position: relative;">
+              
+                <a href="/" class="menu-item-link" title="主页">
+                  
+                    <i class="fas fa-home" aria-hidden="true"></i>
+                  
+                  <span class="name">主页</span>
+                </a>
+              
+            </li>
+          
+            <li class="menu-item" style="position: relative;">
+              
+                <a href="/categories" class="menu-item-link" title="分类">
+                  
+                    <i class="fas fa-bookmark" aria-hidden="true"></i>
+                  
+                  <span class="name">分类</span>
+                </a>
+              
+            </li>
+          
+            <li class="menu-item" style="position: relative;">
+              
+                <a href="/gallery" class="menu-item-link" title="画廊">
+                  
+                    <i class="fas fa-camera-retro" aria-hidden="true"></i>
+                  
+                  <span class="name">画廊</span>
+                </a>
+              
+            </li>
+          
+            <li class="menu-item" style="position: relative;">
+              
+                <a href="/vlog" class="menu-item-link" title="影像">
+                  
+                    <i class="fas fa-video-camera" aria-hidden="true"></i>
+                  
+                  <span class="name">影像</span>
+                </a>
+              
+            </li>
+          
+            <li class="menu-item" style="position: relative;">
+              
+                <a href="/creation" class="menu-item-link" title="创造">
+                  
+                    <i class="fas fa-paper-plane" aria-hidden="true"></i>
+                  
+                  <span class="name">创造</span>
+                </a>
+              
+            </li>
+          
+            <li class="menu-item" style="position: relative;">
+              
+                <a href="javascript:;" class="menu-item-link" title="更多">
+                  
+                    <i class="fas fa-link"></i>
+                  
+                  <span class="name">更多</span>
+                  <i class="fas fa-chevron-down arrow" aria-hidden="true"></i>
+                </a>
+                <ul class="sub-menu">
+                  
+                  <li>
+                    <a href="/tags">
+                      
+                      <i class="fas fa-tags" style="margin-top: -20px;"></i>
+                      
+                      <span>标签</span>
+                    </a>
+                  </li>
+                  
+                  <li>
+                    <a href="/archives">
+                      
+                      <i class="fas fa-archive" style="margin-top: -20px;"></i>
+                      
+                      <span>归档</span>
+                    </a>
+                  </li>
+                  
+                  <li>
+                    <a target="_blank" rel="noopener" href="https://github.com/oO0OoOo/oO0OoOo.github.io">
+                      
+                      <i class="fas fa-bug" style="margin-top: -20px;"></i>
+                      
+                      <span>Github</span>
+                    </a>
+                  </li>
+                  
+                  <li>
+                    <a target="_blank" rel="noopener" href="https://cy.surprising.studio/">
+                      
+                      <i class="fas fa-link" style="margin-top: -20px;"></i>
+                      
+                      <span>词影</span>
+                    </a>
+                  </li>
+                  
+                  <li>
+                    <a target="_blank" rel="noopener" href="https://handle.antfu.me/">
+                      
+                      <i class="fas fa-link" style="margin-top: -20px;"></i>
+                      
+                      <span>汉兜</span>
+                    </a>
+                  </li>
+                  
+                </ul>
+              
+            </li>
+          
         
       </ul>
       
@@ -358,9 +604,33 @@
     </nav>
   </div>
   
-    <a target="_blank" rel="noopener" href="https://github.com/yuang01/hexo-theme-bamboo" class="github-corner color-primary" aria-label="View source on GitHub"><svg width="60" height="60" viewBox="0 0 250 250" style="fill:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
   
-  
+    <div id="he-plugin-simple"></div>
+    <script>
+      WIDGET = {
+        CONFIG: {
+          "modules": "012",
+          "background": 5,
+          "tmpColor": "4A4A4A",
+          "tmpSize": 16,
+          "cityColor": "4A4A4A",
+          "citySize": 16,
+          "aqiSize": 16,
+          "weatherIconSize": 24,
+          "alertIconSize": 18,
+          "padding": "10px 10px 10px 10px",
+          "shadow": "1",
+          "language": "auto",
+          "borderRadius": 5,
+          "fixed": "false",
+          "vertical": "middle",
+          "horizontal": "center",
+          "key": "2784dd3fcb1e4f0f9a9b579bf69641f2"
+        }
+      }
+    </script>
+    <script src="https://widget.qweather.net/simple/static/js/he-simple-common.js?v=2.0"></script> 
+    
 </header>
         <!-- 内容区域 -->
         
@@ -383,28 +653,33 @@
   <swiper v-cloak ref="mySwiper" :options="swiperOptions" @slideChangeTransitionEnd="slideChangeTransitionEnd">
     
       <swiper-slide>
-        <div class="item swiper-lazy" data-background="https://pic1.zhimg.com/v2-af3ccef61cf58b1a70765747cc1bbeac_b.jpg" style="background-size: 300000px; 
+        <div class="item swiper-lazy" data-background="https://i.328888.xyz/2023/02/08/rQNjH.jpeg" style="background-size: 300000px; 
           background-position: left center;" style="position: relative;">
           <div class="swiper-bgmask" style="position: absolute;top: 0;left: 0;width: 100%;height: 100%;"></div>
             <div class="flag">
               
-              <div class="img-mask swiper-lazy swiper-default-bgImg" data-background="https://pic1.zhimg.com/v2-af3ccef61cf58b1a70765747cc1bbeac_b.jpg" style="height: 100%; background-size: cover; 
+              <div class="swiper-video">
+                <video class="full-video" poster="https://i.328888.xyz/2023/02/08/rQNjH.jpeg" autoplay loop muted style="width: 100%;height:100%;object-fit: cover;">
+                  <source style="width: 100%;height: 100vh;" src="/images/cover_20230207.mp4">
+                </video>
+                <div class="swiper-video-maskBox"></div>
+              </div>
+              
+              <div class="img-mask swiper-lazy swiper-default-bgImg" data-background="https://i.328888.xyz/2023/02/08/rQNjH.jpeg" style="height: 100%; background-size: cover; 
                 background-position: center center;">
                 <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>   
               </div>
               <div class="flag-text">
                 <div class="flag-text-content">
-                  <div class="title ani animated" swiper-animate-effect="fadeInDown" swiper-animate-duration="0.2s" swiper-animate-delay="0.1s">青墨书晚风</div>
+                  <div class="title ani animated" swiper-animate-effect="fadeInDown" swiper-animate-duration="0.2s" swiper-animate-delay="0.1s">沙特猫</div>
                   
                       <div class="excerpt ani animated" swiper-animate-effect="fadeInDown" swiper-animate-duration="0.2s" swiper-animate-delay="0.1s"></div>
                     
                 </div>
                 <div style="display: flex;" class="flag-text-btns">
                   
-                    <div class="ani animated" swiper-animate-effect="fadeInDown" swiper-animate-duration="0.2s" swiper-animate-delay="0.1s"><a target="_blank" rel="noopener" href="https://yuang01.gitee.io/2021/02/08/hexo-theme-bamboo-new/" class="read-more swiper-btn-color" style="display: inline-block; z-index:1;">阅读文档</a></div>
+                    <div class="ani animated" swiper-animate-effect="fadeInDown" swiper-animate-duration="0.2s" swiper-animate-delay="0.1s"><a target="_blank" rel="noopener" href="http://cypunberk.cn/2023/02/07/wang-qi-feng-mian-2023-02-07-sha-te-mao/" class="read-more swiper-btn-color" style="display: inline-block; z-index:1;">关于封面</a></div>
                   
-                  
-                    <div class="ani animated" style="margin-left: 10px;" swiper-animate-effect="fadeInDown" swiper-animate-duration="0.2s" swiper-animate-delay="0.1s"><a target="_blank" rel="noopener" href="https://gitee.com/yuang01/hexo-theme-bamboo/repository/archive/dev.zip" class="read-more swiper-btn-color2" style="display: inline-block; z-index:1;border: 1px solid white;">下载主题</a></div>
                   
                 </div>
               </div>
@@ -441,7 +716,7 @@
 
 
 <script>
-  var autoplay = JSON.parse('false');
+  var autoplay = JSON.parse('true');
   var delay = '5000';
   var loop = JSON.parse('true') ? false : JSON.parse('true');
   var effect = 'slide';
@@ -512,19 +787,16 @@
   })
 </script>
 
-  <script src="/js/bubble/homeBubble.js"></script>
-
 <style>
 #appSwiper {
   position: relative;
   user-select: none;
   overflow: hidden;
-  font-family: Titillium Web,'PingFang SC','Hiragino Sans GB','Microsoft JhengHei','Microsoft YaHei',sans-serif;
 }
 .default-excerpt {
-  font-size: 1.6em;
-  margin-top: 1em;
-  color: #eee;
+  font-size: 1.6rem;
+  margin-top: 1rem;
+  font-family: Titillium Web,'PingFang SC','Hiragino Sans GB','Microsoft JhengHei','Microsoft YaHei',sans-serif;
 }
 .bottom-one-btn {
   margin-top: 15px;
@@ -573,17 +845,19 @@
   z-index: 9999;
 }
 .flag-text .title {
-  font-size: 1.8em;
+  font-size: 1.8rem;
+  font-family: -apple-system,BlinkMacSystemFont;
 }
 .flag-text .title a {
   color: #fff;
   transition: color 0.3s;
 }
 .flag-text .title a:hover {
-  color: rgba(66, 185, 133, 0.8);
+  color: #5CACEE;
 }
 .flag-text .excerpt {
   color: #eee;
+  font-family: Ubuntu,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Cantarell,Fira Sans,Droid Sans,Helvetica Neue,sans-serif;
   width: 70%;
   line-height: 30px;
   height: 150px;
@@ -611,7 +885,7 @@
   bottom: 10px;
   left: 50%;
   transform: translateX(-50%);
-  font-size: 2.5em;
+  font-size: 2.5rem;
   color: #fff;
   cursor: pointer;
   z-index: 2;
@@ -641,12 +915,14 @@
   animation: rightan 1.5s infinite;
 }
 /* 当头部导航设置为背景透明的时候 */
-.swiper-slide {
-  height: 400px;
-}
-.flag-text {
-  top: 80px;
-}
+
+  .swiper-slide {
+    height: 400px;
+  }
+  .flag-text {
+    top: 80px;
+  }
+
 
 @media (min-width: 992px) {
   .swiper-button-prev {
@@ -685,7 +961,7 @@
     width: 100%;
   }
   .flag-text .title {
-    font-size: 1.5em;
+    font-size: 1.5rem;
     margin-top: 50px;
     display: -webkit-box;
     -webkit-box-orient: vertical;
@@ -733,7 +1009,7 @@
     margin-top: 20px;
   }
   .flag-text .excerpt {
-    font-size: 1em;
+    font-size: 1rem;
     line-height: 20px;
     height: 80px;
     display: -webkit-box;
@@ -759,6 +1035,7 @@
   }
 }
 /* 当头部导航设置为背景透明的时候 */
+
   @media (max-width: 992px) {
     .flag-text {
       top: 60px;
@@ -770,6 +1047,7 @@
       height: 310px;
     }
   }
+
 
 /* 文字或者按钮居中显示 */
 
@@ -795,7 +1073,8 @@
   .default-excerpt {
     display: flex;
     justify-content: center;
-    font-size: 1.6em;
+    font-size: 1.6rem;
+    font-family: Titillium Web,'PingFang SC','Hiragino Sans GB','Microsoft JhengHei','Microsoft YaHei',sans-serif;
   }
   .flag-text-btns {
     justify-content: center;
@@ -825,7 +1104,10 @@
     width: 100%;
   }
   .swiper-slide {
-    height: 100vh;
+    height: calc(100vh - 60px);
+    
+      height: 100vh;
+    
   }
   .flag-text {
     top: 50%;
@@ -835,12 +1117,13 @@
     height: auto;
   }
   .flag-text .title {
-    font-size: 2.8em;
+    font-size: 2.8rem;
     line-height: 1.5em;
     max-height: none;
+    /* overflow: visible; */
   }
   .flag-text .excerpt {
-    font-size: 1.25em;
+    font-size: 1.25rem;
     height: 150px;
   }
   .flag-text .read-more {
@@ -857,8 +1140,8 @@
   }
   .swiper-btn-color:hover,
   .swiper-btn-color2:hover {
-    background-color: rgba(66, 185, 133, 0.8);
-    border: 1px solid rgba(66, 185, 133, 0.8)!important;
+    background-color: #5CACEE;
+    border: 1px solid #5CACEE!important;
   }
   .flag-text-btns {
     justify-content: center;
@@ -880,7 +1163,7 @@
     height: 50px;
   }
   .swiper-button-next:after, .swiper-button-prev:after {
-    font-size: 1.2em;
+    font-size: 1.2rem;
   }
   @media (min-width: 992px) {
     .flag-text .excerpt {
@@ -901,7 +1184,7 @@
       top: 55%;
     }
     .flag-text .title {
-      font-size: 2.4em;
+      font-size: 2.4rem;
       margin-top: 0;
       display: -webkit-box;
       -webkit-box-orient: vertical;
@@ -921,7 +1204,7 @@
       height: 60%;
     }
     .flag-text .title {
-      font-size: 2.2em;
+      font-size: 2.2rem;
     }
     .flag-text .excerpt {
       line-height: 30px;
@@ -937,7 +1220,7 @@
       margin-right: 0;
     }
     .default-excerpt {
-      margin-top: 1em;
+      margin-top: 1rem;
     }
   }
 
@@ -963,10 +1246,10 @@
 @media (min-width: 992px) {
   
     .swiper-video {
-      display: none;
+      display: block;
     }
     .swiper-default-bgImg {
-      display: block;  
+      display: none;  
     }
   
 }
@@ -989,171 +1272,19 @@
     <!-- 首页座右铭 -->
     
   <div class="motto">
-      <h3 class="motto-title">座右铭</h3>
+      <h3 class="motto-title">欢迎来到Cypunberk</h3>
       <div class="motto-content">
         <p>
-          沉淀后我愿意做个温暖的人，有自己的喜好，有自己的原则，有自己的信仰，不急功近利，不浮夸轻薄。宠辱不惊，淡定安逸，心静如水，不忘初心，方得始终。——凌茜  
+          「怎样思想，就有怎样的生活。」—— 愛默生  
         </p> 
       </div>
   </div>
 
     <!-- 首页公告 -->
     
-<style>
-  .index-notice-content {
-    margin-top: 10px;
-  }
-  .warp {
-    width: 100%;
-    margin: 0 auto;
-    overflow: hidden;
-  }
-  .index-notice-content__ul {
-    list-style: none;
-    padding: 0;
-    margin: 0 auto;
-  }
-  .index-notice-content__ul li,
-  .index-notice-content__ul a {
-    display: block;
-    height: 30px;
-    line-height: 30px;
-    display: flex;
-    justify-content: space-between;
-    font-size: 15px;
-  }
-  .index-notice-content__title {
-    flex: 1;
-    overflow: hidden;
-  }
-  .index-notice-content__title a,
-  .index-notice-content__title span {
-    overflow: hidden;
-    display: block;
-    text-overflow:ellipsis; 
-    white-space: nowrap;
-    height: 100%;
-    width: 100%;
-    color: #000;
-  }
-  .index-notice-content__title a:hover,
-  .index-notice-content__title span:hover {
-    text-decoration: underline;
-  }
-  .index-notice-content__date {
-    min-width: 80px;
-    margin-left: 5px;
-    color: #000;
-  }
-</style>
-<div class="index-notice" id="appIndexNotice">
-    <h3>
-      <i class="fas fa-bullhorn index-notice-icon"></i>公告
-    </h3>
-    <div class="index-notice-content">
-      
-      <vue-seamless-scroll
-        :data="listData"
-        :class-option="classOption"
-        class="warp"
-        style="height: 0px"
-      >
-        <ul class="index-notice-content__ul">
-          
-           
-        </ul>
-      </vue-seamless-scroll>
-    </div>
-</div>
-<script src="/js/vue-seamless-scroll/index.js"></script>
-
-<!-- 滚动插件采用 vue-seamless-scroll
-  https://chenxuan0000.github.io/vue-seamless-scroll/zh/guide/06-singleStop.html 
--->
-
-<script>
-  var seamless = JSON.parse('false');
-  seamless = seamless ? 0 : 30;
-  var listData = '' || '';
-  listData = listData.split(',');
-  var vm = new Vue({
-    el: '#appIndexNotice',
-    data: {
-      listData: listData,
-      moveNum: 2,
-      classOption: {
-        singleHeight: seamless,
-        limitMoveNum: listData.length
-      },
-    },
-    computed: {
-    },
-    mounted() {
-    },
-    methods: {
-    },
-    created() {
-      this.moveNum = parseInt(this.listData.length);
-    }
-  })
-</script>
-
-
-
     <!-- 首页文章置顶 -->
     
 
-
-<div class="topArticle reveal">
-	<h3><i class="fas fa-thumbs-o-up" aria-hidden="true"></i>Recommend Articles</h3>
-	<div class="articles">
-		
-			
-		
-			
-		
-			
-		
-			
-		
-			
-		
-			
-		
-			
-		
-			
-		
-			
-		
-			
-		
-			
-		
-			
-		
-			
-		
-			
-		
-			
-		
-			
-		
-			
-		
-			
-		
-			
-		
-			
-		
-			
-		
-			
-		
-	</div>
-</div>
 
 
     <div class="bg-floor" id="home-bg-floor" style="position: fixed;left: 0;top: 0;width: 100%;height: 100%;z-index: -2;"></div>
@@ -1195,7 +1326,7 @@
           <div class="post-img-mobile">
             <a href="/2024/01/09/unity-yu-ios-gong-cheng-qiao-jie-jie-shao/" style="background-size: cover; 
               background-position: center center;">
-              <img class="lazyload lazyload placeholder" src="https://img.3dmgame.com/uploads/images/news/20220816/1660607710_789544.jpg" class="lazyload placeholder" data-srcset="https://img.3dmgame.com/uploads/images/news/20220816/1660607710_789544.jpg" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+              <img class="lazyload lazyload placeholder" src="https://img.3dmgame.com/uploads/images/news/20220816/1660607710_789544.jpg" class="lazyload placeholder" data-srcset="https://img.3dmgame.com/uploads/images/news/20220816/1660607710_789544.jpg" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" alt="">
             </a>
           </div>
           <div class="post-content">
@@ -1211,7 +1342,7 @@
       <div class="post-img">
         <a href="/2024/01/09/unity-yu-ios-gong-cheng-qiao-jie-jie-shao/" style="background-size: cover; 
           background-position: center center;">
-          <img class="lazyload lazyload placeholder" src="https://img.3dmgame.com/uploads/images/news/20220816/1660607710_789544.jpg" class="lazyload placeholder" data-srcset="https://img.3dmgame.com/uploads/images/news/20220816/1660607710_789544.jpg" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+          <img class="lazyload lazyload placeholder" src="https://img.3dmgame.com/uploads/images/news/20220816/1660607710_789544.jpg" class="lazyload placeholder" data-srcset="https://img.3dmgame.com/uploads/images/news/20220816/1660607710_789544.jpg" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" alt="">
         </a>
       </div>
     </article>
@@ -1249,7 +1380,7 @@
           <div class="post-img-mobile">
             <a href="/2023/04/20/android-yu-unity-jiao-hu-zhi-androidjavaproxy-hui-diao-de-shi-yong/" style="background-size: cover; 
               background-position: center center;">
-              <img class="lazyload lazyload placeholder" src="https://pic1.zhimg.com/80/v2-03a22891ccba9bccf6424dfd7cbf4be7_1440w.webp" class="lazyload placeholder" data-srcset="https://pic1.zhimg.com/80/v2-03a22891ccba9bccf6424dfd7cbf4be7_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+              <img class="lazyload lazyload placeholder" src="/medias/1.jpg" class="lazyload placeholder" data-srcset="/medias/1.jpg" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" alt="">
             </a>
           </div>
           <div class="post-content">
@@ -1265,7 +1396,7 @@
       <div class="post-img">
         <a href="/2023/04/20/android-yu-unity-jiao-hu-zhi-androidjavaproxy-hui-diao-de-shi-yong/" style="background-size: cover; 
           background-position: center center;">
-          <img class="lazyload lazyload placeholder" src="https://pic1.zhimg.com/80/v2-03a22891ccba9bccf6424dfd7cbf4be7_1440w.webp" class="lazyload placeholder" data-srcset="https://pic1.zhimg.com/80/v2-03a22891ccba9bccf6424dfd7cbf4be7_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+          <img class="lazyload lazyload placeholder" src="/medias/1.jpg" class="lazyload placeholder" data-srcset="/medias/1.jpg" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" alt="">
         </a>
       </div>
     </article>
@@ -1303,7 +1434,7 @@
           <div class="post-img-mobile">
             <a href="/2023/04/20/dui-chao-guo-2g-de-apk-chong-xin-jin-xing-4-zi-jie-dui-qi-bing-zuo-v1-v2-qian-ming/" style="background-size: cover; 
               background-position: center center;">
-              <img class="lazyload lazyload placeholder" src="https://pic2.zhimg.com/80/v2-63bbdb5b76b8d349ad35ff4281efbd37_1440w.webp" class="lazyload placeholder" data-srcset="https://pic2.zhimg.com/80/v2-63bbdb5b76b8d349ad35ff4281efbd37_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+              <img class="lazyload lazyload placeholder" src="/medias/8.jpg" class="lazyload placeholder" data-srcset="/medias/8.jpg" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" alt="">
             </a>
           </div>
           <div class="post-content">
@@ -1322,7 +1453,7 @@ keystore文件，key-alias，key-passwor
       <div class="post-img">
         <a href="/2023/04/20/dui-chao-guo-2g-de-apk-chong-xin-jin-xing-4-zi-jie-dui-qi-bing-zuo-v1-v2-qian-ming/" style="background-size: cover; 
           background-position: center center;">
-          <img class="lazyload lazyload placeholder" src="https://pic2.zhimg.com/80/v2-63bbdb5b76b8d349ad35ff4281efbd37_1440w.webp" class="lazyload placeholder" data-srcset="https://pic2.zhimg.com/80/v2-63bbdb5b76b8d349ad35ff4281efbd37_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+          <img class="lazyload lazyload placeholder" src="/medias/8.jpg" class="lazyload placeholder" data-srcset="/medias/8.jpg" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" alt="">
         </a>
       </div>
     </article>
@@ -1360,7 +1491,7 @@ keystore文件，key-alias，key-passwor
           <div class="post-img-mobile">
             <a href="/2023/02/07/wang-qi-feng-mian-2023-02-07-sha-te-mao/" style="background-size: cover; 
               background-position: center center;">
-              <img class="lazyload lazyload placeholder" src="https://i.328888.xyz/2023/02/08/rQNjH.jpeg" class="lazyload placeholder" data-srcset="https://i.328888.xyz/2023/02/08/rQNjH.jpeg" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+              <img class="lazyload lazyload placeholder" src="https://i.328888.xyz/2023/02/08/rQNjH.jpeg" class="lazyload placeholder" data-srcset="https://i.328888.xyz/2023/02/08/rQNjH.jpeg" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" alt="">
             </a>
           </div>
           <div class="post-content">
@@ -1376,7 +1507,7 @@ keystore文件，key-alias，key-passwor
       <div class="post-img">
         <a href="/2023/02/07/wang-qi-feng-mian-2023-02-07-sha-te-mao/" style="background-size: cover; 
           background-position: center center;">
-          <img class="lazyload lazyload placeholder" src="https://i.328888.xyz/2023/02/08/rQNjH.jpeg" class="lazyload placeholder" data-srcset="https://i.328888.xyz/2023/02/08/rQNjH.jpeg" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+          <img class="lazyload lazyload placeholder" src="https://i.328888.xyz/2023/02/08/rQNjH.jpeg" class="lazyload placeholder" data-srcset="https://i.328888.xyz/2023/02/08/rQNjH.jpeg" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" alt="">
         </a>
       </div>
     </article>
@@ -1414,7 +1545,7 @@ keystore文件，key-alias，key-passwor
           <div class="post-img-mobile">
             <a href="/2023/01/18/wang-qi-feng-mian-2023-01-18-xiong-mao-tu-zhen-gui-ying-xiang-zi-liao/" style="background-size: cover; 
               background-position: center center;">
-              <img class="lazyload lazyload placeholder" src="/images/cover_rebbitbg.jpg" class="lazyload placeholder" data-srcset="/images/cover_rebbitbg.jpg" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+              <img class="lazyload lazyload placeholder" src="/images/cover_rebbitbg.jpg" class="lazyload placeholder" data-srcset="/images/cover_rebbitbg.jpg" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" alt="">
             </a>
           </div>
           <div class="post-content">
@@ -1433,7 +1564,7 @@ keystore文件，key-alias，key-passwor
       <div class="post-img">
         <a href="/2023/01/18/wang-qi-feng-mian-2023-01-18-xiong-mao-tu-zhen-gui-ying-xiang-zi-liao/" style="background-size: cover; 
           background-position: center center;">
-          <img class="lazyload lazyload placeholder" src="/images/cover_rebbitbg.jpg" class="lazyload placeholder" data-srcset="/images/cover_rebbitbg.jpg" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+          <img class="lazyload lazyload placeholder" src="/images/cover_rebbitbg.jpg" class="lazyload placeholder" data-srcset="/images/cover_rebbitbg.jpg" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" alt="">
         </a>
       </div>
     </article>
@@ -1466,7 +1597,7 @@ keystore文件，key-alias，key-passwor
           <div class="post-img-mobile">
             <a href="/2023/01/09/bo-ke-da-jian-jiao-cheng-16-linux-yun-fu-wu-qi-zai-nginx.conf-pei-zhi-fang-dao-lian/" style="background-size: cover; 
               background-position: center center;">
-              <img class="lazyload lazyload placeholder" src="https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2019/4/17/16a2a86415e2db30~tplv-t2oaga2asx-zoom-crop-mark:3024:3024:3024:1702.awebp" class="lazyload placeholder" data-srcset="https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2019/4/17/16a2a86415e2db30~tplv-t2oaga2asx-zoom-crop-mark:3024:3024:3024:1702.awebp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+              <img class="lazyload lazyload placeholder" src="https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2019/4/17/16a2a86415e2db30~tplv-t2oaga2asx-zoom-crop-mark:3024:3024:3024:1702.awebp" class="lazyload placeholder" data-srcset="https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2019/4/17/16a2a86415e2db30~tplv-t2oaga2asx-zoom-crop-mark:3024:3024:3024:1702.awebp" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" alt="">
             </a>
           </div>
           <div class="post-content">
@@ -1482,7 +1613,7 @@ keystore文件，key-alias，key-passwor
       <div class="post-img">
         <a href="/2023/01/09/bo-ke-da-jian-jiao-cheng-16-linux-yun-fu-wu-qi-zai-nginx.conf-pei-zhi-fang-dao-lian/" style="background-size: cover; 
           background-position: center center;">
-          <img class="lazyload lazyload placeholder" src="https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2019/4/17/16a2a86415e2db30~tplv-t2oaga2asx-zoom-crop-mark:3024:3024:3024:1702.awebp" class="lazyload placeholder" data-srcset="https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2019/4/17/16a2a86415e2db30~tplv-t2oaga2asx-zoom-crop-mark:3024:3024:3024:1702.awebp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+          <img class="lazyload lazyload placeholder" src="https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2019/4/17/16a2a86415e2db30~tplv-t2oaga2asx-zoom-crop-mark:3024:3024:3024:1702.awebp" class="lazyload placeholder" data-srcset="https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2019/4/17/16a2a86415e2db30~tplv-t2oaga2asx-zoom-crop-mark:3024:3024:3024:1702.awebp" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" alt="">
         </a>
       </div>
     </article>
@@ -1520,7 +1651,7 @@ keystore文件，key-alias，key-passwor
           <div class="post-img-mobile">
             <a href="/2023/01/09/bo-ke-da-jian-jiao-cheng-15-markdown-chang-yong-yu-fa/" style="background-size: cover; 
               background-position: center center;">
-              <img class="lazyload lazyload placeholder" src="https://img-blog.csdnimg.cn/img_convert/a68314308cc0cd101bfc44abb176dd10.png" class="lazyload placeholder" data-srcset="https://img-blog.csdnimg.cn/img_convert/a68314308cc0cd101bfc44abb176dd10.png" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+              <img class="lazyload lazyload placeholder" src="https://img-blog.csdnimg.cn/img_convert/a68314308cc0cd101bfc44abb176dd10.png" class="lazyload placeholder" data-srcset="https://img-blog.csdnimg.cn/img_convert/a68314308cc0cd101bfc44abb176dd10.png" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" alt="">
             </a>
           </div>
           <div class="post-content">
@@ -1536,7 +1667,7 @@ keystore文件，key-alias，key-passwor
       <div class="post-img">
         <a href="/2023/01/09/bo-ke-da-jian-jiao-cheng-15-markdown-chang-yong-yu-fa/" style="background-size: cover; 
           background-position: center center;">
-          <img class="lazyload lazyload placeholder" src="https://img-blog.csdnimg.cn/img_convert/a68314308cc0cd101bfc44abb176dd10.png" class="lazyload placeholder" data-srcset="https://img-blog.csdnimg.cn/img_convert/a68314308cc0cd101bfc44abb176dd10.png" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+          <img class="lazyload lazyload placeholder" src="https://img-blog.csdnimg.cn/img_convert/a68314308cc0cd101bfc44abb176dd10.png" class="lazyload placeholder" data-srcset="https://img-blog.csdnimg.cn/img_convert/a68314308cc0cd101bfc44abb176dd10.png" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" alt="">
         </a>
       </div>
     </article>
@@ -1574,7 +1705,7 @@ keystore文件，key-alias，key-passwor
           <div class="post-img-mobile">
             <a href="/2023/01/09/bo-ke-da-jian-jiao-cheng-14-linux-yun-fu-wu-qi-an-zhuang-bao-ta-yun-wei-gong-ju/" style="background-size: cover; 
               background-position: center center;">
-              <img class="lazyload lazyload placeholder" src="https://www.leixue.com/uploads/2022/03/baota.png" class="lazyload placeholder" data-srcset="https://www.leixue.com/uploads/2022/03/baota.png" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+              <img class="lazyload lazyload placeholder" src="https://www.leixue.com/uploads/2022/03/baota.png" class="lazyload placeholder" data-srcset="https://www.leixue.com/uploads/2022/03/baota.png" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" alt="">
             </a>
           </div>
           <div class="post-content">
@@ -1590,7 +1721,7 @@ keystore文件，key-alias，key-passwor
       <div class="post-img">
         <a href="/2023/01/09/bo-ke-da-jian-jiao-cheng-14-linux-yun-fu-wu-qi-an-zhuang-bao-ta-yun-wei-gong-ju/" style="background-size: cover; 
           background-position: center center;">
-          <img class="lazyload lazyload placeholder" src="https://www.leixue.com/uploads/2022/03/baota.png" class="lazyload placeholder" data-srcset="https://www.leixue.com/uploads/2022/03/baota.png" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+          <img class="lazyload lazyload placeholder" src="https://www.leixue.com/uploads/2022/03/baota.png" class="lazyload placeholder" data-srcset="https://www.leixue.com/uploads/2022/03/baota.png" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" alt="">
         </a>
       </div>
     </article>
@@ -1628,7 +1759,7 @@ keystore文件，key-alias，key-passwor
           <div class="post-img-mobile">
             <a href="/2023/01/09/bo-ke-da-jian-jiao-cheng-13-xie-bo-ke-shi-yong-wang-zhan-da-he-ji/" style="background-size: cover; 
               background-position: center center;">
-              <img class="lazyload lazyload placeholder" src="https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2017/8/9/5e1040cd64eefde3ecb5e0c809cdd3e5~tplv-t2oaga2asx-zoom-crop-mark:3024:3024:3024:1702.awebp" class="lazyload placeholder" data-srcset="https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2017/8/9/5e1040cd64eefde3ecb5e0c809cdd3e5~tplv-t2oaga2asx-zoom-crop-mark:3024:3024:3024:1702.awebp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+              <img class="lazyload lazyload placeholder" src="https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2017/8/9/5e1040cd64eefde3ecb5e0c809cdd3e5~tplv-t2oaga2asx-zoom-crop-mark:3024:3024:3024:1702.awebp" class="lazyload placeholder" data-srcset="https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2017/8/9/5e1040cd64eefde3ecb5e0c809cdd3e5~tplv-t2oaga2asx-zoom-crop-mark:3024:3024:3024:1702.awebp" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" alt="">
             </a>
           </div>
           <div class="post-content">
@@ -1644,7 +1775,7 @@ keystore文件，key-alias，key-passwor
       <div class="post-img">
         <a href="/2023/01/09/bo-ke-da-jian-jiao-cheng-13-xie-bo-ke-shi-yong-wang-zhan-da-he-ji/" style="background-size: cover; 
           background-position: center center;">
-          <img class="lazyload lazyload placeholder" src="https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2017/8/9/5e1040cd64eefde3ecb5e0c809cdd3e5~tplv-t2oaga2asx-zoom-crop-mark:3024:3024:3024:1702.awebp" class="lazyload placeholder" data-srcset="https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2017/8/9/5e1040cd64eefde3ecb5e0c809cdd3e5~tplv-t2oaga2asx-zoom-crop-mark:3024:3024:3024:1702.awebp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+          <img class="lazyload lazyload placeholder" src="https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2017/8/9/5e1040cd64eefde3ecb5e0c809cdd3e5~tplv-t2oaga2asx-zoom-crop-mark:3024:3024:3024:1702.awebp" class="lazyload placeholder" data-srcset="https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2017/8/9/5e1040cd64eefde3ecb5e0c809cdd3e5~tplv-t2oaga2asx-zoom-crop-mark:3024:3024:3024:1702.awebp" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" alt="">
         </a>
       </div>
     </article>
@@ -1682,7 +1813,7 @@ keystore文件，key-alias，key-passwor
           <div class="post-img-mobile">
             <a href="/2023/01/09/bo-ke-da-jian-jiao-cheng-12-geng-huan-yun-fu-wu-qi-wan-cheng-shu-ju-qian-yi/" style="background-size: cover; 
               background-position: center center;">
-              <img class="lazyload lazyload placeholder" src="https://zhongces3.sina.com.cn/products/201904/740d84b4db27bb0b7303adf092f44cbc.jpeg" class="lazyload placeholder" data-srcset="https://zhongces3.sina.com.cn/products/201904/740d84b4db27bb0b7303adf092f44cbc.jpeg" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+              <img class="lazyload lazyload placeholder" src="https://zhongces3.sina.com.cn/products/201904/740d84b4db27bb0b7303adf092f44cbc.jpeg" class="lazyload placeholder" data-srcset="https://zhongces3.sina.com.cn/products/201904/740d84b4db27bb0b7303adf092f44cbc.jpeg" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" alt="">
             </a>
           </div>
           <div class="post-content">
@@ -1698,7 +1829,7 @@ keystore文件，key-alias，key-passwor
       <div class="post-img">
         <a href="/2023/01/09/bo-ke-da-jian-jiao-cheng-12-geng-huan-yun-fu-wu-qi-wan-cheng-shu-ju-qian-yi/" style="background-size: cover; 
           background-position: center center;">
-          <img class="lazyload lazyload placeholder" src="https://zhongces3.sina.com.cn/products/201904/740d84b4db27bb0b7303adf092f44cbc.jpeg" class="lazyload placeholder" data-srcset="https://zhongces3.sina.com.cn/products/201904/740d84b4db27bb0b7303adf092f44cbc.jpeg" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+          <img class="lazyload lazyload placeholder" src="https://zhongces3.sina.com.cn/products/201904/740d84b4db27bb0b7303adf092f44cbc.jpeg" class="lazyload placeholder" data-srcset="https://zhongces3.sina.com.cn/products/201904/740d84b4db27bb0b7303adf092f44cbc.jpeg" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" alt="">
         </a>
       </div>
     </article>
@@ -1724,30 +1855,27 @@ keystore文件，key-alias，key-passwor
 
   </div>
 
-  <aside id='l_side'>
+  
+<aside id='l_side'>
   
     
-      <section class="widget side_blogger">
+      
+        <section class="widget side_blogger">
   <div class='content'>
     
       
         <a class='avatar flat-box rectangle' href='/about/'>
-          <img src='https://pic2.zhimg.com/80/v2-42b72d5ebee4b8d8aa70d9687effe87b_1440w.webp'/>
+          <img src='/medias/logo.jpg'/>
         </a>
       
     
     
       <div class='text'>
         
-          <h2>青墨书晚风</h2>
         
-        
-          <p>我是副标题</p>
+          <p>今天是最后一天.</p>
 
         
-        
-          <p><span id="jinrishici-sentence">赛朋博客</span></p>
-          <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
         
       </div>
     
@@ -1764,7 +1892,7 @@ keystore文件，key-alias，key-passwor
           
         
           
-            <a href="mailto:me@xxx.com"
+            <a href="mailto:epya15@gmail.com"
               class="social fas fa-envelope flat-btn"
               target="_blank"
               rel="external nofollow noopener noreferrer">
@@ -1773,7 +1901,7 @@ keystore文件，key-alias，key-passwor
           
         
           
-            <a href="https://github.com/yuang01/hexo-theme-bamboo"
+            <a href="https://github.com/oO0OoOo/oO0OoOo.github.io"
               class="social fab fa-github flat-btn"
               target="_blank"
               rel="external nofollow noopener noreferrer">
@@ -1782,7 +1910,7 @@ keystore文件，key-alias，key-passwor
           
         
           
-            <a href="tencent://AddContact/?fromId=50&amp;fromSubId=1&amp;subcmd=all&amp;uin=你的qq号码"
+            <a href="tencent://AddContact/?fromId=50&amp;fromSubId=1&amp;subcmd=all&amp;uin=747873399"
               class="social fab fa-qq flat-btn"
               target="_blank"
               rel="external nofollow noopener noreferrer">
@@ -1795,6 +1923,7 @@ keystore文件，key-alias，key-passwor
   </div>
 </section>
 
+      
     
   
   
@@ -1853,7 +1982,7 @@ keystore文件，key-alias，key-passwor
     
   <header>
     
-      <a style="color: " href='/tags/'><i class="fas fa-tags fa-fw" aria-hidden="true"></i><span class='name'>热门标签</span></a>
+      <a style="color: " href='/tags/'><i class="fas fa-tags fa-fw" aria-hidden="true"></i><span class='name'>标签</span></a>
     
   </header>
 
@@ -1889,7 +2018,7 @@ keystore文件，key-alias，key-passwor
             <div class="post-img-box">
               <a href="/2024/01/09/unity-yu-ios-gong-cheng-qiao-jie-jie-shao/" class="post-img " style="background-size: cover; 
                 background-position: center center;">
-                <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="https://img.3dmgame.com/uploads/images/news/20220816/1660607710_789544.jpg" class="lazyload placeholder" data-srcset="https://img.3dmgame.com/uploads/images/news/20220816/1660607710_789544.jpg" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+                <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="https://img.3dmgame.com/uploads/images/news/20220816/1660607710_789544.jpg" class="lazyload placeholder" data-srcset="https://img.3dmgame.com/uploads/images/news/20220816/1660607710_789544.jpg" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" alt="">
               </a>
             </div>
             <div class="post-date-title">
@@ -1910,7 +2039,7 @@ keystore文件，key-alias，key-passwor
             <div class="post-img-box">
               <a href="/2023/04/20/android-yu-unity-jiao-hu-zhi-androidjavaproxy-hui-diao-de-shi-yong/" class="post-img " style="background-size: cover; 
                 background-position: center center;">
-                <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="https://pic1.zhimg.com/80/v2-03a22891ccba9bccf6424dfd7cbf4be7_1440w.webp" class="lazyload placeholder" data-srcset="https://pic1.zhimg.com/80/v2-03a22891ccba9bccf6424dfd7cbf4be7_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+                <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="/medias/1.jpg" class="lazyload placeholder" data-srcset="/medias/1.jpg" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" alt="">
               </a>
             </div>
             <div class="post-date-title">
@@ -1931,7 +2060,7 @@ keystore文件，key-alias，key-passwor
             <div class="post-img-box">
               <a href="/2023/04/20/dui-chao-guo-2g-de-apk-chong-xin-jin-xing-4-zi-jie-dui-qi-bing-zuo-v1-v2-qian-ming/" class="post-img " style="background-size: cover; 
                 background-position: center center;">
-                <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="https://pic2.zhimg.com/80/v2-63bbdb5b76b8d349ad35ff4281efbd37_1440w.webp" class="lazyload placeholder" data-srcset="https://pic2.zhimg.com/80/v2-63bbdb5b76b8d349ad35ff4281efbd37_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+                <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="/medias/8.jpg" class="lazyload placeholder" data-srcset="/medias/8.jpg" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" alt="">
               </a>
             </div>
             <div class="post-date-title">
@@ -1952,7 +2081,7 @@ keystore文件，key-alias，key-passwor
             <div class="post-img-box">
               <a href="/2023/02/07/wang-qi-feng-mian-2023-02-07-sha-te-mao/" class="post-img " style="background-size: cover; 
                 background-position: center center;">
-                <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="https://i.328888.xyz/2023/02/08/rQNjH.jpeg" class="lazyload placeholder" data-srcset="https://i.328888.xyz/2023/02/08/rQNjH.jpeg" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+                <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="https://i.328888.xyz/2023/02/08/rQNjH.jpeg" class="lazyload placeholder" data-srcset="https://i.328888.xyz/2023/02/08/rQNjH.jpeg" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" alt="">
               </a>
             </div>
             <div class="post-date-title">
@@ -1973,7 +2102,7 @@ keystore文件，key-alias，key-passwor
             <div class="post-img-box">
               <a href="/2023/01/18/wang-qi-feng-mian-2023-01-18-xiong-mao-tu-zhen-gui-ying-xiang-zi-liao/" class="post-img " style="background-size: cover; 
                 background-position: center center;">
-                <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="/images/cover_rebbitbg.jpg" class="lazyload placeholder" data-srcset="/images/cover_rebbitbg.jpg" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+                <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="/images/cover_rebbitbg.jpg" class="lazyload placeholder" data-srcset="/images/cover_rebbitbg.jpg" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" alt="">
               </a>
             </div>
             <div class="post-date-title">
@@ -2000,7 +2129,7 @@ keystore文件，key-alias，key-passwor
   
   <header>
     
-      <i style="color: " class="fas fa-chart-line fa-fw" aria-hidden="true"></i><span class='name' style="color: ">站点信息</span>
+      <i style="color: " class="fas fa-chart-line fa-fw" aria-hidden="true"></i><span class='name'>站点信息</span>
     
   </header>
 
@@ -2020,7 +2149,7 @@ keystore文件，key-alias，key-passwor
           <div id="webinfo-runtime-count" publish_date="03/24/2020 21:34:09"></div>
         </div>
         <script>
-          var BirthDay = new Date(new Date('2020/01/01'));
+          var BirthDay = new Date(new Date('2023/01/08'));
           var today = new Date();
           var timeold = (today.getTime() - BirthDay.getTime());
           var daysold = Math.floor(timeold / (24 * 60 * 60 * 1000));
@@ -2029,6 +2158,11 @@ keystore文件，key-alias，key-passwor
       
 
 
+      
+        <div class="webinfo-item">
+          <div>本站总字数：</div>
+          <div>14.5k 字</div>
+        </div>
       
 
       
@@ -2053,8 +2187,8 @@ keystore文件，key-alias，key-passwor
         <div class="webinfo-item">
           <div>最后活动时间：</div>
           
-            <div id="last-update" style="display: none;">Fri Jan 12 2024 18:01:08 GMT+0800 (中国标准时间)</div>
-            <div id="last-update-show">2024-01-12 日</div>
+            <div id="last-update" style="display: none;">Thu Feb 01 2024 17:26:04 GMT+0800 (中国标准时间)</div>
+            <div id="last-update-show">2024-02-01 日</div>
           
         </div>
         
@@ -2104,7 +2238,7 @@ keystore文件，key-alias，key-passwor
           try {
             document.getElementById('last-update-show').innerHTML = timeago(new Date(lastUpDate));
           } catch (error) {
-            document.getElementById('last-update-show').innerHTML = '2024-01-12 日';
+            document.getElementById('last-update-show').innerHTML = '2024-02-01 日';
           }
         </script>
         
@@ -2116,6 +2250,7 @@ keystore文件，key-alias，key-passwor
     
   </div>
 </aside>
+
 </div>
 <!-- 花瓣和雪花飘落 -->
 <!-- 雪花和花瓣特效 -->
@@ -2150,7 +2285,7 @@ keystore文件，key-alias，key-passwor
       if (isDark) {
         this.FISH_COLOR = '#222'; // 暗黑色，有时间把这整成一个变量
       } else {
-        this.FISH_COLOR = '' || 'rgba(66, 185, 133, 0.8)';
+        this.FISH_COLOR = '' || '#5CACEE';
       }
     },
     setParameters: function () {
@@ -2296,29 +2431,46 @@ keystore文件，key-alias，key-passwor
         
           <div class="link">
             
+              
+                <a href="/atom.xml" class="social">
+                  
+                    <i class="fas fa-rss" aria-hidden="true"></i>
+                  
+                </a>
+              
+            
+              
+                <a href="mailto:epya15@gmail.com" class="social">
+                  
+                    <i class="fas fa-envelope" aria-hidden="true"></i>
+                  
+                </a>
+              
+            
+              
+                <a target="_blank" rel="noopener" href="https://github.com/oO0OoOo/oO0OoOo.github.io" class="social">
+                  
+                    <i class="fab fa-github" aria-hidden="true"></i>
+                  
+                </a>
+              
+            
+              
+                <a href="tencent://AddContact/?fromId=50&amp;fromSubId=1&amp;subcmd=all&amp;uin=747873399" class="social">
+                  
+                    <i class="fab fa-qq" aria-hidden="true"></i>
+                  
+                </a>
+              
+            
           </div>
         
       
         
           <div class="footer-copyright">
-            <p>Copyright © 2019 - 2020 <a target="_blank" rel="noopener" href="https://github.com/yuang01">yuang01</a> | Powered by <a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/">Hexo</a> | Theme <a target="_blank" rel="noopener" href="https://github.com/yuang01/theme">Bamboo</a> </p>
+            <p>Copyright © 2023 <a target="_blank" rel="noopener" href="https://github.com/oO0OoOo">oO0OoOo</a> | Powered by <a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/">Hexo</a> | Theme based <a target="_blank" rel="noopener" href="https://github.com/yuang01/theme">Bamboo</a> </p>
 
           </div>
-        
-      
-        
-          
-            <!-- 不蒜子统计 -->
-            <!-- 不蒜子统计 -->
-<span id="busuanzi_container_site_pv">
-      <i class="fas fa-eye" aria-hidden="true"></i>Total visits：<span id="busuanzi_value_site_pv"></span> times
-</span>
-<span class="post-meta-divider">|</span>
-<span id="busuanzi_container_site_uv" style='display:none'>
-      <i class="fas fa-users" aria-hidden="true"></i>Number of visitors：<span id="busuanzi_value_site_uv"></span> people
-</span>
-
-          
         
       
         
@@ -2390,62 +2542,10 @@ keystore文件，key-alias，key-passwor
     
     <!-- 渲染左下角音乐播放器 -->
     
-      <link rel="stylesheet" href="/js/aplayer/APlayer@1.10.1.min.css">
-<style>
-.aplayer .aplayer-lrc p {
-  
-  font-size: 12px;
-  font-weight: 700;
-  line-height: 16px !important;
-}
-
-.aplayer .aplayer-lrc p.aplayer-lrc-current {
-  
-  font-size: 15px;
-  color: #42b983;
-}
-
-
-.aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
-  left: -66px !important;
-}
-
-.aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
-  left: 0px !important;
-}
-
-
-</style>
-<meting-js  
-  class=""
-  server="tencent"
-  type="playlist"
-  id="8062553743"
-  fixed='true'
-  autoplay='false'
-  theme='#42b983'
-  loop='all'
-  order='random'
-  preload='auto'
-  volume='0.7'
-  list-folded='true'
->
-</meting-js>
-
-<!-- <style>
-  #aplayer {
-    position: fixed;
-    left: 0;
-    bottom: 300px;
-  }
-</style> -->
-<script src="https://unpkg.com/aplayer@1.10.1/dist/APlayer.min.js"></script>
-<script src="https://unpkg.com/meting@2/dist/Meting.min.js"></script>
-    
 
     <!-- 图片放大 -->
     
-      <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
+      <script src="/js/fancybox/jquery.fancybox.min.js"></script>
     
 
     <!-- 百度解析 -->
@@ -2469,8 +2569,6 @@ keystore文件，key-alias，key-passwor
 
     
     <!-- 背景彩带 -->
-    
-      <script type="text/javascript" size="100" alpha='0.4' zIndex="-1" src="/js/ribbon.min.js"></script>
     
 
     <script src="/js/utils/index.js"></script>
@@ -2627,12 +2725,13 @@ keystore文件，key-alias，key-passwor
     left: 12px;
     top: 0;
   } */
-</style>
- 
+</style> 
 
 <!-- 设置导航背景 -->
 <script>
   let setHeaderClass = () => {
+    const headerMenuTransparent = true;
+    if (!headerMenuTransparent) { return; }
     const nav = $('#navHeader');
     const navTop = nav.outerHeight();
     const winTop = $(window).scrollTop();
@@ -2684,61 +2783,6 @@ keystore文件，key-alias，key-passwor
   })
 </script>
 
-<!-- 渲染远程json加载的图片标签(getPhotoOnline)里的内容 -->
-<script>
-  function loadPhotoOnlineJS() {
-    if ($(".post-detail").find(".getJsonPhoto-api").length == 0) {
-      return;
-    } 
-    loadScript('/js/getPhotoOnline/index.js');
-  };
-  $(function () {
-    loadPhotoOnlineJS();
-  });
-  document.addEventListener('pjax:complete', function () {
-    if (typeof getPhotoJson == "undefined") {
-      loadPhotoOnlineJS();
-    }
-  })
-</script>
-
-<!-- 渲染远程json加载的talk标签(getTalkOnline)里的内容 -->
-<script>
-  function loadTalkOnlineJS() {
-    if ($(".post-detail").find(".getJsonTalk-api").length == 0) {
-      return;
-    } 
-    loadScript('https://cdnjs.cloudflare.com/ajax/libs/waterfall.js/1.0.2/waterfall.min.js'); // 瀑布流插件，https://raphamorim.io/waterfall.js/
-    loadScript('/js/getTalkOnline/index.js');
-  };
-  $(function () {
-    loadTalkOnlineJS();
-  });
-  document.addEventListener('pjax:complete', function () {
-    if (typeof getTalkJson == "undefined") {
-      loadTalkOnlineJS();
-    }
-  })
-</script>
-
-<!-- 渲染远程json加载的site-card标签(getSiteOnline)里的内容 -->
-<script>
-  function loadSiteOnlineJS() {
-    if ($(".post-detail").find(".getJsonSite-api").length == 0) {
-      return;
-    } 
-    loadScript('/js/getSiteOnline/index.js');
-  };
-  $(function () {
-    loadSiteOnlineJS();
-  });
-  document.addEventListener('pjax:complete', function () {
-    if (typeof getSiteJson == "undefined") {
-      loadSiteOnlineJS();
-    }
-  })
-</script>
-
 <!-- 输入框打字特效 -->
 <!-- 输入框打字特效 -->
 
@@ -2752,59 +2796,6 @@ keystore文件，key-alias，key-passwor
 
 <!-- markdown代码一键复制功能 -->
 
-  <link rel="stylesheet" href="https://unpkg.com/v-plugs-ayu/lib/ayu.css">
-  <script src="https://unpkg.com/v-plugs-ayu/lib/ayu.umd.min.js"></script>
-  <script src="/js/clipboard/clipboard.min.js"></script>
-  <div id="appCopy">
-  </div>
-  <script data-pjax>
-    var vm = new Vue({
-      el: '#appCopy',
-      data: {
-      },
-      computed: {
-      },
-      mounted() {
-        const that = this;
-        var copy = 'copy';
-        /* code */
-        var initCopyCode = function () {
-          var copyHtml = '';
-          copyHtml += '<button class="btn-copy" data-clipboard-snippet="" style="position:absolute;top:0;right:0;z-index:1;">';
-          copyHtml += '<i class="fas fa-copy"></i><span>' + copy + '</span>';
-          copyHtml += '</button>';
-          $(".post-detail pre").not('.gutter pre').wrap("<div class='codeBox' style='position:relative;width:100%;'></div>")
-          $(".post-detail pre").not('.gutter pre').before(copyHtml);
-          new ClipboardJS('.btn-copy', {
-            target: function (trigger) {
-              return trigger.nextElementSibling;
-            }
-          });
-        }
-        initCopyCode();
-        $('.btn-copy').unbind('click').bind('click', function () {
-          doSomething();
-        })
-        $(document).unbind('keypress').bind('keypress', function (e) {
-          if (e.ctrlKey && e.keyCode == 67) {
-            doSomething();
-          }
-        })
-
-        function doSomething() {
-          that.$notify({
-            title: "成功",
-            content: "代码已复制，请遵守相关授权协议。",
-            type: 'success'
-          })
-        }
-      },
-      methods: {
-      },
-      created() { }
-    })
-  </script>
-  
 
 <!-- 图片懒加载 -->
 <script defer src="https://unpkg.com/vanilla-lazyload@17.1.0/dist/lazyload.min.js"></script>
@@ -2907,12 +2898,6 @@ keystore文件，key-alias，key-passwor
 
 <!-- 鼠标点击特效 -->
 <!-- 爱心点击 -->
-
-  
-    <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 999; pointer-events: none;" ></canvas>
-    <script src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script>
-    <script src="/js/cursor/explosion.min.js"></script>
-  
 
 
 

@@ -23,10 +23,9 @@ hexo.on('ready', () => {
   b:::::::::::::::b   a::::::::::aa:::am::::m   m::::m   m::::mb:::::::::::::::b   oo:::::::::::oo  oo:::::::::::oo 
   bbbbbbbbbbbbbbbb     aaaaaaaaaa  aaaammmmmm   mmmmmm   mmmmmmbbbbbbbbbbbbbbbb      ooooooooooo      ooooooooooo   
                                                                                                                    
-  ===================================================================================================================
+  ============================================================
     Bamboo ${version}
-    Docs: https://hexo-theme-bamboo.netlify.app
+    Docs: https://yuang01.github.io/ or https://yuang01.gitee.io/
     Repo: https://github.com/yuang01/hexo-theme-bamboo
-  ===================================================================================================================
-`);
+  ============================================================`);
 });

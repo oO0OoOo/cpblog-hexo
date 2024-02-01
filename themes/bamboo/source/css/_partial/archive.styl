@@ -7,7 +7,11 @@
 .archive-header {
   position: relative;
   width: 100%;
-  height: 60vh;
+  height: 50vh;
+
+  if (hexo-config('color_scheme.common.headerMenuTransparent')) {
+    height: 60vh;
+  }
 
   if (hexo-config('archive.full')) {
     height: 100vh;
@@ -26,7 +30,7 @@
   .archive-header-title {
     z-index: 2;
     font-size: 2.5rem;
-    font-family: MV Boli;
+    font-family: ;
     color: #fff;
   }
 
@@ -35,7 +39,7 @@
     font-weight: 500;
     font-size: 1.25rem;
     line-height: 1.4em;
-    font-family: 'Architects Daughter', cursive !important;
+    font-family: ;
     color: #fff;
     min-height: 1.4em;
   }
@@ -66,7 +70,7 @@
   .video-header-title {
     z-index: 2;
     font-size: 2.5rem;
-    font-family: MV Boli;
+    font-family: ;
     position: absolute;
     left: 50%;
     top: 50%;
@@ -79,7 +83,7 @@
     font-weight: 500;
     font-size: 1.25rem;
     line-height: 1.4em;
-    font-family: 'Architects Daughter', cursive !important;
+    font-family: ;
     color: #fff;
     min-height: 1.4em;
     position: absolute;
