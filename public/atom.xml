@@ -158,6 +158,23 @@
   </entry>
   
   <entry>
+    <title>博客搭建教程16 - linux云服务器在nginx.conf配置防盗链</title>
+    <link href="http://epya15.fun/2023/01/09/bo-ke-da-jian-jiao-cheng-17-yun-fu-wu-qi-da-jian-bo-ke-wang-zhan-quan-tao-liu-cheng/"/>
+    <id>http://epya15.fun/2023/01/09/bo-ke-da-jian-jiao-cheng-17-yun-fu-wu-qi-da-jian-bo-ke-wang-zhan-quan-tao-liu-cheng/</id>
+    <published>2023-01-09T08:00:00.000Z</published>
+    <updated>2024-02-01T09:49:11.336Z</updated>
+    
+    
+    <summary type="html">防止多媒体资源被其它网站引用从而占据流失用户或占据带宽</summary>
+    
+    
+    
+    
+    <category term="博客" scheme="http://epya15.fun/tags/%E5%8D%9A%E5%AE%A2/"/>
+    
+  </entry>
+  
+  <entry>
     <title>博客搭建教程15 - Markdown常用语法</title>
     <link href="http://epya15.fun/2023/01/09/bo-ke-da-jian-jiao-cheng-15-markdown-chang-yong-yu-fa/"/>
     <id>http://epya15.fun/2023/01/09/bo-ke-da-jian-jiao-cheng-15-markdown-chang-yong-yu-fa/</id>
@@ -404,25 +421,6 @@
     <summary type="html">&lt;p&gt;本篇内容比较简单，同样参考这位博主的文章&lt;br&gt;&lt;a</summary>
         
       
-    
-    
-    
-    <category term="博客搭建" scheme="http://epya15.fun/categories/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/"/>
-    
-    
-    <category term="博客" scheme="http://epya15.fun/tags/%E5%8D%9A%E5%AE%A2/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>博客搭建教程2 - 创建Git仓库</title>
-    <link href="http://epya15.fun/2023/01/09/bo-ke-da-jian-jiao-cheng-2-chuang-jian-git-cang-ku/"/>
-    <id>http://epya15.fun/2023/01/09/bo-ke-da-jian-jiao-cheng-2-chuang-jian-git-cang-ku/</id>
-    <published>2023-01-08T18:00:00.000Z</published>
-    <updated>2024-01-12T09:14:32.972Z</updated>
-    
-    
-    <summary type="html">在阅读本章前，我们默认你已经了解了Git的概念。</summary>
     
     
     
