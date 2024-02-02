@@ -1,3 +1,4 @@
+http://epya15.fun/2024/01/12/dui-chao-guo-2g-de-apk-chong-xin-jin-xing-4-zi-jie-dui-qi-bing-zuo-v1-v2-qian-ming/
 http://epya15.fun/2024/01/09/unity-yu-ios-gong-cheng-qiao-jie-jie-shao/
 http://epya15.fun/2023/01/09/ce-shi-wen-dang/
 http://epya15.fun/2023/01/09/bo-ke-da-jian-jiao-cheng-15-markdown-chang-yong-yu-fa/
@@ -11,7 +12,6 @@ http://epya15.fun/tags/index.html
 http://epya15.fun/categories/index.html
 http://epya15.fun/gallery/misc/index.html
 http://epya15.fun/gallery/index.html
-http://epya15.fun/2023/04/20/dui-chao-guo-2g-de-apk-chong-xin-jin-xing-4-zi-jie-dui-qi-bing-zuo-v1-v2-qian-ming/
 http://epya15.fun/posts_backup/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E6%95%99%E7%A8%8B12%20-%20%E6%9B%B4%E6%8D%A2%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%AE%8C%E6%88%90%E6%95%B0%E6%8D%AE%E8%BF%81%E7%A7%BB.html
 http://epya15.fun/posts_backup/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E6%95%99%E7%A8%8B4%20-%20%E6%9B%B4%E6%8D%A2Hexo%E5%8D%9A%E5%AE%A2%E4%B8%BB%E9%A2%98.html
 http://epya15.fun/posts_backup/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E6%95%99%E7%A8%8B14%20-%20Linux%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%AE%89%E8%A3%85%E5%AE%9D%E5%A1%94%E8%BF%90%E7%BB%B4%E5%B7%A5%E5%85%B7.html
@@ -34,7 +34,6 @@ http://epya15.fun/tags/Android/
 http://epya15.fun/tags/sdk/
 http://epya15.fun/tags/%E5%8D%9A%E5%AE%A2/
 http://epya15.fun/tags/%E7%94%9F%E6%B4%BB/
-http://epya15.fun/tags/%E6%89%93%E5%8C%85/
 http://epya15.fun/categories/Android/
 http://epya15.fun/categories/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/
 http://epya15.fun/categories/sdk/

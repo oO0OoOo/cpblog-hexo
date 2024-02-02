@@ -175,6 +175,47 @@
       </tags>
   </entry>
   <entry>
+    <title></title>
+    <url>/2024/01/12/dui-chao-guo-2g-de-apk-chong-xin-jin-xing-4-zi-jie-dui-qi-bing-zuo-v1-v2-qian-ming/</url>
+    <content><![CDATA[<p>title: 对超过2G的apk重新进行4字节对齐并做v1+v2签名<br>author: cypunberk.admin<br>tags:</p>
+<ul>
+<li><p>Android</p>
+</li>
+<li><p>打包<br>categories:</p>
+</li>
+<li><p>Android</p>
+</li>
+<li><p>Unity<br>date: 2023-04-20 13:51:00</p>
+<p>img: <a href="https://raw.githubusercontent.com/oO0OoOo/cpblog-hexo/main/source/images/591039263be09.jpg">https://raw.githubusercontent.com/oO0OoOo/cpblog-hexo/main/source/images/591039263be09.jpg</a></p>
+</li>
+</ul>
+<h6 id="工具准备"><a href="#工具准备" class="headerlink" title="工具准备"></a>工具准备</h6><ul>
+<li>zipalign2G.exe文件下载: <i class="fa fa-download"></i> <a href="https://download.csdn.net/download/liyingzai/13216149?spm=1001.2101.3001.6650.8&utm_medium=distribute.pc_relevant.none-task-download-2~default~OPENSEARCH~Rate-8-13216149-blog-8109883.235%5Ev29%5Epc_relevant_default_base3&depth_1-utm_source=distribute.pc_relevant.none-task-download-2~default~OPENSEARCH~Rate-8-13216149-blog-8109883.235%5Ev29%5Epc_relevant_default_base3&utm_relevant_index=8">zipalign2G.exe</a> </li>
+<li>apksigner.jar（一般位于AndroidSDK的build-tools文件夹内）</li>
+<li>keystore文件，key-alias，key-password信息</li>
+</ul>
+<h6 id="操作步骤"><a href="#操作步骤" class="headerlink" title="操作步骤"></a>操作步骤</h6><p>假设zipalign2G.exe，apksigner.jar，apk包，keystore的绝对路径位于D:\<br>1.对apk重新进行4字节对齐，命令如下  </p>
+<blockquote>
+<p>D:\zipalign2G.exe -f -v 4 D:\input.apk D:\output_aligned.apk  </p>
+</blockquote>
+<p>提示Verification succesful即为成功</p>
+<p>2.进行v1+v2签名，命令如下  </p>
+<blockquote>
+<p>java -jar D:\apksigner.jar sign –ks D:\myapk.keystore –ks-key-alias myaliasname –ks-pass pass:12345678 –key-pass pass:12345678 –out D:\output_signed.apk D:\output_aligned.apk  </p>
+</blockquote>
+<p>3.通过以下命令验证是否签名成功  </p>
+<blockquote>
+<p>java -jar D:\apksigner.jar verify -v D:\output_signed.apk  </p>
+</blockquote>
+<p>若出现  </p>
+<blockquote>
+<p>Verifies<br>Verified using v1 scheme (JAR signing): true<br>Verified using v2 scheme (APK Signature Scheme v2): true  </p>
+</blockquote>
+<p>说明签名成功  </p>
+<p>此时的包就可以安装到Android 11版本以上的手机了。</p>
+]]></content>
+  </entry>
+  <entry>
     <title>Unity 与 iOS 工程桥接介绍</title>
     <url>/2024/01/09/unity-yu-ios-gong-cheng-qiao-jie-jie-shao/</url>
     <content><![CDATA[<h3 id="Unity-侧"><a href="#Unity-侧" class="headerlink" title="Unity 侧"></a>Unity 侧</h3><h4 id="ipa-包体构建流程"><a href="#ipa-包体构建流程" class="headerlink" title="ipa 包体构建流程"></a>ipa 包体构建流程</h4><ol>
@@ -317,43 +358,6 @@
         <tag>Unity</tag>
         <tag>Android</tag>
         <tag>sdk</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>对超过2G的apk重新进行4字节对齐并做v1+v2签名</title>
-    <url>/2023/04/20/dui-chao-guo-2g-de-apk-chong-xin-jin-xing-4-zi-jie-dui-qi-bing-zuo-v1-v2-qian-ming/</url>
-    <content><![CDATA[<h6 id="工具准备"><a href="#工具准备" class="headerlink" title="工具准备"></a>工具准备</h6><ul>
-<li>zipalign2G.exe文件下载: <i class="fa fa-download"></i> <a href="https://download.csdn.net/download/liyingzai/13216149?spm=1001.2101.3001.6650.8&utm_medium=distribute.pc_relevant.none-task-download-2~default~OPENSEARCH~Rate-8-13216149-blog-8109883.235%5Ev29%5Epc_relevant_default_base3&depth_1-utm_source=distribute.pc_relevant.none-task-download-2~default~OPENSEARCH~Rate-8-13216149-blog-8109883.235%5Ev29%5Epc_relevant_default_base3&utm_relevant_index=8">zipalign2G.exe</a> </li>
-<li>apksigner.jar（一般位于AndroidSDK的build-tools文件夹内）</li>
-<li>keystore文件，key-alias，key-password信息</li>
-</ul>
-<h6 id="操作步骤"><a href="#操作步骤" class="headerlink" title="操作步骤"></a>操作步骤</h6><p>假设zipalign2G.exe，apksigner.jar，apk包，keystore的绝对路径位于D:\<br>1.对apk重新进行4字节对齐，命令如下  </p>
-<blockquote>
-<p>D:\zipalign2G.exe -f -v 4 D:\input.apk D:\output_aligned.apk  </p>
-</blockquote>
-<p>提示Verification succesful即为成功</p>
-<p>2.进行v1+v2签名，命令如下  </p>
-<blockquote>
-<p>java -jar D:\apksigner.jar sign –ks D:\myapk.keystore –ks-key-alias myaliasname –ks-pass pass:12345678 –key-pass pass:12345678 –out D:\output_signed.apk D:\output_aligned.apk  </p>
-</blockquote>
-<p>3.通过以下命令验证是否签名成功  </p>
-<blockquote>
-<p>java -jar D:\apksigner.jar verify -v D:\output_signed.apk  </p>
-</blockquote>
-<p>若出现  </p>
-<blockquote>
-<p>Verifies<br>Verified using v1 scheme (JAR signing): true<br>Verified using v2 scheme (APK Signature Scheme v2): true  </p>
-</blockquote>
-<p>说明签名成功  </p>
-<p>此时的包就可以安装到Android 11版本以上的手机了。</p>
-]]></content>
-      <categories>
-        <category>Android</category>
-        <category>Unity</category>
-      </categories>
-      <tags>
-        <tag>Android</tag>
-        <tag>打包</tag>
       </tags>
   </entry>
   <entry>
