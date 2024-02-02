@@ -11,7 +11,7 @@
   <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-  <title>云服务器搭建博客网站全套流程（浓缩版） | 赛朋博客</title>
+  <title>Markdown常用语法 | 赛朋博客</title>
 
   <link rel="icon" type="image/jpeg" href="/favicon.jpg">
   <link rel="stylesheet" href="https://at.alicdn.com/t/font_1911880_c1nvbyezg17.css">
@@ -647,24 +647,33 @@
 
 
 <div class="post-detail-header" id="thumbnail_canvas" style="background-repeat: no-repeat; background-size: cover; 
-  background-position: center center;position: relative;background-image:url('https://raw.githubusercontent.com/oO0OoOo/cpblog-hexo/main/source/images/202402021405279.jpg')">
+  background-position: center center;position: relative;background-image:url('https://raw.githubusercontent.com/oO0OoOo/cpblog-hexo/main/source/images/5910392d25805.jpg')">
   <div class="post-detail-header-mask"></div>
   <canvas id="header_canvas"style="position:absolute;bottom:0;pointer-events:none;"></canvas>
   
   <div class="post-detail-header_info-box">
     <div class="title-box">
       <span class="title">
-        云服务器搭建博客网站全套流程（浓缩版）
+        Markdown常用语法
       </span>
     </div>
     
     
       
         <span class="post-detail-header_date">
-          <i class="fas fa-calendar"></i> Published in：2024-02-01 |
+          <i class="fas fa-calendar"></i> Published in：2023-01-09 |
         </span>
       
 
+      
+        <span class="post-detail-header_categories">
+          <i class="iconfont iconbookmark1"></i> category：
+          
+            <a href="/categories/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/" class="post-detail-header_category">
+              博客搭建
+            </a>
+          
+        </span>
       
 
       
@@ -691,173 +700,153 @@
   <div class="main-content">
     <article class="post post-detail">
       <div class="post-content">
-        <h3 id="1-配置安全组"><a href="#1-配置安全组" class="headerlink" title="1.配置安全组"></a>1.配置安全组</h3><p>租用云服务器，安装centOS 7系统，配置安全组，放开【入方向规则】指定或全部端口以正常安装宝塔运维工具</p>
-<h3 id="2-安装宝塔"><a href="#2-安装宝塔" class="headerlink" title="2.安装宝塔"></a>2.安装宝塔</h3><p>使用在线安装或者键入命令</p>
-<blockquote>
-<p>yum install -y wget &amp;&amp; wget -O install.sh <a target="_blank" rel="noopener" href="https://download.bt.cn/install/install_6.0.sh">https://download.bt.cn/install/install_6.0.sh</a> &amp;&amp; sh install.sh ed8484bec</p>
-</blockquote>
-<h3 id="3-安装Nginx"><a href="#3-安装Nginx" class="headerlink" title="3.安装Nginx"></a>3.安装Nginx</h3><p>&#x2F;&#x2F;一键安装全部依赖</p>
-<blockquote>
-<p>yum -y install gcc zlib zlib-devel pcre-devel opensslopenssl-devel</p>
-</blockquote>
-<p>&#x2F;&#x2F;创建一个Nginx文件夹</p>
-<blockquote>
-<p>cd &#x2F;usr&#x2F;local<br>mkdir nginx<br>cd nginx</p>
-</blockquote>
-<p>&#x2F;&#x2F;下载tar包</p>
-<blockquote>
-<p>wget <a target="_blank" rel="noopener" href="http://nginx.org/download/nginx-1.13.7.tar.gz">http://nginx.org/download/nginx-1.13.7.tar.gz</a></p>
-<p>tar -xvf nginx-1.13.7.tar.gz</p>
-</blockquote>
-<p>&#x2F;&#x2F;进入nginx目录</p>
-<blockquote>
-<p>cd &#x2F;usr&#x2F;local&#x2F;nginx</p>
-</blockquote>
-<p>&#x2F;&#x2F;进入目录（以实际安装版本号为准）</p>
-<blockquote>
-<p>cd nginx-1.13.7</p>
-</blockquote>
-<p>&#x2F;&#x2F;执行命令考虑到后续安装ssl证书 添加两个模块</p>
-<blockquote>
-<p>.&#x2F;configure –with-http_stub_status_module –with-http_ssl_module</p>
-</blockquote>
-<p>&#x2F;&#x2F;执行make命令</p>
-<blockquote>
-<p>make</p>
-</blockquote>
-<p>&#x2F;&#x2F;执行make install命令</p>
-<blockquote>
-<p>make install</p>
-</blockquote>
-<p>&#x2F;&#x2F;nginx安装完毕后，为了今后使用方便，将nginx配置到环境变量</p>
-<blockquote>
-<p>echo ‘export PATH&#x3D;&#x2F;usr&#x2F;local&#x2F;nginx&#x2F;sbin:$PATH’ &gt;&gt; &#x2F;etc&#x2F;profile</p>
-</blockquote>
-<p>&#x2F;&#x2F;并使其生效</p>
-<blockquote>
-<p>source &#x2F;etc&#x2F;profile</p>
-</blockquote>
-<p>&#x2F;&#x2F;接下来直接输入nginx -v,看看环境变量有没有配置成功</p>
-<blockquote>
-<p>nginx -v</p>
-</blockquote>
-<p>修改&#x2F;usr&#x2F;local&#x2F;nginx&#x2F;conf&#x2F;nginx.conf</p>
-<p>将里面的地址改为网站目录位置</p>
-<p>主要修改的部分（示例）</p>
-<blockquote>
-<p>location &#x2F; {<br>    root   &#x2F;www&#x2F;wwwroot&#x2F;cpblog-hexo&#x2F;public;<br>    index  index.html index.htm;<br>}</p>
-<p>#防盗链设置，只允许自己网站访问自己的多媒体资源<br>location ~*.(png|jpg|jpeg|gif|mp4){<br>    root &#x2F;www&#x2F;wwwroot&#x2F;epya15.fun;<br>    valid_referers none blocked <a target="_blank" rel="noopener" href="http://www.epya15.fun/">www.epya15.fun</a> epya15.fun;<br>    if ($invalid_referer) {<br>        #return 403;    #可以返回403，盗链网页显示的是一个裂开的图<br>        rewrite ^&#x2F; &#x2F;images&#x2F;invalid_referer_tip.png break;  #返回一个自己定制的图片<br>    }<br>}</p>
-</blockquote>
-<h3 id="4-配置防火墙"><a href="#4-配置防火墙" class="headerlink" title="4.配置防火墙"></a>4.配置防火墙</h3><p>&#x2F;&#x2F;查看防火墙开启状态</p>
-<blockquote>
-<p>systemctl status firewalld</p>
-</blockquote>
-<p>&#x2F;&#x2F;开启防火墙，没有任何提示则为开启成功</p>
-<blockquote>
-<p>systemctl start firewalld</p>
-</blockquote>
-<p>&#x2F;&#x2F;如果要关闭防火墙设置,可能通过systemctl stop firewalld这条指令来关闭该功能,没有任何提示则关闭成功</p>
-<blockquote>
-<p>systemctl stop firewalld</p>
-</blockquote>
-<p>&#x2F;&#x2F;永久开启80端口</p>
-<blockquote>
-<p>firewall-cmd –permanent –zone&#x3D;public –add-port&#x3D;80&#x2F;tcp –permanent</p>
-</blockquote>
-<p>&#x2F;&#x2F;查看80端口是否开启</p>
-<blockquote>
-<p>firewall-cmd –permanent –query-port&#x3D;80&#x2F;tcp</p>
-</blockquote>
-<p>&#x2F;&#x2F;重启防火墙</p>
-<blockquote>
-<p>firewall-cmd –reload</p>
-</blockquote>
-<p>在云服武器上ping 百度看看能不能ping通，在其它电脑上ping云服务器看看能不能ping通</p>
-<h3 id="5-云服务器安装git及ssh免密"><a href="#5-云服务器安装git及ssh免密" class="headerlink" title="5.云服务器安装git及ssh免密"></a>5.云服务器安装git及ssh免密</h3><p>云服务器只负责拉取，不负责推送。</p>
-<p>先安装git</p>
-<blockquote>
-<p>yum –y install git</p>
-</blockquote>
-<p>键入git指令验证是否安装成功</p>
-<p>新建文件夹作为网站根目录</p>
-<blockquote>
-<p>mkdir www&#x2F;wwwroot</p>
-<p>chmod 777 www&#x2F;wwwroot</p>
-</blockquote>
-<p>生成ssh密钥</p>
-<blockquote>
-<p>ssh-keygen -t ecdsa -b 521 -C ‘<a href="mailto:&#121;&#x6f;&#x75;&#114;&#x6d;&#x61;&#105;&#108;&#97;&#x64;&#100;&#114;&#x65;&#115;&#115;&#64;&#x67;&#x6d;&#x61;&#x69;&#108;&#46;&#x63;&#111;&#109;">&#121;&#x6f;&#x75;&#114;&#x6d;&#x61;&#105;&#108;&#97;&#x64;&#100;&#114;&#x65;&#115;&#115;&#64;&#x67;&#x6d;&#x61;&#x69;&#108;&#46;&#x63;&#111;&#109;</a>‘ -f ~&#x2F;.ssh&#x2F;id_ecdsa</p>
-</blockquote>
-<p>连按3次回车</p>
-<p>接着提取公钥</p>
-<blockquote>
-<p>cat ~&#x2F;.ssh&#x2F;id_ecdsa.pub</p>
-</blockquote>
-<p>将公钥填到github的ssh列表中（在网页端配置，具体过程略）</p>
-<p>输入</p>
-<blockquote>
-<p>ssh -T <a href="mailto:&#x67;&#x69;&#116;&#64;&#x67;&#x69;&#116;&#104;&#x75;&#98;&#46;&#x63;&#x6f;&#109;">&#x67;&#x69;&#116;&#64;&#x67;&#x69;&#116;&#104;&#x75;&#98;&#46;&#x63;&#x6f;&#109;</a></p>
-</blockquote>
-<p>提示Successfully即为完成配置</p>
-<p>进入www&#x2F;wwwroot目录，克隆自己的git仓库，本地仓库名比如为cpblog</p>
-<blockquote>
-<p>git clone <a href="mailto:&#103;&#105;&#116;&#64;&#x67;&#105;&#x74;&#x68;&#117;&#98;&#x2e;&#x63;&#x6f;&#109;">&#103;&#105;&#116;&#64;&#x67;&#105;&#x74;&#x68;&#117;&#98;&#x2e;&#x63;&#x6f;&#109;</a>:xxxxxxx&#x2F;xxxxxx.github.io.git cpblog</p>
-</blockquote>
-<h3 id="6-本地环境安装"><a href="#6-本地环境安装" class="headerlink" title="6.本地环境安装"></a>6.本地环境安装</h3><p>本地电脑环境简介</p>
-<p>（Windows系统，需要git，nodejs，hexo，不需要Nginx）</p>
-<h4 id="装git"><a href="#装git" class="headerlink" title="装git"></a>装git</h4><p>本地也需安装git，主要负责内容推送，具体过程可参考互联网，本文略</p>
-<p>git可视化工具可使用GitExtension（Windows）或SourceTree（mac）</p>
-<h4 id="装nodejs"><a href="#装nodejs" class="headerlink" title="装nodejs"></a>装nodejs</h4><p>(为避免执行cmd权限不足，最好不要装到C盘，建议路径 D:\nodejs，且放开这个目录的用户访问权限)</p>
-<p><a target="_blank" rel="noopener" href="https://nodejs.org/en/">https://nodejs.org/en/</a></p>
-<p>在 nodejs 文件夹中新建两个空文件夹node_cache、node_global，执行</p>
-<blockquote>
-<p>npm config set prefix “D:\nodejs\node_global”<br>npm config set cache “D:\nodejs\node_cache”</p>
-</blockquote>
-<h4 id="装hexo"><a href="#装hexo" class="headerlink" title="装hexo"></a>装hexo</h4><blockquote>
-<p>npm install -g hexo-cli</p>
-</blockquote>
-<p>配置hexo到环境变量PATH中</p>
-<p>D:\nodejs\node_global</p>
-<p>D盘新建目录D:\cpblog-hexo</p>
-<p>在这个目录下执行Git Bash，执行以下命令</p>
-<blockquote>
-<p>npm install -g hexo-cli<br>hexo g<br>hexo s</p>
-</blockquote>
-<p>然后在浏览器输入<a target="_blank" rel="noopener" href="http://localhost:4000/">http://localhost:4000/</a></p>
-<p>看能不能看见网页</p>
-<h3 id="7-部署自动化"><a href="#7-部署自动化" class="headerlink" title="7.部署自动化"></a>7.部署自动化</h3><p>最终效果：本地写文 -&gt; <u>上传github -&gt; 云服务器拉新git -&gt; 刷新网站</u></p>
-<p>下划线的部分均通过自动化命令实现</p>
-<p>主体思想：本地持有全套hexo工程+hexo环境，服务器有全套hexo工程，本地使用hexo g生成网页，将产生的修改全部推送到git上，再调用服务器的git命令进行拉取</p>
-<h4 id="设置本地免密操作服务器git命令"><a href="#设置本地免密操作服务器git命令" class="headerlink" title="设置本地免密操作服务器git命令"></a>设置本地免密操作服务器git命令</h4><p>将本地电脑的.ssh&#x2F;id_rsa.pub的内容粘贴至服务器的&#x2F;root&#x2F;.ssh&#x2F;authorized_keys文件中，这个文件可以粘贴多个key，换行即可</p>
-<h4 id="云服务器开放shell目录"><a href="#云服务器开放shell目录" class="headerlink" title="云服务器开放shell目录"></a>云服务器开放shell目录</h4><p>在本地操作</p>
-<p>在cpblog-hexo的git工程下创建shell文件夹，进入shell文件夹新建两个脚本文件deploy-server.sh和deploy.sh</p>
-<p>deploy-server.sh内容如下</p>
-<blockquote>
-<p>#服务器拉新<br>cd &#x2F;www&#x2F;wwwroot&#x2F;cpblog-hexo<br>git reset –hard<br>git clean -df<br>git pull</p>
-</blockquote>
-<p>deploy.sh内容如下</p>
-<blockquote>
-<p>#本地进行hexo发布 -&gt; 上传至git -&gt; 远端服务器拉新</p>
-<p>echo “&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;  Step1  &lt; hexo generate &gt;  &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;”<br>cd D:\cpblog-hexo<br>#hexo clean<br>hexo g</p>
-<p>echo “&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;  Step2  &lt; local git push &gt;  &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;”<br>git pull<br>git add -A<br>git commit -m “conventional update by deploy.sh”<br>git push</p>
-<p>echo “&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;  Step3  &lt; server git pull &gt;  &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;”<br>ssh root@服务器ip地址 bash &#x2F;www&#x2F;wwwroot&#x2F;cpblog-hexo&#x2F;shell&#x2F;deploy-server.sh</p>
-<p>echo “&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;           Finished           &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;”</p>
-</blockquote>
-<p>deploy.sh的作用：由本地调用，实现网站一键生成和部署</p>
-<p>deploy-server.sh的作用：由deploy.sh内部调用，实际发生在服务器端，用于拉新git</p>
-<p>因为本地脚本会调用服务器的deploy-server.sh，所以现在要去云服务器，给shell目录赋予777权限</p>
-<blockquote>
-<p>chmod 777 &#x2F;www&#x2F;wwwroot&#x2F;cpblog-hexo&#x2F;shell</p>
-</blockquote>
-<h4 id="最佳实践"><a href="#最佳实践" class="headerlink" title="最佳实践"></a>最佳实践</h4><p>本地写一篇文章，放在D:\cpblog-hexo\source\_posts路径下</p>
-<p>双击deploy.sh执行部署</p>
-<p>执行完毕后，就会发现网页刷新了</p>
-<h3 id="8-写文工具链"><a href="#8-写文工具链" class="headerlink" title="8.写文工具链"></a>8.写文工具链</h3><p>Typora + PicGo + github 实现最舒服的图片引用姿势</p>
-<p>Typora支持mac和Windows，但要收费（淘宝80元一个激活码）</p>
-<p>PicGo用于上传图片到github，相当于用github当图床</p>
-<p>Typora 和PicGo有很好的适性，只要拖拽一张图片到Typora里，就能自动上传到github</p>
-<p>最后提供一个飞书云文档转markdown工具<br><a target="_blank" rel="noopener" href="https://feishu2md.onrender.com/">https://feishu2md.onrender.com/</a>  </p>
+        <p>本文记录了书写博文时常用的Markdown语法和Html标签</p>
+<p>Markdown官方文档：<a target="_blank" rel="noopener" href="https://markdown.tw/">https://markdown.tw/</a><br><a target="_blank" rel="noopener" href="https://markdown.com.cn/basic-syntax/">https://markdown.com.cn/basic-syntax/</a><br>推荐阅读：<br><a target="_blank" rel="noopener" href="https://xuxiaoshi.gitee.io/Hexo%E9%97%AE%E9%A2%98-Hexo%E5%86%99%E4%BD%9C%E8%AF%AD%E6%B3%95%E6%8C%87%E5%8D%97/">https://xuxiaoshi.gitee.io/Hexo%E9%97%AE%E9%A2%98-Hexo%E5%86%99%E4%BD%9C%E8%AF%AD%E6%B3%95%E6%8C%87%E5%8D%97/</a><br>本博客网站是基于Bamboo主题修改的，以下是Bamboo作者的Markdown语法博客，实现了很多额外的效果。<br><a target="_blank" rel="noopener" href="https://yuang01.github.io/categories/%E5%89%8D%E7%AB%AF/">https://yuang01.github.io/categories/%E5%89%8D%E7%AB%AF/</a></p>
+<h2 id="文本"><a href="#文本" class="headerlink" title="文本"></a>文本</h2><h3 id="单行文本"><a href="#单行文本" class="headerlink" title="单行文本"></a>单行文本</h3><p>这是一行示例文本，没有任何语法规则。</p>
+<h3 id="多行文本"><a href="#多行文本" class="headerlink" title="多行文本"></a>多行文本</h3><p>这是第一行，在本行结尾处键入2个空格再回车，即可开启第二行，只键入回车是不会换行的。<br>这是第二行。</p>
+<h3 id="文本缩进与空格"><a href="#文本缩进与空格" class="headerlink" title="文本缩进与空格"></a>文本缩进与空格</h3><p>　本行采用了1个汉字的缩进，方法为在这句话前面键入一个<strong>全角空格</strong>。同样地，我们也可以键入多个全角空格实现多层次缩进。<br>　　　　本行采用了4个汉字（即8个字节）的缩进。在前方键入了4个全角空格。<br>　　　　在Markdown的语法中，半角空格无论连续打多少个，都只能产生1个空格，这和Word，记事本等软件的使用习惯截然不同。因此若想在文本中增加大量空隙，可以选择使用连续的全角空格。就　　像　　这　　样。<br><span id="jump1"></span></p>
+<h3 id="区块文本"><a href="#区块文本" class="headerlink" title="区块文本"></a>区块文本</h3><p>区块文本适用于展示诗歌，名言，代码等内容，语法为在文本段上下使用```包夹，例如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">　这是一段区块文本，能够拥有自己的框框，感觉这句话很重要。</span><br></pre></td></tr></table></figure>
+<p>此外，使用单个`包夹可以在一行文本内突出某些文字，例如<code>美丽且突出</code>的我</p>
+<h3 id="标题文本"><a href="#标题文本" class="headerlink" title="标题文本"></a>标题文本</h3><p>在行首插入1到6个# ，各对应到标题1到6阶，例如：  </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># 这是一级标题</span><br><span class="line">## 这是二级标题</span><br><span class="line">### 这是三级标题</span><br><span class="line">#### 这是四级标题</span><br><span class="line">##### 这是五级标题</span><br><span class="line">###### 这是六级标题</span><br></pre></td></tr></table></figure>
+<p>需要注意的是，只有1到4级标题才会被文章目录收录。</p>
+<p>以下为Bamboo主题的定制标题样式，依赖额外js代码实现，不属于基础的Markdown语法：  </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;% title h1, 这是一级标题 %&#125;</span><br><span class="line">&#123;% title h6, 这是六级标题, red %&#125;</span><br><span class="line">&#123;% titleB h5, 这是五级标题, #895546 %&#125;</span><br></pre></td></tr></table></figure>
+<h1 class="bamboo-h " id="这是一级标题48s44fupiw8">这是一级标题</h1><br/>
+<h6 class="bamboo-h red" id="这是六级标题m9doxt2d1k">这是六级标题</h6><br/>
+<h5 class="bamboo-h-b" id="这是五级标题1hy9b07ms3q" style="color:#895546!important">这是五级标题</h5><div></div>  
 
+<h3 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt;这是一个块引用</span><br><span class="line">&gt;&gt;这是一个二层块引用</span><br><span class="line">&gt;</span><br><span class="line">&gt;返回到第一层</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>这是一个块引用</p>
+<blockquote>
+<p>这是一个二层块引用</p>
+</blockquote>
+<p>返回到第一层</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt;这是一个块引用</span><br><span class="line">&gt;&gt;这是一个二层块引用</span><br><span class="line">&gt;这样无法返回到第一层</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>这是一个块引用</p>
+<blockquote>
+<p>这是一个二层块引用<br>这样无法返回到第一层</p>
+</blockquote>
+</blockquote>
+<h3 id="文本加粗，倾斜，上下标，删除线，下划线，大小号"><a href="#文本加粗，倾斜，上下标，删除线，下划线，大小号" class="headerlink" title="文本加粗，倾斜，上下标，删除线，下划线，大小号"></a>文本加粗，倾斜，上下标，删除线，下划线，大小号</h3><p>（MarkDown兼容HTML语言,可直接使用HTML的语法）<br>在Markdown中只需在文本前后打上星号,即可将包夹的文字<strong>加粗</strong>或<em>倾斜</em>：  </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">**想要加粗的内容**</span><br><span class="line">*想要倾斜的内容*</span><br></pre></td></tr></table></figure>
+<p><sup>上标</sup>和<sub>下标</sub>的写法：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">这是&lt;sup&gt;上标&lt;/sup&gt;和&lt;sub&gt;下标&lt;/sub&gt;</span><br></pre></td></tr></table></figure>
+<p><s>删除线</s>和<u>下划线</u>的写法：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;s&gt;删除线&lt;/s&gt;和&lt;u&gt;下划线&lt;/u&gt;</span><br></pre></td></tr></table></figure>
+<p><small>小号文本</small> 正常文本 <big>大号文本</big>：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;small&gt;小号文本&lt;/small&gt; 正常文本 &lt;big&gt;大号文本&lt;/big&gt;</span><br></pre></td></tr></table></figure>
+<p>文本大小号的标签可以嵌套，例如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;big&gt;&lt;big&gt;&lt;big&gt;&lt;big&gt;&lt;big&gt;&lt;big&gt;&lt;big&gt;超巨大号文本&lt;/big&gt;&lt;/big&gt;&lt;/big&gt;&lt;/big&gt;&lt;/big&gt;&lt;/big&gt;&lt;/big&gt; </span><br></pre></td></tr></table></figure>
+<p><big><big><big><big><big><big><big>超巨大号文本</big></big></big></big></big></big></big>   </p>
+<p>以下为不太常用到的文本修饰，属于Bamboo主题的定制样式，依赖额外js代码实现，不属于基础的Markdown语法：  </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">带 &#123;% emp 着重号 %&#125; 的文本</span><br><span class="line">带 &#123;% wavy 波浪线 %&#125; 的文本</span><br><span class="line">键盘样式的文本 &#123;% kbd command %&#125; + &#123;% kbd D %&#125;</span><br><span class="line">密码样式的文本：&#123;% psw 这里没有验证码 %&#125;</span><br><span class="line">&lt;span id=&quot;jump1&quot;&gt;&lt;/span&gt;</span><br></pre></td></tr></table></figure>
+<p>带 <emp>着重号</emp> 的文本<br>带 <wavy>波浪线</wavy> 的文本<br>键盘样式的文本 <kbd>command</kbd> + <kbd>D</kbd><br>密码样式的文本：<psw>您的验证码为：****</psw>  </p>
+<h3 id="超链接"><a href="#超链接" class="headerlink" title="超链接"></a>超链接</h3><p><a target="_blank" rel="noopener" href="https://www.baidu.com/">链接到百度</a><br><a href="/about/">链接到站内页</a><br><a target="_blank" rel="noopener" href="https://www.baidu.com/img/bd_logo1.png?where=super">网络图片</a><br><a href="/medias/logo.jpg">站点icon</a><br><a href="#jump1">跳转到页面内某一位置</a></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[链接到百度](https://www.baidu.com)  </span><br><span class="line">[链接到站内页](/about/)</span><br><span class="line">[网络图片](https://www.baidu.com/img/bd_logo1.png?where=super)</span><br><span class="line">[站点icon](/medias/logo.jpg)</span><br><span class="line">[跳转到页面内某一位置](#jump1)</span><br><span class="line">注意，需要在跳转的目的地写上对应标签，jump1名字可自定义</span><br><span class="line">&lt;span id=&quot;jump1&quot;&gt;&lt;/span&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="分割线"><a href="#分割线" class="headerlink" title="分割线"></a>分割线</h3><p>可以在一行中用三个或以上的星号、减号、下划线来建立一个分割线。例如：<br>我是分割线上面的文字</p>
+<hr>
+<p>我是分割线下面的文字</p>
+<h3 id="小图标"><a href="#小图标" class="headerlink" title="小图标"></a>小图标</h3><p>想了解小图标更多使用方式，可参考以下教程：<br><a target="_blank" rel="noopener" href="https://www.runoob.com/font-awesome/fontawesome-tutorial.html">Font Awesome 图标</a>  </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;i class=&quot;fa fa-pencil&quot;&gt;&lt;/i&gt; 铅笔　</span><br><span class="line">&lt;i class=&quot;fa fa-cloud-upload&quot;&gt;&lt;/i&gt; 上传  </span><br><span class="line">&lt;i class=&quot;fa fa-download&quot;&gt;&lt;/i&gt; 下载　</span><br><span class="line">&lt;i class=&quot;fa fa-download fa-lg&quot;&gt;&lt;/i&gt; 下载变大 33%　</span><br><span class="line">&lt;i class=&quot;fa fa-download fa-2x&quot; style=&quot;color:red;&quot;&gt;&lt;/i&gt; 下载两倍大</span><br><span class="line">&lt;i class=&quot;fa fa-refresh fa-spin&quot;&gt;&lt;/i&gt;  fa-spin 类可以让图标旋转  </span><br><span class="line">&lt;i class=&quot;fa fa-spinner fa-pulse&quot;&gt;&lt;/i&gt; fa-pulse 类可以使图标以 8 步为周期进行旋转。</span><br></pre></td></tr></table></figure>
+<p><i class="fa fa-pencil"></i> 铅笔<br><i class="fa fa-download"></i> 下载　<br><i class="fa fa-download fa-lg"></i> 下载变大(33%)　<br><i class="fa fa-download fa-2x" style="color:red;"></i> 下载两倍大且变成红色<br><i class="fa fa-refresh fa-spin"></i>  fa-spin 类可以让图标旋转<br><i class="fa fa-spinner fa-pulse"></i> fa-pulse 类可以使图标以 8 步为周期进行旋转。</p>
+<h3 id="文本变色"><a href="#文本变色" class="headerlink" title="文本变色"></a>文本变色</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;font color=&quot;red&quot;&gt;红色&lt;/font&gt;</span><br><span class="line">&lt;font color=&quot;#00D239&quot;&gt;绿色&lt;/font&gt;  //00D239为十六进制RGB颜色代码，前两位为R，中间两位为G，后两位为B</span><br></pre></td></tr></table></figure>
+<p><font color="red">变成红色后，</font><font color="#00D239">我又变成了绿色</font></p>
+<h3 id="文本底色"><a href="#文本底色" class="headerlink" title="文本底色"></a>文本底色</h3><p>添加文本底色可以模拟记号笔的效果：  </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">本文仅适合&lt;font style=&quot;background: orange&quot;&gt;18岁以上&lt;/font&gt;儿童观看</span><br></pre></td></tr></table></figure>
+<p>本文仅适合<font style="background: orange">18岁以上</font>儿童观看</p>
+<h3 id="特殊符号"><a href="#特殊符号" class="headerlink" title="特殊符号"></a>特殊符号</h3><p>以下列出了一些特殊符号，可在博文中按需使用  </p>
+<p>▍▏➥→☛➨☑✔✘✚☷⊙●○⊕◎Θ⊙¤㊣㈱★☆◆◇◣◢◥▲▼⊿◤◥ ▷◁▶◀△◇◆▽▂▃▄▅▆▇██■▓□〓≡ ╝╚╔ ╗╬ ═ ╓ ╩ ┠ ┨┯ ┷┏┓┗┛┳⊥『』┌ ┐└ ┘∟↑↓→←↘↙┇┅ ﹉﹊﹍﹎╭ ╮╰ ╯∵∴‖︴﹏﹋﹌〖〗·≈～※∪∈の℡§∮ξ№∑⌒ζω＊≮≯ ＋－×÷±／＝∫∝ ∧∨∏‖∠≌∽Ψ〓￥〒￠￡♀♂√∩¤≡①②③④⑤⑥⑦⑧⑨⑩⑴⑵⑶⑷⑸⑹⑺⑻⑼⑽⑾⑿⒀⒁⒂⒃⒄⒅⒆⒇</p>
+<h3 id="左右对齐，居中"><a href="#左右对齐，居中" class="headerlink" title="左右对齐，居中"></a>左右对齐，居中</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Mr.Cindy，你好：</span><br><span class="line">&lt;center&gt;这是居中的写法&lt;/center&gt;</span><br><span class="line">&lt;div style=&quot;text-align:right&quot;&gt;2023年1月23日&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<p>Mr.Cindy，你好：</p>
+<center>这是居中的写法</center>
+<div style="text-align:right">2023年1月23日</div>
+
+<h2 id="图表"><a href="#图表" class="headerlink" title="图表"></a>图表</h2><h3 id="列表"><a href="#列表" class="headerlink" title="列表"></a>列表</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">1. 第一项：</span><br><span class="line">    - 第一项嵌套的第一个元素</span><br><span class="line">    - 第一项嵌套的第二个元素</span><br><span class="line">      - 第一项嵌套的第二个元素嵌套的第一个元素</span><br><span class="line">        -  第一项嵌套的第二个元素嵌套的第一个元素嵌套的第一个元素</span><br><span class="line">2. 第二项：</span><br><span class="line">    - 第二项嵌套的第一个元素</span><br><span class="line">      - 第二项嵌套的第一个元素嵌套的第一个元素</span><br><span class="line">    - 第二项嵌套的第二元素</span><br></pre></td></tr></table></figure>
+<ol>
+<li>第一项：<ul>
+<li>第一项嵌套的第一个元素</li>
+<li>第一项嵌套的第二个元素<ul>
+<li>第一项嵌套的第二个元素嵌套的第一个元素<ul>
+<li>第一项嵌套的第二个元素嵌套的第一个元素嵌套的第一个元素</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>第二项：<ul>
+<li>第二项嵌套的第一个元素<ul>
+<li>第二项嵌套的第一个元素嵌套的第一个元素</li>
+</ul>
+</li>
+<li>第二项嵌套的第二元素</li>
+</ul>
+</li>
+</ol>
+<h3 id="表格"><a href="#表格" class="headerlink" title="表格"></a>表格</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">|水果|颜色|甜度|价格|</span><br><span class="line">|---|:---:|:---|---:| </span><br><span class="line">|草莓|红色|★|160|</span><br><span class="line">|葡萄干|紫|★★★|5000|</span><br><span class="line">|默认对齐|居中|左对齐|右对齐|</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>水果</th>
+<th align="center">颜色</th>
+<th align="left">甜度</th>
+<th align="right">价格</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>草莓</td>
+<td align="center">红色</td>
+<td align="left">★</td>
+<td align="right">160</td>
+</tr>
+<tr>
+<td>葡萄干</td>
+<td align="center">紫</td>
+<td align="left">★★★</td>
+<td align="right">5000</td>
+</tr>
+<tr>
+<td>默认对齐</td>
+<td align="center">居中</td>
+<td align="left">左对齐</td>
+<td align="right">右对齐</td>
+</tr>
+</tbody></table>
+<p>（在手机浏览器不生效？博主也发现了这个问题）</p>
+<h3 id="选项卡"><a href="#选项卡" class="headerlink" title="选项卡"></a>选项卡</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#123;% tabs tab-id %&#125;</span><br><span class="line">&lt;!-- tab 栏目1 --&gt;</span><br><span class="line">栏目1的内容</span><br><span class="line">&lt;!-- endtab --&gt;</span><br><span class="line">&lt;!-- tab 栏目2 --&gt;</span><br><span class="line">栏目2的内容</span><br><span class="line">&lt;!-- endtab --&gt;</span><br><span class="line">&#123;% endtabs %&#125;</span><br></pre></td></tr></table></figure>
+<div class="tabs" id="tab-id"><ul class="nav-tabs"><li class="tab active"><a class="#tab-id-1">栏目1</a></li><li class="tab"><a class="#tab-id-2">栏目2</a></li></ul><div class="tab-content"><div class="tab-pane active" id="tab-id-1"><p>栏目1的内容</p></div><div class="tab-pane" id="tab-id-2"><p>栏目2的内容</p></div></div></div>
+
+<h3 id="时间线"><a href="#时间线" class="headerlink" title="时间线"></a>时间线</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&#123;% timeline %&#125;</span><br><span class="line">&#123;% timenode 2021-01-01 [1.0.3 -&gt; 1.0.3](https://github.com/yuang01/hexo-theme-bamboo) %&#125;</span><br><span class="line">完成了工作A</span><br><span class="line">工作B继续延期</span><br><span class="line">&#123;% endtimenode %&#125;</span><br><span class="line">&#123;% timenode 2020-08-15 [1.0.2 -&gt; 1.0.2](https://github.com/yuang01/hexo-theme-bamboo) %&#125;</span><br><span class="line">工作B决定延期</span><br><span class="line">&#123;% endtimenode %&#125;</span><br><span class="line">&#123;% timenode 2020-08-08 [1.0.0 -&gt; 1.0.0](https://github.com/yuang01/hexo-theme-bamboo) %&#125;</span><br><span class="line">进行工作A</span><br><span class="line">进行工作B</span><br><span class="line">&#123;% endtimenode %&#125;</span><br><span class="line">&#123;% endtimeline %&#125;</span><br></pre></td></tr></table></figure>
+<div class="timeline"><div class="timenode"><div class="meta"><p><p>2021-01-01 <a target="_blank" rel="noopener" href="https://github.com/yuang01/hexo-theme-bamboo">1.0.3 -&gt; 1.0.3</a></p>
+</p></div><div class="body"><p>完成了工作A<br>工作B继续延期</p></div></div>
+<div class="timenode"><div class="meta"><p><p>2020-08-15 <a target="_blank" rel="noopener" href="https://github.com/yuang01/hexo-theme-bamboo">1.0.2 -&gt; 1.0.2</a></p>
+</p></div><div class="body"><p>工作B决定延期</p></div></div>
+<div class="timenode"><div class="meta"><p><p>2020-08-08 <a target="_blank" rel="noopener" href="https://github.com/yuang01/hexo-theme-bamboo">1.0.0 -&gt; 1.0.0</a></p>
+</p></div><div class="body"><p>进行工作A<br>进行工作B</p></div></div></div>
+
+<h2 id="多媒体"><a href="#多媒体" class="headerlink" title="多媒体"></a>多媒体</h2><h3 id="图片"><a href="#图片" class="headerlink" title="图片"></a>图片</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;img src=&quot;https://www.baidu.com/img/bd_logo1.png?where=super&quot; width=&quot;50%&quot; height=&quot;50%&quot; /&gt; </span><br></pre></td></tr></table></figure>
+<p>效果：<br><img src="https://www.baidu.com/img/bd_logo1.png?where=super" class="lazyload placeholder" data-srcset="https://www.baidu.com/img/bd_logo1.png?where=super" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" width="50%" height="50%" /> </p>
+<h3 id="网站小窗"><a href="#网站小窗" class="headerlink" title="网站小窗"></a>网站小窗</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;iframe name=&quot;斗鱼首页&quot; width=&quot;100%&quot; height=&quot;540px&quot; frameborder=&quot;0&quot; src=&quot;https://www.douyu.com/&quot;&gt;&lt;/iframe&gt;</span><br></pre></td></tr></table></figure>
+<p>效果：</p>
+<iframe name="斗鱼首页" width="100%" height="540px" frameborder="0" src="https://www.douyu.com/"></iframe>  
+
+<h3 id="视频"><a href="#视频" class="headerlink" title="视频"></a>视频</h3><h4 id="引用视频源"><a href="#引用视频源" class="headerlink" title="引用视频源"></a>引用视频源</h4><p>该方式引用视频无法在markdown编辑软件中实时预览</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;% video  https://assets.mixkit.co/videos/preview/mixkit-down-the-river-in-a-bamboo-canoe-6804-large.mp4 %&#125;</span><br></pre></td></tr></table></figure>
+<p>效果：</p>
+<div class="video"><video controls preload><source src='https://assets.mixkit.co/videos/preview/mixkit-down-the-river-in-a-bamboo-canoe-6804-large.mp4' type='video/mp4'>Your browser does not support the video tag.</video></div>
+
+<p>换用<code>&lt;video&gt;</code>标签的方式则可以实时预览  </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;video width=&quot;480&quot; controls loop align-items: center src=&quot;https://assets.mixkit.co/videos/preview/mixkit-down-the-river-in-a-bamboo-canoe-6804-large.mp4&quot; /&gt;</span><br></pre></td></tr></table></figure>
+
+<video width="480" controls loop align-items: center src="https://assets.mixkit.co/videos/preview/mixkit-down-the-river-in-a-bamboo-canoe-6804-large.mp4" />
       </div>
       <div class="post-tags-categories">
         
@@ -878,7 +867,7 @@
     </li>
     <li class="post-copyright-link">
     <strong>link:  </strong>
-    <a href="/2024/02/01/bo-ke-da-jian-jiao-cheng-17-yun-fu-wu-qi-da-jian-bo-ke-wang-zhan-quan-tao-liu-cheng/" target="_blank" title="云服务器搭建博客网站全套流程（浓缩版）">http://epya15.fun/2024/02/01/bo-ke-da-jian-jiao-cheng-17-yun-fu-wu-qi-da-jian-bo-ke-wang-zhan-quan-tao-liu-cheng/</a>
+    <a href="/2023/01/09/bo-ke-da-jian/markdown-chang-yong-yu-fa/" target="_blank" title="Markdown常用语法">http://epya15.fun/2023/01/09/bo-ke-da-jian/markdown-chang-yong-yu-fa/</a>
     </li>
     <li class="post-copyright-license">
       <strong>Copyright notice:   </strong>
@@ -896,21 +885,52 @@
 
 
 
+  
+  <div class="post-nav-prev post-nav-item">
+    <div class="post-nav-img" style="background-size: cover; 
+      background-position: center center;">
+      <img class="lazyload lazyload placeholder" src="/images/cover_rebbitbg.jpg" class="lazyload placeholder" data-srcset="/images/cover_rebbitbg.jpg" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" alt="">
+    </div>
+    <a href="/2023/01/18/feng-mian/wang-qi-feng-mian-2023-01-18-xiong-mao-tu-zhen-gui-ying-xiang-zi-liao/" class="post-nav-link">
+      <div class="title">
+        <i class="fas fa-angle-left"></i> Prev:
+        <div class="title-text">往期封面2023/01/18 熊猫兔珍贵影像资料</div>
+      </div>
+      
+      <!-- <div class="content">
+          
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+      </div> -->
+    </a>
+  </div>
+
 
 
   
   <div class="post-nav-next post-nav-item">
     <div class="post-nav-img" style="background-size: cover; 
       background-position: center center;">
-      <img class="lazyload lazyload placeholder" src="/medias/1.jpg" class="lazyload placeholder" data-srcset="/medias/1.jpg" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" src="" alt="">
+      <img class="lazyload lazyload placeholder" src="https://raw.githubusercontent.com/oO0OoOo/cpblog-hexo/main/source/images/591039263be09.jpg" class="lazyload placeholder" data-srcset="https://raw.githubusercontent.com/oO0OoOo/cpblog-hexo/main/source/images/591039263be09.jpg" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" src="" alt="">
     </div>
-    <a href="/2024/01/12/dui-chao-guo-2g-de-apk-chong-xin-jin-xing-4-zi-jie-dui-qi-bing-zuo-v1-v2-qian-ming/" class="post-nav-link">
+    <a href="/2023/01/09/ce-shi-wen-dang/" class="post-nav-link">
       <div class="title">
         Next: <i class="fas fa-angle-right"></i>
-        <div class="title-text"></div>
+        <div class="title-text">测试文档</div>
       </div>
       <!-- <div class="content">
-        title: 对超过2G的apk重新进行4字节对齐并做v1+v2签名author: cypunberk.admintag
+        撒大声地
+
       </div> -->
     </a>
   </div>
@@ -1046,7 +1066,7 @@
   <div class='content'>
     <div class="toc-main">
       <div class="toc-content">
-        <!-- <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E9%85%8D%E7%BD%AE%E5%AE%89%E5%85%A8%E7%BB%84"><span class="toc-text">1.配置安全组</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%AE%89%E8%A3%85%E5%AE%9D%E5%A1%94"><span class="toc-text">2.安装宝塔</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E5%AE%89%E8%A3%85Nginx"><span class="toc-text">3.安装Nginx</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E9%85%8D%E7%BD%AE%E9%98%B2%E7%81%AB%E5%A2%99"><span class="toc-text">4.配置防火墙</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%AE%89%E8%A3%85git%E5%8F%8Assh%E5%85%8D%E5%AF%86"><span class="toc-text">5.云服务器安装git及ssh免密</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-%E6%9C%AC%E5%9C%B0%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85"><span class="toc-text">6.本地环境安装</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%A3%85git"><span class="toc-text">装git</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%A3%85nodejs"><span class="toc-text">装nodejs</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%A3%85hexo"><span class="toc-text">装hexo</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-%E9%83%A8%E7%BD%B2%E8%87%AA%E5%8A%A8%E5%8C%96"><span class="toc-text">7.部署自动化</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AE%BE%E7%BD%AE%E6%9C%AC%E5%9C%B0%E5%85%8D%E5%AF%86%E6%93%8D%E4%BD%9C%E6%9C%8D%E5%8A%A1%E5%99%A8git%E5%91%BD%E4%BB%A4"><span class="toc-text">设置本地免密操作服务器git命令</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%BC%80%E6%94%BEshell%E7%9B%AE%E5%BD%95"><span class="toc-text">云服务器开放shell目录</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5"><span class="toc-text">最佳实践</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-%E5%86%99%E6%96%87%E5%B7%A5%E5%85%B7%E9%93%BE"><span class="toc-text">8.写文工具链</span></a></li></ol> -->
+        <!-- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E6%9C%AC"><span class="toc-text">文本</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%95%E8%A1%8C%E6%96%87%E6%9C%AC"><span class="toc-text">单行文本</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%9A%E8%A1%8C%E6%96%87%E6%9C%AC"><span class="toc-text">多行文本</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E6%9C%AC%E7%BC%A9%E8%BF%9B%E4%B8%8E%E7%A9%BA%E6%A0%BC"><span class="toc-text">文本缩进与空格</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8C%BA%E5%9D%97%E6%96%87%E6%9C%AC"><span class="toc-text">区块文本</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%87%E9%A2%98%E6%96%87%E6%9C%AC"><span class="toc-text">标题文本</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%BF%99%E6%98%AF%E4%B8%80%E7%BA%A7%E6%A0%87%E9%A2%9848s44fupiw8"><span class="toc-text">这是一级标题</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#%E8%BF%99%E6%98%AF%E5%85%AD%E7%BA%A7%E6%A0%87%E9%A2%98m9doxt2d1k"><span class="toc-text">这是六级标题</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%BF%99%E6%98%AF%E4%BA%94%E7%BA%A7%E6%A0%87%E9%A2%981hy9b07ms3q"><span class="toc-text">这是五级标题</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%95%E7%94%A8"><span class="toc-text">引用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E6%9C%AC%E5%8A%A0%E7%B2%97%EF%BC%8C%E5%80%BE%E6%96%9C%EF%BC%8C%E4%B8%8A%E4%B8%8B%E6%A0%87%EF%BC%8C%E5%88%A0%E9%99%A4%E7%BA%BF%EF%BC%8C%E4%B8%8B%E5%88%92%E7%BA%BF%EF%BC%8C%E5%A4%A7%E5%B0%8F%E5%8F%B7"><span class="toc-text">文本加粗，倾斜，上下标，删除线，下划线，大小号</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B6%85%E9%93%BE%E6%8E%A5"><span class="toc-text">超链接</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%86%E5%89%B2%E7%BA%BF"><span class="toc-text">分割线</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B0%8F%E5%9B%BE%E6%A0%87"><span class="toc-text">小图标</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E6%9C%AC%E5%8F%98%E8%89%B2"><span class="toc-text">文本变色</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E6%9C%AC%E5%BA%95%E8%89%B2"><span class="toc-text">文本底色</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%89%B9%E6%AE%8A%E7%AC%A6%E5%8F%B7"><span class="toc-text">特殊符号</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B7%A6%E5%8F%B3%E5%AF%B9%E9%BD%90%EF%BC%8C%E5%B1%85%E4%B8%AD"><span class="toc-text">左右对齐，居中</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%BE%E8%A1%A8"><span class="toc-text">图表</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%97%E8%A1%A8"><span class="toc-text">列表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A1%A8%E6%A0%BC"><span class="toc-text">表格</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%89%E9%A1%B9%E5%8D%A1"><span class="toc-text">选项卡</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%97%B6%E9%97%B4%E7%BA%BF"><span class="toc-text">时间线</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%9A%E5%AA%92%E4%BD%93"><span class="toc-text">多媒体</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%BE%E7%89%87"><span class="toc-text">图片</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BD%91%E7%AB%99%E5%B0%8F%E7%AA%97"><span class="toc-text">网站小窗</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%86%E9%A2%91"><span class="toc-text">视频</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BC%95%E7%94%A8%E8%A7%86%E9%A2%91%E6%BA%90"><span class="toc-text">引用视频源</span></a></li></ol></li></ol></li></ol> -->
         <div class="toc"></div>
       </div>
     </div>
@@ -1079,7 +1099,7 @@
             
 
             <div class="post-img-box">
-              <a href="/2024/02/01/bo-ke-da-jian-jiao-cheng-17-yun-fu-wu-qi-da-jian-bo-ke-wang-zhan-quan-tao-liu-cheng/" class="post-img " style="background-size: cover; 
+              <a href="/2024/02/01/bo-ke-da-jian/yun-fu-wu-qi-da-jian-bo-ke-wang-zhan-quan-tao-liu-cheng/" class="post-img " style="background-size: cover; 
                 background-position: center center;">
                 <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="https://raw.githubusercontent.com/oO0OoOo/cpblog-hexo/main/source/images/202402021405279.jpg" class="lazyload placeholder" data-srcset="https://raw.githubusercontent.com/oO0OoOo/cpblog-hexo/main/source/images/202402021405279.jpg" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" alt="">
               </a>
@@ -1090,7 +1110,7 @@
                   <span class="post-date">02-01</span>
                 
               </div>
-              <a class="post-title" href="/2024/02/01/bo-ke-da-jian-jiao-cheng-17-yun-fu-wu-qi-da-jian-bo-ke-wang-zhan-quan-tao-liu-cheng/">云服务器搭建博客网站全套流程（浓缩版）</a>
+              <a class="post-title" href="/2024/02/01/bo-ke-da-jian/yun-fu-wu-qi-da-jian-bo-ke-wang-zhan-quan-tao-liu-cheng/">云服务器搭建博客网站全套流程（浓缩版）</a>
             </div>
           </div>
         
@@ -1163,7 +1183,7 @@
             
 
             <div class="post-img-box">
-              <a href="/2023/02/07/wang-qi-feng-mian-2023-02-07-sha-te-mao/" class="post-img " style="background-size: cover; 
+              <a href="/2023/02/07/feng-mian/wang-qi-feng-mian-2023-02-07-sha-te-mao/" class="post-img " style="background-size: cover; 
                 background-position: center center;">
                 <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="https://i.328888.xyz/2023/02/08/rQNjH.jpeg" class="lazyload placeholder" data-srcset="https://i.328888.xyz/2023/02/08/rQNjH.jpeg" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" alt="">
               </a>
@@ -1174,7 +1194,7 @@
                   <span class="post-date">02-07</span>
                 
               </div>
-              <a class="post-title" href="/2023/02/07/wang-qi-feng-mian-2023-02-07-sha-te-mao/">往期封面2023/02/07 沙特猫</a>
+              <a class="post-title" href="/2023/02/07/feng-mian/wang-qi-feng-mian-2023-02-07-sha-te-mao/">往期封面2023/02/07 沙特猫</a>
             </div>
           </div>
         
