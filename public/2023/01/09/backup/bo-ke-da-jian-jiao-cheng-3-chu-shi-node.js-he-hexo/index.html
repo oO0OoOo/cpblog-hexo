@@ -11,7 +11,7 @@
   <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-  <title>博客搭建教程8 - 在CentOS云服务器利用Nginx搭建Hexo博客 | 赛朋博客</title>
+  <title>博客搭建教程3 - 初识Node.js和Hexo | 赛朋博客</title>
 
   <link rel="icon" type="image/jpeg" href="/favicon.jpg">
   <link rel="stylesheet" href="https://at.alicdn.com/t/font_1911880_c1nvbyezg17.css">
@@ -647,14 +647,14 @@
 
 
 <div class="post-detail-header" id="thumbnail_canvas" style="background-repeat: no-repeat; background-size: cover; 
-  background-position: center center;position: relative;background-image:url('https://img-blog.csdnimg.cn/img_convert/ce4a8a59fdfee8f3106a3a0851558c76.png')">
+  background-position: center center;position: relative;background-image:url('https://pic4.zhimg.com/v2-8d3c4ce9c9fba8a59a092eecba504585_1440w.jpg')">
   <div class="post-detail-header-mask"></div>
   <canvas id="header_canvas"style="position:absolute;bottom:0;pointer-events:none;"></canvas>
   
   <div class="post-detail-header_info-box">
     <div class="title-box">
       <span class="title">
-        博客搭建教程8 - 在CentOS云服务器利用Nginx搭建Hexo博客
+        博客搭建教程3 - 初识Node.js和Hexo
       </span>
     </div>
     
@@ -700,16 +700,9 @@
   <div class="main-content">
     <article class="post post-detail">
       <div class="post-content">
-        <p>关于图形界面：<br>有的云服务器将CentOS系统的图形界面阉割，如果想和Windows系统一样看到图形界面，需要额外进行安装。<br>但是要注意，虽然图形界面在交互上比命令行更加直观，但是会占用大约500MB的内存，这也就意味着，如果你购买的服务器内存小于500MB，一定是无法安装图形界面的。实际上，1G内存的服务器也不建议安装图形界面，在实测中，1G内存的服务器运行图形界面会非常卡，打开一个firefox浏览器有概率直接让服务器卡死。而2G及以上的服务器安装图形界面则是无压力的，实测在2G服务器上运行CentOS系统+GNOME桌面，内存占用在50%左右。<br>接下来的教程中都是以命令行的方式操作的，如果你可以接受命令行，那就尽量不要安装图形界面，毕竟它会占用一部分服务器的资源，影响到服务器的性能。<br>如果你实在希望使用图形界面的方式操作，可以按照如下教程安装。<br>在图形界面中打开【终端】也可以执行命令行，实测在1G内存情况下在图形界面执行【终端】是没有问题的。（但不要再开更多窗口了）<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_45115705/article/details/100553983">https://blog.csdn.net/weixin_45115705/article/details/100553983</a></p>
-<p>Q：找不到usr文件夹？<br>A：可以试试点击桌面的【主文件夹】图表，或者找到桌面左上角的【应用程序&#x2F;附件&#x2F;文件】,在打开的资源管理器窗口找到【其他位置】选项，点击后找到【计算机】，再点击即可看到盘根的全部文件夹，usr就在其中。<br>在服务器端或许由于缺少播放视频的插件而无法预览视频，但这本就不是服务器的职责，我们只要确保该文件被平安地放到指定的目录，并且可以被外部网络访问到即可。<br>接下来我们要做的工作就是将该视频部署到某一个网络地址，生成可以被访问的外链。</p>
-<p>在linux安装nginx，可参考这篇文章，博主实测没有问题<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/t8116189520/article/details/81909574">https://blog.csdn.net/t8116189520/article/details/81909574</a><br>Q：我是图形界面门徒，如何在CentOS图形界面系统上输入命令？<br>A：在桌面左上角应用程序中找到【系统工具&#x2F;终端】即可。请注意，通过此种方式运行终端，要注意自己是否拥有root权限，如果不是root用户，需要切到root用户，或者在命令前加sudo指令。否则，你在安装nginx过程中会频繁提示【您需要root权限执行此命令】,【permission denied】，【you need to be root to xxxx】等报错。</p>
-<p>Q：如何获取root权限？<br>A：可以执行su root切到root用户，选择root作为用户名登录，即可获得root权限。如果是图形界面，你可以选择注销当前账号的登录，回到登录界面，然后选择以其他身份登入，以此切换到root账号。</p>
-<p>nginx安装完毕后，为了今后使用方便，将nginx配置到环境变量<br>echo ‘export PATH&#x3D;&#x2F;usr&#x2F;local&#x2F;nginx&#x2F;sbin:$PATH’ &gt;&gt; &#x2F;etc&#x2F;profile<br>并使其生效<br>source &#x2F;etc&#x2F;profile<br>接下来直接输入nginx -v,看看环境变量有没有配置成功</p>
-<p>按照该命令安装nginx后，nginx所在的目录为usr&#x2F;local&#x2F;nginx，该文件夹内的nginx-1.13.7.tar.gz是安装包文件，可以删除了<br>删除的命令是：sudo rm -rf nginx-1.13.7.tar.gz</p>
-<p>配置nginx过程中可能涉及到使用命令行修改文件内容,以下博客介绍的比较好，建议参考<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_51515673/article/details/124390606">https://blog.csdn.net/qq_51515673/article/details/124390606</a>  </p>
-<p>配置完nginx后还需要开启防火墙，并且确保自己设置nginx网站端口是开放的，可参考如下文章<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/szw906689771/article/details/121647887">https://blog.csdn.net/szw906689771/article/details/121647887</a><br>下面的文章介绍了查看端口是否开启的方法：<br><a target="_blank" rel="noopener" href="https://www.muzhuangnet.com/show/78535.html">https://www.muzhuangnet.com/show/78535.html</a><br>比如你要开启8089端口，那么就是下面这句话：<br>firewall-cmd –query-port&#x3D;8089&#x2F;tcp<br>如果返回的是no，则说明端口还没有打开<br>开启8089端口的命令：<br>firewall-cmd –add-port&#x3D;8089&#x2F;tcp –permanent<br>开启后需再次重启防火墙，才能生效<br>firewall-cmd –reload<br>然后再查询一次端口是否打开，如果是yes，就成功了。<br>Q：我还是no，怎么办？<br>A：你在使用云服务器吗？那可能还需要在服务器控制台的安全组中创建规则，在【入方向规则】中添加对应的端口</p>
-<p>开启nginx：nginx -c &#x2F;usr&#x2F;local&#x2F;nginx&#x2F;conf&#x2F;nginx.conf<br>（nginx关闭命令：nginx -s stop）<br>（nginx重启命令：nginx -s reload）<br>如果服务器有安装GNOME图形界面，接下来可以打开服务器的firefox浏览器，在地址栏输入本机公网IP:端口号，看看有没有显示nginx的welcome界面，如果看到了，说明nginx服务启动成功。如果操作系统没有图形界面，可以通过curl命令访问页面。<br>然后在其它机器上访问http:&#x2F;&#x2F;服务器公网IP:端口号，看看能否出现nginx的welcome页面。<br>如果你是严格按照文档配置的nginx，那么现在，&#x2F;usr&#x2F;local&#x2F;nginx&#x2F;html是网站资源的根目录，所有的资源都必须在此目录下才可以被访问到<br>Q：可以更换目录吗？<br>A：可以，只需要修改&#x2F;usr&#x2F;local&#x2F;nginx&#x2F;conf&#x2F;nginx.conf文件重新指定目录即可，可以在网上轻松搜到关于这个文件的修改方法。<br>nginx.conf这个文件有很多用处，在本教程的其它文章中，我们还会涉及到这个文件来实现防盗链功能。<br>接下来我们都以&#x2F;usr&#x2F;local&#x2F;nginx&#x2F;html作为资源根目录来举例。<br>现在做一个测试，我们要在nginx的文件夹下放置一个资源，然后尝试在其它设备上访问<br>首先在服务器的nginx&#x2F;html目录下创建新文件夹Images<br>找一台其它设备，比如一台windows电脑，使用scp指令拷贝一个图片到服务器，例如：（注意图片原路径和ip地址不能照抄）<br>scp myImage.jpg <a href="mailto:&#114;&#x6f;&#x6f;&#116;&#x40;&#49;&#x39;&#50;&#x2e;&#49;&#54;&#x38;&#x2e;&#49;&#46;&#49;&#48;&#52;">&#114;&#x6f;&#x6f;&#116;&#x40;&#49;&#x39;&#50;&#x2e;&#49;&#54;&#x38;&#x2e;&#49;&#46;&#49;&#48;&#52;</a>:&#x2F;usr&#x2F;local&#x2F;nginx&#x2F;html&#x2F;Images<br>然后在这台windows电脑打开浏览器访问该图片，地址栏中依旧填写本机公网IP:端口号，与此同时在后面加上文件路径，例如192.168.1.104:8089&#x2F;Images&#x2F;myImage.jpg<br>浏览器显示出图片了吗？如果显示出了图片，那么恭喜，你已经完成了第一次网站资源更新。  </p>
-<p>注意：重启服务器时，nginx会重新回到关闭状态，防火墙也可能会关闭，需要留意。  开机后可能需要执行的操作：<br>重新开启防火墙：systemctl start firewalld<br>重新启动nginx：nginx</p>
+        <p>本篇内容比较简单，同样参考这位博主的文章<br><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/105715224">https://zhuanlan.zhihu.com/p/105715224</a></p>
+<p>按照上述流程做完后，基于Github Page的博客就已经搭建好了，你可以在浏览器上输入自己的Github仓库地址，就可以看到搭建好的Hexo博客了。</p>
+<p>接下来的教程里，我们将继续做如下几件事情来加深对网站的理解，增强管理能力，这些并非必要项，而且每篇教程都是独立的，可以选择有需要的部分阅读，未来博主也会随时扩充。<br>接下来教程的内容大致如下，看看有没有你比较关心的：<br>1.选择自己喜欢的Hexo主题美化博客<br>2.购买一个自己喜欢的域名，解析域名，并取代现在github访问的方式<br>3.了解网站备案，选择云服务器，搭建资源服实现图床<br>4.将博客部署在云服务器上<br>5.学习Markdown常用语法<br>6.使用宝塔管理自己的服务器<br>7.知识财产保护与侵权行为</p>
 
       </div>
       <div class="post-tags-categories">
@@ -731,7 +724,7 @@
     </li>
     <li class="post-copyright-link">
     <strong>link:  </strong>
-    <a href="/2023/01/09/bo-ke-da-jian-jiao-cheng-8-jie-hong-linux/" target="_blank" title="博客搭建教程8 - 在CentOS云服务器利用Nginx搭建Hexo博客">http://epya15.fun/2023/01/09/bo-ke-da-jian-jiao-cheng-8-jie-hong-linux/</a>
+    <a href="/2023/01/09/backup/bo-ke-da-jian-jiao-cheng-3-chu-shi-node.js-he-hexo/" target="_blank" title="博客搭建教程3 - 初识Node.js和Hexo">http://epya15.fun/2023/01/09/backup/bo-ke-da-jian-jiao-cheng-3-chu-shi-node.js-he-hexo/</a>
     </li>
     <li class="post-copyright-license">
       <strong>Copyright notice:   </strong>
@@ -753,16 +746,17 @@
   <div class="post-nav-prev post-nav-item">
     <div class="post-nav-img" style="background-size: cover; 
       background-position: center center;">
-      <img class="lazyload lazyload placeholder" src="https://gss0.baidu.com/70cFfyinKgQFm2e88IuM_a/baike/pic/item/64380cd7912397ddea52b9315582b2b7d0a287df.jpg" class="lazyload placeholder" data-srcset="https://gss0.baidu.com/70cFfyinKgQFm2e88IuM_a/baike/pic/item/64380cd7912397ddea52b9315582b2b7d0a287df.jpg" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" alt="">
+      <img class="lazyload lazyload placeholder" src="https://img1.baidu.com/it/u=4061327327,3801077277&fm=253&fmt=auto&app=138&f=JPEG?w=800&h=500" class="lazyload placeholder" data-srcset="https://img1.baidu.com/it/u=4061327327,3801077277&fm=253&fmt=auto&app=138&f=JPEG?w=800&h=500" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" alt="">
     </div>
-    <a href="/2023/01/09/bo-ke-da-jian-jiao-cheng-9-shi-yong-scp-ming-ling-cong-windows-xiang-linux-chuan-shu-wen-jian/" class="post-nav-link">
+    <a href="/2023/01/09/backup/bo-ke-da-jian-jiao-cheng-4-geng-huan-hexo-bo-ke-zhu-ti/" class="post-nav-link">
       <div class="title">
         <i class="fas fa-angle-left"></i> Prev:
-        <div class="title-text">博客搭建教程9 - 使用scp命令从Windows向linux传输文件</div>
+        <div class="title-text">博客搭建教程4 - 更换Hexo博客主题</div>
       </div>
       
       <!-- <div class="content">
-        Windows使用scp向linux服务器传输文件,可参考这篇博客https://www.cnblogs.com/tug
+        在这里选择喜欢的主题https://hexo.io/themes/
+在Hexo博客仓库目录里可以看到_configs.y
       </div> -->
     </a>
   </div>
@@ -773,15 +767,16 @@
   <div class="post-nav-next post-nav-item">
     <div class="post-nav-img" style="background-size: cover; 
       background-position: center center;">
-      <img class="lazyload lazyload placeholder" src="https://www.5iqiqu.com/images/news/66/66372-20200515145359325-1759450153.jpg" class="lazyload placeholder" data-srcset="https://www.5iqiqu.com/images/news/66/66372-20200515145359325-1759450153.jpg" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" src="" alt="">
+      <img class="lazyload lazyload placeholder" src="https://nimg.ws.126.net/?url=http%3A%2F%2Fdingyue.ws.126.net%2F2021%2F0620%2F21391327j00quyoyu000dc000hs00anc.jpg&thumbnail=660x2147483647&quality=80&type=jpg" class="lazyload placeholder" data-srcset="https://nimg.ws.126.net/?url=http%3A%2F%2Fdingyue.ws.126.net%2F2021%2F0620%2F21391327j00quyoyu000dc000hs00anc.jpg&thumbnail=660x2147483647&quality=80&type=jpg" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" src="" alt="">
     </div>
-    <a href="/2023/01/09/bo-ke-da-jian-jiao-cheng-7-wei-bo-ke-wang-zhan-xuan-ze-he-gua-de-yun-fu-wu-qi/" class="post-nav-link">
+    <a href="/2023/01/09/backup/bo-ke-da-jian-jiao-cheng-2-chuang-jian-git-cang-ku/" class="post-nav-link">
       <div class="title">
         Next: <i class="fas fa-angle-right"></i>
-        <div class="title-text">博客搭建教程7 - 为博客网站选择合适的云服务器</div>
+        <div class="title-text">博客搭建教程2 - 创建Git仓库</div>
       </div>
       <!-- <div class="content">
-        网页中会展示一些大体积的资源，比如音频视频等多媒体文件，还有一些可被公开下载的文件。你可能听过图床，图床就是将博客的图片
+        在阅读本章前，我们默认你已经了解了Git的概念。
+本章内容比较简单，网上相关文章很多，这里推荐这位博主的文章，因为cyp
       </div> -->
     </a>
   </div>

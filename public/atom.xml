@@ -137,14 +137,16 @@
     <link href="http://epya15.fun/2023/01/18/wang-qi-feng-mian-2023-01-18-xiong-mao-tu-zhen-gui-ying-xiang-zi-liao/"/>
     <id>http://epya15.fun/2023/01/18/wang-qi-feng-mian-2023-01-18-xiong-mao-tu-zhen-gui-ying-xiang-zi-liao/</id>
     <published>2023-01-17T17:05:00.000Z</published>
-    <updated>2024-01-12T09:14:33.025Z</updated>
+    <updated>2024-02-02T05:53:16.385Z</updated>
     
     
       
       
         
         
-    <summary type="html">&lt;p&gt;这只熊猫兔是2022&amp;#x2F;1&amp;#x2F;9在上海一条马路边买的。&lt;br&gt;刚买来的时候，小小一只很可爱&lt;br&gt;喜欢吃胡萝卜&lt;br&gt;&lt;video width=&quot;540&quot; controls loop</summary>
+    <summary type="html">&lt;video width=&quot;540&quot; controls loop src=&quot;/images/histcover1_rabbit01.mp4&quot; /&gt;  
+
+&lt;video width=&quot;540&quot; controls loop</summary>
         
       
     
@@ -159,8 +161,8 @@
   
   <entry>
     <title>博客搭建教程16 - linux云服务器在nginx.conf配置防盗链</title>
-    <link href="http://epya15.fun/2023/01/09/bo-ke-da-jian-jiao-cheng-16-linux-yun-fu-wu-qi-zai-nginx.conf-pei-zhi-fang-dao-lian/"/>
-    <id>http://epya15.fun/2023/01/09/bo-ke-da-jian-jiao-cheng-16-linux-yun-fu-wu-qi-zai-nginx.conf-pei-zhi-fang-dao-lian/</id>
+    <link href="http://epya15.fun/2023/01/09/backup/bo-ke-da-jian-jiao-cheng-16-linux-yun-fu-wu-qi-zai-nginx.conf-pei-zhi-fang-dao-lian/"/>
+    <id>http://epya15.fun/2023/01/09/backup/bo-ke-da-jian-jiao-cheng-16-linux-yun-fu-wu-qi-zai-nginx.conf-pei-zhi-fang-dao-lian/</id>
     <published>2023-01-09T08:00:00.000Z</published>
     <updated>2024-01-12T09:14:32.842Z</updated>
     
@@ -175,14 +177,14 @@
   </entry>
   
   <entry>
-    <title>博客搭建教程15 - Markdown常用语法</title>
+    <title>Markdown常用语法</title>
     <link href="http://epya15.fun/2023/01/09/bo-ke-da-jian-jiao-cheng-15-markdown-chang-yong-yu-fa/"/>
     <id>http://epya15.fun/2023/01/09/bo-ke-da-jian-jiao-cheng-15-markdown-chang-yong-yu-fa/</id>
     <published>2023-01-09T07:00:00.000Z</published>
-    <updated>2024-01-12T09:14:32.983Z</updated>
+    <updated>2024-02-02T05:53:54.204Z</updated>
     
     
-    <summary type="html">掌握了Markdown的语法，就可以在各大博客网站发布排版美丽的博文了。</summary>
+    <summary type="html">Markdown语法</summary>
     
     
     
@@ -195,8 +197,8 @@
   
   <entry>
     <title>博客搭建教程14 - Linux云服务器安装宝塔运维工具</title>
-    <link href="http://epya15.fun/2023/01/09/bo-ke-da-jian-jiao-cheng-14-linux-yun-fu-wu-qi-an-zhuang-bao-ta-yun-wei-gong-ju/"/>
-    <id>http://epya15.fun/2023/01/09/bo-ke-da-jian-jiao-cheng-14-linux-yun-fu-wu-qi-an-zhuang-bao-ta-yun-wei-gong-ju/</id>
+    <link href="http://epya15.fun/2023/01/09/backup/bo-ke-da-jian-jiao-cheng-14-linux-yun-fu-wu-qi-an-zhuang-bao-ta-yun-wei-gong-ju/"/>
+    <id>http://epya15.fun/2023/01/09/backup/bo-ke-da-jian-jiao-cheng-14-linux-yun-fu-wu-qi-an-zhuang-bao-ta-yun-wei-gong-ju/</id>
     <published>2023-01-09T06:00:00.000Z</published>
     <updated>2024-01-12T09:14:33.045Z</updated>
     
@@ -214,8 +216,8 @@
   
   <entry>
     <title>博客搭建教程13 - 写博客实用网站大合集</title>
-    <link href="http://epya15.fun/2023/01/09/bo-ke-da-jian-jiao-cheng-13-xie-bo-ke-shi-yong-wang-zhan-da-he-ji/"/>
-    <id>http://epya15.fun/2023/01/09/bo-ke-da-jian-jiao-cheng-13-xie-bo-ke-shi-yong-wang-zhan-da-he-ji/</id>
+    <link href="http://epya15.fun/2023/01/09/backup/bo-ke-da-jian-jiao-cheng-13-xie-bo-ke-shi-yong-wang-zhan-da-he-ji/"/>
+    <id>http://epya15.fun/2023/01/09/backup/bo-ke-da-jian-jiao-cheng-13-xie-bo-ke-shi-yong-wang-zhan-da-he-ji/</id>
     <published>2023-01-09T05:00:00.000Z</published>
     <updated>2024-01-12T09:14:32.950Z</updated>
     
@@ -233,8 +235,8 @@
   
   <entry>
     <title>博客搭建教程12 - 更换云服务器完成数据迁移</title>
-    <link href="http://epya15.fun/2023/01/09/bo-ke-da-jian-jiao-cheng-12-geng-huan-yun-fu-wu-qi-wan-cheng-shu-ju-qian-yi/"/>
-    <id>http://epya15.fun/2023/01/09/bo-ke-da-jian-jiao-cheng-12-geng-huan-yun-fu-wu-qi-wan-cheng-shu-ju-qian-yi/</id>
+    <link href="http://epya15.fun/2023/01/09/backup/bo-ke-da-jian-jiao-cheng-12-geng-huan-yun-fu-wu-qi-wan-cheng-shu-ju-qian-yi/"/>
+    <id>http://epya15.fun/2023/01/09/backup/bo-ke-da-jian-jiao-cheng-12-geng-huan-yun-fu-wu-qi-wan-cheng-shu-ju-qian-yi/</id>
     <published>2023-01-09T04:00:00.000Z</published>
     <updated>2024-01-12T09:14:33.107Z</updated>
     
@@ -252,8 +254,8 @@
   
   <entry>
     <title>博客搭建教程11 - 使用linux+nginx建站每次云服务器重启后的例行检查操作</title>
-    <link href="http://epya15.fun/2023/01/09/bo-ke-da-jian-jiao-cheng-11-shi-yong-linux-nginx-jian-zhan-mei-ci-yun-fu-wu-qi-chong-qi-hou-de-li-xing-jian-cha-cao-zuo/"/>
-    <id>http://epya15.fun/2023/01/09/bo-ke-da-jian-jiao-cheng-11-shi-yong-linux-nginx-jian-zhan-mei-ci-yun-fu-wu-qi-chong-qi-hou-de-li-xing-jian-cha-cao-zuo/</id>
+    <link href="http://epya15.fun/2023/01/09/backup/bo-ke-da-jian-jiao-cheng-11-shi-yong-linux-nginx-jian-zhan-mei-ci-yun-fu-wu-qi-chong-qi-hou-de-li-xing-jian-cha-cao-zuo/"/>
+    <id>http://epya15.fun/2023/01/09/backup/bo-ke-da-jian-jiao-cheng-11-shi-yong-linux-nginx-jian-zhan-mei-ci-yun-fu-wu-qi-chong-qi-hou-de-li-xing-jian-cha-cao-zuo/</id>
     <published>2023-01-09T03:00:00.000Z</published>
     <updated>2024-01-12T09:14:33.006Z</updated>
     
@@ -271,8 +273,8 @@
   
   <entry>
     <title>博客搭建教程10 - 将托管在Github的Hexo博客迁移到个人云服务器</title>
-    <link href="http://epya15.fun/2023/01/09/bo-ke-da-jian-jiao-cheng-10-jiang-tuo-guan-zai-github-de-hexo-bo-ke-qian-yi-dao-ge-ren-yun-fu-wu-qi/"/>
-    <id>http://epya15.fun/2023/01/09/bo-ke-da-jian-jiao-cheng-10-jiang-tuo-guan-zai-github-de-hexo-bo-ke-qian-yi-dao-ge-ren-yun-fu-wu-qi/</id>
+    <link href="http://epya15.fun/2023/01/09/backup/bo-ke-da-jian-jiao-cheng-10-jiang-tuo-guan-zai-github-de-hexo-bo-ke-qian-yi-dao-ge-ren-yun-fu-wu-qi/"/>
+    <id>http://epya15.fun/2023/01/09/backup/bo-ke-da-jian-jiao-cheng-10-jiang-tuo-guan-zai-github-de-hexo-bo-ke-qian-yi-dao-ge-ren-yun-fu-wu-qi/</id>
     <published>2023-01-09T02:00:00.000Z</published>
     <updated>2024-01-12T09:14:32.927Z</updated>
     
@@ -290,8 +292,8 @@
   
   <entry>
     <title>博客搭建教程9 - 使用scp命令从Windows向linux传输文件</title>
-    <link href="http://epya15.fun/2023/01/09/bo-ke-da-jian-jiao-cheng-9-shi-yong-scp-ming-ling-cong-windows-xiang-linux-chuan-shu-wen-jian/"/>
-    <id>http://epya15.fun/2023/01/09/bo-ke-da-jian-jiao-cheng-9-shi-yong-scp-ming-ling-cong-windows-xiang-linux-chuan-shu-wen-jian/</id>
+    <link href="http://epya15.fun/2023/01/09/backup/bo-ke-da-jian-jiao-cheng-9-shi-yong-scp-ming-ling-cong-windows-xiang-linux-chuan-shu-wen-jian/"/>
+    <id>http://epya15.fun/2023/01/09/backup/bo-ke-da-jian-jiao-cheng-9-shi-yong-scp-ming-ling-cong-windows-xiang-linux-chuan-shu-wen-jian/</id>
     <published>2023-01-09T01:00:00.000Z</published>
     <updated>2024-01-12T09:14:32.914Z</updated>
     
@@ -307,8 +309,8 @@
   
   <entry>
     <title>博客搭建教程8 - 在CentOS云服务器利用Nginx搭建Hexo博客</title>
-    <link href="http://epya15.fun/2023/01/09/bo-ke-da-jian-jiao-cheng-8-jie-hong-linux/"/>
-    <id>http://epya15.fun/2023/01/09/bo-ke-da-jian-jiao-cheng-8-jie-hong-linux/</id>
+    <link href="http://epya15.fun/2023/01/09/backup/bo-ke-da-jian-jiao-cheng-8-jie-hong-linux/"/>
+    <id>http://epya15.fun/2023/01/09/backup/bo-ke-da-jian-jiao-cheng-8-jie-hong-linux/</id>
     <published>2023-01-09T00:00:00.000Z</published>
     <updated>2024-01-12T09:14:32.962Z</updated>
     
@@ -332,8 +334,8 @@
   
   <entry>
     <title>博客搭建教程7 - 为博客网站选择合适的云服务器</title>
-    <link href="http://epya15.fun/2023/01/09/bo-ke-da-jian-jiao-cheng-7-wei-bo-ke-wang-zhan-xuan-ze-he-gua-de-yun-fu-wu-qi/"/>
-    <id>http://epya15.fun/2023/01/09/bo-ke-da-jian-jiao-cheng-7-wei-bo-ke-wang-zhan-xuan-ze-he-gua-de-yun-fu-wu-qi/</id>
+    <link href="http://epya15.fun/2023/01/09/backup/bo-ke-da-jian-jiao-cheng-7-wei-bo-ke-wang-zhan-xuan-ze-he-gua-de-yun-fu-wu-qi/"/>
+    <id>http://epya15.fun/2023/01/09/backup/bo-ke-da-jian-jiao-cheng-7-wei-bo-ke-wang-zhan-xuan-ze-he-gua-de-yun-fu-wu-qi/</id>
     <published>2023-01-08T23:00:00.000Z</published>
     <updated>2024-01-12T09:14:32.860Z</updated>
     
@@ -351,8 +353,8 @@
   
   <entry>
     <title>博客搭建教程6 - 为Github部署的Hexo博客更换新域名</title>
-    <link href="http://epya15.fun/2023/01/09/bo-ke-da-jian-jiao-cheng-6-wei-github-bu-shu-de-hexo-bo-ke-geng-huan-xin-yu-ming/"/>
-    <id>http://epya15.fun/2023/01/09/bo-ke-da-jian-jiao-cheng-6-wei-github-bu-shu-de-hexo-bo-ke-geng-huan-xin-yu-ming/</id>
+    <link href="http://epya15.fun/2023/01/09/backup/bo-ke-da-jian-jiao-cheng-6-wei-github-bu-shu-de-hexo-bo-ke-geng-huan-xin-yu-ming/"/>
+    <id>http://epya15.fun/2023/01/09/backup/bo-ke-da-jian-jiao-cheng-6-wei-github-bu-shu-de-hexo-bo-ke-geng-huan-xin-yu-ming/</id>
     <published>2023-01-08T22:00:00.000Z</published>
     <updated>2024-01-12T09:14:32.892Z</updated>
     
@@ -370,8 +372,8 @@
   
   <entry>
     <title>博客搭建教程5 - 为Hexo博客安装插件</title>
-    <link href="http://epya15.fun/2023/01/09/bo-ke-da-jian-jiao-cheng-5-wei-hexo-bo-ke-an-zhuang-cha-jian/"/>
-    <id>http://epya15.fun/2023/01/09/bo-ke-da-jian-jiao-cheng-5-wei-hexo-bo-ke-an-zhuang-cha-jian/</id>
+    <link href="http://epya15.fun/2023/01/09/backup/bo-ke-da-jian-jiao-cheng-5-wei-hexo-bo-ke-an-zhuang-cha-jian/"/>
+    <id>http://epya15.fun/2023/01/09/backup/bo-ke-da-jian-jiao-cheng-5-wei-hexo-bo-ke-an-zhuang-cha-jian/</id>
     <published>2023-01-08T21:00:00.000Z</published>
     <updated>2024-01-12T09:14:32.994Z</updated>
     
@@ -389,8 +391,8 @@
   
   <entry>
     <title>博客搭建教程4 - 更换Hexo博客主题</title>
-    <link href="http://epya15.fun/2023/01/09/bo-ke-da-jian-jiao-cheng-4-geng-huan-hexo-bo-ke-zhu-ti/"/>
-    <id>http://epya15.fun/2023/01/09/bo-ke-da-jian-jiao-cheng-4-geng-huan-hexo-bo-ke-zhu-ti/</id>
+    <link href="http://epya15.fun/2023/01/09/backup/bo-ke-da-jian-jiao-cheng-4-geng-huan-hexo-bo-ke-zhu-ti/"/>
+    <id>http://epya15.fun/2023/01/09/backup/bo-ke-da-jian-jiao-cheng-4-geng-huan-hexo-bo-ke-zhu-ti/</id>
     <published>2023-01-08T20:00:00.000Z</published>
     <updated>2024-01-12T09:14:33.089Z</updated>
     
@@ -408,8 +410,8 @@
   
   <entry>
     <title>博客搭建教程3 - 初识Node.js和Hexo</title>
-    <link href="http://epya15.fun/2023/01/09/bo-ke-da-jian-jiao-cheng-3-chu-shi-node.js-he-hexo/"/>
-    <id>http://epya15.fun/2023/01/09/bo-ke-da-jian-jiao-cheng-3-chu-shi-node.js-he-hexo/</id>
+    <link href="http://epya15.fun/2023/01/09/backup/bo-ke-da-jian-jiao-cheng-3-chu-shi-node.js-he-hexo/"/>
+    <id>http://epya15.fun/2023/01/09/backup/bo-ke-da-jian-jiao-cheng-3-chu-shi-node.js-he-hexo/</id>
     <published>2023-01-08T19:00:00.000Z</published>
     <updated>2024-01-12T09:14:32.829Z</updated>
     

@@ -11,7 +11,7 @@
   <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-  <title>博客搭建教程9 - 使用scp命令从Windows向linux传输文件 | 赛朋博客</title>
+  <title>博客搭建教程7 - 为博客网站选择合适的云服务器 | 赛朋博客</title>
 
   <link rel="icon" type="image/jpeg" href="/favicon.jpg">
   <link rel="stylesheet" href="https://at.alicdn.com/t/font_1911880_c1nvbyezg17.css">
@@ -647,14 +647,14 @@
 
 
 <div class="post-detail-header" id="thumbnail_canvas" style="background-repeat: no-repeat; background-size: cover; 
-  background-position: center center;position: relative;background-image:url('https://gss0.baidu.com/70cFfyinKgQFm2e88IuM_a/baike/pic/item/64380cd7912397ddea52b9315582b2b7d0a287df.jpg')">
+  background-position: center center;position: relative;background-image:url('https://www.5iqiqu.com/images/news/66/66372-20200515145359325-1759450153.jpg')">
   <div class="post-detail-header-mask"></div>
   <canvas id="header_canvas"style="position:absolute;bottom:0;pointer-events:none;"></canvas>
   
   <div class="post-detail-header_info-box">
     <div class="title-box">
       <span class="title">
-        博客搭建教程9 - 使用scp命令从Windows向linux传输文件
+        博客搭建教程7 - 为博客网站选择合适的云服务器
       </span>
     </div>
     
@@ -665,6 +665,15 @@
         </span>
       
 
+      
+        <span class="post-detail-header_categories">
+          <i class="iconfont iconbookmark1"></i> category：
+          
+            <a href="/categories/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/" class="post-detail-header_category">
+              博客搭建
+            </a>
+          
+        </span>
       
 
       
@@ -691,14 +700,14 @@
   <div class="main-content">
     <article class="post post-detail">
       <div class="post-content">
-        <p>Windows使用scp向linux服务器传输文件,可参考这篇博客<br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/tugenhua0707/p/8278772.html">https://www.cnblogs.com/tugenhua0707/p/8278772.html</a></p>
-<p>比如传送一个Windows桌面上的视频到服务器，输入下面指令并回车<br>scp D:\Users\Administrator\Desktop\video.mp4 <a href="mailto:&#x72;&#111;&#x6f;&#x74;&#x40;&#50;&#x30;&#x38;&#46;&#x38;&#x37;&#46;&#x32;&#x30;&#x31;&#x2e;&#49;&#x36;&#52;">&#x72;&#111;&#x6f;&#x74;&#x40;&#50;&#x30;&#x38;&#46;&#x38;&#x37;&#46;&#x32;&#x30;&#x31;&#x2e;&#49;&#x36;&#52;</a>:&#x2F;usr&#x2F;local<br>会提示这个：</p>
-<div class="img-wrap"><div class="img-bg"><img class="img lazyload placeholder" src="/images/scpwindowsfirstlink.png" class="lazyload placeholder" data-srcset="/images/scpwindowsfirstlink.png" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" style="width:80%;"/></div></div>
-<p>这是因为首次连接，双方机器还互相陌生，需要打个招呼，只需输入yes并回车</p>
-<div class="img-wrap"><div class="img-bg"><img class="img lazyload placeholder" src="/images/scpwindowslinkok.png" class="lazyload placeholder" data-srcset="/images/scpwindowslinkok.png" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" style="width:80%;"/></div></div>
-<p>接下来输入远程服务器的密码<br>注意由于上面我们使用了向root传输数据的命令，因此该密码必须是linux服务器root用户的密码，如果你使用的是云服务器，那么在云服务器控制台&#x2F;实例页面中能看到<br>如果出现下面的图说明传输成功，博主传输了一个59MB视频，时间消耗29s，平均速度为2MB&#x2F;s  </p>
-<div class="img-wrap"><div class="img-bg"><img class="img lazyload placeholder" src="/images/scptransferdemo.png" class="lazyload placeholder" data-srcset="/images/scptransferdemo.png" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" style="width:80%;"/></div></div>  
-<p>接下来到服务器&#x2F;usr&#x2F;local目录下查看这个文件就可以了。</p>
+        <p>网页中会展示一些大体积的资源，比如音频视频等多媒体文件，还有一些可被公开下载的文件。<br>你可能听过图床，图床就是将博客的图片存储到云盘里，比如七牛云，图床为图片生成外链，博客仓库中无需携带图片，只要通过链接访问就可以了。<br>如果你只是想要一个图床，并且你的网站有ICP备案，那么直接使用七牛云的服务就可以了，专业的图床还有防盗链，CDN等实用技术加持，真的是一个不错的选择。</p>
+<p>Q：未备案的个人博客网站可以使用七牛云图床吗？<br>A：不可以。</p>
+<p>虽然使用Git仓库可以存储这些大文件（比如Gitee，Github，相关介绍链接<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/581297109">https://zhuanlan.zhihu.com/p/581297109</a><br>，但是Git的本意是代码管理，对于大体积文件来讲并不适合，Git仓库其实是禁止被用作图床的，关于Gitee历史上也不止一次发生过图片无法访问的情况。</p>
+<div class="img-wrap"><div class="img-bg"><img class="img lazyload placeholder" src="/images/giteeforbiddenjpgbed.png" class="lazyload placeholder" data-srcset="/images/giteeforbiddenjpgbed.png" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" style="width:80%;"/></div></div>
+
+<p>Q：我不想买云服务器，可以将网站部署到自己的闲置电脑上吗？<br>A：你可以在网络上搜索这个话题，了解实现这个需求的难度，从而决定要选择何种方式。本文只介绍使用云服务器搭建网站的方法。</p>
+<p>以下介绍博主使用的云服务器。<br>在建站初期，网站基本没有访客，因此无需考虑太多。博主最开始决定使用恒创ECS云服务器，因为有7天免费试用，可以顺带了解一下1核2G的配置是否够用。<br>后来考虑到域名是在阿里云买的，所以也买了一个月的阿里云轻量应用服务器，它的价格比ECS服务器便宜一些，但是对配置并不满意，因此还是选择了恒创的ECS云服务器。<br>在试用恒创的服务器时发现2G的内存超出了实际需求，因此在购买时决定只买1G内存套餐即可。<br>恒创的ECS云服务器算是很便宜的了，博主选择了最低配置，CentOS 7系统，1核1G带宽2M，大约300元&#x2F;年。而且恒创的香港，美国，日本服务器无需备案，很方便。<br>博主建议选择linux系统，不要选择Windows系统，使用linux建站更节省软硬件资源，很适合建站，而Windows系统很臃肿，以至于在1G内存的云服务器上无法运行，2G内存才勉勉强强。因此Windows服务器起步配置要比linux的高，起步价也更高。<br>博主选择的是CentOS 7.1系统。</p>
+<p>Q：云服务器的带宽如何选择？家庭网络都已经100M起步了，云服务器2M带宽是不是太低了？<br>A：对于新手站长，博主建议可以选择2M作为入门选择，如果你的网站没有视频或者大量下载资源，那么完全可以支撑早期的网站建设。博主实测2M带宽的服务器加载一篇博客（1k文字+多张100kb图片）只需要1-2秒，如果是mp4视频，那么压缩到10MB&#x2F;分钟的体积，是可以流畅播放的。</p>
 
       </div>
       <div class="post-tags-categories">
@@ -720,7 +729,7 @@
     </li>
     <li class="post-copyright-link">
     <strong>link:  </strong>
-    <a href="/2023/01/09/bo-ke-da-jian-jiao-cheng-9-shi-yong-scp-ming-ling-cong-windows-xiang-linux-chuan-shu-wen-jian/" target="_blank" title="博客搭建教程9 - 使用scp命令从Windows向linux传输文件">http://epya15.fun/2023/01/09/bo-ke-da-jian-jiao-cheng-9-shi-yong-scp-ming-ling-cong-windows-xiang-linux-chuan-shu-wen-jian/</a>
+    <a href="/2023/01/09/backup/bo-ke-da-jian-jiao-cheng-7-wei-bo-ke-wang-zhan-xuan-ze-he-gua-de-yun-fu-wu-qi/" target="_blank" title="博客搭建教程7 - 为博客网站选择合适的云服务器">http://epya15.fun/2023/01/09/backup/bo-ke-da-jian-jiao-cheng-7-wei-bo-ke-wang-zhan-xuan-ze-he-gua-de-yun-fu-wu-qi/</a>
     </li>
     <li class="post-copyright-license">
       <strong>Copyright notice:   </strong>
@@ -742,16 +751,16 @@
   <div class="post-nav-prev post-nav-item">
     <div class="post-nav-img" style="background-size: cover; 
       background-position: center center;">
-      <img class="lazyload lazyload placeholder" src="https://www.easeus.com.cn/attachment/chuanshu/qinayi-15.png" class="lazyload placeholder" data-srcset="https://www.easeus.com.cn/attachment/chuanshu/qinayi-15.png" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" alt="">
+      <img class="lazyload lazyload placeholder" src="https://img-blog.csdnimg.cn/img_convert/ce4a8a59fdfee8f3106a3a0851558c76.png" class="lazyload placeholder" data-srcset="https://img-blog.csdnimg.cn/img_convert/ce4a8a59fdfee8f3106a3a0851558c76.png" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" alt="">
     </div>
-    <a href="/2023/01/09/bo-ke-da-jian-jiao-cheng-10-jiang-tuo-guan-zai-github-de-hexo-bo-ke-qian-yi-dao-ge-ren-yun-fu-wu-qi/" class="post-nav-link">
+    <a href="/2023/01/09/backup/bo-ke-da-jian-jiao-cheng-8-jie-hong-linux/" class="post-nav-link">
       <div class="title">
         <i class="fas fa-angle-left"></i> Prev:
-        <div class="title-text">博客搭建教程10 - 将托管在Github的Hexo博客迁移到个人云服务器</div>
+        <div class="title-text">博客搭建教程8 - 在CentOS云服务器利用Nginx搭建Hexo博客</div>
       </div>
       
       <!-- <div class="content">
-        Q：我觉得目前将网站托管到github上已经很好了，迁移至私服有足够的必要性吗？A：迁移至私服不是必须的，如果你觉得gi
+        关于图形界面：有的云服务器将CentOS系统的图形界面阉割，如果想和Windows系统一样看到图形界面，需要额外进行安装
       </div> -->
     </a>
   </div>
@@ -762,15 +771,16 @@
   <div class="post-nav-next post-nav-item">
     <div class="post-nav-img" style="background-size: cover; 
       background-position: center center;">
-      <img class="lazyload lazyload placeholder" src="https://img-blog.csdnimg.cn/img_convert/ce4a8a59fdfee8f3106a3a0851558c76.png" class="lazyload placeholder" data-srcset="https://img-blog.csdnimg.cn/img_convert/ce4a8a59fdfee8f3106a3a0851558c76.png" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" src="" alt="">
+      <img class="lazyload lazyload placeholder" src="http://img.idcicp.com//attached/20210708/6376133546709039089257812.jpg" class="lazyload placeholder" data-srcset="http://img.idcicp.com//attached/20210708/6376133546709039089257812.jpg" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" src="" alt="">
     </div>
-    <a href="/2023/01/09/bo-ke-da-jian-jiao-cheng-8-jie-hong-linux/" class="post-nav-link">
+    <a href="/2023/01/09/backup/bo-ke-da-jian-jiao-cheng-6-wei-github-bu-shu-de-hexo-bo-ke-geng-huan-xin-yu-ming/" class="post-nav-link">
       <div class="title">
         Next: <i class="fas fa-angle-right"></i>
-        <div class="title-text">博客搭建教程8 - 在CentOS云服务器利用Nginx搭建Hexo博客</div>
+        <div class="title-text">博客搭建教程6 - 为Github部署的Hexo博客更换新域名</div>
       </div>
       <!-- <div class="content">
-        关于图形界面：有的云服务器将CentOS系统的图形界面阉割，如果想和Windows系统一样看到图形界面，需要额外进行安装
+        首先在域名购买网站挑选心仪的域名并购买，比如万网：https://wanwang.aliyun.com/domain
+暂
       </div> -->
     </a>
   </div>

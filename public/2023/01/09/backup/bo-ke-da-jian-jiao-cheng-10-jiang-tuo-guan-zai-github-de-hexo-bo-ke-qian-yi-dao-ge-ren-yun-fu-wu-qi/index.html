@@ -11,7 +11,7 @@
   <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-  <title>博客搭建教程4 - 更换Hexo博客主题 | 赛朋博客</title>
+  <title>博客搭建教程10 - 将托管在Github的Hexo博客迁移到个人云服务器 | 赛朋博客</title>
 
   <link rel="icon" type="image/jpeg" href="/favicon.jpg">
   <link rel="stylesheet" href="https://at.alicdn.com/t/font_1911880_c1nvbyezg17.css">
@@ -647,14 +647,14 @@
 
 
 <div class="post-detail-header" id="thumbnail_canvas" style="background-repeat: no-repeat; background-size: cover; 
-  background-position: center center;position: relative;background-image:url('https://img1.baidu.com/it/u=4061327327,3801077277&fm=253&fmt=auto&app=138&f=JPEG?w=800&h=500')">
+  background-position: center center;position: relative;background-image:url('https://www.easeus.com.cn/attachment/chuanshu/qinayi-15.png')">
   <div class="post-detail-header-mask"></div>
   <canvas id="header_canvas"style="position:absolute;bottom:0;pointer-events:none;"></canvas>
   
   <div class="post-detail-header_info-box">
     <div class="title-box">
       <span class="title">
-        博客搭建教程4 - 更换Hexo博客主题
+        博客搭建教程10 - 将托管在Github的Hexo博客迁移到个人云服务器
       </span>
     </div>
     
@@ -700,27 +700,16 @@
   <div class="main-content">
     <article class="post post-detail">
       <div class="post-content">
-        <p>在这里选择喜欢的主题<br><a target="_blank" rel="noopener" href="https://hexo.io/themes/">https://hexo.io/themes/</a></p>
-<p>在Hexo博客仓库目录里可以看到_configs.yml和themes文件夹。<br>这两个文件夹在更换主题时非常重要。</p>
-<div class="img-wrap"><div class="img-bg"><img class="img lazyload placeholder" src="/images/themeandconfigs.png" class="lazyload placeholder" data-srcset="/images/themeandconfigs.png" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" style="width:80%;"/></div></div>
-
-<p>其中themes文件夹负责存储下载的主题，每一个下载的主题都以其名字的方式放在此文件夹里，例如</p>
-<div class="img-wrap"><div class="img-bg"><img class="img lazyload placeholder" src="/images/themesIntro.png" class="lazyload placeholder" data-srcset="/images/themesIntro.png" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" style="width:80%;"/></div></div>
-
-<p>文件_configs.yml则是博客网站的配置文件，主题下载好后，用文本编辑器编辑这个文件，只要修改theme字段，改为主题名称即可，图片中使用bamboo作为当前博客主题。</p>
-<div class="img-wrap"><div class="img-bg"><img class="img lazyload placeholder" src="/images/setbamboostyle.png" class="lazyload placeholder" data-srcset="/images/setbamboostyle.png" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" style="width:80%;"/></div></div>
-
-
-<p>主题安装方式：<br>这里的每一个主题都对应一个Github仓库，比如我们选择了Ocean这个主题<br><a target="_blank" rel="noopener" href="https://github.com/zhwangart/hexo-theme-ocean">https://github.com/zhwangart/hexo-theme-ocean</a></p>
-<div class="img-wrap"><div class="img-bg"><img class="img lazyload placeholder" src="/images/selectoceanstyle.png" class="lazyload placeholder" data-srcset="/images/selectoceanstyle.png" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" style="width:80%;"/></div></div>
-
-<p>可以看到Readme文档，里面有使用Git命令安装主题的方式。</p>
-<p>使用$ git clone <a target="_blank" rel="noopener" href="https://github.com/zhwangart/hexo-theme-ocean.git">https://github.com/zhwangart/hexo-theme-ocean.git</a> themes&#x2F;ocean<br>将主题下载到themes文件夹，注意目录结构，确保themes下就是ocean的git仓库，而且命名就叫ocean<br>接着在_configs.yml中（注意不是themes&#x2F;ocean目录下面的_configs.yml），找到theme字段，更改为<br>theme: ocean</p>
-<p>接下来在博客目录下启动终端<br>执行hexo s</p>
-<p>接下来就可以在浏览器输入 <a target="_blank" rel="noopener" href="http://localhost:4000/">http://localhost:4000/</a>  预览主题了</p>
-<p>Q:系统不识别hexo命令？<br>A：是因为hexo命令没有配置到环境变量，或者没有在合法的目录下执行hexo s命令。hexo并非在任何目录下都可以执行hexo s，必须要在博客工程的根目录下。</p>
-<p>想定制主题？<br>进入themes&#x2F;ocean文件夹，修改_config.yml文件，通常主题的Git文档中会介绍这个文件里的配置如何修改，你可以在这个配置文件中控制网站图表，是否开启评论系统，是否允许右键复制等等。</p>
-<p>Q：我可以在themes文件夹中放置多个主题吗？实际运行网站时显示的是哪一个主题？<br>A：完全可以，多个主题在themes文件夹中互相并不影响，网站运行时使用的主题就是_config.yml中theme字段配置的主题名。</p>
+        <p>Q：我觉得目前将网站托管到github上已经很好了，迁移至私服有足够的必要性吗？<br>A：迁移至私服不是必须的，如果你觉得github已经足够，那么可以跳过该教程，事实上很多人的博客都是直接托管给github的。但境内网络访问github很不稳定，加之由于github仓库是公开的，所以还是有很多缺点，使用github仓库时要时刻注意对自己网站数据的保护，否则会有泄露风险。</p>
+<p>如果你希望在服务器建立git服务器，每次发布博客时将变更同步至服务器的git仓库，那么可以先给服务器安装git<br>切换至root用户<br>su root<br>安装git<br>yum –y install git<br>键入git指令验证是否安装成功<br>创建git用户，先不创建密码<br>adduser git<br>检查是否创建成功 cd &#x2F;home &amp;&amp; ls -al<br>如果显示有git则说明用户创建成功<br>接下来找一个喜欢的目录，创建一个新的git库，需要你自己起一个喜欢的名字，我起名为cpblog.git，注意.git后缀不要变<br>git init –bare cpblog.git<br>此时终端提示你创建了一个空的git库，这就说明操作对了。<br>接下来将Hexo博客转移到服务器，以后使用hexo d发布博客就在服务器上进行了，我们需要做的是当你执行hexo d时将网站推送至自己的git仓库<br>新建文件夹作为博客根目录<br>mkdir cpblog_webroot<br>chmod 777 cpblog_webroot<br>使用Git-Hooks同步网站根目录，这里使用的是Git中的“post-receive”，当有Git收发的时候会调用该脚本，自动将最新内容同步到网站根目录中<br>用下面的指令新建勾子文件<br>vim cpblog.git&#x2F;hooks&#x2F;post-receive<br>将以下语句写入文件<br>#!&#x2F;bin&#x2F;sh<br>git –work-tree&#x3D;&#x2F;usr&#x2F;local&#x2F;cpblog_webroot –git-dir&#x3D;&#x2F;root&#x2F;cpblog.git checkout -f<br>(注意博客路径和当前用户)<br>保存并赋予执行权限<br>chmod +x cpblog.git&#x2F;hooks&#x2F;post-receive<br>sudo chown -R git:git cpblog.git<br>sudo chown -R git:git cpblog_webroot</p>
+<p>修改&#x2F;usr&#x2F;local&#x2F;nginx&#x2F;conf&#x2F;nginx.conf<br>将里面的地址改为cpblog_webroot的位置<br>server {<br>    listen    80 default_server;<br>    listen    [::] default_server;<br>    server_name    blog.59devops.com;<br>    root    &#x2F;usr&#x2F;local&#x2F;cpblog_webroot<br>}</p>
+<p>配置账户免密码登录<br>创建 ssh 的默认目录<br>进入 git 账户的主目录<br>cd &#x2F;home&#x2F;git<br>创建 .ssh 的配置，如果此文件夹已经存在请忽略此步<br>mkdir .ssh<br>创建校验公钥的配置文件<br>进入 .ssh 目录并创建 authorized_keys 文件，此文件存放客户端远程访问的 ssh 的公钥<br>cd .ssh<br>touch authorized_keys<br>cd ..<br>设置权限<br>chmod 700 .ssh&#x2F;<br>chmod 600 .ssh&#x2F;authorized_keys  </p>
+<p>配置Hexo的”_config.yml”<br>打开位于Hexo博客根目录下的“_config.yml”文件，找到“deploy”并修改  </p>
+<p>deploy:<br>   type: git<br>   repository: root@服务器的公网IP:&#x2F;usr&#x2F;local&#x2F;cpblog.git  #此行改为你的私服仓库地址<br>   branch: main      # 分支,注意看一下仓库的主干分支是master还是main</p>
+<p>从此以后，每次执行hexo d时，就会将网站推送到服务器的git仓库里。<br>本地执行下列命令进行验证<br>hexo clean<br>hexo g<br>hexo d  </p>
+<p>如果你在执行hexo d时被提示输入密码，那么可以阅读接下来的内容实现hexo d免密码  下面我们添加秘钥实现免密推送   </p>
+<p>找到服务器的id_rsa.pub文件，id_rsa.pub 文件中的内容追加到当前目录下的 authorized_keys 中<br>cat id_rsa.pub &gt;&gt; authorized_keys  </p>
+<p>最后别忘了做一件事，就是去域名供应商后台配置解析域名<br>将你的服务器公网IP填到域名解析列表中就可以了，可搜索其它文章了解具体操作。</p>
 
       </div>
       <div class="post-tags-categories">
@@ -742,7 +731,7 @@
     </li>
     <li class="post-copyright-link">
     <strong>link:  </strong>
-    <a href="/2023/01/09/bo-ke-da-jian-jiao-cheng-4-geng-huan-hexo-bo-ke-zhu-ti/" target="_blank" title="博客搭建教程4 - 更换Hexo博客主题">http://epya15.fun/2023/01/09/bo-ke-da-jian-jiao-cheng-4-geng-huan-hexo-bo-ke-zhu-ti/</a>
+    <a href="/2023/01/09/backup/bo-ke-da-jian-jiao-cheng-10-jiang-tuo-guan-zai-github-de-hexo-bo-ke-qian-yi-dao-ge-ren-yun-fu-wu-qi/" target="_blank" title="博客搭建教程10 - 将托管在Github的Hexo博客迁移到个人云服务器">http://epya15.fun/2023/01/09/backup/bo-ke-da-jian-jiao-cheng-10-jiang-tuo-guan-zai-github-de-hexo-bo-ke-qian-yi-dao-ge-ren-yun-fu-wu-qi/</a>
     </li>
     <li class="post-copyright-license">
       <strong>Copyright notice:   </strong>
@@ -764,17 +753,17 @@
   <div class="post-nav-prev post-nav-item">
     <div class="post-nav-img" style="background-size: cover; 
       background-position: center center;">
-      <img class="lazyload lazyload placeholder" src="https://img-blog.csdnimg.cn/img_convert/a13ddd89488d90cf62d1ca8ece66d1d3.png" class="lazyload placeholder" data-srcset="https://img-blog.csdnimg.cn/img_convert/a13ddd89488d90cf62d1ca8ece66d1d3.png" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" alt="">
+      <img class="lazyload lazyload placeholder" src="https://img2.baidu.com/it/u=2273045471,518867457&fm=253&fmt=auto&app=138&f=PNG?w=822&h=500" class="lazyload placeholder" data-srcset="https://img2.baidu.com/it/u=2273045471,518867457&fm=253&fmt=auto&app=138&f=PNG?w=822&h=500" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" alt="">
     </div>
-    <a href="/2023/01/09/bo-ke-da-jian-jiao-cheng-5-wei-hexo-bo-ke-an-zhuang-cha-jian/" class="post-nav-link">
+    <a href="/2023/01/09/backup/bo-ke-da-jian-jiao-cheng-11-shi-yong-linux-nginx-jian-zhan-mei-ci-yun-fu-wu-qi-chong-qi-hou-de-li-xing-jian-cha-cao-zuo/" class="post-nav-link">
       <div class="title">
         <i class="fas fa-angle-left"></i> Prev:
-        <div class="title-text">博客搭建教程5 - 为Hexo博客安装插件</div>
+        <div class="title-text">博客搭建教程11 - 使用linux+nginx建站每次云服务器重启后的例行检查操作</div>
       </div>
       
       <!-- <div class="content">
-        文档正在筹备
-
+        重启服务器后的例行操作  
+1.检查防火墙检查防火墙状态：systemctl status firewalld若出现绿色
       </div> -->
     </a>
   </div>
@@ -785,16 +774,15 @@
   <div class="post-nav-next post-nav-item">
     <div class="post-nav-img" style="background-size: cover; 
       background-position: center center;">
-      <img class="lazyload lazyload placeholder" src="https://pic4.zhimg.com/v2-8d3c4ce9c9fba8a59a092eecba504585_1440w.jpg" class="lazyload placeholder" data-srcset="https://pic4.zhimg.com/v2-8d3c4ce9c9fba8a59a092eecba504585_1440w.jpg" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" src="" alt="">
+      <img class="lazyload lazyload placeholder" src="https://gss0.baidu.com/70cFfyinKgQFm2e88IuM_a/baike/pic/item/64380cd7912397ddea52b9315582b2b7d0a287df.jpg" class="lazyload placeholder" data-srcset="https://gss0.baidu.com/70cFfyinKgQFm2e88IuM_a/baike/pic/item/64380cd7912397ddea52b9315582b2b7d0a287df.jpg" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" src="" alt="">
     </div>
-    <a href="/2023/01/09/bo-ke-da-jian-jiao-cheng-3-chu-shi-node.js-he-hexo/" class="post-nav-link">
+    <a href="/2023/01/09/backup/bo-ke-da-jian-jiao-cheng-9-shi-yong-scp-ming-ling-cong-windows-xiang-linux-chuan-shu-wen-jian/" class="post-nav-link">
       <div class="title">
         Next: <i class="fas fa-angle-right"></i>
-        <div class="title-text">博客搭建教程3 - 初识Node.js和Hexo</div>
+        <div class="title-text">博客搭建教程9 - 使用scp命令从Windows向linux传输文件</div>
       </div>
       <!-- <div class="content">
-        本篇内容比较简单，同样参考这位博主的文章https://zhuanlan.zhihu.com/p/105715224
-按
+        Windows使用scp向linux服务器传输文件,可参考这篇博客https://www.cnblogs.com/tug
       </div> -->
     </a>
   </div>

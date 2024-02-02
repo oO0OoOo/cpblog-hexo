@@ -1,12 +1,13 @@
-title: 博客搭建教程15 - Markdown常用语法
+title: Markdown常用语法
 author: epya15
 tags:
+
   - 博客
 categories:
   - 博客搭建
 date: 2023-01-09 15:00:00
 img: https://img-blog.csdnimg.cn/img_convert/a68314308cc0cd101bfc44abb176dd10.png
-excerpt: '掌握了Markdown的语法，就可以在各大博客网站发布排版美丽的博文了。'
+excerpt: 'Markdown语法'
 ---
 本文记录了书写博文时常用的Markdown语法和Html标签
 

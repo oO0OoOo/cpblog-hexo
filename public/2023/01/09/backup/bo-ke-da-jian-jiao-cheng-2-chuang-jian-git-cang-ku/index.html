@@ -11,7 +11,7 @@
   <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-  <title>博客搭建教程16 - linux云服务器在nginx.conf配置防盗链 | 赛朋博客</title>
+  <title>博客搭建教程2 - 创建Git仓库 | 赛朋博客</title>
 
   <link rel="icon" type="image/jpeg" href="/favicon.jpg">
   <link rel="stylesheet" href="https://at.alicdn.com/t/font_1911880_c1nvbyezg17.css">
@@ -647,14 +647,14 @@
 
 
 <div class="post-detail-header" id="thumbnail_canvas" style="background-repeat: no-repeat; background-size: cover; 
-  background-position: center center;position: relative;background-image:url('https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2019/4/17/16a2a86415e2db30~tplv-t2oaga2asx-zoom-crop-mark:3024:3024:3024:1702.awebp')">
+  background-position: center center;position: relative;background-image:url('https://nimg.ws.126.net/?url=http%3A%2F%2Fdingyue.ws.126.net%2F2021%2F0620%2F21391327j00quyoyu000dc000hs00anc.jpg&thumbnail=660x2147483647&quality=80&type=jpg')">
   <div class="post-detail-header-mask"></div>
   <canvas id="header_canvas"style="position:absolute;bottom:0;pointer-events:none;"></canvas>
   
   <div class="post-detail-header_info-box">
     <div class="title-box">
       <span class="title">
-        博客搭建教程16 - linux云服务器在nginx.conf配置防盗链
+        博客搭建教程2 - 创建Git仓库
       </span>
     </div>
     
@@ -665,6 +665,15 @@
         </span>
       
 
+      
+        <span class="post-detail-header_categories">
+          <i class="iconfont iconbookmark1"></i> category：
+          
+            <a href="/categories/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/" class="post-detail-header_category">
+              博客搭建
+            </a>
+          
+        </span>
       
 
       
@@ -691,15 +700,12 @@
   <div class="main-content">
     <article class="post post-detail">
       <div class="post-content">
-        <p>简单的防盗链设置，可参考如下文章<br><a target="_blank" rel="noopener" href="https://www.huati365.com/16b0661323e8cec6">https://www.huati365.com/16b0661323e8cec6</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_52162404/article/details/127051356">https://blog.csdn.net/qq_52162404/article/details/127051356</a><br><a target="_blank" rel="noopener" href="https://www.jb51.net/article/251177.htm">https://www.jb51.net/article/251177.htm</a>  </p>
-<p>总结下来写法，以经由博主验证<br>编辑…&#x2F;nginx&#x2F;conf&#x2F;nginx.conf文件，<br>如果下面这段代码是注释的状态，则将其打开  </p>
-<div class="img-wrap"><div class="img-bg"><img class="img lazyload placeholder" src="/images/nginxconfopensf.png" class="lazyload placeholder" data-srcset="/images/nginxconfopensf.png" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" style="width:80%;"/></div></div>  
-<p>再增加下面代码  </p>
-<div class="img-wrap"><div class="img-bg"><img class="img lazyload placeholder" src="/images/nginxsetlocation.png" class="lazyload placeholder" data-srcset="/images/nginxsetlocation.png" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" style="width:80%;"/></div></div>  
-<p>然后重启nginx<br>nginx -s reload<br>如果自己的网站能显示图片，其它网站CNAME过来的就不显示图片，就说明配置成功<br>盗链网站效果如下  </p>
-<div class="img-wrap"><div class="img-bg"><img class="img lazyload placeholder" src="/images/otherwebsitelocaitionnginx.png" class="lazyload placeholder" data-srcset="/images/otherwebsitelocaitionnginx.png" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" style="width:80%;"/></div></div>  
-<p>这里实现了如果检测到盗链行为就用一张图片回击，也可以只return 403，显示一张裂开的图片<br>盗链提示图片资源  </p>
-<div class="img-wrap"><div class="img-bg"><img class="img lazyload placeholder" src="/images/invalid_referer_tip.png" class="lazyload placeholder" data-srcset="/images/invalid_referer_tip.png" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" style="width:80%;"/></div></div>
+        <p>在阅读本章前，我们默认你已经了解了Git的概念。</p>
+<p>本章内容比较简单，网上相关文章很多，这里推荐这位博主的文章，因为cypunberk最初就是按照这篇教程搭建的，教程的准确性已经得到验证。<br><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/102592286">https://zhuanlan.zhihu.com/p/102592286</a></p>
+<p>第一步，注册Github账号<br>可以参考这篇知乎的教程<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/103268406">https://zhuanlan.zhihu.com/p/103268406</a></p>
+<p>第二步，安装Git<br>可以参考这篇知乎的教程<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/103325381">https://zhuanlan.zhihu.com/p/103325381</a></p>
+<p>第三步，创建Github仓库并使用Git推送文件<br>可以参考这篇知乎的教程<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/103391101">https://zhuanlan.zhihu.com/p/103391101</a></p>
+
       </div>
       <div class="post-tags-categories">
         
@@ -720,7 +726,7 @@
     </li>
     <li class="post-copyright-link">
     <strong>link:  </strong>
-    <a href="/2023/01/09/bo-ke-da-jian-jiao-cheng-16-linux-yun-fu-wu-qi-zai-nginx.conf-pei-zhi-fang-dao-lian/" target="_blank" title="博客搭建教程16 - linux云服务器在nginx.conf配置防盗链">http://epya15.fun/2023/01/09/bo-ke-da-jian-jiao-cheng-16-linux-yun-fu-wu-qi-zai-nginx.conf-pei-zhi-fang-dao-lian/</a>
+    <a href="/2023/01/09/backup/bo-ke-da-jian-jiao-cheng-2-chuang-jian-git-cang-ku/" target="_blank" title="博客搭建教程2 - 创建Git仓库">http://epya15.fun/2023/01/09/backup/bo-ke-da-jian-jiao-cheng-2-chuang-jian-git-cang-ku/</a>
     </li>
     <li class="post-copyright-license">
       <strong>Copyright notice:   </strong>
@@ -742,17 +748,17 @@
   <div class="post-nav-prev post-nav-item">
     <div class="post-nav-img" style="background-size: cover; 
       background-position: center center;">
-      <img class="lazyload lazyload placeholder" src="/images/cover_rebbitbg.jpg" class="lazyload placeholder" data-srcset="/images/cover_rebbitbg.jpg" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" alt="">
+      <img class="lazyload lazyload placeholder" src="https://pic4.zhimg.com/v2-8d3c4ce9c9fba8a59a092eecba504585_1440w.jpg" class="lazyload placeholder" data-srcset="https://pic4.zhimg.com/v2-8d3c4ce9c9fba8a59a092eecba504585_1440w.jpg" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" alt="">
     </div>
-    <a href="/2023/01/18/wang-qi-feng-mian-2023-01-18-xiong-mao-tu-zhen-gui-ying-xiang-zi-liao/" class="post-nav-link">
+    <a href="/2023/01/09/backup/bo-ke-da-jian-jiao-cheng-3-chu-shi-node.js-he-hexo/" class="post-nav-link">
       <div class="title">
         <i class="fas fa-angle-left"></i> Prev:
-        <div class="title-text">往期封面2023/01/18 熊猫兔珍贵影像资料</div>
+        <div class="title-text">博客搭建教程3 - 初识Node.js和Hexo</div>
       </div>
       
       <!-- <div class="content">
-        这只熊猫兔是2022&#x2F;1&#x2F;9在上海一条马路边买的。刚买来的时候，小小一只很可爱喜欢吃胡萝卜  
-后来
+        本篇内容比较简单，同样参考这位博主的文章https://zhuanlan.zhihu.com/p/105715224
+按
       </div> -->
     </a>
   </div>
@@ -763,16 +769,17 @@
   <div class="post-nav-next post-nav-item">
     <div class="post-nav-img" style="background-size: cover; 
       background-position: center center;">
-      <img class="lazyload lazyload placeholder" src="https://img-blog.csdnimg.cn/img_convert/a68314308cc0cd101bfc44abb176dd10.png" class="lazyload placeholder" data-srcset="https://img-blog.csdnimg.cn/img_convert/a68314308cc0cd101bfc44abb176dd10.png" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" src="" alt="">
+      <img class="lazyload lazyload placeholder" src="https://picx.zhimg.com/v2-f03ff2911a65b4be8134688969712666_1440w.jpg?source=172ae18b" class="lazyload placeholder" data-srcset="https://picx.zhimg.com/v2-f03ff2911a65b4be8134688969712666_1440w.jpg?source=172ae18b" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" src="" alt="">
     </div>
-    <a href="/2023/01/09/bo-ke-da-jian-jiao-cheng-15-markdown-chang-yong-yu-fa/" class="post-nav-link">
+    <a href="/2023/01/09/ce-shi-wen-dang/" class="post-nav-link">
       <div class="title">
         Next: <i class="fas fa-angle-right"></i>
-        <div class="title-text">博客搭建教程15 - Markdown常用语法</div>
+        <div class="title-text">测试文档</div>
       </div>
       <!-- <div class="content">
-        本文记录了书写博文时常用的Markdown语法和Html标签
-Markdown官方文档：https://markdown
+        撒大声地
+
+
       </div> -->
     </a>
   </div>

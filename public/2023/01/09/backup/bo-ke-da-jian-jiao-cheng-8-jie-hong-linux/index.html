@@ -11,7 +11,7 @@
   <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-  <title>博客搭建教程10 - 将托管在Github的Hexo博客迁移到个人云服务器 | 赛朋博客</title>
+  <title>博客搭建教程8 - 在CentOS云服务器利用Nginx搭建Hexo博客 | 赛朋博客</title>
 
   <link rel="icon" type="image/jpeg" href="/favicon.jpg">
   <link rel="stylesheet" href="https://at.alicdn.com/t/font_1911880_c1nvbyezg17.css">
@@ -647,14 +647,14 @@
 
 
 <div class="post-detail-header" id="thumbnail_canvas" style="background-repeat: no-repeat; background-size: cover; 
-  background-position: center center;position: relative;background-image:url('https://www.easeus.com.cn/attachment/chuanshu/qinayi-15.png')">
+  background-position: center center;position: relative;background-image:url('https://img-blog.csdnimg.cn/img_convert/ce4a8a59fdfee8f3106a3a0851558c76.png')">
   <div class="post-detail-header-mask"></div>
   <canvas id="header_canvas"style="position:absolute;bottom:0;pointer-events:none;"></canvas>
   
   <div class="post-detail-header_info-box">
     <div class="title-box">
       <span class="title">
-        博客搭建教程10 - 将托管在Github的Hexo博客迁移到个人云服务器
+        博客搭建教程8 - 在CentOS云服务器利用Nginx搭建Hexo博客
       </span>
     </div>
     
@@ -700,16 +700,16 @@
   <div class="main-content">
     <article class="post post-detail">
       <div class="post-content">
-        <p>Q：我觉得目前将网站托管到github上已经很好了，迁移至私服有足够的必要性吗？<br>A：迁移至私服不是必须的，如果你觉得github已经足够，那么可以跳过该教程，事实上很多人的博客都是直接托管给github的。但境内网络访问github很不稳定，加之由于github仓库是公开的，所以还是有很多缺点，使用github仓库时要时刻注意对自己网站数据的保护，否则会有泄露风险。</p>
-<p>如果你希望在服务器建立git服务器，每次发布博客时将变更同步至服务器的git仓库，那么可以先给服务器安装git<br>切换至root用户<br>su root<br>安装git<br>yum –y install git<br>键入git指令验证是否安装成功<br>创建git用户，先不创建密码<br>adduser git<br>检查是否创建成功 cd &#x2F;home &amp;&amp; ls -al<br>如果显示有git则说明用户创建成功<br>接下来找一个喜欢的目录，创建一个新的git库，需要你自己起一个喜欢的名字，我起名为cpblog.git，注意.git后缀不要变<br>git init –bare cpblog.git<br>此时终端提示你创建了一个空的git库，这就说明操作对了。<br>接下来将Hexo博客转移到服务器，以后使用hexo d发布博客就在服务器上进行了，我们需要做的是当你执行hexo d时将网站推送至自己的git仓库<br>新建文件夹作为博客根目录<br>mkdir cpblog_webroot<br>chmod 777 cpblog_webroot<br>使用Git-Hooks同步网站根目录，这里使用的是Git中的“post-receive”，当有Git收发的时候会调用该脚本，自动将最新内容同步到网站根目录中<br>用下面的指令新建勾子文件<br>vim cpblog.git&#x2F;hooks&#x2F;post-receive<br>将以下语句写入文件<br>#!&#x2F;bin&#x2F;sh<br>git –work-tree&#x3D;&#x2F;usr&#x2F;local&#x2F;cpblog_webroot –git-dir&#x3D;&#x2F;root&#x2F;cpblog.git checkout -f<br>(注意博客路径和当前用户)<br>保存并赋予执行权限<br>chmod +x cpblog.git&#x2F;hooks&#x2F;post-receive<br>sudo chown -R git:git cpblog.git<br>sudo chown -R git:git cpblog_webroot</p>
-<p>修改&#x2F;usr&#x2F;local&#x2F;nginx&#x2F;conf&#x2F;nginx.conf<br>将里面的地址改为cpblog_webroot的位置<br>server {<br>    listen    80 default_server;<br>    listen    [::] default_server;<br>    server_name    blog.59devops.com;<br>    root    &#x2F;usr&#x2F;local&#x2F;cpblog_webroot<br>}</p>
-<p>配置账户免密码登录<br>创建 ssh 的默认目录<br>进入 git 账户的主目录<br>cd &#x2F;home&#x2F;git<br>创建 .ssh 的配置，如果此文件夹已经存在请忽略此步<br>mkdir .ssh<br>创建校验公钥的配置文件<br>进入 .ssh 目录并创建 authorized_keys 文件，此文件存放客户端远程访问的 ssh 的公钥<br>cd .ssh<br>touch authorized_keys<br>cd ..<br>设置权限<br>chmod 700 .ssh&#x2F;<br>chmod 600 .ssh&#x2F;authorized_keys  </p>
-<p>配置Hexo的”_config.yml”<br>打开位于Hexo博客根目录下的“_config.yml”文件，找到“deploy”并修改  </p>
-<p>deploy:<br>   type: git<br>   repository: root@服务器的公网IP:&#x2F;usr&#x2F;local&#x2F;cpblog.git  #此行改为你的私服仓库地址<br>   branch: main      # 分支,注意看一下仓库的主干分支是master还是main</p>
-<p>从此以后，每次执行hexo d时，就会将网站推送到服务器的git仓库里。<br>本地执行下列命令进行验证<br>hexo clean<br>hexo g<br>hexo d  </p>
-<p>如果你在执行hexo d时被提示输入密码，那么可以阅读接下来的内容实现hexo d免密码  下面我们添加秘钥实现免密推送   </p>
-<p>找到服务器的id_rsa.pub文件，id_rsa.pub 文件中的内容追加到当前目录下的 authorized_keys 中<br>cat id_rsa.pub &gt;&gt; authorized_keys  </p>
-<p>最后别忘了做一件事，就是去域名供应商后台配置解析域名<br>将你的服务器公网IP填到域名解析列表中就可以了，可搜索其它文章了解具体操作。</p>
+        <p>关于图形界面：<br>有的云服务器将CentOS系统的图形界面阉割，如果想和Windows系统一样看到图形界面，需要额外进行安装。<br>但是要注意，虽然图形界面在交互上比命令行更加直观，但是会占用大约500MB的内存，这也就意味着，如果你购买的服务器内存小于500MB，一定是无法安装图形界面的。实际上，1G内存的服务器也不建议安装图形界面，在实测中，1G内存的服务器运行图形界面会非常卡，打开一个firefox浏览器有概率直接让服务器卡死。而2G及以上的服务器安装图形界面则是无压力的，实测在2G服务器上运行CentOS系统+GNOME桌面，内存占用在50%左右。<br>接下来的教程中都是以命令行的方式操作的，如果你可以接受命令行，那就尽量不要安装图形界面，毕竟它会占用一部分服务器的资源，影响到服务器的性能。<br>如果你实在希望使用图形界面的方式操作，可以按照如下教程安装。<br>在图形界面中打开【终端】也可以执行命令行，实测在1G内存情况下在图形界面执行【终端】是没有问题的。（但不要再开更多窗口了）<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_45115705/article/details/100553983">https://blog.csdn.net/weixin_45115705/article/details/100553983</a></p>
+<p>Q：找不到usr文件夹？<br>A：可以试试点击桌面的【主文件夹】图表，或者找到桌面左上角的【应用程序&#x2F;附件&#x2F;文件】,在打开的资源管理器窗口找到【其他位置】选项，点击后找到【计算机】，再点击即可看到盘根的全部文件夹，usr就在其中。<br>在服务器端或许由于缺少播放视频的插件而无法预览视频，但这本就不是服务器的职责，我们只要确保该文件被平安地放到指定的目录，并且可以被外部网络访问到即可。<br>接下来我们要做的工作就是将该视频部署到某一个网络地址，生成可以被访问的外链。</p>
+<p>在linux安装nginx，可参考这篇文章，博主实测没有问题<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/t8116189520/article/details/81909574">https://blog.csdn.net/t8116189520/article/details/81909574</a><br>Q：我是图形界面门徒，如何在CentOS图形界面系统上输入命令？<br>A：在桌面左上角应用程序中找到【系统工具&#x2F;终端】即可。请注意，通过此种方式运行终端，要注意自己是否拥有root权限，如果不是root用户，需要切到root用户，或者在命令前加sudo指令。否则，你在安装nginx过程中会频繁提示【您需要root权限执行此命令】,【permission denied】，【you need to be root to xxxx】等报错。</p>
+<p>Q：如何获取root权限？<br>A：可以执行su root切到root用户，选择root作为用户名登录，即可获得root权限。如果是图形界面，你可以选择注销当前账号的登录，回到登录界面，然后选择以其他身份登入，以此切换到root账号。</p>
+<p>nginx安装完毕后，为了今后使用方便，将nginx配置到环境变量<br>echo ‘export PATH&#x3D;&#x2F;usr&#x2F;local&#x2F;nginx&#x2F;sbin:$PATH’ &gt;&gt; &#x2F;etc&#x2F;profile<br>并使其生效<br>source &#x2F;etc&#x2F;profile<br>接下来直接输入nginx -v,看看环境变量有没有配置成功</p>
+<p>按照该命令安装nginx后，nginx所在的目录为usr&#x2F;local&#x2F;nginx，该文件夹内的nginx-1.13.7.tar.gz是安装包文件，可以删除了<br>删除的命令是：sudo rm -rf nginx-1.13.7.tar.gz</p>
+<p>配置nginx过程中可能涉及到使用命令行修改文件内容,以下博客介绍的比较好，建议参考<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_51515673/article/details/124390606">https://blog.csdn.net/qq_51515673/article/details/124390606</a>  </p>
+<p>配置完nginx后还需要开启防火墙，并且确保自己设置nginx网站端口是开放的，可参考如下文章<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/szw906689771/article/details/121647887">https://blog.csdn.net/szw906689771/article/details/121647887</a><br>下面的文章介绍了查看端口是否开启的方法：<br><a target="_blank" rel="noopener" href="https://www.muzhuangnet.com/show/78535.html">https://www.muzhuangnet.com/show/78535.html</a><br>比如你要开启8089端口，那么就是下面这句话：<br>firewall-cmd –query-port&#x3D;8089&#x2F;tcp<br>如果返回的是no，则说明端口还没有打开<br>开启8089端口的命令：<br>firewall-cmd –add-port&#x3D;8089&#x2F;tcp –permanent<br>开启后需再次重启防火墙，才能生效<br>firewall-cmd –reload<br>然后再查询一次端口是否打开，如果是yes，就成功了。<br>Q：我还是no，怎么办？<br>A：你在使用云服务器吗？那可能还需要在服务器控制台的安全组中创建规则，在【入方向规则】中添加对应的端口</p>
+<p>开启nginx：nginx -c &#x2F;usr&#x2F;local&#x2F;nginx&#x2F;conf&#x2F;nginx.conf<br>（nginx关闭命令：nginx -s stop）<br>（nginx重启命令：nginx -s reload）<br>如果服务器有安装GNOME图形界面，接下来可以打开服务器的firefox浏览器，在地址栏输入本机公网IP:端口号，看看有没有显示nginx的welcome界面，如果看到了，说明nginx服务启动成功。如果操作系统没有图形界面，可以通过curl命令访问页面。<br>然后在其它机器上访问http:&#x2F;&#x2F;服务器公网IP:端口号，看看能否出现nginx的welcome页面。<br>如果你是严格按照文档配置的nginx，那么现在，&#x2F;usr&#x2F;local&#x2F;nginx&#x2F;html是网站资源的根目录，所有的资源都必须在此目录下才可以被访问到<br>Q：可以更换目录吗？<br>A：可以，只需要修改&#x2F;usr&#x2F;local&#x2F;nginx&#x2F;conf&#x2F;nginx.conf文件重新指定目录即可，可以在网上轻松搜到关于这个文件的修改方法。<br>nginx.conf这个文件有很多用处，在本教程的其它文章中，我们还会涉及到这个文件来实现防盗链功能。<br>接下来我们都以&#x2F;usr&#x2F;local&#x2F;nginx&#x2F;html作为资源根目录来举例。<br>现在做一个测试，我们要在nginx的文件夹下放置一个资源，然后尝试在其它设备上访问<br>首先在服务器的nginx&#x2F;html目录下创建新文件夹Images<br>找一台其它设备，比如一台windows电脑，使用scp指令拷贝一个图片到服务器，例如：（注意图片原路径和ip地址不能照抄）<br>scp myImage.jpg <a href="mailto:&#114;&#x6f;&#x6f;&#116;&#64;&#x31;&#x39;&#50;&#46;&#49;&#54;&#56;&#46;&#x31;&#x2e;&#49;&#48;&#52;">&#114;&#x6f;&#x6f;&#116;&#64;&#x31;&#x39;&#50;&#46;&#49;&#54;&#56;&#46;&#x31;&#x2e;&#49;&#48;&#52;</a>:&#x2F;usr&#x2F;local&#x2F;nginx&#x2F;html&#x2F;Images<br>然后在这台windows电脑打开浏览器访问该图片，地址栏中依旧填写本机公网IP:端口号，与此同时在后面加上文件路径，例如192.168.1.104:8089&#x2F;Images&#x2F;myImage.jpg<br>浏览器显示出图片了吗？如果显示出了图片，那么恭喜，你已经完成了第一次网站资源更新。  </p>
+<p>注意：重启服务器时，nginx会重新回到关闭状态，防火墙也可能会关闭，需要留意。  开机后可能需要执行的操作：<br>重新开启防火墙：systemctl start firewalld<br>重新启动nginx：nginx</p>
 
       </div>
       <div class="post-tags-categories">
@@ -731,7 +731,7 @@
     </li>
     <li class="post-copyright-link">
     <strong>link:  </strong>
-    <a href="/2023/01/09/bo-ke-da-jian-jiao-cheng-10-jiang-tuo-guan-zai-github-de-hexo-bo-ke-qian-yi-dao-ge-ren-yun-fu-wu-qi/" target="_blank" title="博客搭建教程10 - 将托管在Github的Hexo博客迁移到个人云服务器">http://epya15.fun/2023/01/09/bo-ke-da-jian-jiao-cheng-10-jiang-tuo-guan-zai-github-de-hexo-bo-ke-qian-yi-dao-ge-ren-yun-fu-wu-qi/</a>
+    <a href="/2023/01/09/backup/bo-ke-da-jian-jiao-cheng-8-jie-hong-linux/" target="_blank" title="博客搭建教程8 - 在CentOS云服务器利用Nginx搭建Hexo博客">http://epya15.fun/2023/01/09/backup/bo-ke-da-jian-jiao-cheng-8-jie-hong-linux/</a>
     </li>
     <li class="post-copyright-license">
       <strong>Copyright notice:   </strong>
@@ -753,17 +753,16 @@
   <div class="post-nav-prev post-nav-item">
     <div class="post-nav-img" style="background-size: cover; 
       background-position: center center;">
-      <img class="lazyload lazyload placeholder" src="https://img2.baidu.com/it/u=2273045471,518867457&fm=253&fmt=auto&app=138&f=PNG?w=822&h=500" class="lazyload placeholder" data-srcset="https://img2.baidu.com/it/u=2273045471,518867457&fm=253&fmt=auto&app=138&f=PNG?w=822&h=500" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" alt="">
+      <img class="lazyload lazyload placeholder" src="https://gss0.baidu.com/70cFfyinKgQFm2e88IuM_a/baike/pic/item/64380cd7912397ddea52b9315582b2b7d0a287df.jpg" class="lazyload placeholder" data-srcset="https://gss0.baidu.com/70cFfyinKgQFm2e88IuM_a/baike/pic/item/64380cd7912397ddea52b9315582b2b7d0a287df.jpg" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" alt="">
     </div>
-    <a href="/2023/01/09/bo-ke-da-jian-jiao-cheng-11-shi-yong-linux-nginx-jian-zhan-mei-ci-yun-fu-wu-qi-chong-qi-hou-de-li-xing-jian-cha-cao-zuo/" class="post-nav-link">
+    <a href="/2023/01/09/backup/bo-ke-da-jian-jiao-cheng-9-shi-yong-scp-ming-ling-cong-windows-xiang-linux-chuan-shu-wen-jian/" class="post-nav-link">
       <div class="title">
         <i class="fas fa-angle-left"></i> Prev:
-        <div class="title-text">博客搭建教程11 - 使用linux+nginx建站每次云服务器重启后的例行检查操作</div>
+        <div class="title-text">博客搭建教程9 - 使用scp命令从Windows向linux传输文件</div>
       </div>
       
       <!-- <div class="content">
-        重启服务器后的例行操作  
-1.检查防火墙检查防火墙状态：systemctl status firewalld若出现绿色
+        Windows使用scp向linux服务器传输文件,可参考这篇博客https://www.cnblogs.com/tug
       </div> -->
     </a>
   </div>
@@ -774,15 +773,15 @@
   <div class="post-nav-next post-nav-item">
     <div class="post-nav-img" style="background-size: cover; 
       background-position: center center;">
-      <img class="lazyload lazyload placeholder" src="https://gss0.baidu.com/70cFfyinKgQFm2e88IuM_a/baike/pic/item/64380cd7912397ddea52b9315582b2b7d0a287df.jpg" class="lazyload placeholder" data-srcset="https://gss0.baidu.com/70cFfyinKgQFm2e88IuM_a/baike/pic/item/64380cd7912397ddea52b9315582b2b7d0a287df.jpg" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" src="" alt="">
+      <img class="lazyload lazyload placeholder" src="https://www.5iqiqu.com/images/news/66/66372-20200515145359325-1759450153.jpg" class="lazyload placeholder" data-srcset="https://www.5iqiqu.com/images/news/66/66372-20200515145359325-1759450153.jpg" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" src="" alt="">
     </div>
-    <a href="/2023/01/09/bo-ke-da-jian-jiao-cheng-9-shi-yong-scp-ming-ling-cong-windows-xiang-linux-chuan-shu-wen-jian/" class="post-nav-link">
+    <a href="/2023/01/09/backup/bo-ke-da-jian-jiao-cheng-7-wei-bo-ke-wang-zhan-xuan-ze-he-gua-de-yun-fu-wu-qi/" class="post-nav-link">
       <div class="title">
         Next: <i class="fas fa-angle-right"></i>
-        <div class="title-text">博客搭建教程9 - 使用scp命令从Windows向linux传输文件</div>
+        <div class="title-text">博客搭建教程7 - 为博客网站选择合适的云服务器</div>
       </div>
       <!-- <div class="content">
-        Windows使用scp向linux服务器传输文件,可参考这篇博客https://www.cnblogs.com/tug
+        网页中会展示一些大体积的资源，比如音频视频等多媒体文件，还有一些可被公开下载的文件。你可能听过图床，图床就是将博客的图片
       </div> -->
     </a>
   </div>

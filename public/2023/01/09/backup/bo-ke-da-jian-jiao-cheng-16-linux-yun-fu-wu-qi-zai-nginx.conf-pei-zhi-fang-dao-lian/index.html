@@ -11,7 +11,7 @@
   <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-  <title>博客搭建教程3 - 初识Node.js和Hexo | 赛朋博客</title>
+  <title>博客搭建教程16 - linux云服务器在nginx.conf配置防盗链 | 赛朋博客</title>
 
   <link rel="icon" type="image/jpeg" href="/favicon.jpg">
   <link rel="stylesheet" href="https://at.alicdn.com/t/font_1911880_c1nvbyezg17.css">
@@ -647,14 +647,14 @@
 
 
 <div class="post-detail-header" id="thumbnail_canvas" style="background-repeat: no-repeat; background-size: cover; 
-  background-position: center center;position: relative;background-image:url('https://pic4.zhimg.com/v2-8d3c4ce9c9fba8a59a092eecba504585_1440w.jpg')">
+  background-position: center center;position: relative;background-image:url('https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2019/4/17/16a2a86415e2db30~tplv-t2oaga2asx-zoom-crop-mark:3024:3024:3024:1702.awebp')">
   <div class="post-detail-header-mask"></div>
   <canvas id="header_canvas"style="position:absolute;bottom:0;pointer-events:none;"></canvas>
   
   <div class="post-detail-header_info-box">
     <div class="title-box">
       <span class="title">
-        博客搭建教程3 - 初识Node.js和Hexo
+        博客搭建教程16 - linux云服务器在nginx.conf配置防盗链
       </span>
     </div>
     
@@ -665,15 +665,6 @@
         </span>
       
 
-      
-        <span class="post-detail-header_categories">
-          <i class="iconfont iconbookmark1"></i> category：
-          
-            <a href="/categories/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/" class="post-detail-header_category">
-              博客搭建
-            </a>
-          
-        </span>
       
 
       
@@ -700,10 +691,15 @@
   <div class="main-content">
     <article class="post post-detail">
       <div class="post-content">
-        <p>本篇内容比较简单，同样参考这位博主的文章<br><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/105715224">https://zhuanlan.zhihu.com/p/105715224</a></p>
-<p>按照上述流程做完后，基于Github Page的博客就已经搭建好了，你可以在浏览器上输入自己的Github仓库地址，就可以看到搭建好的Hexo博客了。</p>
-<p>接下来的教程里，我们将继续做如下几件事情来加深对网站的理解，增强管理能力，这些并非必要项，而且每篇教程都是独立的，可以选择有需要的部分阅读，未来博主也会随时扩充。<br>接下来教程的内容大致如下，看看有没有你比较关心的：<br>1.选择自己喜欢的Hexo主题美化博客<br>2.购买一个自己喜欢的域名，解析域名，并取代现在github访问的方式<br>3.了解网站备案，选择云服务器，搭建资源服实现图床<br>4.将博客部署在云服务器上<br>5.学习Markdown常用语法<br>6.使用宝塔管理自己的服务器<br>7.知识财产保护与侵权行为</p>
-
+        <p>简单的防盗链设置，可参考如下文章<br><a target="_blank" rel="noopener" href="https://www.huati365.com/16b0661323e8cec6">https://www.huati365.com/16b0661323e8cec6</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_52162404/article/details/127051356">https://blog.csdn.net/qq_52162404/article/details/127051356</a><br><a target="_blank" rel="noopener" href="https://www.jb51.net/article/251177.htm">https://www.jb51.net/article/251177.htm</a>  </p>
+<p>总结下来写法，以经由博主验证<br>编辑…&#x2F;nginx&#x2F;conf&#x2F;nginx.conf文件，<br>如果下面这段代码是注释的状态，则将其打开  </p>
+<div class="img-wrap"><div class="img-bg"><img class="img lazyload placeholder" src="/images/nginxconfopensf.png" class="lazyload placeholder" data-srcset="/images/nginxconfopensf.png" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" style="width:80%;"/></div></div>  
+<p>再增加下面代码  </p>
+<div class="img-wrap"><div class="img-bg"><img class="img lazyload placeholder" src="/images/nginxsetlocation.png" class="lazyload placeholder" data-srcset="/images/nginxsetlocation.png" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" style="width:80%;"/></div></div>  
+<p>然后重启nginx<br>nginx -s reload<br>如果自己的网站能显示图片，其它网站CNAME过来的就不显示图片，就说明配置成功<br>盗链网站效果如下  </p>
+<div class="img-wrap"><div class="img-bg"><img class="img lazyload placeholder" src="/images/otherwebsitelocaitionnginx.png" class="lazyload placeholder" data-srcset="/images/otherwebsitelocaitionnginx.png" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" style="width:80%;"/></div></div>  
+<p>这里实现了如果检测到盗链行为就用一张图片回击，也可以只return 403，显示一张裂开的图片<br>盗链提示图片资源  </p>
+<div class="img-wrap"><div class="img-bg"><img class="img lazyload placeholder" src="/images/invalid_referer_tip.png" class="lazyload placeholder" data-srcset="/images/invalid_referer_tip.png" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" style="width:80%;"/></div></div>
       </div>
       <div class="post-tags-categories">
         
@@ -724,7 +720,7 @@
     </li>
     <li class="post-copyright-link">
     <strong>link:  </strong>
-    <a href="/2023/01/09/bo-ke-da-jian-jiao-cheng-3-chu-shi-node.js-he-hexo/" target="_blank" title="博客搭建教程3 - 初识Node.js和Hexo">http://epya15.fun/2023/01/09/bo-ke-da-jian-jiao-cheng-3-chu-shi-node.js-he-hexo/</a>
+    <a href="/2023/01/09/backup/bo-ke-da-jian-jiao-cheng-16-linux-yun-fu-wu-qi-zai-nginx.conf-pei-zhi-fang-dao-lian/" target="_blank" title="博客搭建教程16 - linux云服务器在nginx.conf配置防盗链">http://epya15.fun/2023/01/09/backup/bo-ke-da-jian-jiao-cheng-16-linux-yun-fu-wu-qi-zai-nginx.conf-pei-zhi-fang-dao-lian/</a>
     </li>
     <li class="post-copyright-license">
       <strong>Copyright notice:   </strong>
@@ -746,17 +742,28 @@
   <div class="post-nav-prev post-nav-item">
     <div class="post-nav-img" style="background-size: cover; 
       background-position: center center;">
-      <img class="lazyload lazyload placeholder" src="https://img1.baidu.com/it/u=4061327327,3801077277&fm=253&fmt=auto&app=138&f=JPEG?w=800&h=500" class="lazyload placeholder" data-srcset="https://img1.baidu.com/it/u=4061327327,3801077277&fm=253&fmt=auto&app=138&f=JPEG?w=800&h=500" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" alt="">
+      <img class="lazyload lazyload placeholder" src="/images/cover_rebbitbg.jpg" class="lazyload placeholder" data-srcset="/images/cover_rebbitbg.jpg" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" alt="">
     </div>
-    <a href="/2023/01/09/bo-ke-da-jian-jiao-cheng-4-geng-huan-hexo-bo-ke-zhu-ti/" class="post-nav-link">
+    <a href="/2023/01/18/wang-qi-feng-mian-2023-01-18-xiong-mao-tu-zhen-gui-ying-xiang-zi-liao/" class="post-nav-link">
       <div class="title">
         <i class="fas fa-angle-left"></i> Prev:
-        <div class="title-text">博客搭建教程4 - 更换Hexo博客主题</div>
+        <div class="title-text">往期封面2023/01/18 熊猫兔珍贵影像资料</div>
       </div>
       
       <!-- <div class="content">
-        在这里选择喜欢的主题https://hexo.io/themes/
-在Hexo博客仓库目录里可以看到_configs.y
+          
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
       </div> -->
     </a>
   </div>
@@ -767,16 +774,16 @@
   <div class="post-nav-next post-nav-item">
     <div class="post-nav-img" style="background-size: cover; 
       background-position: center center;">
-      <img class="lazyload lazyload placeholder" src="https://nimg.ws.126.net/?url=http%3A%2F%2Fdingyue.ws.126.net%2F2021%2F0620%2F21391327j00quyoyu000dc000hs00anc.jpg&thumbnail=660x2147483647&quality=80&type=jpg" class="lazyload placeholder" data-srcset="https://nimg.ws.126.net/?url=http%3A%2F%2Fdingyue.ws.126.net%2F2021%2F0620%2F21391327j00quyoyu000dc000hs00anc.jpg&thumbnail=660x2147483647&quality=80&type=jpg" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" src="" alt="">
+      <img class="lazyload lazyload placeholder" src="https://img-blog.csdnimg.cn/img_convert/a68314308cc0cd101bfc44abb176dd10.png" class="lazyload placeholder" data-srcset="https://img-blog.csdnimg.cn/img_convert/a68314308cc0cd101bfc44abb176dd10.png" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" src="" alt="">
     </div>
-    <a href="/2023/01/09/bo-ke-da-jian-jiao-cheng-2-chuang-jian-git-cang-ku/" class="post-nav-link">
+    <a href="/2023/01/09/bo-ke-da-jian-jiao-cheng-15-markdown-chang-yong-yu-fa/" class="post-nav-link">
       <div class="title">
         Next: <i class="fas fa-angle-right"></i>
-        <div class="title-text">博客搭建教程2 - 创建Git仓库</div>
+        <div class="title-text">Markdown常用语法</div>
       </div>
       <!-- <div class="content">
-        在阅读本章前，我们默认你已经了解了Git的概念。
-本章内容比较简单，网上相关文章很多，这里推荐这位博主的文章，因为cyp
+        本文记录了书写博文时常用的Markdown语法和Html标签
+Markdown官方文档：https://markdown
       </div> -->
     </a>
   </div>

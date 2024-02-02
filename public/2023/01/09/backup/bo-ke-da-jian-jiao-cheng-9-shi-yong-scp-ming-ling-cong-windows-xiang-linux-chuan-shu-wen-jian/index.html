@@ -11,7 +11,7 @@
   <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-  <title>博客搭建教程14 - Linux云服务器安装宝塔运维工具 | 赛朋博客</title>
+  <title>博客搭建教程9 - 使用scp命令从Windows向linux传输文件 | 赛朋博客</title>
 
   <link rel="icon" type="image/jpeg" href="/favicon.jpg">
   <link rel="stylesheet" href="https://at.alicdn.com/t/font_1911880_c1nvbyezg17.css">
@@ -647,14 +647,14 @@
 
 
 <div class="post-detail-header" id="thumbnail_canvas" style="background-repeat: no-repeat; background-size: cover; 
-  background-position: center center;position: relative;background-image:url('https://www.leixue.com/uploads/2022/03/baota.png')">
+  background-position: center center;position: relative;background-image:url('https://gss0.baidu.com/70cFfyinKgQFm2e88IuM_a/baike/pic/item/64380cd7912397ddea52b9315582b2b7d0a287df.jpg')">
   <div class="post-detail-header-mask"></div>
   <canvas id="header_canvas"style="position:absolute;bottom:0;pointer-events:none;"></canvas>
   
   <div class="post-detail-header_info-box">
     <div class="title-box">
       <span class="title">
-        博客搭建教程14 - Linux云服务器安装宝塔运维工具
+        博客搭建教程9 - 使用scp命令从Windows向linux传输文件
       </span>
     </div>
     
@@ -665,15 +665,6 @@
         </span>
       
 
-      
-        <span class="post-detail-header_categories">
-          <i class="iconfont iconbookmark1"></i> category：
-          
-            <a href="/categories/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/" class="post-detail-header_category">
-              博客搭建
-            </a>
-          
-        </span>
       
 
       
@@ -700,11 +691,14 @@
   <div class="main-content">
     <article class="post post-detail">
       <div class="post-content">
-        <p>安装宝塔面板只需要一句话命令：<br>在<a target="_blank" rel="noopener" href="http://www.bt.cn宝塔官网上能找到安装命令,比如/">www.bt.cn宝塔官网上能找到安装命令，比如</a><br>yum install -y wget &amp;&amp; wget -O install.sh <a target="_blank" rel="noopener" href="https://download.bt.cn/install/install_6.0.sh">https://download.bt.cn/install/install_6.0.sh</a> &amp;&amp; sh install.sh ed8484bec  </p>
-<p>回车开始自动安装，安装大概需要2-10分钟。安装成功后，会显示出你的宝塔登录信息，帐号和密码。  </p>
-<p>直接用你的 IP打开 http:&#x2F;&#x2F;你的IP:8888&#x2F; 就可以登录后台，然后选择网站环境安装了。<br>可以在宝塔面板上修改账号和密码</p>
-<p>在浏览上打开宝塔面板的地址，登入面板会自动推荐你安装环境的套件，这里有两种选择，第一种是LNMP套件，第二种是LAMP套件。选择安装的程序后，面板的左上角会自动显示任务的数量，点击后进入任务列表。最后，调试面板即可安装网站操作。</p>
-<p>注意，任何人都可以通过IP地址和端口号进入宝塔面板，因此你的令牌必须足够复杂，即便自己忘记了，还可以登录服务器修改，但如果被别人记住了，那就是巨大的灾难了。</p>
+        <p>Windows使用scp向linux服务器传输文件,可参考这篇博客<br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/tugenhua0707/p/8278772.html">https://www.cnblogs.com/tugenhua0707/p/8278772.html</a></p>
+<p>比如传送一个Windows桌面上的视频到服务器，输入下面指令并回车<br>scp D:\Users\Administrator\Desktop\video.mp4 <a href="mailto:&#114;&#x6f;&#x6f;&#116;&#x40;&#50;&#48;&#x38;&#x2e;&#56;&#x37;&#x2e;&#x32;&#48;&#49;&#x2e;&#x31;&#x36;&#52;">&#114;&#x6f;&#x6f;&#116;&#x40;&#50;&#48;&#x38;&#x2e;&#56;&#x37;&#x2e;&#x32;&#48;&#49;&#x2e;&#x31;&#x36;&#52;</a>:&#x2F;usr&#x2F;local<br>会提示这个：</p>
+<div class="img-wrap"><div class="img-bg"><img class="img lazyload placeholder" src="/images/scpwindowsfirstlink.png" class="lazyload placeholder" data-srcset="/images/scpwindowsfirstlink.png" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" style="width:80%;"/></div></div>
+<p>这是因为首次连接，双方机器还互相陌生，需要打个招呼，只需输入yes并回车</p>
+<div class="img-wrap"><div class="img-bg"><img class="img lazyload placeholder" src="/images/scpwindowslinkok.png" class="lazyload placeholder" data-srcset="/images/scpwindowslinkok.png" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" style="width:80%;"/></div></div>
+<p>接下来输入远程服务器的密码<br>注意由于上面我们使用了向root传输数据的命令，因此该密码必须是linux服务器root用户的密码，如果你使用的是云服务器，那么在云服务器控制台&#x2F;实例页面中能看到<br>如果出现下面的图说明传输成功，博主传输了一个59MB视频，时间消耗29s，平均速度为2MB&#x2F;s  </p>
+<div class="img-wrap"><div class="img-bg"><img class="img lazyload placeholder" src="/images/scptransferdemo.png" class="lazyload placeholder" data-srcset="/images/scptransferdemo.png" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" style="width:80%;"/></div></div>  
+<p>接下来到服务器&#x2F;usr&#x2F;local目录下查看这个文件就可以了。</p>
 
       </div>
       <div class="post-tags-categories">
@@ -726,7 +720,7 @@
     </li>
     <li class="post-copyright-link">
     <strong>link:  </strong>
-    <a href="/2023/01/09/bo-ke-da-jian-jiao-cheng-14-linux-yun-fu-wu-qi-an-zhuang-bao-ta-yun-wei-gong-ju/" target="_blank" title="博客搭建教程14 - Linux云服务器安装宝塔运维工具">http://epya15.fun/2023/01/09/bo-ke-da-jian-jiao-cheng-14-linux-yun-fu-wu-qi-an-zhuang-bao-ta-yun-wei-gong-ju/</a>
+    <a href="/2023/01/09/backup/bo-ke-da-jian-jiao-cheng-9-shi-yong-scp-ming-ling-cong-windows-xiang-linux-chuan-shu-wen-jian/" target="_blank" title="博客搭建教程9 - 使用scp命令从Windows向linux传输文件">http://epya15.fun/2023/01/09/backup/bo-ke-da-jian-jiao-cheng-9-shi-yong-scp-ming-ling-cong-windows-xiang-linux-chuan-shu-wen-jian/</a>
     </li>
     <li class="post-copyright-license">
       <strong>Copyright notice:   </strong>
@@ -748,17 +742,16 @@
   <div class="post-nav-prev post-nav-item">
     <div class="post-nav-img" style="background-size: cover; 
       background-position: center center;">
-      <img class="lazyload lazyload placeholder" src="https://img-blog.csdnimg.cn/img_convert/a68314308cc0cd101bfc44abb176dd10.png" class="lazyload placeholder" data-srcset="https://img-blog.csdnimg.cn/img_convert/a68314308cc0cd101bfc44abb176dd10.png" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" alt="">
+      <img class="lazyload lazyload placeholder" src="https://www.easeus.com.cn/attachment/chuanshu/qinayi-15.png" class="lazyload placeholder" data-srcset="https://www.easeus.com.cn/attachment/chuanshu/qinayi-15.png" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" alt="">
     </div>
-    <a href="/2023/01/09/bo-ke-da-jian-jiao-cheng-15-markdown-chang-yong-yu-fa/" class="post-nav-link">
+    <a href="/2023/01/09/backup/bo-ke-da-jian-jiao-cheng-10-jiang-tuo-guan-zai-github-de-hexo-bo-ke-qian-yi-dao-ge-ren-yun-fu-wu-qi/" class="post-nav-link">
       <div class="title">
         <i class="fas fa-angle-left"></i> Prev:
-        <div class="title-text">博客搭建教程15 - Markdown常用语法</div>
+        <div class="title-text">博客搭建教程10 - 将托管在Github的Hexo博客迁移到个人云服务器</div>
       </div>
       
       <!-- <div class="content">
-        本文记录了书写博文时常用的Markdown语法和Html标签
-Markdown官方文档：https://markdown
+        Q：我觉得目前将网站托管到github上已经很好了，迁移至私服有足够的必要性吗？A：迁移至私服不是必须的，如果你觉得gi
       </div> -->
     </a>
   </div>
@@ -769,15 +762,15 @@ Markdown官方文档：https://markdown
   <div class="post-nav-next post-nav-item">
     <div class="post-nav-img" style="background-size: cover; 
       background-position: center center;">
-      <img class="lazyload lazyload placeholder" src="https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2017/8/9/5e1040cd64eefde3ecb5e0c809cdd3e5~tplv-t2oaga2asx-zoom-crop-mark:3024:3024:3024:1702.awebp" class="lazyload placeholder" data-srcset="https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2017/8/9/5e1040cd64eefde3ecb5e0c809cdd3e5~tplv-t2oaga2asx-zoom-crop-mark:3024:3024:3024:1702.awebp" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" src="" alt="">
+      <img class="lazyload lazyload placeholder" src="https://img-blog.csdnimg.cn/img_convert/ce4a8a59fdfee8f3106a3a0851558c76.png" class="lazyload placeholder" data-srcset="https://img-blog.csdnimg.cn/img_convert/ce4a8a59fdfee8f3106a3a0851558c76.png" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" src="" alt="">
     </div>
-    <a href="/2023/01/09/bo-ke-da-jian-jiao-cheng-13-xie-bo-ke-shi-yong-wang-zhan-da-he-ji/" class="post-nav-link">
+    <a href="/2023/01/09/backup/bo-ke-da-jian-jiao-cheng-8-jie-hong-linux/" class="post-nav-link">
       <div class="title">
         Next: <i class="fas fa-angle-right"></i>
-        <div class="title-text">博客搭建教程13 - 写博客实用网站大合集</div>
+        <div class="title-text">博客搭建教程8 - 在CentOS云服务器利用Nginx搭建Hexo博客</div>
       </div>
       <!-- <div class="content">
-        无版权图片网站合集https://zhuanlan.zhihu.com/p/99543178无版权视频素材网站合集htt
+        关于图形界面：有的云服务器将CentOS系统的图形界面阉割，如果想和Windows系统一样看到图形界面，需要额外进行安装
       </div> -->
     </a>
   </div>

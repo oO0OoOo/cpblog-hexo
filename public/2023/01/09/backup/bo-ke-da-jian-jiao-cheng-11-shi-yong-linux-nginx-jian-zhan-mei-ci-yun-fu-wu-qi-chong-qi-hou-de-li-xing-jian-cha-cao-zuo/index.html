@@ -11,7 +11,7 @@
   <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-  <title>博客搭建教程5 - 为Hexo博客安装插件 | 赛朋博客</title>
+  <title>博客搭建教程11 - 使用linux+nginx建站每次云服务器重启后的例行检查操作 | 赛朋博客</title>
 
   <link rel="icon" type="image/jpeg" href="/favicon.jpg">
   <link rel="stylesheet" href="https://at.alicdn.com/t/font_1911880_c1nvbyezg17.css">
@@ -647,14 +647,14 @@
 
 
 <div class="post-detail-header" id="thumbnail_canvas" style="background-repeat: no-repeat; background-size: cover; 
-  background-position: center center;position: relative;background-image:url('https://img-blog.csdnimg.cn/img_convert/a13ddd89488d90cf62d1ca8ece66d1d3.png')">
+  background-position: center center;position: relative;background-image:url('https://img2.baidu.com/it/u=2273045471,518867457&fm=253&fmt=auto&app=138&f=PNG?w=822&h=500')">
   <div class="post-detail-header-mask"></div>
   <canvas id="header_canvas"style="position:absolute;bottom:0;pointer-events:none;"></canvas>
   
   <div class="post-detail-header_info-box">
     <div class="title-box">
       <span class="title">
-        博客搭建教程5 - 为Hexo博客安装插件
+        博客搭建教程11 - 使用linux+nginx建站每次云服务器重启后的例行检查操作
       </span>
     </div>
     
@@ -700,7 +700,10 @@
   <div class="main-content">
     <article class="post post-detail">
       <div class="post-content">
-        <p>文档正在筹备</p>
+        <p>重启服务器后的例行操作  </p>
+<p>1.检查防火墙<br>检查防火墙状态：systemctl status firewalld<br>若出现绿色的active(running)，说明防火墙已经启动，否则<br>systemctl start firewalld开启防火墙，没有任何提示即开启成功<br>如果没有反应，或者等待1分钟后出现timeout，需要先kill掉现在的防火墙进程再重新开启<br>kill防火墙进程：pkill -f firewalld<br>然后再重新systemctl start firewalld开启防火墙，没有任何提示即开启成功  </p>
+<p>2.检查nginx端口（比如80端口）<br>firewall-cmd –query-port&#x3D;80&#x2F;tcp<br>返回yes即没问题，否则打开80端口<br>firewall-cmd –add-port&#x3D;80&#x2F;tcp –permanent<br>开启后需再次重启防火墙，才能生效<br>firewall-cmd –reload  </p>
+<p>3.检查nginx服务<br>开启nginx：nginx<br>（nginx关闭命令：nginx -s stop）<br>（nginx重启命令：nginx -s reload）<br>在其它机器上访问服务器IP:端口号，如果出现nginx页面，就表示开启成功（出现40x 页面也无所谓）<br>如果开启nginx提示端口被占用，需要杀死占用这个端口的进程<br>可以使用一个快捷的方法，直接杀死指定端口的所有进程，比如80端口<br>kill -9 $(lsof -i:80 -t)<br>或者可以仔细查看是哪个进程占用了80端口<br>查看80端口使用情况<br>netstat -lnp|grep 80<br>比如正在被nginx占用，记住显示的进程号，比如1053<br>停掉nginx<br>systemctl stop nginx<br>强制杀掉1053进程<br>kill -9 1053<br>再查询<br>netstat -lnp|grep 80<br>没结果说明已经不占用了<br>接着重新开启nginx服务  </p>
 
       </div>
       <div class="post-tags-categories">
@@ -722,7 +725,7 @@
     </li>
     <li class="post-copyright-link">
     <strong>link:  </strong>
-    <a href="/2023/01/09/bo-ke-da-jian-jiao-cheng-5-wei-hexo-bo-ke-an-zhuang-cha-jian/" target="_blank" title="博客搭建教程5 - 为Hexo博客安装插件">http://epya15.fun/2023/01/09/bo-ke-da-jian-jiao-cheng-5-wei-hexo-bo-ke-an-zhuang-cha-jian/</a>
+    <a href="/2023/01/09/backup/bo-ke-da-jian-jiao-cheng-11-shi-yong-linux-nginx-jian-zhan-mei-ci-yun-fu-wu-qi-chong-qi-hou-de-li-xing-jian-cha-cao-zuo/" target="_blank" title="博客搭建教程11 - 使用linux+nginx建站每次云服务器重启后的例行检查操作">http://epya15.fun/2023/01/09/backup/bo-ke-da-jian-jiao-cheng-11-shi-yong-linux-nginx-jian-zhan-mei-ci-yun-fu-wu-qi-chong-qi-hou-de-li-xing-jian-cha-cao-zuo/</a>
     </li>
     <li class="post-copyright-license">
       <strong>Copyright notice:   </strong>
@@ -744,17 +747,17 @@
   <div class="post-nav-prev post-nav-item">
     <div class="post-nav-img" style="background-size: cover; 
       background-position: center center;">
-      <img class="lazyload lazyload placeholder" src="http://img.idcicp.com//attached/20210708/6376133546709039089257812.jpg" class="lazyload placeholder" data-srcset="http://img.idcicp.com//attached/20210708/6376133546709039089257812.jpg" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" alt="">
+      <img class="lazyload lazyload placeholder" src="https://zhongces3.sina.com.cn/products/201904/740d84b4db27bb0b7303adf092f44cbc.jpeg" class="lazyload placeholder" data-srcset="https://zhongces3.sina.com.cn/products/201904/740d84b4db27bb0b7303adf092f44cbc.jpeg" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" alt="">
     </div>
-    <a href="/2023/01/09/bo-ke-da-jian-jiao-cheng-6-wei-github-bu-shu-de-hexo-bo-ke-geng-huan-xin-yu-ming/" class="post-nav-link">
+    <a href="/2023/01/09/backup/bo-ke-da-jian-jiao-cheng-12-geng-huan-yun-fu-wu-qi-wan-cheng-shu-ju-qian-yi/" class="post-nav-link">
       <div class="title">
         <i class="fas fa-angle-left"></i> Prev:
-        <div class="title-text">博客搭建教程6 - 为Github部署的Hexo博客更换新域名</div>
+        <div class="title-text">博客搭建教程12 - 更换云服务器完成数据迁移</div>
       </div>
       
       <!-- <div class="content">
-        首先在域名购买网站挑选心仪的域名并购买，比如万网：https://wanwang.aliyun.com/domain
-暂
+        文档正在筹备
+
       </div> -->
     </a>
   </div>
@@ -765,16 +768,15 @@
   <div class="post-nav-next post-nav-item">
     <div class="post-nav-img" style="background-size: cover; 
       background-position: center center;">
-      <img class="lazyload lazyload placeholder" src="https://img1.baidu.com/it/u=4061327327,3801077277&fm=253&fmt=auto&app=138&f=JPEG?w=800&h=500" class="lazyload placeholder" data-srcset="https://img1.baidu.com/it/u=4061327327,3801077277&fm=253&fmt=auto&app=138&f=JPEG?w=800&h=500" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" src="" alt="">
+      <img class="lazyload lazyload placeholder" src="https://www.easeus.com.cn/attachment/chuanshu/qinayi-15.png" class="lazyload placeholder" data-srcset="https://www.easeus.com.cn/attachment/chuanshu/qinayi-15.png" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" src="" alt="">
     </div>
-    <a href="/2023/01/09/bo-ke-da-jian-jiao-cheng-4-geng-huan-hexo-bo-ke-zhu-ti/" class="post-nav-link">
+    <a href="/2023/01/09/backup/bo-ke-da-jian-jiao-cheng-10-jiang-tuo-guan-zai-github-de-hexo-bo-ke-qian-yi-dao-ge-ren-yun-fu-wu-qi/" class="post-nav-link">
       <div class="title">
         Next: <i class="fas fa-angle-right"></i>
-        <div class="title-text">博客搭建教程4 - 更换Hexo博客主题</div>
+        <div class="title-text">博客搭建教程10 - 将托管在Github的Hexo博客迁移到个人云服务器</div>
       </div>
       <!-- <div class="content">
-        在这里选择喜欢的主题https://hexo.io/themes/
-在Hexo博客仓库目录里可以看到_configs.y
+        Q：我觉得目前将网站托管到github上已经很好了，迁移至私服有足够的必要性吗？A：迁移至私服不是必须的，如果你觉得gi
       </div> -->
     </a>
   </div>
