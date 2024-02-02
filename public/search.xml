@@ -1,175 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>云服务器搭建博客网站全套流程（浓缩版）</title>
-    <url>/2024/02/01/bo-ke-da-jian-jiao-cheng-17-yun-fu-wu-qi-da-jian-bo-ke-wang-zhan-quan-tao-liu-cheng/</url>
-    <content><![CDATA[<h3 id="1-配置安全组"><a href="#1-配置安全组" class="headerlink" title="1.配置安全组"></a>1.配置安全组</h3><p>租用云服务器，安装centOS 7系统，配置安全组，放开【入方向规则】指定或全部端口以正常安装宝塔运维工具</p>
-<h3 id="2-安装宝塔"><a href="#2-安装宝塔" class="headerlink" title="2.安装宝塔"></a>2.安装宝塔</h3><p>使用在线安装或者键入命令</p>
-<blockquote>
-<p>yum install -y wget &amp;&amp; wget -O install.sh <a href="https://download.bt.cn/install/install_6.0.sh">https://download.bt.cn/install/install_6.0.sh</a> &amp;&amp; sh install.sh ed8484bec</p>
-</blockquote>
-<h3 id="3-安装Nginx"><a href="#3-安装Nginx" class="headerlink" title="3.安装Nginx"></a>3.安装Nginx</h3><p>&#x2F;&#x2F;一键安装全部依赖</p>
-<blockquote>
-<p>yum -y install gcc zlib zlib-devel pcre-devel opensslopenssl-devel</p>
-</blockquote>
-<p>&#x2F;&#x2F;创建一个Nginx文件夹</p>
-<blockquote>
-<p>cd &#x2F;usr&#x2F;local<br>mkdir nginx<br>cd nginx</p>
-</blockquote>
-<p>&#x2F;&#x2F;下载tar包</p>
-<blockquote>
-<p>wget <a href="http://nginx.org/download/nginx-1.13.7.tar.gz">http://nginx.org/download/nginx-1.13.7.tar.gz</a></p>
-<p>tar -xvf nginx-1.13.7.tar.gz</p>
-</blockquote>
-<p>&#x2F;&#x2F;进入nginx目录</p>
-<blockquote>
-<p>cd &#x2F;usr&#x2F;local&#x2F;nginx</p>
-</blockquote>
-<p>&#x2F;&#x2F;进入目录（以实际安装版本号为准）</p>
-<blockquote>
-<p>cd nginx-1.13.7</p>
-</blockquote>
-<p>&#x2F;&#x2F;执行命令考虑到后续安装ssl证书 添加两个模块</p>
-<blockquote>
-<p>.&#x2F;configure –with-http_stub_status_module –with-http_ssl_module</p>
-</blockquote>
-<p>&#x2F;&#x2F;执行make命令</p>
-<blockquote>
-<p>make</p>
-</blockquote>
-<p>&#x2F;&#x2F;执行make install命令</p>
-<blockquote>
-<p>make install</p>
-</blockquote>
-<p>&#x2F;&#x2F;nginx安装完毕后，为了今后使用方便，将nginx配置到环境变量</p>
-<blockquote>
-<p>echo ‘export PATH&#x3D;&#x2F;usr&#x2F;local&#x2F;nginx&#x2F;sbin:$PATH’ &gt;&gt; &#x2F;etc&#x2F;profile</p>
-</blockquote>
-<p>&#x2F;&#x2F;并使其生效</p>
-<blockquote>
-<p>source &#x2F;etc&#x2F;profile</p>
-</blockquote>
-<p>&#x2F;&#x2F;接下来直接输入nginx -v,看看环境变量有没有配置成功</p>
-<blockquote>
-<p>nginx -v</p>
-</blockquote>
-<p>修改&#x2F;usr&#x2F;local&#x2F;nginx&#x2F;conf&#x2F;nginx.conf</p>
-<p>将里面的地址改为网站目录位置</p>
-<p>主要修改的部分（示例）</p>
-<blockquote>
-<p>location &#x2F; {<br>    root   &#x2F;www&#x2F;wwwroot&#x2F;cpblog-hexo&#x2F;public;<br>    index  index.html index.htm;<br>}</p>
-<p>#防盗链设置，只允许自己网站访问自己的多媒体资源<br>location ~*.(png|jpg|jpeg|gif|mp4){<br>    root &#x2F;www&#x2F;wwwroot&#x2F;epya15.fun;<br>    valid_referers none blocked <a href="http://www.epya15.fun/">www.epya15.fun</a> epya15.fun;<br>    if ($invalid_referer) {<br>        #return 403;    #可以返回403，盗链网页显示的是一个裂开的图<br>        rewrite ^&#x2F; &#x2F;images&#x2F;invalid_referer_tip.png break;  #返回一个自己定制的图片<br>    }<br>}</p>
-</blockquote>
-<h3 id="4-配置防火墙"><a href="#4-配置防火墙" class="headerlink" title="4.配置防火墙"></a>4.配置防火墙</h3><p>&#x2F;&#x2F;查看防火墙开启状态</p>
-<blockquote>
-<p>systemctl status firewalld</p>
-</blockquote>
-<p>&#x2F;&#x2F;开启防火墙，没有任何提示则为开启成功</p>
-<blockquote>
-<p>systemctl start firewalld</p>
-</blockquote>
-<p>&#x2F;&#x2F;如果要关闭防火墙设置,可能通过systemctl stop firewalld这条指令来关闭该功能,没有任何提示则关闭成功</p>
-<blockquote>
-<p>systemctl stop firewalld</p>
-</blockquote>
-<p>&#x2F;&#x2F;永久开启80端口</p>
-<blockquote>
-<p>firewall-cmd –permanent –zone&#x3D;public –add-port&#x3D;80&#x2F;tcp –permanent</p>
-</blockquote>
-<p>&#x2F;&#x2F;查看80端口是否开启</p>
-<blockquote>
-<p>firewall-cmd –permanent –query-port&#x3D;80&#x2F;tcp</p>
-</blockquote>
-<p>&#x2F;&#x2F;重启防火墙</p>
-<blockquote>
-<p>firewall-cmd –reload</p>
-</blockquote>
-<p>在云服武器上ping 百度看看能不能ping通，在其它电脑上ping云服务器看看能不能ping通</p>
-<h3 id="5-云服务器安装git及ssh免密"><a href="#5-云服务器安装git及ssh免密" class="headerlink" title="5.云服务器安装git及ssh免密"></a>5.云服务器安装git及ssh免密</h3><p>云服务器只负责拉取，不负责推送。</p>
-<p>先安装git</p>
-<blockquote>
-<p>yum –y install git</p>
-</blockquote>
-<p>键入git指令验证是否安装成功</p>
-<p>新建文件夹作为网站根目录</p>
-<blockquote>
-<p>mkdir www&#x2F;wwwroot</p>
-<p>chmod 777 www&#x2F;wwwroot</p>
-</blockquote>
-<p>生成ssh密钥</p>
-<blockquote>
-<p>ssh-keygen -t ecdsa -b 521 -C ‘<a href="mailto:&#121;&#x6f;&#x75;&#x72;&#109;&#97;&#105;&#x6c;&#x61;&#x64;&#x64;&#x72;&#x65;&#x73;&#x73;&#64;&#103;&#109;&#x61;&#x69;&#108;&#x2e;&#x63;&#x6f;&#x6d;">&#121;&#x6f;&#x75;&#x72;&#109;&#97;&#105;&#x6c;&#x61;&#x64;&#x64;&#x72;&#x65;&#x73;&#x73;&#64;&#103;&#109;&#x61;&#x69;&#108;&#x2e;&#x63;&#x6f;&#x6d;</a>‘ -f ~&#x2F;.ssh&#x2F;id_ecdsa</p>
-</blockquote>
-<p>连按3次回车</p>
-<p>接着提取公钥</p>
-<blockquote>
-<p>cat ~&#x2F;.ssh&#x2F;id_ecdsa.pub</p>
-</blockquote>
-<p>将公钥填到github的ssh列表中（在网页端配置，具体过程略）</p>
-<p>输入</p>
-<blockquote>
-<p>ssh -T <a href="mailto:&#103;&#105;&#x74;&#x40;&#x67;&#x69;&#x74;&#x68;&#x75;&#x62;&#x2e;&#99;&#x6f;&#109;">&#103;&#105;&#x74;&#x40;&#x67;&#x69;&#x74;&#x68;&#x75;&#x62;&#x2e;&#99;&#x6f;&#109;</a></p>
-</blockquote>
-<p>提示Successfully即为完成配置</p>
-<p>进入www&#x2F;wwwroot目录，克隆自己的git仓库，本地仓库名比如为cpblog</p>
-<blockquote>
-<p>git clone <a href="mailto:&#103;&#105;&#116;&#x40;&#103;&#105;&#x74;&#x68;&#117;&#x62;&#x2e;&#x63;&#x6f;&#109;">&#103;&#105;&#116;&#x40;&#103;&#105;&#x74;&#x68;&#117;&#x62;&#x2e;&#x63;&#x6f;&#109;</a>:xxxxxxx&#x2F;xxxxxx.github.io.git cpblog</p>
-</blockquote>
-<h3 id="6-本地环境安装"><a href="#6-本地环境安装" class="headerlink" title="6.本地环境安装"></a>6.本地环境安装</h3><p>本地电脑环境简介</p>
-<p>（Windows系统，需要git，nodejs，hexo，不需要Nginx）</p>
-<h4 id="装git"><a href="#装git" class="headerlink" title="装git"></a>装git</h4><p>本地也需安装git，主要负责内容推送，具体过程可参考互联网，本文略</p>
-<p>git可视化工具可使用GitExtension（Windows）或SourceTree（mac）</p>
-<h4 id="装nodejs"><a href="#装nodejs" class="headerlink" title="装nodejs"></a>装nodejs</h4><p>(为避免执行cmd权限不足，最好不要装到C盘，建议路径 D:\nodejs，且放开这个目录的用户访问权限)</p>
-<p><a href="https://nodejs.org/en/">https://nodejs.org/en/</a></p>
-<p>在 nodejs 文件夹中新建两个空文件夹node_cache、node_global，执行</p>
-<blockquote>
-<p>npm config set prefix “D:\nodejs\node_global”<br>npm config set cache “D:\nodejs\node_cache”</p>
-</blockquote>
-<h4 id="装hexo"><a href="#装hexo" class="headerlink" title="装hexo"></a>装hexo</h4><blockquote>
-<p>npm install -g hexo-cli</p>
-</blockquote>
-<p>配置hexo到环境变量PATH中</p>
-<p>D:\nodejs\node_global</p>
-<p>D盘新建目录D:\cpblog-hexo</p>
-<p>在这个目录下执行Git Bash，执行以下命令</p>
-<blockquote>
-<p>npm install -g hexo-cli<br>hexo g<br>hexo s</p>
-</blockquote>
-<p>然后在浏览器输入<a href="http://localhost:4000/">http://localhost:4000/</a></p>
-<p>看能不能看见网页</p>
-<h3 id="7-部署自动化"><a href="#7-部署自动化" class="headerlink" title="7.部署自动化"></a>7.部署自动化</h3><p>最终效果：本地写文 -&gt; <u>上传github -&gt; 云服务器拉新git -&gt; 刷新网站</u></p>
-<p>下划线的部分均通过自动化命令实现</p>
-<p>主体思想：本地持有全套hexo工程+hexo环境，服务器有全套hexo工程，本地使用hexo g生成网页，将产生的修改全部推送到git上，再调用服务器的git命令进行拉取</p>
-<h4 id="设置本地免密操作服务器git命令"><a href="#设置本地免密操作服务器git命令" class="headerlink" title="设置本地免密操作服务器git命令"></a>设置本地免密操作服务器git命令</h4><p>将本地电脑的.ssh&#x2F;id_rsa.pub的内容粘贴至服务器的&#x2F;root&#x2F;.ssh&#x2F;authorized_keys文件中，这个文件可以粘贴多个key，换行即可</p>
-<h4 id="云服务器开放shell目录"><a href="#云服务器开放shell目录" class="headerlink" title="云服务器开放shell目录"></a>云服务器开放shell目录</h4><p>在本地操作</p>
-<p>在cpblog-hexo的git工程下创建shell文件夹，进入shell文件夹新建两个脚本文件deploy-server.sh和deploy.sh</p>
-<p>deploy-server.sh内容如下</p>
-<blockquote>
-<p>#服务器拉新<br>cd &#x2F;www&#x2F;wwwroot&#x2F;cpblog-hexo<br>git reset –hard<br>git clean -df<br>git pull</p>
-</blockquote>
-<p>deploy.sh内容如下</p>
-<blockquote>
-<p>#本地进行hexo发布 -&gt; 上传至git -&gt; 远端服务器拉新</p>
-<p>echo “&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;  Step1  &lt; hexo generate &gt;  &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;”<br>cd D:\cpblog-hexo<br>#hexo clean<br>hexo g</p>
-<p>echo “&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;  Step2  &lt; local git push &gt;  &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;”<br>git pull<br>git add -A<br>git commit -m “conventional update by deploy.sh”<br>git push</p>
-<p>echo “&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;  Step3  &lt; server git pull &gt;  &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;”<br>ssh root@服务器ip地址 bash &#x2F;www&#x2F;wwwroot&#x2F;cpblog-hexo&#x2F;shell&#x2F;deploy-server.sh</p>
-<p>echo “&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;           Finished           &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;”</p>
-</blockquote>
-<p>deploy.sh的作用：由本地调用，实现网站一键生成和部署</p>
-<p>deploy-server.sh的作用：由deploy.sh内部调用，实际发生在服务器端，用于拉新git</p>
-<p>因为本地脚本会调用服务器的deploy-server.sh，所以现在要去云服务器，给shell目录赋予777权限</p>
-<blockquote>
-<p>chmod 777 &#x2F;www&#x2F;wwwroot&#x2F;cpblog-hexo&#x2F;shell</p>
-</blockquote>
-<h4 id="最佳实践"><a href="#最佳实践" class="headerlink" title="最佳实践"></a>最佳实践</h4><p>本地写一篇文章，放在D:\cpblog-hexo\source\_posts路径下</p>
-<p>双击deploy.sh执行部署</p>
-<p>执行完毕后，就会发现网页刷新了</p>
-<h3 id="8-写文工具链"><a href="#8-写文工具链" class="headerlink" title="8.写文工具链"></a>8.写文工具链</h3><p>Typora + PicGo + github 实现最舒服的图片引用姿势</p>
-<p>Typora支持mac和Windows，但要收费（淘宝80元一个激活码）</p>
-<p>PicGo用于上传图片到github，相当于用github当图床</p>
-<p>Typora 和PicGo有很好的适性，只要拖拽一张图片到Typora里，就能自动上传到github</p>
-<p>最后提供一个飞书云文档转markdown工具<br><a href="https://feishu2md.onrender.com/">https://feishu2md.onrender.com/</a></p>
+    <title>Android与Unity交互之AndroidJavaProxy回调的使用</title>
+    <url>/2023/04/20/android-yu-unity-jiao-hu-zhi-androidjavaproxy-hui-diao-de-shi-yong/</url>
+    <content><![CDATA[<p>以实际需求为例，比如要实现一个Android原生的Dialog弹窗，通过Unity调用使其打开，同时注册弹窗上【确定】和【返回】键的点击回调。<br>首先创建一个C#类，继承自AndroidJavaProxy<br>注意构造函数内的参数，后续会在java端创建一个与之同名的接口</p>
+<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">DialogClickCallback</span> : <span class="title">AndroidJavaProxy</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">public</span> Action OnConfirmClick;</span><br><span class="line">		<span class="keyword">public</span> Action OnCancelClick;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="title">DialogClickCallback</span>() : <span class="title">base</span>(<span class="params"><span class="string">&quot;com.aaa.bbb.listener.ICustomDialogCallback&quot;</span></span>)</span>&#123; &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">//invoked by java</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onConfirm</span>()</span></span><br><span class="line">        &#123;</span><br><span class="line">			OnConfirmClick?.Invoke();	</span><br><span class="line">        &#125;</span><br><span class="line">		</span><br><span class="line">		<span class="comment">//invoked by java</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCancel</span>()</span></span><br><span class="line">        &#123;</span><br><span class="line">			OnCancelClick?.Invoke();	</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>接下来在Android工程内新建java接口</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.aaa.bbb.listener;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">ICustomDialogCallback</span> &#123;</span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">onConfirm</span><span class="params">()</span>;</span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">onCancel</span><span class="params">()</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>然后在java端实现一个简单的窗口类</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">CustomDialog</span> <span class="keyword">extends</span> <span class="title class_">Dialog</span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> Button ok;<span class="comment">//确定按钮</span></span><br><span class="line">    <span class="keyword">private</span> Button cancel;<span class="comment">//取消按钮</span></span><br><span class="line">    <span class="keyword">private</span> TextView titleTV;<span class="comment">//消息标题文本</span></span><br><span class="line">    <span class="keyword">private</span> TextView message;<span class="comment">//消息提示文本</span></span><br><span class="line">    <span class="keyword">private</span> String titleStr;<span class="comment">//从外界设置的title文本</span></span><br><span class="line">    <span class="keyword">private</span> String messageStr;<span class="comment">//从外界设置的消息文本</span></span><br><span class="line">    <span class="comment">//确定文本和取消文本的显示的内容</span></span><br><span class="line">    <span class="keyword">private</span> String yesStr, noStr;</span><br><span class="line">    <span class="keyword">private</span> ICustomDialogCallback callback;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="type">boolean</span> <span class="variable">cancelBtnVisible</span> <span class="operator">=</span> <span class="literal">true</span>;            <span class="comment">//cancel按钮是否显示</span></span><br><span class="line">    <span class="keyword">private</span> <span class="type">boolean</span> <span class="variable">autoCloseOnAnyClick</span> <span class="operator">=</span> <span class="literal">true</span>;        <span class="comment">//是否在点击confirm或cancel按钮一次后自动关闭该窗口</span></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">CustomDialog</span><span class="params">(<span class="meta">@NonNull</span> Context context)</span> &#123;</span><br><span class="line">        <span class="built_in">super</span>(context);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">CustomDialog</span><span class="params">(<span class="meta">@NonNull</span> Context context, <span class="type">int</span> themeResId)</span> &#123;</span><br><span class="line">        <span class="built_in">super</span>(context, themeResId);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">onCreate</span><span class="params">(Bundle savedInstanceState)</span> &#123;</span><br><span class="line">        <span class="built_in">super</span>.onCreate(savedInstanceState);</span><br><span class="line">        setContentView(R.layout.custom_dialog);</span><br><span class="line">        <span class="built_in">this</span>.setCanceledOnTouchOutside(<span class="literal">false</span>);</span><br><span class="line">        ok = findViewById(R.id.btn_confirm);</span><br><span class="line">        cancel = findViewById(R.id.btn_cancel);</span><br><span class="line">        titleTV = findViewById(R.id.tv_dialog_title);</span><br><span class="line">        message = findViewById(R.id.tv_dialog_body);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//初始化界面数据</span></span><br><span class="line">        initData();</span><br><span class="line">        <span class="comment">//初始化界面控件的事件</span></span><br><span class="line">        initEvent();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 初始化界面控件的显示数据</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">initData</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="comment">//如果用户自定了title和message</span></span><br><span class="line">        <span class="keyword">if</span> (titleStr != <span class="literal">null</span>) &#123;</span><br><span class="line">            titleTV.setText(titleStr);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (messageStr != <span class="literal">null</span>) &#123;</span><br><span class="line">            message.setText(messageStr);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//如果设置按钮文字</span></span><br><span class="line">        <span class="keyword">if</span> (yesStr != <span class="literal">null</span>) &#123;</span><br><span class="line">            ok.setText(yesStr);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (noStr != <span class="literal">null</span>) &#123;</span><br><span class="line">            cancel.setText(noStr);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(cancelBtnVisible)</span><br><span class="line">        &#123;</span><br><span class="line">            cancel.setVisibility(View.VISIBLE);</span><br><span class="line">        &#125;<span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            cancel.setVisibility(View.GONE);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 初始化界面的确定和取消监听</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">initEvent</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="comment">//设置确定按钮被点击后，向外界提供监听</span></span><br><span class="line">        ok.setOnClickListener(v -&gt; &#123;</span><br><span class="line">            <span class="keyword">if</span>(autoCloseOnAnyClick)</span><br><span class="line">            &#123; <span class="built_in">this</span>.dismiss(); &#125;</span><br><span class="line">            <span class="keyword">if</span> (callback != <span class="literal">null</span>) &#123;</span><br><span class="line">                callback.onConfirm();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        <span class="comment">//设置取消按钮被点击后，向外界提供监听</span></span><br><span class="line">        cancel.setOnClickListener(v -&gt; &#123;</span><br><span class="line">            <span class="keyword">if</span>(autoCloseOnAnyClick)</span><br><span class="line">            &#123; <span class="built_in">this</span>.dismiss(); &#125;</span><br><span class="line">            <span class="keyword">if</span> (callback != <span class="literal">null</span>) &#123;</span><br><span class="line">                callback.onCancel();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setTitle</span><span class="params">(String title)</span> &#123;</span><br><span class="line">        titleStr = title;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setMessage</span><span class="params">(String message)</span> &#123;</span><br><span class="line">        messageStr = message;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setConfirmStr</span><span class="params">(String str)</span></span><br><span class="line">    &#123;</span><br><span class="line">        yesStr = str;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setCancelStr</span><span class="params">(String str)</span></span><br><span class="line">    &#123;</span><br><span class="line">        noStr = str;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setAutoCloseOnAnyClick</span><span class="params">(<span class="type">boolean</span> value)</span></span><br><span class="line">    &#123;</span><br><span class="line">        autoCloseOnAnyClick = value;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setOnClickListener</span><span class="params">(ICustomDialogCallback callback)</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">this</span>.callback = callback;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setCancelBtnVisible</span><span class="params">(<span class="type">boolean</span> visible)</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">this</span>.cancelBtnVisible = visible;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onBackPressed</span><span class="params">()</span> &#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">show</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="built_in">super</span>.show();</span><br><span class="line">        <span class="type">DisplayMetrics</span> <span class="variable">displayMetrics</span> <span class="operator">=</span> <span class="built_in">this</span>.getContext().getResources().getDisplayMetrics();</span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">this</span>.getContext().getResources().getConfiguration().orientation == <span class="number">2</span>) &#123;</span><br><span class="line">            <span class="built_in">this</span>.getWindow().setLayout(displayMetrics.widthPixels / <span class="number">4</span> * <span class="number">3</span>, displayMetrics.heightPixels / <span class="number">5</span> * <span class="number">4</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="built_in">this</span>.getWindow().setLayout(displayMetrics.widthPixels / <span class="number">5</span> * <span class="number">4</span>, displayMetrics.heightPixels / <span class="number">6</span> * <span class="number">2</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>为了方便C#端调用，可以将打开Dialog弹窗并设置参数的行为封装进一个接口，这样每次显示弹窗C#只需要进行一次java调用</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.aaa.bbb;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MainInterface</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">ShowDialog</span><span class="params">(String title, String content, String confirmText, String cancelText, <span class="type">boolean</span> autoCloseOnAnyClick, ICustomDialogCallback callback)</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="type">CustomDialog</span> <span class="variable">dialog</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">CustomDialog</span>(Utils.GetCurrentActivity());</span><br><span class="line">        dialog.setMessage(content);</span><br><span class="line">        dialog.setTitle(title);</span><br><span class="line">        dialog.setConfirmStr(confirmText);</span><br><span class="line">        dialog.setCancelStr(cancelText);</span><br><span class="line">        dialog.setAutoCloseOnAnyClick(autoCloseOnAnyClick);</span><br><span class="line">        dialog.setCancelBtnVisible(cancelText != <span class="literal">null</span> &amp;&amp; !cancelText.isEmpty());</span><br><span class="line">        dialog.show();</span><br><span class="line">        dialog.setOnClickListener(callback);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>至此，java端的开发就完成了，接着让C#调用MainInterface.ShowDialog方法</p>
+<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">ShowDialog</span>(<span class="params"><span class="built_in">string</span> title, <span class="built_in">string</span> content, <span class="built_in">string</span> confirmText, <span class="built_in">string</span> cancelText, <span class="built_in">bool</span> autoCloseOnAnyClick, Action onConfirm, Action onCancel</span>)</span></span><br><span class="line">        &#123;</span><br><span class="line">            DialogClickCallback cb = <span class="keyword">new</span> DialogClickCallback()</span><br><span class="line">            &#123;</span><br><span class="line">                OnConfirmClick = () =&gt; onConfirm?.Invoke(),</span><br><span class="line">                OnCancelClick = () =&gt; onCancel?.Invoke(),</span><br><span class="line">            &#125;;</span><br><span class="line">            AndroidJavaClass mainInterface = <span class="keyword">new</span> AndroidJavaClass(<span class="string">&quot;com.aaa.bbb.MainInterface&quot;</span>);</span><br><span class="line">            mainInterface.CallStatic(<span class="string">&quot;ShowDialog&quot;</span>, title, content, confirmText, cancelText, autoCloseOnAnyClick, cb);</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+
+<p>全部完成。</p>
 ]]></content>
+      <categories>
+        <category>Android</category>
+        <category>Unity</category>
+      </categories>
+      <tags>
+        <tag>Unity</tag>
+        <tag>Android</tag>
+        <tag>sdk</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>博客搭建教程1 - 准备阶段</title>
+    <url>/2023/01/09/bo-ke-da-jian-jiao-cheng-1-zhun-bei-jie-duan/</url>
+    <content><![CDATA[<p>在一切开始之前，我们先来回答几个关键问题。</p>
+<p>Q：搭建个人博客需要花钱吗？<br>A：不需要。如果我们依赖Github，则可以不花一分钱搭建好自己的博客网站。但是如果你想拥有自己的域名，购买图床，或者使用云服务器，那么需要支付一定的费用，在刚刚起步的阶段，开销不会很大。</p>
+<p>Q：搭建个人博客需要会写代码吗？<br>A：不需要。但本教程建议有代码基础的读者观看，因为教程有的介绍并不详尽，比如教程内不会专门介绍Linux操作系统，命令行的概念。由于在搭建博客过程中会涉及到在操作系统终端执行命令，如果有代码基础，则遇到卡点的几率会低一些，并且发现自己操作的结果和教程不一致时有能力自查问题。本教程尽可能提供了完整的命令语句和配置文件写法，在搭建时只需要复制粘贴即可。<br>你不需要掌握网页设计语言，绚丽的网站并不需要由我们自己编码实现，本教程使用的Hexo博客自身提供了非常多的主题，就像手机更换壁纸一样，你只需要像文本一样更改几个配置文件即可应用全新主题。如果你有代码基础，则可以尝试进行更深入的页面定制。</p>
+<p>Q：搭建个人博客需要多少时间？<br>A：这个难以预估，如果你有代码基础，具备一定的debug能力，那么初次的搭建过程只需要几天的时间，当踩过一些坑，经历了一些试错后，后续再次重新搭建，一天之内即可完成。如果你是非技术人员，或许需要结合一些其它网络上的教程来搭建，本教程更多作为建站的备忘录，对于一些细节可能会直接略过，而这些通常成为读者理解的卡点。</p>
+<p>如果你决定开始搭建个人博客，那么接下来按照教程顺序，一步一步开始吧。</p>
+<p>本教程搭建博客的技术涉及到：<br>1.搭建Github仓库托管博客，包含一些Git操作<br>2.安装node.js和npm，Hexo，Hexo-admin<br>3.租用Linux云服务器实现博客远程部署</p>
+<p>建议读者可以先对以上技术有一些了解。  </p>
+]]></content>
+      <categories>
+        <category>博客搭建</category>
+      </categories>
       <tags>
         <tag>博客</tag>
       </tags>
@@ -291,120 +164,77 @@
       </tags>
   </entry>
   <entry>
-    <title>Android与Unity交互之AndroidJavaProxy回调的使用</title>
-    <url>/2023/04/20/android-yu-unity-jiao-hu-zhi-androidjavaproxy-hui-diao-de-shi-yong/</url>
-    <content><![CDATA[<p>以实际需求为例，比如要实现一个Android原生的Dialog弹窗，通过Unity调用使其打开，同时注册弹窗上【确定】和【返回】键的点击回调。<br>首先创建一个C#类，继承自AndroidJavaProxy<br>注意构造函数内的参数，后续会在java端创建一个与之同名的接口</p>
-<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">DialogClickCallback</span> : <span class="title">AndroidJavaProxy</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">public</span> Action OnConfirmClick;</span><br><span class="line">		<span class="keyword">public</span> Action OnCancelClick;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="title">DialogClickCallback</span>() : <span class="title">base</span>(<span class="params"><span class="string">&quot;com.aaa.bbb.listener.ICustomDialogCallback&quot;</span></span>)</span>&#123; &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">//invoked by java</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onConfirm</span>()</span></span><br><span class="line">        &#123;</span><br><span class="line">			OnConfirmClick?.Invoke();	</span><br><span class="line">        &#125;</span><br><span class="line">		</span><br><span class="line">		<span class="comment">//invoked by java</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCancel</span>()</span></span><br><span class="line">        &#123;</span><br><span class="line">			OnCancelClick?.Invoke();	</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<p>接下来在Android工程内新建java接口</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.aaa.bbb.listener;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">ICustomDialogCallback</span> &#123;</span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">onConfirm</span><span class="params">()</span>;</span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">onCancel</span><span class="params">()</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>然后在java端实现一个简单的窗口类</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">CustomDialog</span> <span class="keyword">extends</span> <span class="title class_">Dialog</span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> Button ok;<span class="comment">//确定按钮</span></span><br><span class="line">    <span class="keyword">private</span> Button cancel;<span class="comment">//取消按钮</span></span><br><span class="line">    <span class="keyword">private</span> TextView titleTV;<span class="comment">//消息标题文本</span></span><br><span class="line">    <span class="keyword">private</span> TextView message;<span class="comment">//消息提示文本</span></span><br><span class="line">    <span class="keyword">private</span> String titleStr;<span class="comment">//从外界设置的title文本</span></span><br><span class="line">    <span class="keyword">private</span> String messageStr;<span class="comment">//从外界设置的消息文本</span></span><br><span class="line">    <span class="comment">//确定文本和取消文本的显示的内容</span></span><br><span class="line">    <span class="keyword">private</span> String yesStr, noStr;</span><br><span class="line">    <span class="keyword">private</span> ICustomDialogCallback callback;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="type">boolean</span> <span class="variable">cancelBtnVisible</span> <span class="operator">=</span> <span class="literal">true</span>;            <span class="comment">//cancel按钮是否显示</span></span><br><span class="line">    <span class="keyword">private</span> <span class="type">boolean</span> <span class="variable">autoCloseOnAnyClick</span> <span class="operator">=</span> <span class="literal">true</span>;        <span class="comment">//是否在点击confirm或cancel按钮一次后自动关闭该窗口</span></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">CustomDialog</span><span class="params">(<span class="meta">@NonNull</span> Context context)</span> &#123;</span><br><span class="line">        <span class="built_in">super</span>(context);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">CustomDialog</span><span class="params">(<span class="meta">@NonNull</span> Context context, <span class="type">int</span> themeResId)</span> &#123;</span><br><span class="line">        <span class="built_in">super</span>(context, themeResId);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">onCreate</span><span class="params">(Bundle savedInstanceState)</span> &#123;</span><br><span class="line">        <span class="built_in">super</span>.onCreate(savedInstanceState);</span><br><span class="line">        setContentView(R.layout.custom_dialog);</span><br><span class="line">        <span class="built_in">this</span>.setCanceledOnTouchOutside(<span class="literal">false</span>);</span><br><span class="line">        ok = findViewById(R.id.btn_confirm);</span><br><span class="line">        cancel = findViewById(R.id.btn_cancel);</span><br><span class="line">        titleTV = findViewById(R.id.tv_dialog_title);</span><br><span class="line">        message = findViewById(R.id.tv_dialog_body);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//初始化界面数据</span></span><br><span class="line">        initData();</span><br><span class="line">        <span class="comment">//初始化界面控件的事件</span></span><br><span class="line">        initEvent();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 初始化界面控件的显示数据</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">initData</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="comment">//如果用户自定了title和message</span></span><br><span class="line">        <span class="keyword">if</span> (titleStr != <span class="literal">null</span>) &#123;</span><br><span class="line">            titleTV.setText(titleStr);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (messageStr != <span class="literal">null</span>) &#123;</span><br><span class="line">            message.setText(messageStr);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//如果设置按钮文字</span></span><br><span class="line">        <span class="keyword">if</span> (yesStr != <span class="literal">null</span>) &#123;</span><br><span class="line">            ok.setText(yesStr);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (noStr != <span class="literal">null</span>) &#123;</span><br><span class="line">            cancel.setText(noStr);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(cancelBtnVisible)</span><br><span class="line">        &#123;</span><br><span class="line">            cancel.setVisibility(View.VISIBLE);</span><br><span class="line">        &#125;<span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            cancel.setVisibility(View.GONE);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 初始化界面的确定和取消监听</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">initEvent</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="comment">//设置确定按钮被点击后，向外界提供监听</span></span><br><span class="line">        ok.setOnClickListener(v -&gt; &#123;</span><br><span class="line">            <span class="keyword">if</span>(autoCloseOnAnyClick)</span><br><span class="line">            &#123; <span class="built_in">this</span>.dismiss(); &#125;</span><br><span class="line">            <span class="keyword">if</span> (callback != <span class="literal">null</span>) &#123;</span><br><span class="line">                callback.onConfirm();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        <span class="comment">//设置取消按钮被点击后，向外界提供监听</span></span><br><span class="line">        cancel.setOnClickListener(v -&gt; &#123;</span><br><span class="line">            <span class="keyword">if</span>(autoCloseOnAnyClick)</span><br><span class="line">            &#123; <span class="built_in">this</span>.dismiss(); &#125;</span><br><span class="line">            <span class="keyword">if</span> (callback != <span class="literal">null</span>) &#123;</span><br><span class="line">                callback.onCancel();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setTitle</span><span class="params">(String title)</span> &#123;</span><br><span class="line">        titleStr = title;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setMessage</span><span class="params">(String message)</span> &#123;</span><br><span class="line">        messageStr = message;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setConfirmStr</span><span class="params">(String str)</span></span><br><span class="line">    &#123;</span><br><span class="line">        yesStr = str;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setCancelStr</span><span class="params">(String str)</span></span><br><span class="line">    &#123;</span><br><span class="line">        noStr = str;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setAutoCloseOnAnyClick</span><span class="params">(<span class="type">boolean</span> value)</span></span><br><span class="line">    &#123;</span><br><span class="line">        autoCloseOnAnyClick = value;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setOnClickListener</span><span class="params">(ICustomDialogCallback callback)</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">this</span>.callback = callback;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setCancelBtnVisible</span><span class="params">(<span class="type">boolean</span> visible)</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">this</span>.cancelBtnVisible = visible;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onBackPressed</span><span class="params">()</span> &#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">show</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="built_in">super</span>.show();</span><br><span class="line">        <span class="type">DisplayMetrics</span> <span class="variable">displayMetrics</span> <span class="operator">=</span> <span class="built_in">this</span>.getContext().getResources().getDisplayMetrics();</span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">this</span>.getContext().getResources().getConfiguration().orientation == <span class="number">2</span>) &#123;</span><br><span class="line">            <span class="built_in">this</span>.getWindow().setLayout(displayMetrics.widthPixels / <span class="number">4</span> * <span class="number">3</span>, displayMetrics.heightPixels / <span class="number">5</span> * <span class="number">4</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="built_in">this</span>.getWindow().setLayout(displayMetrics.widthPixels / <span class="number">5</span> * <span class="number">4</span>, displayMetrics.heightPixels / <span class="number">6</span> * <span class="number">2</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>为了方便C#端调用，可以将打开Dialog弹窗并设置参数的行为封装进一个接口，这样每次显示弹窗C#只需要进行一次java调用</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.aaa.bbb;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MainInterface</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">ShowDialog</span><span class="params">(String title, String content, String confirmText, String cancelText, <span class="type">boolean</span> autoCloseOnAnyClick, ICustomDialogCallback callback)</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="type">CustomDialog</span> <span class="variable">dialog</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">CustomDialog</span>(Utils.GetCurrentActivity());</span><br><span class="line">        dialog.setMessage(content);</span><br><span class="line">        dialog.setTitle(title);</span><br><span class="line">        dialog.setConfirmStr(confirmText);</span><br><span class="line">        dialog.setCancelStr(cancelText);</span><br><span class="line">        dialog.setAutoCloseOnAnyClick(autoCloseOnAnyClick);</span><br><span class="line">        dialog.setCancelBtnVisible(cancelText != <span class="literal">null</span> &amp;&amp; !cancelText.isEmpty());</span><br><span class="line">        dialog.show();</span><br><span class="line">        dialog.setOnClickListener(callback);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>至此，java端的开发就完成了，接着让C#调用MainInterface.ShowDialog方法</p>
-<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">ShowDialog</span>(<span class="params"><span class="built_in">string</span> title, <span class="built_in">string</span> content, <span class="built_in">string</span> confirmText, <span class="built_in">string</span> cancelText, <span class="built_in">bool</span> autoCloseOnAnyClick, Action onConfirm, Action onCancel</span>)</span></span><br><span class="line">        &#123;</span><br><span class="line">            DialogClickCallback cb = <span class="keyword">new</span> DialogClickCallback()</span><br><span class="line">            &#123;</span><br><span class="line">                OnConfirmClick = () =&gt; onConfirm?.Invoke(),</span><br><span class="line">                OnCancelClick = () =&gt; onCancel?.Invoke(),</span><br><span class="line">            &#125;;</span><br><span class="line">            AndroidJavaClass mainInterface = <span class="keyword">new</span> AndroidJavaClass(<span class="string">&quot;com.aaa.bbb.MainInterface&quot;</span>);</span><br><span class="line">            mainInterface.CallStatic(<span class="string">&quot;ShowDialog&quot;</span>, title, content, confirmText, cancelText, autoCloseOnAnyClick, cb);</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
-
-<p>全部完成。</p>
+    <title>博客搭建教程10 - 将托管在Github的Hexo博客迁移到个人云服务器</title>
+    <url>/2023/01/09/bo-ke-da-jian-jiao-cheng-10-jiang-tuo-guan-zai-github-de-hexo-bo-ke-qian-yi-dao-ge-ren-yun-fu-wu-qi/</url>
+    <content><![CDATA[<p>Q：我觉得目前将网站托管到github上已经很好了，迁移至私服有足够的必要性吗？<br>A：迁移至私服不是必须的，如果你觉得github已经足够，那么可以跳过该教程，事实上很多人的博客都是直接托管给github的。但境内网络访问github很不稳定，加之由于github仓库是公开的，所以还是有很多缺点，使用github仓库时要时刻注意对自己网站数据的保护，否则会有泄露风险。</p>
+<p>如果你希望在服务器建立git服务器，每次发布博客时将变更同步至服务器的git仓库，那么可以先给服务器安装git<br>切换至root用户<br>su root<br>安装git<br>yum –y install git<br>键入git指令验证是否安装成功<br>创建git用户，先不创建密码<br>adduser git<br>检查是否创建成功 cd &#x2F;home &amp;&amp; ls -al<br>如果显示有git则说明用户创建成功<br>接下来找一个喜欢的目录，创建一个新的git库，需要你自己起一个喜欢的名字，我起名为cpblog.git，注意.git后缀不要变<br>git init –bare cpblog.git<br>此时终端提示你创建了一个空的git库，这就说明操作对了。<br>接下来将Hexo博客转移到服务器，以后使用hexo d发布博客就在服务器上进行了，我们需要做的是当你执行hexo d时将网站推送至自己的git仓库<br>新建文件夹作为博客根目录<br>mkdir cpblog_webroot<br>chmod 777 cpblog_webroot<br>使用Git-Hooks同步网站根目录，这里使用的是Git中的“post-receive”，当有Git收发的时候会调用该脚本，自动将最新内容同步到网站根目录中<br>用下面的指令新建勾子文件<br>vim cpblog.git&#x2F;hooks&#x2F;post-receive<br>将以下语句写入文件<br>#!&#x2F;bin&#x2F;sh<br>git –work-tree&#x3D;&#x2F;usr&#x2F;local&#x2F;cpblog_webroot –git-dir&#x3D;&#x2F;root&#x2F;cpblog.git checkout -f<br>(注意博客路径和当前用户)<br>保存并赋予执行权限<br>chmod +x cpblog.git&#x2F;hooks&#x2F;post-receive<br>sudo chown -R git:git cpblog.git<br>sudo chown -R git:git cpblog_webroot</p>
+<p>修改&#x2F;usr&#x2F;local&#x2F;nginx&#x2F;conf&#x2F;nginx.conf<br>将里面的地址改为cpblog_webroot的位置<br>server {<br>    listen    80 default_server;<br>    listen    [::] default_server;<br>    server_name    blog.59devops.com;<br>    root    &#x2F;usr&#x2F;local&#x2F;cpblog_webroot<br>}</p>
+<p>配置账户免密码登录<br>创建 ssh 的默认目录<br>进入 git 账户的主目录<br>cd &#x2F;home&#x2F;git<br>创建 .ssh 的配置，如果此文件夹已经存在请忽略此步<br>mkdir .ssh<br>创建校验公钥的配置文件<br>进入 .ssh 目录并创建 authorized_keys 文件，此文件存放客户端远程访问的 ssh 的公钥<br>cd .ssh<br>touch authorized_keys<br>cd ..<br>设置权限<br>chmod 700 .ssh&#x2F;<br>chmod 600 .ssh&#x2F;authorized_keys  </p>
+<p>配置Hexo的”_config.yml”<br>打开位于Hexo博客根目录下的“_config.yml”文件，找到“deploy”并修改  </p>
+<p>deploy:<br>   type: git<br>   repository: root@服务器的公网IP:&#x2F;usr&#x2F;local&#x2F;cpblog.git  #此行改为你的私服仓库地址<br>   branch: main      # 分支,注意看一下仓库的主干分支是master还是main</p>
+<p>从此以后，每次执行hexo d时，就会将网站推送到服务器的git仓库里。<br>本地执行下列命令进行验证<br>hexo clean<br>hexo g<br>hexo d  </p>
+<p>如果你在执行hexo d时被提示输入密码，那么可以阅读接下来的内容实现hexo d免密码  下面我们添加秘钥实现免密推送   </p>
+<p>找到服务器的id_rsa.pub文件，id_rsa.pub 文件中的内容追加到当前目录下的 authorized_keys 中<br>cat id_rsa.pub &gt;&gt; authorized_keys  </p>
+<p>最后别忘了做一件事，就是去域名供应商后台配置解析域名<br>将你的服务器公网IP填到域名解析列表中就可以了，可搜索其它文章了解具体操作。</p>
 ]]></content>
       <categories>
-        <category>Android</category>
-        <category>Unity</category>
+        <category>博客搭建</category>
       </categories>
       <tags>
-        <tag>Unity</tag>
-        <tag>Android</tag>
-        <tag>sdk</tag>
+        <tag>博客</tag>
       </tags>
   </entry>
   <entry>
-    <title>对超过2G的apk重新进行4字节对齐并做v1+v2签名</title>
-    <url>/2023/04/20/dui-chao-guo-2g-de-apk-chong-xin-jin-xing-4-zi-jie-dui-qi-bing-zuo-v1-v2-qian-ming/</url>
-    <content><![CDATA[<h6 id="工具准备"><a href="#工具准备" class="headerlink" title="工具准备"></a>工具准备</h6><ul>
-<li>zipalign2G.exe文件下载: <i class="fa fa-download"></i> <a href="https://download.csdn.net/download/liyingzai/13216149?spm=1001.2101.3001.6650.8&utm_medium=distribute.pc_relevant.none-task-download-2~default~OPENSEARCH~Rate-8-13216149-blog-8109883.235%5Ev29%5Epc_relevant_default_base3&depth_1-utm_source=distribute.pc_relevant.none-task-download-2~default~OPENSEARCH~Rate-8-13216149-blog-8109883.235%5Ev29%5Epc_relevant_default_base3&utm_relevant_index=8">zipalign2G.exe</a> </li>
-<li>apksigner.jar（一般位于AndroidSDK的build-tools文件夹内）</li>
-<li>keystore文件，key-alias，key-password信息</li>
-</ul>
-<h6 id="操作步骤"><a href="#操作步骤" class="headerlink" title="操作步骤"></a>操作步骤</h6><p>假设zipalign2G.exe，apksigner.jar，apk包，keystore的绝对路径位于D:\<br>1.对apk重新进行4字节对齐，命令如下  </p>
-<blockquote>
-<p>D:\zipalign2G.exe -f -v 4 D:\input.apk D:\output_aligned.apk  </p>
-</blockquote>
-<p>提示Verification succesful即为成功</p>
-<p>2.进行v1+v2签名，命令如下  </p>
-<blockquote>
-<p>java -jar D:\apksigner.jar sign –ks D:\myapk.keystore –ks-key-alias myaliasname –ks-pass pass:12345678 –key-pass pass:12345678 –out D:\output_signed.apk D:\output_aligned.apk  </p>
-</blockquote>
-<p>3.通过以下命令验证是否签名成功  </p>
-<blockquote>
-<p>java -jar D:\apksigner.jar verify -v D:\output_signed.apk  </p>
-</blockquote>
-<p>若出现  </p>
-<blockquote>
-<p>Verifies<br>Verified using v1 scheme (JAR signing): true<br>Verified using v2 scheme (APK Signature Scheme v2): true  </p>
-</blockquote>
-<p>说明签名成功  </p>
-<p>此时的包就可以安装到Android 11版本以上的手机了。</p>
+    <title>博客搭建教程11 - 使用linux+nginx建站每次云服务器重启后的例行检查操作</title>
+    <url>/2023/01/09/bo-ke-da-jian-jiao-cheng-11-shi-yong-linux-nginx-jian-zhan-mei-ci-yun-fu-wu-qi-chong-qi-hou-de-li-xing-jian-cha-cao-zuo/</url>
+    <content><![CDATA[<p>重启服务器后的例行操作  </p>
+<p>1.检查防火墙<br>检查防火墙状态：systemctl status firewalld<br>若出现绿色的active(running)，说明防火墙已经启动，否则<br>systemctl start firewalld开启防火墙，没有任何提示即开启成功<br>如果没有反应，或者等待1分钟后出现timeout，需要先kill掉现在的防火墙进程再重新开启<br>kill防火墙进程：pkill -f firewalld<br>然后再重新systemctl start firewalld开启防火墙，没有任何提示即开启成功  </p>
+<p>2.检查nginx端口（比如80端口）<br>firewall-cmd –query-port&#x3D;80&#x2F;tcp<br>返回yes即没问题，否则打开80端口<br>firewall-cmd –add-port&#x3D;80&#x2F;tcp –permanent<br>开启后需再次重启防火墙，才能生效<br>firewall-cmd –reload  </p>
+<p>3.检查nginx服务<br>开启nginx：nginx<br>（nginx关闭命令：nginx -s stop）<br>（nginx重启命令：nginx -s reload）<br>在其它机器上访问服务器IP:端口号，如果出现nginx页面，就表示开启成功（出现40x 页面也无所谓）<br>如果开启nginx提示端口被占用，需要杀死占用这个端口的进程<br>可以使用一个快捷的方法，直接杀死指定端口的所有进程，比如80端口<br>kill -9 $(lsof -i:80 -t)<br>或者可以仔细查看是哪个进程占用了80端口<br>查看80端口使用情况<br>netstat -lnp|grep 80<br>比如正在被nginx占用，记住显示的进程号，比如1053<br>停掉nginx<br>systemctl stop nginx<br>强制杀掉1053进程<br>kill -9 1053<br>再查询<br>netstat -lnp|grep 80<br>没结果说明已经不占用了<br>接着重新开启nginx服务  </p>
 ]]></content>
       <categories>
-        <category>Android</category>
-        <category>Unity</category>
+        <category>博客搭建</category>
       </categories>
       <tags>
-        <tag>Android</tag>
-        <tag>打包</tag>
+        <tag>博客</tag>
       </tags>
   </entry>
   <entry>
-    <title>往期封面2023/02/07 沙特猫</title>
-    <url>/2023/02/07/wang-qi-feng-mian-2023-02-07-sha-te-mao/</url>
-    <content><![CDATA[<p>沙特猫影集精选  </p>
-<div class="video"><video controls preload><source src='/images/coverres_20230207_01.mp4' type='video/mp4'>Your browser does not support the video tag.</video></div>  
-<div class="video"><video controls preload><source src='/images/coverres_20230207_02.mp4' type='video/mp4'>Your browser does not support the video tag.</video></div>  
-<div class="video"><video controls preload><source src='/images/coverres_20230207_03.mp4' type='video/mp4'>Your browser does not support the video tag.</video></div>  
-<div class="video"><video controls preload><source src='/images/coverres_20230207_04.mp4' type='video/mp4'>Your browser does not support the video tag.</video></div>  
-<div class="video"><video controls preload><source src='/images/cover_20230207.mp4' type='video/mp4'>Your browser does not support the video tag.</video></div>  ]]></content>
-      <categories>
-        <category>往期封面</category>
-      </categories>
-      <tags>
-        <tag>生活</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>往期封面2023/01/18 熊猫兔珍贵影像资料</title>
-    <url>/2023/01/18/wang-qi-feng-mian-2023-01-18-xiong-mao-tu-zhen-gui-ying-xiang-zi-liao/</url>
-    <content><![CDATA[<p>这只熊猫兔是2022&#x2F;1&#x2F;9在上海一条马路边买的。<br>刚买来的时候，小小一只很可爱<br>喜欢吃胡萝卜<br><video width="540" controls loop src="/images/histcover1_rabbit01.mp4" />  </p>
-<p>后来发现它喜欢吃卷心菜胜过胡萝卜<br><video width="540" controls loop src="/images/histcover1_rabbit02.mp4" />  </p>
-<p>养了一段时间，逐渐变大，已经有能力自己跳出来了<br><video width="270" controls loop src="/images/histcover1_rabbit03.mp4" />  </p>
-<p>兔子很聪明，知道如何回到笼子里吃到食物<br><video width="270" controls loop src="/images/histcover1_rabbit04.mp4" />  </p>
-<p>但在2022&#x2F;3&#x2F;17居家办公时，兔子突然开始发作<br><video width="270" controls loop src="/images/histcover1_rabbit05.mp4" />  </p>
-<p>没有任何征兆地开始抽搐<br><video width="540" controls loop src="/images/histcover1_rabbit06.mp4" />  </p>
-<p>检查了吃的食物和平常一样，房间温度也没有变化，不明白是什么原因<br>过了几十分钟逐渐没有了生命体征  </p>
-<p>后来在网上了解兔子的知识，兔子抽搐死亡通常有以下几个原因：<br>1.兔子生前有疾病表现<br>2.脑孢子虫、寄生虫，脑部寄生虫感染引起兔子脑炎，引起抽搐<br>3.胃肠道功能或菌群紊乱，肠毒素过多，内毒素过多引起癫痫抽搐<br>4.兔子长时间没有排大便，血氨浓度高，血氨升高也会直接引起抽搐</p>
-<p>首先排除1，其次根据排便排除4，最后剩下2和3两种可能。<br>这只兔子没有打任何疫苗，所以可能患有寄生虫，但是居家的兔子感染寄生虫的概率很低，除非在购买之前就已经感染，经过了几十天的潜伏期最终发作。兔子死于寄生虫的可能性大概占1&#x2F;2。<br>胃肠紊乱占了剩余1&#x2F;2的可能，一个是吃的食物比较单一，都是含水量比较高的蔬菜，另外兔子在放出来时总是四处乱啃，皮具，纸壳都被啃过，也可能是吃了无法消化的东西导致胃肠出现了问题。  </p>
-<p>经过两个多月的精心饲养，得出的结论是兔子不好养，一个是饮食难以掌握，需要学习，其次味道大，总是不好好撒尿，溅到笼子外面，后来我索性直接在笼子下面垫满了尿不湿，让它随便撒，两个月的时间我用掉了上百片动物尿不湿，还买了兔子除臭剂，不然室内根本不能住人。</p>
+    <title>博客搭建教程12 - 更换云服务器完成数据迁移</title>
+    <url>/2023/01/09/bo-ke-da-jian-jiao-cheng-12-geng-huan-yun-fu-wu-qi-wan-cheng-shu-ju-qian-yi/</url>
+    <content><![CDATA[<p>文档正在筹备</p>
 ]]></content>
       <categories>
-        <category>往期封面</category>
+        <category>博客搭建</category>
       </categories>
       <tags>
-        <tag>生活</tag>
+        <tag>博客</tag>
       </tags>
   </entry>
   <entry>
-    <title>博客搭建教程16 - linux云服务器在nginx.conf配置防盗链</title>
-    <url>/2023/01/09/bo-ke-da-jian-jiao-cheng-16-linux-yun-fu-wu-qi-zai-nginx.conf-pei-zhi-fang-dao-lian/</url>
-    <content><![CDATA[<p>简单的防盗链设置，可参考如下文章<br><a href="https://www.huati365.com/16b0661323e8cec6">https://www.huati365.com/16b0661323e8cec6</a><br><a href="https://blog.csdn.net/qq_52162404/article/details/127051356">https://blog.csdn.net/qq_52162404/article/details/127051356</a><br><a href="https://www.jb51.net/article/251177.htm">https://www.jb51.net/article/251177.htm</a>  </p>
-<p>总结下来写法，以经由博主验证<br>编辑…&#x2F;nginx&#x2F;conf&#x2F;nginx.conf文件，<br>如果下面这段代码是注释的状态，则将其打开  </p>
-<div class="img-wrap"><div class="img-bg"><img class="img lazyload placeholder" src="/images/nginxconfopensf.png" class="lazyload placeholder" data-srcset="/images/nginxconfopensf.png" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" style="width:80%;"/></div></div>  
-<p>再增加下面代码  </p>
-<div class="img-wrap"><div class="img-bg"><img class="img lazyload placeholder" src="/images/nginxsetlocation.png" class="lazyload placeholder" data-srcset="/images/nginxsetlocation.png" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" style="width:80%;"/></div></div>  
-<p>然后重启nginx<br>nginx -s reload<br>如果自己的网站能显示图片，其它网站CNAME过来的就不显示图片，就说明配置成功<br>盗链网站效果如下  </p>
-<div class="img-wrap"><div class="img-bg"><img class="img lazyload placeholder" src="/images/otherwebsitelocaitionnginx.png" class="lazyload placeholder" data-srcset="/images/otherwebsitelocaitionnginx.png" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" style="width:80%;"/></div></div>  
-<p>这里实现了如果检测到盗链行为就用一张图片回击，也可以只return 403，显示一张裂开的图片<br>盗链提示图片资源  </p>
-<div class="img-wrap"><div class="img-bg"><img class="img lazyload placeholder" src="/images/invalid_referer_tip.png" class="lazyload placeholder" data-srcset="/images/invalid_referer_tip.png" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" style="width:80%;"/></div></div>]]></content>
+    <title>博客搭建教程13 - 写博客实用网站大合集</title>
+    <url>/2023/01/09/bo-ke-da-jian-jiao-cheng-13-xie-bo-ke-shi-yong-wang-zhan-da-he-ji/</url>
+    <content><![CDATA[<p>无版权图片网站合集<br><a href="https://zhuanlan.zhihu.com/p/99543178">https://zhuanlan.zhihu.com/p/99543178</a><br>无版权视频素材网站合集<br><a href="https://zhuanlan.zhihu.com/p/431221694">https://zhuanlan.zhihu.com/p/431221694</a><br>在线图片压缩，超简洁<br><a href="https://tinypng.com/">https://tinypng.com/</a><br>在线视频压缩，超简洁<br><a href="https://yasuo.xunjiepdf.com/video/">https://yasuo.xunjiepdf.com/video/</a><br>在线视频旋转，超简洁<br><a href="https://app.xunjieshipin.com/video-rotation/">https://app.xunjieshipin.com/video-rotation/</a><br>在线RGB颜色选择器<br><a href="http://tools.jb51.net/static/colorpicker/">http://tools.jb51.net/static/colorpicker/</a><br>图床<br><a href="https://imgloc.com/">https://imgloc.com/</a></p>
+]]></content>
+      <categories>
+        <category>博客搭建</category>
+      </categories>
+      <tags>
+        <tag>博客</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>博客搭建教程14 - Linux云服务器安装宝塔运维工具</title>
+    <url>/2023/01/09/bo-ke-da-jian-jiao-cheng-14-linux-yun-fu-wu-qi-an-zhuang-bao-ta-yun-wei-gong-ju/</url>
+    <content><![CDATA[<p>安装宝塔面板只需要一句话命令：<br>在<a href="http://www.bt.cn宝塔官网上能找到安装命令,比如/">www.bt.cn宝塔官网上能找到安装命令，比如</a><br>yum install -y wget &amp;&amp; wget -O install.sh <a href="https://download.bt.cn/install/install_6.0.sh">https://download.bt.cn/install/install_6.0.sh</a> &amp;&amp; sh install.sh ed8484bec  </p>
+<p>回车开始自动安装，安装大概需要2-10分钟。安装成功后，会显示出你的宝塔登录信息，帐号和密码。  </p>
+<p>直接用你的 IP打开 http:&#x2F;&#x2F;你的IP:8888&#x2F; 就可以登录后台，然后选择网站环境安装了。<br>可以在宝塔面板上修改账号和密码</p>
+<p>在浏览上打开宝塔面板的地址，登入面板会自动推荐你安装环境的套件，这里有两种选择，第一种是LNMP套件，第二种是LAMP套件。选择安装的程序后，面板的左上角会自动显示任务的数量，点击后进入任务列表。最后，调试面板即可安装网站操作。</p>
+<p>注意，任何人都可以通过IP地址和端口号进入宝塔面板，因此你的令牌必须足够复杂，即便自己忘记了，还可以登录服务器修改，但如果被别人记住了，那就是巨大的灾难了。</p>
+]]></content>
+      <categories>
+        <category>博客搭建</category>
+      </categories>
       <tags>
         <tag>博客</tag>
       </tags>
@@ -567,13 +397,29 @@
       </tags>
   </entry>
   <entry>
-    <title>博客搭建教程14 - Linux云服务器安装宝塔运维工具</title>
-    <url>/2023/01/09/bo-ke-da-jian-jiao-cheng-14-linux-yun-fu-wu-qi-an-zhuang-bao-ta-yun-wei-gong-ju/</url>
-    <content><![CDATA[<p>安装宝塔面板只需要一句话命令：<br>在<a href="http://www.bt.cn宝塔官网上能找到安装命令,比如/">www.bt.cn宝塔官网上能找到安装命令，比如</a><br>yum install -y wget &amp;&amp; wget -O install.sh <a href="https://download.bt.cn/install/install_6.0.sh">https://download.bt.cn/install/install_6.0.sh</a> &amp;&amp; sh install.sh ed8484bec  </p>
-<p>回车开始自动安装，安装大概需要2-10分钟。安装成功后，会显示出你的宝塔登录信息，帐号和密码。  </p>
-<p>直接用你的 IP打开 http:&#x2F;&#x2F;你的IP:8888&#x2F; 就可以登录后台，然后选择网站环境安装了。<br>可以在宝塔面板上修改账号和密码</p>
-<p>在浏览上打开宝塔面板的地址，登入面板会自动推荐你安装环境的套件，这里有两种选择，第一种是LNMP套件，第二种是LAMP套件。选择安装的程序后，面板的左上角会自动显示任务的数量，点击后进入任务列表。最后，调试面板即可安装网站操作。</p>
-<p>注意，任何人都可以通过IP地址和端口号进入宝塔面板，因此你的令牌必须足够复杂，即便自己忘记了，还可以登录服务器修改，但如果被别人记住了，那就是巨大的灾难了。</p>
+    <title>博客搭建教程16 - linux云服务器在nginx.conf配置防盗链</title>
+    <url>/2023/01/09/bo-ke-da-jian-jiao-cheng-16-linux-yun-fu-wu-qi-zai-nginx.conf-pei-zhi-fang-dao-lian/</url>
+    <content><![CDATA[<p>简单的防盗链设置，可参考如下文章<br><a href="https://www.huati365.com/16b0661323e8cec6">https://www.huati365.com/16b0661323e8cec6</a><br><a href="https://blog.csdn.net/qq_52162404/article/details/127051356">https://blog.csdn.net/qq_52162404/article/details/127051356</a><br><a href="https://www.jb51.net/article/251177.htm">https://www.jb51.net/article/251177.htm</a>  </p>
+<p>总结下来写法，以经由博主验证<br>编辑…&#x2F;nginx&#x2F;conf&#x2F;nginx.conf文件，<br>如果下面这段代码是注释的状态，则将其打开  </p>
+<div class="img-wrap"><div class="img-bg"><img class="img lazyload placeholder" src="/images/nginxconfopensf.png" class="lazyload placeholder" data-srcset="/images/nginxconfopensf.png" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" style="width:80%;"/></div></div>  
+<p>再增加下面代码  </p>
+<div class="img-wrap"><div class="img-bg"><img class="img lazyload placeholder" src="/images/nginxsetlocation.png" class="lazyload placeholder" data-srcset="/images/nginxsetlocation.png" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" style="width:80%;"/></div></div>  
+<p>然后重启nginx<br>nginx -s reload<br>如果自己的网站能显示图片，其它网站CNAME过来的就不显示图片，就说明配置成功<br>盗链网站效果如下  </p>
+<div class="img-wrap"><div class="img-bg"><img class="img lazyload placeholder" src="/images/otherwebsitelocaitionnginx.png" class="lazyload placeholder" data-srcset="/images/otherwebsitelocaitionnginx.png" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" style="width:80%;"/></div></div>  
+<p>这里实现了如果检测到盗链行为就用一张图片回击，也可以只return 403，显示一张裂开的图片<br>盗链提示图片资源  </p>
+<div class="img-wrap"><div class="img-bg"><img class="img lazyload placeholder" src="/images/invalid_referer_tip.png" class="lazyload placeholder" data-srcset="/images/invalid_referer_tip.png" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" style="width:80%;"/></div></div>]]></content>
+      <tags>
+        <tag>博客</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>博客搭建教程2 - 创建Git仓库</title>
+    <url>/2023/01/09/bo-ke-da-jian-jiao-cheng-2-chuang-jian-git-cang-ku/</url>
+    <content><![CDATA[<p>在阅读本章前，我们默认你已经了解了Git的概念。</p>
+<p>本章内容比较简单，网上相关文章很多，这里推荐这位博主的文章，因为cypunberk最初就是按照这篇教程搭建的，教程的准确性已经得到验证。<br><a href="https://zhuanlan.zhihu.com/p/102592286">https://zhuanlan.zhihu.com/p/102592286</a></p>
+<p>第一步，注册Github账号<br>可以参考这篇知乎的教程<a href="https://zhuanlan.zhihu.com/p/103268406">https://zhuanlan.zhihu.com/p/103268406</a></p>
+<p>第二步，安装Git<br>可以参考这篇知乎的教程<a href="https://zhuanlan.zhihu.com/p/103325381">https://zhuanlan.zhihu.com/p/103325381</a></p>
+<p>第三步，创建Github仓库并使用Git推送文件<br>可以参考这篇知乎的教程<a href="https://zhuanlan.zhihu.com/p/103391101">https://zhuanlan.zhihu.com/p/103391101</a></p>
 ]]></content>
       <categories>
         <category>博客搭建</category>
@@ -583,151 +429,11 @@
       </tags>
   </entry>
   <entry>
-    <title>博客搭建教程13 - 写博客实用网站大合集</title>
-    <url>/2023/01/09/bo-ke-da-jian-jiao-cheng-13-xie-bo-ke-shi-yong-wang-zhan-da-he-ji/</url>
-    <content><![CDATA[<p>无版权图片网站合集<br><a href="https://zhuanlan.zhihu.com/p/99543178">https://zhuanlan.zhihu.com/p/99543178</a><br>无版权视频素材网站合集<br><a href="https://zhuanlan.zhihu.com/p/431221694">https://zhuanlan.zhihu.com/p/431221694</a><br>在线图片压缩，超简洁<br><a href="https://tinypng.com/">https://tinypng.com/</a><br>在线视频压缩，超简洁<br><a href="https://yasuo.xunjiepdf.com/video/">https://yasuo.xunjiepdf.com/video/</a><br>在线视频旋转，超简洁<br><a href="https://app.xunjieshipin.com/video-rotation/">https://app.xunjieshipin.com/video-rotation/</a><br>在线RGB颜色选择器<br><a href="http://tools.jb51.net/static/colorpicker/">http://tools.jb51.net/static/colorpicker/</a><br>图床<br><a href="https://imgloc.com/">https://imgloc.com/</a></p>
-]]></content>
-      <categories>
-        <category>博客搭建</category>
-      </categories>
-      <tags>
-        <tag>博客</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>博客搭建教程12 - 更换云服务器完成数据迁移</title>
-    <url>/2023/01/09/bo-ke-da-jian-jiao-cheng-12-geng-huan-yun-fu-wu-qi-wan-cheng-shu-ju-qian-yi/</url>
-    <content><![CDATA[<p>文档正在筹备</p>
-]]></content>
-      <categories>
-        <category>博客搭建</category>
-      </categories>
-      <tags>
-        <tag>博客</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>博客搭建教程11 - 使用linux+nginx建站每次云服务器重启后的例行检查操作</title>
-    <url>/2023/01/09/bo-ke-da-jian-jiao-cheng-11-shi-yong-linux-nginx-jian-zhan-mei-ci-yun-fu-wu-qi-chong-qi-hou-de-li-xing-jian-cha-cao-zuo/</url>
-    <content><![CDATA[<p>重启服务器后的例行操作  </p>
-<p>1.检查防火墙<br>检查防火墙状态：systemctl status firewalld<br>若出现绿色的active(running)，说明防火墙已经启动，否则<br>systemctl start firewalld开启防火墙，没有任何提示即开启成功<br>如果没有反应，或者等待1分钟后出现timeout，需要先kill掉现在的防火墙进程再重新开启<br>kill防火墙进程：pkill -f firewalld<br>然后再重新systemctl start firewalld开启防火墙，没有任何提示即开启成功  </p>
-<p>2.检查nginx端口（比如80端口）<br>firewall-cmd –query-port&#x3D;80&#x2F;tcp<br>返回yes即没问题，否则打开80端口<br>firewall-cmd –add-port&#x3D;80&#x2F;tcp –permanent<br>开启后需再次重启防火墙，才能生效<br>firewall-cmd –reload  </p>
-<p>3.检查nginx服务<br>开启nginx：nginx<br>（nginx关闭命令：nginx -s stop）<br>（nginx重启命令：nginx -s reload）<br>在其它机器上访问服务器IP:端口号，如果出现nginx页面，就表示开启成功（出现40x 页面也无所谓）<br>如果开启nginx提示端口被占用，需要杀死占用这个端口的进程<br>可以使用一个快捷的方法，直接杀死指定端口的所有进程，比如80端口<br>kill -9 $(lsof -i:80 -t)<br>或者可以仔细查看是哪个进程占用了80端口<br>查看80端口使用情况<br>netstat -lnp|grep 80<br>比如正在被nginx占用，记住显示的进程号，比如1053<br>停掉nginx<br>systemctl stop nginx<br>强制杀掉1053进程<br>kill -9 1053<br>再查询<br>netstat -lnp|grep 80<br>没结果说明已经不占用了<br>接着重新开启nginx服务  </p>
-]]></content>
-      <categories>
-        <category>博客搭建</category>
-      </categories>
-      <tags>
-        <tag>博客</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>博客搭建教程10 - 将托管在Github的Hexo博客迁移到个人云服务器</title>
-    <url>/2023/01/09/bo-ke-da-jian-jiao-cheng-10-jiang-tuo-guan-zai-github-de-hexo-bo-ke-qian-yi-dao-ge-ren-yun-fu-wu-qi/</url>
-    <content><![CDATA[<p>Q：我觉得目前将网站托管到github上已经很好了，迁移至私服有足够的必要性吗？<br>A：迁移至私服不是必须的，如果你觉得github已经足够，那么可以跳过该教程，事实上很多人的博客都是直接托管给github的。但境内网络访问github很不稳定，加之由于github仓库是公开的，所以还是有很多缺点，使用github仓库时要时刻注意对自己网站数据的保护，否则会有泄露风险。</p>
-<p>如果你希望在服务器建立git服务器，每次发布博客时将变更同步至服务器的git仓库，那么可以先给服务器安装git<br>切换至root用户<br>su root<br>安装git<br>yum –y install git<br>键入git指令验证是否安装成功<br>创建git用户，先不创建密码<br>adduser git<br>检查是否创建成功 cd &#x2F;home &amp;&amp; ls -al<br>如果显示有git则说明用户创建成功<br>接下来找一个喜欢的目录，创建一个新的git库，需要你自己起一个喜欢的名字，我起名为cpblog.git，注意.git后缀不要变<br>git init –bare cpblog.git<br>此时终端提示你创建了一个空的git库，这就说明操作对了。<br>接下来将Hexo博客转移到服务器，以后使用hexo d发布博客就在服务器上进行了，我们需要做的是当你执行hexo d时将网站推送至自己的git仓库<br>新建文件夹作为博客根目录<br>mkdir cpblog_webroot<br>chmod 777 cpblog_webroot<br>使用Git-Hooks同步网站根目录，这里使用的是Git中的“post-receive”，当有Git收发的时候会调用该脚本，自动将最新内容同步到网站根目录中<br>用下面的指令新建勾子文件<br>vim cpblog.git&#x2F;hooks&#x2F;post-receive<br>将以下语句写入文件<br>#!&#x2F;bin&#x2F;sh<br>git –work-tree&#x3D;&#x2F;usr&#x2F;local&#x2F;cpblog_webroot –git-dir&#x3D;&#x2F;root&#x2F;cpblog.git checkout -f<br>(注意博客路径和当前用户)<br>保存并赋予执行权限<br>chmod +x cpblog.git&#x2F;hooks&#x2F;post-receive<br>sudo chown -R git:git cpblog.git<br>sudo chown -R git:git cpblog_webroot</p>
-<p>修改&#x2F;usr&#x2F;local&#x2F;nginx&#x2F;conf&#x2F;nginx.conf<br>将里面的地址改为cpblog_webroot的位置<br>server {<br>    listen    80 default_server;<br>    listen    [::] default_server;<br>    server_name    blog.59devops.com;<br>    root    &#x2F;usr&#x2F;local&#x2F;cpblog_webroot<br>}</p>
-<p>配置账户免密码登录<br>创建 ssh 的默认目录<br>进入 git 账户的主目录<br>cd &#x2F;home&#x2F;git<br>创建 .ssh 的配置，如果此文件夹已经存在请忽略此步<br>mkdir .ssh<br>创建校验公钥的配置文件<br>进入 .ssh 目录并创建 authorized_keys 文件，此文件存放客户端远程访问的 ssh 的公钥<br>cd .ssh<br>touch authorized_keys<br>cd ..<br>设置权限<br>chmod 700 .ssh&#x2F;<br>chmod 600 .ssh&#x2F;authorized_keys  </p>
-<p>配置Hexo的”_config.yml”<br>打开位于Hexo博客根目录下的“_config.yml”文件，找到“deploy”并修改  </p>
-<p>deploy:<br>   type: git<br>   repository: root@服务器的公网IP:&#x2F;usr&#x2F;local&#x2F;cpblog.git  #此行改为你的私服仓库地址<br>   branch: main      # 分支,注意看一下仓库的主干分支是master还是main</p>
-<p>从此以后，每次执行hexo d时，就会将网站推送到服务器的git仓库里。<br>本地执行下列命令进行验证<br>hexo clean<br>hexo g<br>hexo d  </p>
-<p>如果你在执行hexo d时被提示输入密码，那么可以阅读接下来的内容实现hexo d免密码  下面我们添加秘钥实现免密推送   </p>
-<p>找到服务器的id_rsa.pub文件，id_rsa.pub 文件中的内容追加到当前目录下的 authorized_keys 中<br>cat id_rsa.pub &gt;&gt; authorized_keys  </p>
-<p>最后别忘了做一件事，就是去域名供应商后台配置解析域名<br>将你的服务器公网IP填到域名解析列表中就可以了，可搜索其它文章了解具体操作。</p>
-]]></content>
-      <categories>
-        <category>博客搭建</category>
-      </categories>
-      <tags>
-        <tag>博客</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>博客搭建教程9 - 使用scp命令从Windows向linux传输文件</title>
-    <url>/2023/01/09/bo-ke-da-jian-jiao-cheng-9-shi-yong-scp-ming-ling-cong-windows-xiang-linux-chuan-shu-wen-jian/</url>
-    <content><![CDATA[<p>Windows使用scp向linux服务器传输文件,可参考这篇博客<br><a href="https://www.cnblogs.com/tugenhua0707/p/8278772.html">https://www.cnblogs.com/tugenhua0707/p/8278772.html</a></p>
-<p>比如传送一个Windows桌面上的视频到服务器，输入下面指令并回车<br>scp D:\Users\Administrator\Desktop\video.mp4 <a href="mailto:&#x72;&#111;&#x6f;&#x74;&#x40;&#50;&#x30;&#x38;&#46;&#x38;&#x37;&#46;&#x32;&#x30;&#x31;&#x2e;&#49;&#x36;&#52;">&#x72;&#111;&#x6f;&#x74;&#x40;&#50;&#x30;&#x38;&#46;&#x38;&#x37;&#46;&#x32;&#x30;&#x31;&#x2e;&#49;&#x36;&#52;</a>:&#x2F;usr&#x2F;local<br>会提示这个：</p>
-<div class="img-wrap"><div class="img-bg"><img class="img lazyload placeholder" src="/images/scpwindowsfirstlink.png" class="lazyload placeholder" data-srcset="/images/scpwindowsfirstlink.png" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" style="width:80%;"/></div></div>
-<p>这是因为首次连接，双方机器还互相陌生，需要打个招呼，只需输入yes并回车</p>
-<div class="img-wrap"><div class="img-bg"><img class="img lazyload placeholder" src="/images/scpwindowslinkok.png" class="lazyload placeholder" data-srcset="/images/scpwindowslinkok.png" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" style="width:80%;"/></div></div>
-<p>接下来输入远程服务器的密码<br>注意由于上面我们使用了向root传输数据的命令，因此该密码必须是linux服务器root用户的密码，如果你使用的是云服务器，那么在云服务器控制台&#x2F;实例页面中能看到<br>如果出现下面的图说明传输成功，博主传输了一个59MB视频，时间消耗29s，平均速度为2MB&#x2F;s  </p>
-<div class="img-wrap"><div class="img-bg"><img class="img lazyload placeholder" src="/images/scptransferdemo.png" class="lazyload placeholder" data-srcset="/images/scptransferdemo.png" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" style="width:80%;"/></div></div>  
-<p>接下来到服务器&#x2F;usr&#x2F;local目录下查看这个文件就可以了。</p>
-]]></content>
-      <tags>
-        <tag>博客</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>博客搭建教程8 - 在CentOS云服务器利用Nginx搭建Hexo博客</title>
-    <url>/2023/01/09/bo-ke-da-jian-jiao-cheng-8-jie-hong-linux/</url>
-    <content><![CDATA[<p>关于图形界面：<br>有的云服务器将CentOS系统的图形界面阉割，如果想和Windows系统一样看到图形界面，需要额外进行安装。<br>但是要注意，虽然图形界面在交互上比命令行更加直观，但是会占用大约500MB的内存，这也就意味着，如果你购买的服务器内存小于500MB，一定是无法安装图形界面的。实际上，1G内存的服务器也不建议安装图形界面，在实测中，1G内存的服务器运行图形界面会非常卡，打开一个firefox浏览器有概率直接让服务器卡死。而2G及以上的服务器安装图形界面则是无压力的，实测在2G服务器上运行CentOS系统+GNOME桌面，内存占用在50%左右。<br>接下来的教程中都是以命令行的方式操作的，如果你可以接受命令行，那就尽量不要安装图形界面，毕竟它会占用一部分服务器的资源，影响到服务器的性能。<br>如果你实在希望使用图形界面的方式操作，可以按照如下教程安装。<br>在图形界面中打开【终端】也可以执行命令行，实测在1G内存情况下在图形界面执行【终端】是没有问题的。（但不要再开更多窗口了）<br><a href="https://blog.csdn.net/weixin_45115705/article/details/100553983">https://blog.csdn.net/weixin_45115705/article/details/100553983</a></p>
-<p>Q：找不到usr文件夹？<br>A：可以试试点击桌面的【主文件夹】图表，或者找到桌面左上角的【应用程序&#x2F;附件&#x2F;文件】,在打开的资源管理器窗口找到【其他位置】选项，点击后找到【计算机】，再点击即可看到盘根的全部文件夹，usr就在其中。<br>在服务器端或许由于缺少播放视频的插件而无法预览视频，但这本就不是服务器的职责，我们只要确保该文件被平安地放到指定的目录，并且可以被外部网络访问到即可。<br>接下来我们要做的工作就是将该视频部署到某一个网络地址，生成可以被访问的外链。</p>
-<p>在linux安装nginx，可参考这篇文章，博主实测没有问题<br><a href="https://blog.csdn.net/t8116189520/article/details/81909574">https://blog.csdn.net/t8116189520/article/details/81909574</a><br>Q：我是图形界面门徒，如何在CentOS图形界面系统上输入命令？<br>A：在桌面左上角应用程序中找到【系统工具&#x2F;终端】即可。请注意，通过此种方式运行终端，要注意自己是否拥有root权限，如果不是root用户，需要切到root用户，或者在命令前加sudo指令。否则，你在安装nginx过程中会频繁提示【您需要root权限执行此命令】,【permission denied】，【you need to be root to xxxx】等报错。</p>
-<p>Q：如何获取root权限？<br>A：可以执行su root切到root用户，选择root作为用户名登录，即可获得root权限。如果是图形界面，你可以选择注销当前账号的登录，回到登录界面，然后选择以其他身份登入，以此切换到root账号。</p>
-<p>nginx安装完毕后，为了今后使用方便，将nginx配置到环境变量<br>echo ‘export PATH&#x3D;&#x2F;usr&#x2F;local&#x2F;nginx&#x2F;sbin:$PATH’ &gt;&gt; &#x2F;etc&#x2F;profile<br>并使其生效<br>source &#x2F;etc&#x2F;profile<br>接下来直接输入nginx -v,看看环境变量有没有配置成功</p>
-<p>按照该命令安装nginx后，nginx所在的目录为usr&#x2F;local&#x2F;nginx，该文件夹内的nginx-1.13.7.tar.gz是安装包文件，可以删除了<br>删除的命令是：sudo rm -rf nginx-1.13.7.tar.gz</p>
-<p>配置nginx过程中可能涉及到使用命令行修改文件内容,以下博客介绍的比较好，建议参考<br><a href="https://blog.csdn.net/qq_51515673/article/details/124390606">https://blog.csdn.net/qq_51515673/article/details/124390606</a>  </p>
-<p>配置完nginx后还需要开启防火墙，并且确保自己设置nginx网站端口是开放的，可参考如下文章<br><a href="https://blog.csdn.net/szw906689771/article/details/121647887">https://blog.csdn.net/szw906689771/article/details/121647887</a><br>下面的文章介绍了查看端口是否开启的方法：<br><a href="https://www.muzhuangnet.com/show/78535.html">https://www.muzhuangnet.com/show/78535.html</a><br>比如你要开启8089端口，那么就是下面这句话：<br>firewall-cmd –query-port&#x3D;8089&#x2F;tcp<br>如果返回的是no，则说明端口还没有打开<br>开启8089端口的命令：<br>firewall-cmd –add-port&#x3D;8089&#x2F;tcp –permanent<br>开启后需再次重启防火墙，才能生效<br>firewall-cmd –reload<br>然后再查询一次端口是否打开，如果是yes，就成功了。<br>Q：我还是no，怎么办？<br>A：你在使用云服务器吗？那可能还需要在服务器控制台的安全组中创建规则，在【入方向规则】中添加对应的端口</p>
-<p>开启nginx：nginx -c &#x2F;usr&#x2F;local&#x2F;nginx&#x2F;conf&#x2F;nginx.conf<br>（nginx关闭命令：nginx -s stop）<br>（nginx重启命令：nginx -s reload）<br>如果服务器有安装GNOME图形界面，接下来可以打开服务器的firefox浏览器，在地址栏输入本机公网IP:端口号，看看有没有显示nginx的welcome界面，如果看到了，说明nginx服务启动成功。如果操作系统没有图形界面，可以通过curl命令访问页面。<br>然后在其它机器上访问http:&#x2F;&#x2F;服务器公网IP:端口号，看看能否出现nginx的welcome页面。<br>如果你是严格按照文档配置的nginx，那么现在，&#x2F;usr&#x2F;local&#x2F;nginx&#x2F;html是网站资源的根目录，所有的资源都必须在此目录下才可以被访问到<br>Q：可以更换目录吗？<br>A：可以，只需要修改&#x2F;usr&#x2F;local&#x2F;nginx&#x2F;conf&#x2F;nginx.conf文件重新指定目录即可，可以在网上轻松搜到关于这个文件的修改方法。<br>nginx.conf这个文件有很多用处，在本教程的其它文章中，我们还会涉及到这个文件来实现防盗链功能。<br>接下来我们都以&#x2F;usr&#x2F;local&#x2F;nginx&#x2F;html作为资源根目录来举例。<br>现在做一个测试，我们要在nginx的文件夹下放置一个资源，然后尝试在其它设备上访问<br>首先在服务器的nginx&#x2F;html目录下创建新文件夹Images<br>找一台其它设备，比如一台windows电脑，使用scp指令拷贝一个图片到服务器，例如：（注意图片原路径和ip地址不能照抄）<br>scp myImage.jpg <a href="mailto:&#114;&#x6f;&#x6f;&#116;&#x40;&#49;&#x39;&#50;&#x2e;&#49;&#54;&#x38;&#x2e;&#49;&#46;&#49;&#48;&#52;">&#114;&#x6f;&#x6f;&#116;&#x40;&#49;&#x39;&#50;&#x2e;&#49;&#54;&#x38;&#x2e;&#49;&#46;&#49;&#48;&#52;</a>:&#x2F;usr&#x2F;local&#x2F;nginx&#x2F;html&#x2F;Images<br>然后在这台windows电脑打开浏览器访问该图片，地址栏中依旧填写本机公网IP:端口号，与此同时在后面加上文件路径，例如192.168.1.104:8089&#x2F;Images&#x2F;myImage.jpg<br>浏览器显示出图片了吗？如果显示出了图片，那么恭喜，你已经完成了第一次网站资源更新。  </p>
-<p>注意：重启服务器时，nginx会重新回到关闭状态，防火墙也可能会关闭，需要留意。  开机后可能需要执行的操作：<br>重新开启防火墙：systemctl start firewalld<br>重新启动nginx：nginx</p>
-]]></content>
-      <categories>
-        <category>博客搭建</category>
-      </categories>
-      <tags>
-        <tag>博客</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>博客搭建教程7 - 为博客网站选择合适的云服务器</title>
-    <url>/2023/01/09/bo-ke-da-jian-jiao-cheng-7-wei-bo-ke-wang-zhan-xuan-ze-he-gua-de-yun-fu-wu-qi/</url>
-    <content><![CDATA[<p>网页中会展示一些大体积的资源，比如音频视频等多媒体文件，还有一些可被公开下载的文件。<br>你可能听过图床，图床就是将博客的图片存储到云盘里，比如七牛云，图床为图片生成外链，博客仓库中无需携带图片，只要通过链接访问就可以了。<br>如果你只是想要一个图床，并且你的网站有ICP备案，那么直接使用七牛云的服务就可以了，专业的图床还有防盗链，CDN等实用技术加持，真的是一个不错的选择。</p>
-<p>Q：未备案的个人博客网站可以使用七牛云图床吗？<br>A：不可以。</p>
-<p>虽然使用Git仓库可以存储这些大文件（比如Gitee，Github，相关介绍链接<a href="https://zhuanlan.zhihu.com/p/581297109">https://zhuanlan.zhihu.com/p/581297109</a><br>，但是Git的本意是代码管理，对于大体积文件来讲并不适合，Git仓库其实是禁止被用作图床的，关于Gitee历史上也不止一次发生过图片无法访问的情况。</p>
-<div class="img-wrap"><div class="img-bg"><img class="img lazyload placeholder" src="/images/giteeforbiddenjpgbed.png" class="lazyload placeholder" data-srcset="/images/giteeforbiddenjpgbed.png" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" style="width:80%;"/></div></div>
-
-<p>Q：我不想买云服务器，可以将网站部署到自己的闲置电脑上吗？<br>A：你可以在网络上搜索这个话题，了解实现这个需求的难度，从而决定要选择何种方式。本文只介绍使用云服务器搭建网站的方法。</p>
-<p>以下介绍博主使用的云服务器。<br>在建站初期，网站基本没有访客，因此无需考虑太多。博主最开始决定使用恒创ECS云服务器，因为有7天免费试用，可以顺带了解一下1核2G的配置是否够用。<br>后来考虑到域名是在阿里云买的，所以也买了一个月的阿里云轻量应用服务器，它的价格比ECS服务器便宜一些，但是对配置并不满意，因此还是选择了恒创的ECS云服务器。<br>在试用恒创的服务器时发现2G的内存超出了实际需求，因此在购买时决定只买1G内存套餐即可。<br>恒创的ECS云服务器算是很便宜的了，博主选择了最低配置，CentOS 7系统，1核1G带宽2M，大约300元&#x2F;年。而且恒创的香港，美国，日本服务器无需备案，很方便。<br>博主建议选择linux系统，不要选择Windows系统，使用linux建站更节省软硬件资源，很适合建站，而Windows系统很臃肿，以至于在1G内存的云服务器上无法运行，2G内存才勉勉强强。因此Windows服务器起步配置要比linux的高，起步价也更高。<br>博主选择的是CentOS 7.1系统。</p>
-<p>Q：云服务器的带宽如何选择？家庭网络都已经100M起步了，云服务器2M带宽是不是太低了？<br>A：对于新手站长，博主建议可以选择2M作为入门选择，如果你的网站没有视频或者大量下载资源，那么完全可以支撑早期的网站建设。博主实测2M带宽的服务器加载一篇博客（1k文字+多张100kb图片）只需要1-2秒，如果是mp4视频，那么压缩到10MB&#x2F;分钟的体积，是可以流畅播放的。</p>
-]]></content>
-      <categories>
-        <category>博客搭建</category>
-      </categories>
-      <tags>
-        <tag>博客</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>博客搭建教程6 - 为Github部署的Hexo博客更换新域名</title>
-    <url>/2023/01/09/bo-ke-da-jian-jiao-cheng-6-wei-github-bu-shu-de-hexo-bo-ke-geng-huan-xin-yu-ming/</url>
-    <content><![CDATA[<p>首先在域名购买网站挑选心仪的域名并购买，比如万网：<br><a href="https://wanwang.aliyun.com/domain">https://wanwang.aliyun.com/domain</a></p>
-<p>暂时不知道想要什么域名？那买一个最便宜的就可以了。又短又便宜的域名不多见，但是捞到就是赚到。</p>
-<p>购买后在域名控制台就能进行域名解析操作了。</p>
-<div class="img-wrap"><div class="img-bg"><img class="img lazyload placeholder" src="/images/wanwanggoumaiyuming.png" class="lazyload placeholder" data-srcset="/images/wanwanggoumaiyuming.png" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" style="width:80%;"/></div></div>
-
-<p>点击域名后面的【解析】按钮，进入解析界面</p>
-<p>关于如何添加解析记录，可以参考这篇文章<br><a href="https://zhuanlan.zhihu.com/p/103813944">https://zhuanlan.zhihu.com/p/103813944</a></p>
-<p>大体操作思路是：<br>登录自己的github博客仓库，在页面上找到Settings按钮，点击进入</p>
-<div class="img-wrap"><div class="img-bg"><img class="img lazyload placeholder" src="/images/girhubhoutaisettings.png" class="lazyload placeholder" data-srcset="/images/girhubhoutaisettings.png" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" style="width:80%;"/></div></div>
-
-<p>进入Pages页面</p>
-<div class="img-wrap"><div class="img-bg"><img class="img lazyload placeholder" src="/images/githubsettingpage.png" class="lazyload placeholder" data-srcset="/images/githubsettingpage.png" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" style="width:80%;"/></div></div>
-<p>在Pages页面里可以看到你目前的域名，是以github.io结尾的，接下来我们在CustomDomain里填写自己的域名，并点击Save<br>接下来就会发现你的博客地址变成了自己填写的域名</p>
-<div class="img-wrap"><div class="img-bg"><img class="img lazyload placeholder" src="/images/githubsetselfurl.png" class="lazyload placeholder" data-srcset="/images/githubsetselfurl.png" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" style="width:80%;"/></div></div>
-<p>点击【Visit site】进行测试,看看能否访问。若可以访问，则说明配置成功。</p>
-]]></content>
-      <categories>
-        <category>博客搭建</category>
-      </categories>
-      <tags>
-        <tag>博客</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>博客搭建教程5 - 为Hexo博客安装插件</title>
-    <url>/2023/01/09/bo-ke-da-jian-jiao-cheng-5-wei-hexo-bo-ke-an-zhuang-cha-jian/</url>
-    <content><![CDATA[<p>文档正在筹备</p>
+    <title>博客搭建教程3 - 初识Node.js和Hexo</title>
+    <url>/2023/01/09/bo-ke-da-jian-jiao-cheng-3-chu-shi-node.js-he-hexo/</url>
+    <content><![CDATA[<p>本篇内容比较简单，同样参考这位博主的文章<br><a href="https://zhuanlan.zhihu.com/p/105715224">https://zhuanlan.zhihu.com/p/105715224</a></p>
+<p>按照上述流程做完后，基于Github Page的博客就已经搭建好了，你可以在浏览器上输入自己的Github仓库地址，就可以看到搭建好的Hexo博客了。</p>
+<p>接下来的教程里，我们将继续做如下几件事情来加深对网站的理解，增强管理能力，这些并非必要项，而且每篇教程都是独立的，可以选择有需要的部分阅读，未来博主也会随时扩充。<br>接下来教程的内容大致如下，看看有没有你比较关心的：<br>1.选择自己喜欢的Hexo主题美化博客<br>2.购买一个自己喜欢的域名，解析域名，并取代现在github访问的方式<br>3.了解网站备案，选择云服务器，搭建资源服实现图床<br>4.将博客部署在云服务器上<br>5.学习Markdown常用语法<br>6.使用宝塔管理自己的服务器<br>7.知识财产保护与侵权行为</p>
 ]]></content>
       <categories>
         <category>博客搭建</category>
@@ -769,11 +475,9 @@
       </tags>
   </entry>
   <entry>
-    <title>博客搭建教程3 - 初识Node.js和Hexo</title>
-    <url>/2023/01/09/bo-ke-da-jian-jiao-cheng-3-chu-shi-node.js-he-hexo/</url>
-    <content><![CDATA[<p>本篇内容比较简单，同样参考这位博主的文章<br><a href="https://zhuanlan.zhihu.com/p/105715224">https://zhuanlan.zhihu.com/p/105715224</a></p>
-<p>按照上述流程做完后，基于Github Page的博客就已经搭建好了，你可以在浏览器上输入自己的Github仓库地址，就可以看到搭建好的Hexo博客了。</p>
-<p>接下来的教程里，我们将继续做如下几件事情来加深对网站的理解，增强管理能力，这些并非必要项，而且每篇教程都是独立的，可以选择有需要的部分阅读，未来博主也会随时扩充。<br>接下来教程的内容大致如下，看看有没有你比较关心的：<br>1.选择自己喜欢的Hexo主题美化博客<br>2.购买一个自己喜欢的域名，解析域名，并取代现在github访问的方式<br>3.了解网站备案，选择云服务器，搭建资源服实现图床<br>4.将博客部署在云服务器上<br>5.学习Markdown常用语法<br>6.使用宝塔管理自己的服务器<br>7.知识财产保护与侵权行为</p>
+    <title>博客搭建教程5 - 为Hexo博客安装插件</title>
+    <url>/2023/01/09/bo-ke-da-jian-jiao-cheng-5-wei-hexo-bo-ke-an-zhuang-cha-jian/</url>
+    <content><![CDATA[<p>文档正在筹备</p>
 ]]></content>
       <categories>
         <category>博客搭建</category>
@@ -783,13 +487,23 @@
       </tags>
   </entry>
   <entry>
-    <title>博客搭建教程2 - 创建Git仓库</title>
-    <url>/2023/01/09/bo-ke-da-jian-jiao-cheng-2-chuang-jian-git-cang-ku/</url>
-    <content><![CDATA[<p>在阅读本章前，我们默认你已经了解了Git的概念。</p>
-<p>本章内容比较简单，网上相关文章很多，这里推荐这位博主的文章，因为cypunberk最初就是按照这篇教程搭建的，教程的准确性已经得到验证。<br><a href="https://zhuanlan.zhihu.com/p/102592286">https://zhuanlan.zhihu.com/p/102592286</a></p>
-<p>第一步，注册Github账号<br>可以参考这篇知乎的教程<a href="https://zhuanlan.zhihu.com/p/103268406">https://zhuanlan.zhihu.com/p/103268406</a></p>
-<p>第二步，安装Git<br>可以参考这篇知乎的教程<a href="https://zhuanlan.zhihu.com/p/103325381">https://zhuanlan.zhihu.com/p/103325381</a></p>
-<p>第三步，创建Github仓库并使用Git推送文件<br>可以参考这篇知乎的教程<a href="https://zhuanlan.zhihu.com/p/103391101">https://zhuanlan.zhihu.com/p/103391101</a></p>
+    <title>博客搭建教程6 - 为Github部署的Hexo博客更换新域名</title>
+    <url>/2023/01/09/bo-ke-da-jian-jiao-cheng-6-wei-github-bu-shu-de-hexo-bo-ke-geng-huan-xin-yu-ming/</url>
+    <content><![CDATA[<p>首先在域名购买网站挑选心仪的域名并购买，比如万网：<br><a href="https://wanwang.aliyun.com/domain">https://wanwang.aliyun.com/domain</a></p>
+<p>暂时不知道想要什么域名？那买一个最便宜的就可以了。又短又便宜的域名不多见，但是捞到就是赚到。</p>
+<p>购买后在域名控制台就能进行域名解析操作了。</p>
+<div class="img-wrap"><div class="img-bg"><img class="img lazyload placeholder" src="/images/wanwanggoumaiyuming.png" class="lazyload placeholder" data-srcset="/images/wanwanggoumaiyuming.png" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" style="width:80%;"/></div></div>
+
+<p>点击域名后面的【解析】按钮，进入解析界面</p>
+<p>关于如何添加解析记录，可以参考这篇文章<br><a href="https://zhuanlan.zhihu.com/p/103813944">https://zhuanlan.zhihu.com/p/103813944</a></p>
+<p>大体操作思路是：<br>登录自己的github博客仓库，在页面上找到Settings按钮，点击进入</p>
+<div class="img-wrap"><div class="img-bg"><img class="img lazyload placeholder" src="/images/girhubhoutaisettings.png" class="lazyload placeholder" data-srcset="/images/girhubhoutaisettings.png" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" style="width:80%;"/></div></div>
+
+<p>进入Pages页面</p>
+<div class="img-wrap"><div class="img-bg"><img class="img lazyload placeholder" src="/images/githubsettingpage.png" class="lazyload placeholder" data-srcset="/images/githubsettingpage.png" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" style="width:80%;"/></div></div>
+<p>在Pages页面里可以看到你目前的域名，是以github.io结尾的，接下来我们在CustomDomain里填写自己的域名，并点击Save<br>接下来就会发现你的博客地址变成了自己填写的域名</p>
+<div class="img-wrap"><div class="img-bg"><img class="img lazyload placeholder" src="/images/githubsetselfurl.png" class="lazyload placeholder" data-srcset="/images/githubsetselfurl.png" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" style="width:80%;"/></div></div>
+<p>点击【Visit site】进行测试,看看能否访问。若可以访问，则说明配置成功。</p>
 ]]></content>
       <categories>
         <category>博客搭建</category>
@@ -799,21 +513,80 @@
       </tags>
   </entry>
   <entry>
-    <title>博客搭建教程1 - 准备阶段</title>
-    <url>/2023/01/09/bo-ke-da-jian-jiao-cheng-1-zhun-bei-jie-duan/</url>
-    <content><![CDATA[<p>在一切开始之前，我们先来回答几个关键问题。</p>
-<p>Q：搭建个人博客需要花钱吗？<br>A：不需要。如果我们依赖Github，则可以不花一分钱搭建好自己的博客网站。但是如果你想拥有自己的域名，购买图床，或者使用云服务器，那么需要支付一定的费用，在刚刚起步的阶段，开销不会很大。</p>
-<p>Q：搭建个人博客需要会写代码吗？<br>A：不需要。但本教程建议有代码基础的读者观看，因为教程有的介绍并不详尽，比如教程内不会专门介绍Linux操作系统，命令行的概念。由于在搭建博客过程中会涉及到在操作系统终端执行命令，如果有代码基础，则遇到卡点的几率会低一些，并且发现自己操作的结果和教程不一致时有能力自查问题。本教程尽可能提供了完整的命令语句和配置文件写法，在搭建时只需要复制粘贴即可。<br>你不需要掌握网页设计语言，绚丽的网站并不需要由我们自己编码实现，本教程使用的Hexo博客自身提供了非常多的主题，就像手机更换壁纸一样，你只需要像文本一样更改几个配置文件即可应用全新主题。如果你有代码基础，则可以尝试进行更深入的页面定制。</p>
-<p>Q：搭建个人博客需要多少时间？<br>A：这个难以预估，如果你有代码基础，具备一定的debug能力，那么初次的搭建过程只需要几天的时间，当踩过一些坑，经历了一些试错后，后续再次重新搭建，一天之内即可完成。如果你是非技术人员，或许需要结合一些其它网络上的教程来搭建，本教程更多作为建站的备忘录，对于一些细节可能会直接略过，而这些通常成为读者理解的卡点。</p>
-<p>如果你决定开始搭建个人博客，那么接下来按照教程顺序，一步一步开始吧。</p>
-<p>本教程搭建博客的技术涉及到：<br>1.搭建Github仓库托管博客，包含一些Git操作<br>2.安装node.js和npm，Hexo，Hexo-admin<br>3.租用Linux云服务器实现博客远程部署</p>
-<p>建议读者可以先对以上技术有一些了解。  </p>
+    <title>博客搭建教程7 - 为博客网站选择合适的云服务器</title>
+    <url>/2023/01/09/bo-ke-da-jian-jiao-cheng-7-wei-bo-ke-wang-zhan-xuan-ze-he-gua-de-yun-fu-wu-qi/</url>
+    <content><![CDATA[<p>网页中会展示一些大体积的资源，比如音频视频等多媒体文件，还有一些可被公开下载的文件。<br>你可能听过图床，图床就是将博客的图片存储到云盘里，比如七牛云，图床为图片生成外链，博客仓库中无需携带图片，只要通过链接访问就可以了。<br>如果你只是想要一个图床，并且你的网站有ICP备案，那么直接使用七牛云的服务就可以了，专业的图床还有防盗链，CDN等实用技术加持，真的是一个不错的选择。</p>
+<p>Q：未备案的个人博客网站可以使用七牛云图床吗？<br>A：不可以。</p>
+<p>虽然使用Git仓库可以存储这些大文件（比如Gitee，Github，相关介绍链接<a href="https://zhuanlan.zhihu.com/p/581297109">https://zhuanlan.zhihu.com/p/581297109</a><br>，但是Git的本意是代码管理，对于大体积文件来讲并不适合，Git仓库其实是禁止被用作图床的，关于Gitee历史上也不止一次发生过图片无法访问的情况。</p>
+<div class="img-wrap"><div class="img-bg"><img class="img lazyload placeholder" src="/images/giteeforbiddenjpgbed.png" class="lazyload placeholder" data-srcset="/images/giteeforbiddenjpgbed.png" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" style="width:80%;"/></div></div>
+
+<p>Q：我不想买云服务器，可以将网站部署到自己的闲置电脑上吗？<br>A：你可以在网络上搜索这个话题，了解实现这个需求的难度，从而决定要选择何种方式。本文只介绍使用云服务器搭建网站的方法。</p>
+<p>以下介绍博主使用的云服务器。<br>在建站初期，网站基本没有访客，因此无需考虑太多。博主最开始决定使用恒创ECS云服务器，因为有7天免费试用，可以顺带了解一下1核2G的配置是否够用。<br>后来考虑到域名是在阿里云买的，所以也买了一个月的阿里云轻量应用服务器，它的价格比ECS服务器便宜一些，但是对配置并不满意，因此还是选择了恒创的ECS云服务器。<br>在试用恒创的服务器时发现2G的内存超出了实际需求，因此在购买时决定只买1G内存套餐即可。<br>恒创的ECS云服务器算是很便宜的了，博主选择了最低配置，CentOS 7系统，1核1G带宽2M，大约300元&#x2F;年。而且恒创的香港，美国，日本服务器无需备案，很方便。<br>博主建议选择linux系统，不要选择Windows系统，使用linux建站更节省软硬件资源，很适合建站，而Windows系统很臃肿，以至于在1G内存的云服务器上无法运行，2G内存才勉勉强强。因此Windows服务器起步配置要比linux的高，起步价也更高。<br>博主选择的是CentOS 7.1系统。</p>
+<p>Q：云服务器的带宽如何选择？家庭网络都已经100M起步了，云服务器2M带宽是不是太低了？<br>A：对于新手站长，博主建议可以选择2M作为入门选择，如果你的网站没有视频或者大量下载资源，那么完全可以支撑早期的网站建设。博主实测2M带宽的服务器加载一篇博客（1k文字+多张100kb图片）只需要1-2秒，如果是mp4视频，那么压缩到10MB&#x2F;分钟的体积，是可以流畅播放的。</p>
 ]]></content>
       <categories>
         <category>博客搭建</category>
       </categories>
       <tags>
         <tag>博客</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>博客搭建教程8 - 在CentOS云服务器利用Nginx搭建Hexo博客</title>
+    <url>/2023/01/09/bo-ke-da-jian-jiao-cheng-8-jie-hong-linux/</url>
+    <content><![CDATA[<p>关于图形界面：<br>有的云服务器将CentOS系统的图形界面阉割，如果想和Windows系统一样看到图形界面，需要额外进行安装。<br>但是要注意，虽然图形界面在交互上比命令行更加直观，但是会占用大约500MB的内存，这也就意味着，如果你购买的服务器内存小于500MB，一定是无法安装图形界面的。实际上，1G内存的服务器也不建议安装图形界面，在实测中，1G内存的服务器运行图形界面会非常卡，打开一个firefox浏览器有概率直接让服务器卡死。而2G及以上的服务器安装图形界面则是无压力的，实测在2G服务器上运行CentOS系统+GNOME桌面，内存占用在50%左右。<br>接下来的教程中都是以命令行的方式操作的，如果你可以接受命令行，那就尽量不要安装图形界面，毕竟它会占用一部分服务器的资源，影响到服务器的性能。<br>如果你实在希望使用图形界面的方式操作，可以按照如下教程安装。<br>在图形界面中打开【终端】也可以执行命令行，实测在1G内存情况下在图形界面执行【终端】是没有问题的。（但不要再开更多窗口了）<br><a href="https://blog.csdn.net/weixin_45115705/article/details/100553983">https://blog.csdn.net/weixin_45115705/article/details/100553983</a></p>
+<p>Q：找不到usr文件夹？<br>A：可以试试点击桌面的【主文件夹】图表，或者找到桌面左上角的【应用程序&#x2F;附件&#x2F;文件】,在打开的资源管理器窗口找到【其他位置】选项，点击后找到【计算机】，再点击即可看到盘根的全部文件夹，usr就在其中。<br>在服务器端或许由于缺少播放视频的插件而无法预览视频，但这本就不是服务器的职责，我们只要确保该文件被平安地放到指定的目录，并且可以被外部网络访问到即可。<br>接下来我们要做的工作就是将该视频部署到某一个网络地址，生成可以被访问的外链。</p>
+<p>在linux安装nginx，可参考这篇文章，博主实测没有问题<br><a href="https://blog.csdn.net/t8116189520/article/details/81909574">https://blog.csdn.net/t8116189520/article/details/81909574</a><br>Q：我是图形界面门徒，如何在CentOS图形界面系统上输入命令？<br>A：在桌面左上角应用程序中找到【系统工具&#x2F;终端】即可。请注意，通过此种方式运行终端，要注意自己是否拥有root权限，如果不是root用户，需要切到root用户，或者在命令前加sudo指令。否则，你在安装nginx过程中会频繁提示【您需要root权限执行此命令】,【permission denied】，【you need to be root to xxxx】等报错。</p>
+<p>Q：如何获取root权限？<br>A：可以执行su root切到root用户，选择root作为用户名登录，即可获得root权限。如果是图形界面，你可以选择注销当前账号的登录，回到登录界面，然后选择以其他身份登入，以此切换到root账号。</p>
+<p>nginx安装完毕后，为了今后使用方便，将nginx配置到环境变量<br>echo ‘export PATH&#x3D;&#x2F;usr&#x2F;local&#x2F;nginx&#x2F;sbin:$PATH’ &gt;&gt; &#x2F;etc&#x2F;profile<br>并使其生效<br>source &#x2F;etc&#x2F;profile<br>接下来直接输入nginx -v,看看环境变量有没有配置成功</p>
+<p>按照该命令安装nginx后，nginx所在的目录为usr&#x2F;local&#x2F;nginx，该文件夹内的nginx-1.13.7.tar.gz是安装包文件，可以删除了<br>删除的命令是：sudo rm -rf nginx-1.13.7.tar.gz</p>
+<p>配置nginx过程中可能涉及到使用命令行修改文件内容,以下博客介绍的比较好，建议参考<br><a href="https://blog.csdn.net/qq_51515673/article/details/124390606">https://blog.csdn.net/qq_51515673/article/details/124390606</a>  </p>
+<p>配置完nginx后还需要开启防火墙，并且确保自己设置nginx网站端口是开放的，可参考如下文章<br><a href="https://blog.csdn.net/szw906689771/article/details/121647887">https://blog.csdn.net/szw906689771/article/details/121647887</a><br>下面的文章介绍了查看端口是否开启的方法：<br><a href="https://www.muzhuangnet.com/show/78535.html">https://www.muzhuangnet.com/show/78535.html</a><br>比如你要开启8089端口，那么就是下面这句话：<br>firewall-cmd –query-port&#x3D;8089&#x2F;tcp<br>如果返回的是no，则说明端口还没有打开<br>开启8089端口的命令：<br>firewall-cmd –add-port&#x3D;8089&#x2F;tcp –permanent<br>开启后需再次重启防火墙，才能生效<br>firewall-cmd –reload<br>然后再查询一次端口是否打开，如果是yes，就成功了。<br>Q：我还是no，怎么办？<br>A：你在使用云服务器吗？那可能还需要在服务器控制台的安全组中创建规则，在【入方向规则】中添加对应的端口</p>
+<p>开启nginx：nginx -c &#x2F;usr&#x2F;local&#x2F;nginx&#x2F;conf&#x2F;nginx.conf<br>（nginx关闭命令：nginx -s stop）<br>（nginx重启命令：nginx -s reload）<br>如果服务器有安装GNOME图形界面，接下来可以打开服务器的firefox浏览器，在地址栏输入本机公网IP:端口号，看看有没有显示nginx的welcome界面，如果看到了，说明nginx服务启动成功。如果操作系统没有图形界面，可以通过curl命令访问页面。<br>然后在其它机器上访问http:&#x2F;&#x2F;服务器公网IP:端口号，看看能否出现nginx的welcome页面。<br>如果你是严格按照文档配置的nginx，那么现在，&#x2F;usr&#x2F;local&#x2F;nginx&#x2F;html是网站资源的根目录，所有的资源都必须在此目录下才可以被访问到<br>Q：可以更换目录吗？<br>A：可以，只需要修改&#x2F;usr&#x2F;local&#x2F;nginx&#x2F;conf&#x2F;nginx.conf文件重新指定目录即可，可以在网上轻松搜到关于这个文件的修改方法。<br>nginx.conf这个文件有很多用处，在本教程的其它文章中，我们还会涉及到这个文件来实现防盗链功能。<br>接下来我们都以&#x2F;usr&#x2F;local&#x2F;nginx&#x2F;html作为资源根目录来举例。<br>现在做一个测试，我们要在nginx的文件夹下放置一个资源，然后尝试在其它设备上访问<br>首先在服务器的nginx&#x2F;html目录下创建新文件夹Images<br>找一台其它设备，比如一台windows电脑，使用scp指令拷贝一个图片到服务器，例如：（注意图片原路径和ip地址不能照抄）<br>scp myImage.jpg <a href="mailto:&#114;&#x6f;&#x6f;&#116;&#x40;&#49;&#x39;&#50;&#x2e;&#49;&#54;&#x38;&#x2e;&#49;&#46;&#49;&#48;&#52;">&#114;&#x6f;&#x6f;&#116;&#x40;&#49;&#x39;&#50;&#x2e;&#49;&#54;&#x38;&#x2e;&#49;&#46;&#49;&#48;&#52;</a>:&#x2F;usr&#x2F;local&#x2F;nginx&#x2F;html&#x2F;Images<br>然后在这台windows电脑打开浏览器访问该图片，地址栏中依旧填写本机公网IP:端口号，与此同时在后面加上文件路径，例如192.168.1.104:8089&#x2F;Images&#x2F;myImage.jpg<br>浏览器显示出图片了吗？如果显示出了图片，那么恭喜，你已经完成了第一次网站资源更新。  </p>
+<p>注意：重启服务器时，nginx会重新回到关闭状态，防火墙也可能会关闭，需要留意。  开机后可能需要执行的操作：<br>重新开启防火墙：systemctl start firewalld<br>重新启动nginx：nginx</p>
+]]></content>
+      <categories>
+        <category>博客搭建</category>
+      </categories>
+      <tags>
+        <tag>博客</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>博客搭建教程9 - 使用scp命令从Windows向linux传输文件</title>
+    <url>/2023/01/09/bo-ke-da-jian-jiao-cheng-9-shi-yong-scp-ming-ling-cong-windows-xiang-linux-chuan-shu-wen-jian/</url>
+    <content><![CDATA[<p>Windows使用scp向linux服务器传输文件,可参考这篇博客<br><a href="https://www.cnblogs.com/tugenhua0707/p/8278772.html">https://www.cnblogs.com/tugenhua0707/p/8278772.html</a></p>
+<p>比如传送一个Windows桌面上的视频到服务器，输入下面指令并回车<br>scp D:\Users\Administrator\Desktop\video.mp4 <a href="mailto:&#x72;&#111;&#x6f;&#x74;&#x40;&#50;&#x30;&#x38;&#46;&#x38;&#x37;&#46;&#x32;&#x30;&#x31;&#x2e;&#49;&#x36;&#52;">&#x72;&#111;&#x6f;&#x74;&#x40;&#50;&#x30;&#x38;&#46;&#x38;&#x37;&#46;&#x32;&#x30;&#x31;&#x2e;&#49;&#x36;&#52;</a>:&#x2F;usr&#x2F;local<br>会提示这个：</p>
+<div class="img-wrap"><div class="img-bg"><img class="img lazyload placeholder" src="/images/scpwindowsfirstlink.png" class="lazyload placeholder" data-srcset="/images/scpwindowsfirstlink.png" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" style="width:80%;"/></div></div>
+<p>这是因为首次连接，双方机器还互相陌生，需要打个招呼，只需输入yes并回车</p>
+<div class="img-wrap"><div class="img-bg"><img class="img lazyload placeholder" src="/images/scpwindowslinkok.png" class="lazyload placeholder" data-srcset="/images/scpwindowslinkok.png" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" style="width:80%;"/></div></div>
+<p>接下来输入远程服务器的密码<br>注意由于上面我们使用了向root传输数据的命令，因此该密码必须是linux服务器root用户的密码，如果你使用的是云服务器，那么在云服务器控制台&#x2F;实例页面中能看到<br>如果出现下面的图说明传输成功，博主传输了一个59MB视频，时间消耗29s，平均速度为2MB&#x2F;s  </p>
+<div class="img-wrap"><div class="img-bg"><img class="img lazyload placeholder" src="/images/scptransferdemo.png" class="lazyload placeholder" data-srcset="/images/scptransferdemo.png" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" style="width:80%;"/></div></div>  
+<p>接下来到服务器&#x2F;usr&#x2F;local目录下查看这个文件就可以了。</p>
+]]></content>
+      <tags>
+        <tag>博客</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>往期封面2023/01/18 熊猫兔珍贵影像资料</title>
+    <url>/2023/01/18/wang-qi-feng-mian-2023-01-18-xiong-mao-tu-zhen-gui-ying-xiang-zi-liao/</url>
+    <content><![CDATA[<p>这只熊猫兔是2022&#x2F;1&#x2F;9在上海一条马路边买的。<br>刚买来的时候，小小一只很可爱<br>喜欢吃胡萝卜<br><video width="540" controls loop src="/images/histcover1_rabbit01.mp4" />  </p>
+<p>后来发现它喜欢吃卷心菜胜过胡萝卜<br><video width="540" controls loop src="/images/histcover1_rabbit02.mp4" />  </p>
+<p>养了一段时间，逐渐变大，已经有能力自己跳出来了<br><video width="270" controls loop src="/images/histcover1_rabbit03.mp4" />  </p>
+<p>兔子很聪明，知道如何回到笼子里吃到食物<br><video width="270" controls loop src="/images/histcover1_rabbit04.mp4" />  </p>
+<p>但在2022&#x2F;3&#x2F;17居家办公时，兔子突然开始发作<br><video width="270" controls loop src="/images/histcover1_rabbit05.mp4" />  </p>
+<p>没有任何征兆地开始抽搐<br><video width="540" controls loop src="/images/histcover1_rabbit06.mp4" />  </p>
+<p>检查了吃的食物和平常一样，房间温度也没有变化，不明白是什么原因<br>过了几十分钟逐渐没有了生命体征  </p>
+<p>后来在网上了解兔子的知识，兔子抽搐死亡通常有以下几个原因：<br>1.兔子生前有疾病表现<br>2.脑孢子虫、寄生虫，脑部寄生虫感染引起兔子脑炎，引起抽搐<br>3.胃肠道功能或菌群紊乱，肠毒素过多，内毒素过多引起癫痫抽搐<br>4.兔子长时间没有排大便，血氨浓度高，血氨升高也会直接引起抽搐</p>
+<p>首先排除1，其次根据排便排除4，最后剩下2和3两种可能。<br>这只兔子没有打任何疫苗，所以可能患有寄生虫，但是居家的兔子感染寄生虫的概率很低，除非在购买之前就已经感染，经过了几十天的潜伏期最终发作。兔子死于寄生虫的可能性大概占1&#x2F;2。<br>胃肠紊乱占了剩余1&#x2F;2的可能，一个是吃的食物比较单一，都是含水量比较高的蔬菜，另外兔子在放出来时总是四处乱啃，皮具，纸壳都被啃过，也可能是吃了无法消化的东西导致胃肠出现了问题。  </p>
+<p>经过两个多月的精心饲养，得出的结论是兔子不好养，一个是饮食难以掌握，需要学习，其次味道大，总是不好好撒尿，溅到笼子外面，后来我索性直接在笼子下面垫满了尿不湿，让它随便撒，两个月的时间我用掉了上百片动物尿不湿，还买了兔子除臭剂，不然室内根本不能住人。</p>
+]]></content>
+      <categories>
+        <category>往期封面</category>
+      </categories>
+      <tags>
+        <tag>生活</tag>
       </tags>
   </entry>
   <entry>
@@ -825,6 +598,233 @@
       <categories>
         <category>博客搭建</category>
       </categories>
+      <tags>
+        <tag>博客</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>往期封面2023/02/07 沙特猫</title>
+    <url>/2023/02/07/wang-qi-feng-mian-2023-02-07-sha-te-mao/</url>
+    <content><![CDATA[<p>沙特猫影集精选  </p>
+<div class="video"><video controls preload><source src='/images/coverres_20230207_01.mp4' type='video/mp4'>Your browser does not support the video tag.</video></div>  
+<div class="video"><video controls preload><source src='/images/coverres_20230207_02.mp4' type='video/mp4'>Your browser does not support the video tag.</video></div>  
+<div class="video"><video controls preload><source src='/images/coverres_20230207_03.mp4' type='video/mp4'>Your browser does not support the video tag.</video></div>  
+<div class="video"><video controls preload><source src='/images/coverres_20230207_04.mp4' type='video/mp4'>Your browser does not support the video tag.</video></div>  
+<div class="video"><video controls preload><source src='/images/cover_20230207.mp4' type='video/mp4'>Your browser does not support the video tag.</video></div>  ]]></content>
+      <categories>
+        <category>往期封面</category>
+      </categories>
+      <tags>
+        <tag>生活</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>对超过2G的apk重新进行4字节对齐并做v1+v2签名</title>
+    <url>/2023/04/20/dui-chao-guo-2g-de-apk-chong-xin-jin-xing-4-zi-jie-dui-qi-bing-zuo-v1-v2-qian-ming/</url>
+    <content><![CDATA[<h6 id="工具准备"><a href="#工具准备" class="headerlink" title="工具准备"></a>工具准备</h6><ul>
+<li>zipalign2G.exe文件下载: <i class="fa fa-download"></i> <a href="https://download.csdn.net/download/liyingzai/13216149?spm=1001.2101.3001.6650.8&utm_medium=distribute.pc_relevant.none-task-download-2~default~OPENSEARCH~Rate-8-13216149-blog-8109883.235%5Ev29%5Epc_relevant_default_base3&depth_1-utm_source=distribute.pc_relevant.none-task-download-2~default~OPENSEARCH~Rate-8-13216149-blog-8109883.235%5Ev29%5Epc_relevant_default_base3&utm_relevant_index=8">zipalign2G.exe</a> </li>
+<li>apksigner.jar（一般位于AndroidSDK的build-tools文件夹内）</li>
+<li>keystore文件，key-alias，key-password信息</li>
+</ul>
+<h6 id="操作步骤"><a href="#操作步骤" class="headerlink" title="操作步骤"></a>操作步骤</h6><p>假设zipalign2G.exe，apksigner.jar，apk包，keystore的绝对路径位于D:\<br>1.对apk重新进行4字节对齐，命令如下  </p>
+<blockquote>
+<p>D:\zipalign2G.exe -f -v 4 D:\input.apk D:\output_aligned.apk  </p>
+</blockquote>
+<p>提示Verification succesful即为成功</p>
+<p>2.进行v1+v2签名，命令如下  </p>
+<blockquote>
+<p>java -jar D:\apksigner.jar sign –ks D:\myapk.keystore –ks-key-alias myaliasname –ks-pass pass:12345678 –key-pass pass:12345678 –out D:\output_signed.apk D:\output_aligned.apk  </p>
+</blockquote>
+<p>3.通过以下命令验证是否签名成功  </p>
+<blockquote>
+<p>java -jar D:\apksigner.jar verify -v D:\output_signed.apk  </p>
+</blockquote>
+<p>若出现  </p>
+<blockquote>
+<p>Verifies<br>Verified using v1 scheme (JAR signing): true<br>Verified using v2 scheme (APK Signature Scheme v2): true  </p>
+</blockquote>
+<p>说明签名成功  </p>
+<p>此时的包就可以安装到Android 11版本以上的手机了。</p>
+]]></content>
+      <categories>
+        <category>Android</category>
+        <category>Unity</category>
+      </categories>
+      <tags>
+        <tag>Android</tag>
+        <tag>打包</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>云服务器搭建博客网站全套流程（浓缩版）</title>
+    <url>/2024/02/01/bo-ke-da-jian-jiao-cheng-17-yun-fu-wu-qi-da-jian-bo-ke-wang-zhan-quan-tao-liu-cheng/</url>
+    <content><![CDATA[<h3 id="1-配置安全组"><a href="#1-配置安全组" class="headerlink" title="1.配置安全组"></a>1.配置安全组</h3><p>租用云服务器，安装centOS 7系统，配置安全组，放开【入方向规则】指定或全部端口以正常安装宝塔运维工具</p>
+<h3 id="2-安装宝塔"><a href="#2-安装宝塔" class="headerlink" title="2.安装宝塔"></a>2.安装宝塔</h3><p>使用在线安装或者键入命令</p>
+<blockquote>
+<p>yum install -y wget &amp;&amp; wget -O install.sh <a href="https://download.bt.cn/install/install_6.0.sh">https://download.bt.cn/install/install_6.0.sh</a> &amp;&amp; sh install.sh ed8484bec</p>
+</blockquote>
+<h3 id="3-安装Nginx"><a href="#3-安装Nginx" class="headerlink" title="3.安装Nginx"></a>3.安装Nginx</h3><p>&#x2F;&#x2F;一键安装全部依赖</p>
+<blockquote>
+<p>yum -y install gcc zlib zlib-devel pcre-devel opensslopenssl-devel</p>
+</blockquote>
+<p>&#x2F;&#x2F;创建一个Nginx文件夹</p>
+<blockquote>
+<p>cd &#x2F;usr&#x2F;local<br>mkdir nginx<br>cd nginx</p>
+</blockquote>
+<p>&#x2F;&#x2F;下载tar包</p>
+<blockquote>
+<p>wget <a href="http://nginx.org/download/nginx-1.13.7.tar.gz">http://nginx.org/download/nginx-1.13.7.tar.gz</a></p>
+<p>tar -xvf nginx-1.13.7.tar.gz</p>
+</blockquote>
+<p>&#x2F;&#x2F;进入nginx目录</p>
+<blockquote>
+<p>cd &#x2F;usr&#x2F;local&#x2F;nginx</p>
+</blockquote>
+<p>&#x2F;&#x2F;进入目录（以实际安装版本号为准）</p>
+<blockquote>
+<p>cd nginx-1.13.7</p>
+</blockquote>
+<p>&#x2F;&#x2F;执行命令考虑到后续安装ssl证书 添加两个模块</p>
+<blockquote>
+<p>.&#x2F;configure –with-http_stub_status_module –with-http_ssl_module</p>
+</blockquote>
+<p>&#x2F;&#x2F;执行make命令</p>
+<blockquote>
+<p>make</p>
+</blockquote>
+<p>&#x2F;&#x2F;执行make install命令</p>
+<blockquote>
+<p>make install</p>
+</blockquote>
+<p>&#x2F;&#x2F;nginx安装完毕后，为了今后使用方便，将nginx配置到环境变量</p>
+<blockquote>
+<p>echo ‘export PATH&#x3D;&#x2F;usr&#x2F;local&#x2F;nginx&#x2F;sbin:$PATH’ &gt;&gt; &#x2F;etc&#x2F;profile</p>
+</blockquote>
+<p>&#x2F;&#x2F;并使其生效</p>
+<blockquote>
+<p>source &#x2F;etc&#x2F;profile</p>
+</blockquote>
+<p>&#x2F;&#x2F;接下来直接输入nginx -v,看看环境变量有没有配置成功</p>
+<blockquote>
+<p>nginx -v</p>
+</blockquote>
+<p>修改&#x2F;usr&#x2F;local&#x2F;nginx&#x2F;conf&#x2F;nginx.conf</p>
+<p>将里面的地址改为网站目录位置</p>
+<p>主要修改的部分（示例）</p>
+<blockquote>
+<p>location &#x2F; {<br>    root   &#x2F;www&#x2F;wwwroot&#x2F;cpblog-hexo&#x2F;public;<br>    index  index.html index.htm;<br>}</p>
+<p>#防盗链设置，只允许自己网站访问自己的多媒体资源<br>location ~*.(png|jpg|jpeg|gif|mp4){<br>    root &#x2F;www&#x2F;wwwroot&#x2F;epya15.fun;<br>    valid_referers none blocked <a href="http://www.epya15.fun/">www.epya15.fun</a> epya15.fun;<br>    if ($invalid_referer) {<br>        #return 403;    #可以返回403，盗链网页显示的是一个裂开的图<br>        rewrite ^&#x2F; &#x2F;images&#x2F;invalid_referer_tip.png break;  #返回一个自己定制的图片<br>    }<br>}</p>
+</blockquote>
+<h3 id="4-配置防火墙"><a href="#4-配置防火墙" class="headerlink" title="4.配置防火墙"></a>4.配置防火墙</h3><p>&#x2F;&#x2F;查看防火墙开启状态</p>
+<blockquote>
+<p>systemctl status firewalld</p>
+</blockquote>
+<p>&#x2F;&#x2F;开启防火墙，没有任何提示则为开启成功</p>
+<blockquote>
+<p>systemctl start firewalld</p>
+</blockquote>
+<p>&#x2F;&#x2F;如果要关闭防火墙设置,可能通过systemctl stop firewalld这条指令来关闭该功能,没有任何提示则关闭成功</p>
+<blockquote>
+<p>systemctl stop firewalld</p>
+</blockquote>
+<p>&#x2F;&#x2F;永久开启80端口</p>
+<blockquote>
+<p>firewall-cmd –permanent –zone&#x3D;public –add-port&#x3D;80&#x2F;tcp –permanent</p>
+</blockquote>
+<p>&#x2F;&#x2F;查看80端口是否开启</p>
+<blockquote>
+<p>firewall-cmd –permanent –query-port&#x3D;80&#x2F;tcp</p>
+</blockquote>
+<p>&#x2F;&#x2F;重启防火墙</p>
+<blockquote>
+<p>firewall-cmd –reload</p>
+</blockquote>
+<p>在云服武器上ping 百度看看能不能ping通，在其它电脑上ping云服务器看看能不能ping通</p>
+<h3 id="5-云服务器安装git及ssh免密"><a href="#5-云服务器安装git及ssh免密" class="headerlink" title="5.云服务器安装git及ssh免密"></a>5.云服务器安装git及ssh免密</h3><p>云服务器只负责拉取，不负责推送。</p>
+<p>先安装git</p>
+<blockquote>
+<p>yum –y install git</p>
+</blockquote>
+<p>键入git指令验证是否安装成功</p>
+<p>新建文件夹作为网站根目录</p>
+<blockquote>
+<p>mkdir www&#x2F;wwwroot</p>
+<p>chmod 777 www&#x2F;wwwroot</p>
+</blockquote>
+<p>生成ssh密钥</p>
+<blockquote>
+<p>ssh-keygen -t ecdsa -b 521 -C ‘<a href="mailto:&#121;&#111;&#117;&#114;&#109;&#97;&#105;&#x6c;&#97;&#x64;&#x64;&#114;&#x65;&#115;&#115;&#x40;&#103;&#109;&#x61;&#105;&#108;&#x2e;&#99;&#111;&#109;">&#121;&#111;&#117;&#114;&#109;&#97;&#105;&#x6c;&#97;&#x64;&#x64;&#114;&#x65;&#115;&#115;&#x40;&#103;&#109;&#x61;&#105;&#108;&#x2e;&#99;&#111;&#109;</a>‘ -f ~&#x2F;.ssh&#x2F;id_ecdsa</p>
+</blockquote>
+<p>连按3次回车</p>
+<p>接着提取公钥</p>
+<blockquote>
+<p>cat ~&#x2F;.ssh&#x2F;id_ecdsa.pub</p>
+</blockquote>
+<p>将公钥填到github的ssh列表中（在网页端配置，具体过程略）</p>
+<p>输入</p>
+<blockquote>
+<p>ssh -T <a href="mailto:&#103;&#x69;&#x74;&#x40;&#103;&#x69;&#x74;&#x68;&#x75;&#98;&#x2e;&#99;&#111;&#x6d;">&#103;&#x69;&#x74;&#x40;&#103;&#x69;&#x74;&#x68;&#x75;&#98;&#x2e;&#99;&#111;&#x6d;</a></p>
+</blockquote>
+<p>提示Successfully即为完成配置</p>
+<p>进入www&#x2F;wwwroot目录，克隆自己的git仓库，本地仓库名比如为cpblog</p>
+<blockquote>
+<p>git clone <a href="mailto:&#x67;&#105;&#x74;&#x40;&#103;&#105;&#116;&#104;&#x75;&#98;&#x2e;&#99;&#111;&#x6d;">&#x67;&#105;&#x74;&#x40;&#103;&#105;&#116;&#104;&#x75;&#98;&#x2e;&#99;&#111;&#x6d;</a>:xxxxxxx&#x2F;xxxxxx.github.io.git cpblog</p>
+</blockquote>
+<h3 id="6-本地环境安装"><a href="#6-本地环境安装" class="headerlink" title="6.本地环境安装"></a>6.本地环境安装</h3><p>本地电脑环境简介</p>
+<p>（Windows系统，需要git，nodejs，hexo，不需要Nginx）</p>
+<h4 id="装git"><a href="#装git" class="headerlink" title="装git"></a>装git</h4><p>本地也需安装git，主要负责内容推送，具体过程可参考互联网，本文略</p>
+<p>git可视化工具可使用GitExtension（Windows）或SourceTree（mac）</p>
+<h4 id="装nodejs"><a href="#装nodejs" class="headerlink" title="装nodejs"></a>装nodejs</h4><p>(为避免执行cmd权限不足，最好不要装到C盘，建议路径 D:\nodejs，且放开这个目录的用户访问权限)</p>
+<p><a href="https://nodejs.org/en/">https://nodejs.org/en/</a></p>
+<p>在 nodejs 文件夹中新建两个空文件夹node_cache、node_global，执行</p>
+<blockquote>
+<p>npm config set prefix “D:\nodejs\node_global”<br>npm config set cache “D:\nodejs\node_cache”</p>
+</blockquote>
+<h4 id="装hexo"><a href="#装hexo" class="headerlink" title="装hexo"></a>装hexo</h4><blockquote>
+<p>npm install -g hexo-cli</p>
+</blockquote>
+<p>配置hexo到环境变量PATH中</p>
+<p>D:\nodejs\node_global</p>
+<p>D盘新建目录D:\cpblog-hexo</p>
+<p>在这个目录下执行Git Bash，执行以下命令</p>
+<blockquote>
+<p>npm install -g hexo-cli<br>hexo g<br>hexo s</p>
+</blockquote>
+<p>然后在浏览器输入<a href="http://localhost:4000/">http://localhost:4000/</a></p>
+<p>看能不能看见网页</p>
+<h3 id="7-部署自动化"><a href="#7-部署自动化" class="headerlink" title="7.部署自动化"></a>7.部署自动化</h3><p>最终效果：本地写文 -&gt; <u>上传github -&gt; 云服务器拉新git -&gt; 刷新网站</u></p>
+<p>下划线的部分均通过自动化命令实现</p>
+<p>主体思想：本地持有全套hexo工程+hexo环境，服务器有全套hexo工程，本地使用hexo g生成网页，将产生的修改全部推送到git上，再调用服务器的git命令进行拉取</p>
+<h4 id="设置本地免密操作服务器git命令"><a href="#设置本地免密操作服务器git命令" class="headerlink" title="设置本地免密操作服务器git命令"></a>设置本地免密操作服务器git命令</h4><p>将本地电脑的.ssh&#x2F;id_rsa.pub的内容粘贴至服务器的&#x2F;root&#x2F;.ssh&#x2F;authorized_keys文件中，这个文件可以粘贴多个key，换行即可</p>
+<h4 id="云服务器开放shell目录"><a href="#云服务器开放shell目录" class="headerlink" title="云服务器开放shell目录"></a>云服务器开放shell目录</h4><p>在本地操作</p>
+<p>在cpblog-hexo的git工程下创建shell文件夹，进入shell文件夹新建两个脚本文件deploy-server.sh和deploy.sh</p>
+<p>deploy-server.sh内容如下</p>
+<blockquote>
+<p>#服务器拉新<br>cd &#x2F;www&#x2F;wwwroot&#x2F;cpblog-hexo<br>git reset –hard<br>git clean -df<br>git pull</p>
+</blockquote>
+<p>deploy.sh内容如下</p>
+<blockquote>
+<p>#本地进行hexo发布 -&gt; 上传至git -&gt; 远端服务器拉新</p>
+<p>echo “&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;  Step1  &lt; hexo generate &gt;  &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;”<br>cd D:\cpblog-hexo<br>#hexo clean<br>hexo g</p>
+<p>echo “&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;  Step2  &lt; local git push &gt;  &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;”<br>git pull<br>git add -A<br>git commit -m “conventional update by deploy.sh”<br>git push</p>
+<p>echo “&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;  Step3  &lt; server git pull &gt;  &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;”<br>ssh root@服务器ip地址 bash &#x2F;www&#x2F;wwwroot&#x2F;cpblog-hexo&#x2F;shell&#x2F;deploy-server.sh</p>
+<p>echo “&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;           Finished           &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;”</p>
+</blockquote>
+<p>deploy.sh的作用：由本地调用，实现网站一键生成和部署</p>
+<p>deploy-server.sh的作用：由deploy.sh内部调用，实际发生在服务器端，用于拉新git</p>
+<p>因为本地脚本会调用服务器的deploy-server.sh，所以现在要去云服务器，给shell目录赋予777权限</p>
+<blockquote>
+<p>chmod 777 &#x2F;www&#x2F;wwwroot&#x2F;cpblog-hexo&#x2F;shell</p>
+</blockquote>
+<h4 id="最佳实践"><a href="#最佳实践" class="headerlink" title="最佳实践"></a>最佳实践</h4><p>本地写一篇文章，放在D:\cpblog-hexo\source\_posts路径下</p>
+<p>双击deploy.sh执行部署</p>
+<p>执行完毕后，就会发现网页刷新了</p>
+<h3 id="8-写文工具链"><a href="#8-写文工具链" class="headerlink" title="8.写文工具链"></a>8.写文工具链</h3><p>Typora + PicGo + github 实现最舒服的图片引用姿势</p>
+<p>Typora支持mac和Windows，但要收费（淘宝80元一个激活码）</p>
+<p>PicGo用于上传图片到github，相当于用github当图床</p>
+<p>Typora 和PicGo有很好的适性，只要拖拽一张图片到Typora里，就能自动上传到github</p>
+<p>最后提供一个飞书云文档转markdown工具<br><a href="https://feishu2md.onrender.com/">https://feishu2md.onrender.com/</a>  </p>
+]]></content>
       <tags>
         <tag>博客</tag>
       </tags>
