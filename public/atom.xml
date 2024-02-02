@@ -160,23 +160,6 @@
   </entry>
   
   <entry>
-    <title>博客搭建教程16 - linux云服务器在nginx.conf配置防盗链</title>
-    <link href="http://epya15.fun/2023/01/09/backup/bo-ke-da-jian-jiao-cheng-16-linux-yun-fu-wu-qi-zai-nginx.conf-pei-zhi-fang-dao-lian/"/>
-    <id>http://epya15.fun/2023/01/09/backup/bo-ke-da-jian-jiao-cheng-16-linux-yun-fu-wu-qi-zai-nginx.conf-pei-zhi-fang-dao-lian/</id>
-    <published>2023-01-09T08:00:00.000Z</published>
-    <updated>2024-01-12T09:14:32.842Z</updated>
-    
-    
-    <summary type="html">防止多媒体资源被其它网站引用从而占据流失用户或占据带宽</summary>
-    
-    
-    
-    
-    <category term="博客" scheme="http://epya15.fun/tags/%E5%8D%9A%E5%AE%A2/"/>
-    
-  </entry>
-  
-  <entry>
     <title>Markdown常用语法</title>
     <link href="http://epya15.fun/2023/01/09/bo-ke-da-jian-jiao-cheng-15-markdown-chang-yong-yu-fa/"/>
     <id>http://epya15.fun/2023/01/09/bo-ke-da-jian-jiao-cheng-15-markdown-chang-yong-yu-fa/</id>
@@ -196,231 +179,19 @@
   </entry>
   
   <entry>
-    <title>博客搭建教程14 - Linux云服务器安装宝塔运维工具</title>
-    <link href="http://epya15.fun/2023/01/09/backup/bo-ke-da-jian-jiao-cheng-14-linux-yun-fu-wu-qi-an-zhuang-bao-ta-yun-wei-gong-ju/"/>
-    <id>http://epya15.fun/2023/01/09/backup/bo-ke-da-jian-jiao-cheng-14-linux-yun-fu-wu-qi-an-zhuang-bao-ta-yun-wei-gong-ju/</id>
-    <published>2023-01-09T06:00:00.000Z</published>
-    <updated>2024-01-12T09:14:33.045Z</updated>
-    
-    
-    <summary type="html">宝塔是一款基础功能免费的便捷运维工具。</summary>
-    
-    
-    
-    <category term="博客搭建" scheme="http://epya15.fun/categories/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/"/>
-    
-    
-    <category term="博客" scheme="http://epya15.fun/tags/%E5%8D%9A%E5%AE%A2/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>博客搭建教程13 - 写博客实用网站大合集</title>
-    <link href="http://epya15.fun/2023/01/09/backup/bo-ke-da-jian-jiao-cheng-13-xie-bo-ke-shi-yong-wang-zhan-da-he-ji/"/>
-    <id>http://epya15.fun/2023/01/09/backup/bo-ke-da-jian-jiao-cheng-13-xie-bo-ke-shi-yong-wang-zhan-da-he-ji/</id>
-    <published>2023-01-09T05:00:00.000Z</published>
-    <updated>2024-01-12T09:14:32.950Z</updated>
-    
-    
-    <summary type="html">免费的，简单的，长期的，无版权的。</summary>
-    
-    
-    
-    <category term="博客搭建" scheme="http://epya15.fun/categories/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/"/>
-    
-    
-    <category term="博客" scheme="http://epya15.fun/tags/%E5%8D%9A%E5%AE%A2/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>博客搭建教程12 - 更换云服务器完成数据迁移</title>
-    <link href="http://epya15.fun/2023/01/09/backup/bo-ke-da-jian-jiao-cheng-12-geng-huan-yun-fu-wu-qi-wan-cheng-shu-ju-qian-yi/"/>
-    <id>http://epya15.fun/2023/01/09/backup/bo-ke-da-jian-jiao-cheng-12-geng-huan-yun-fu-wu-qi-wan-cheng-shu-ju-qian-yi/</id>
-    <published>2023-01-09T04:00:00.000Z</published>
-    <updated>2024-01-12T09:14:33.107Z</updated>
-    
-    
-    <summary type="html">文档正在筹备，主要讲述将一台已经部署好网站的云服务器的资料转移至其它云服务器上。</summary>
-    
-    
-    
-    <category term="博客搭建" scheme="http://epya15.fun/categories/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/"/>
-    
-    
-    <category term="博客" scheme="http://epya15.fun/tags/%E5%8D%9A%E5%AE%A2/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>博客搭建教程11 - 使用linux+nginx建站每次云服务器重启后的例行检查操作</title>
-    <link href="http://epya15.fun/2023/01/09/backup/bo-ke-da-jian-jiao-cheng-11-shi-yong-linux-nginx-jian-zhan-mei-ci-yun-fu-wu-qi-chong-qi-hou-de-li-xing-jian-cha-cao-zuo/"/>
-    <id>http://epya15.fun/2023/01/09/backup/bo-ke-da-jian-jiao-cheng-11-shi-yong-linux-nginx-jian-zhan-mei-ci-yun-fu-wu-qi-chong-qi-hou-de-li-xing-jian-cha-cao-zuo/</id>
-    <published>2023-01-09T03:00:00.000Z</published>
-    <updated>2024-01-12T09:14:33.006Z</updated>
-    
-    
-    <summary type="html">将一些需要检查的点统一记录下来作为备忘录。</summary>
-    
-    
-    
-    <category term="博客搭建" scheme="http://epya15.fun/categories/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/"/>
-    
-    
-    <category term="博客" scheme="http://epya15.fun/tags/%E5%8D%9A%E5%AE%A2/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>博客搭建教程10 - 将托管在Github的Hexo博客迁移到个人云服务器</title>
-    <link href="http://epya15.fun/2023/01/09/backup/bo-ke-da-jian-jiao-cheng-10-jiang-tuo-guan-zai-github-de-hexo-bo-ke-qian-yi-dao-ge-ren-yun-fu-wu-qi/"/>
-    <id>http://epya15.fun/2023/01/09/backup/bo-ke-da-jian-jiao-cheng-10-jiang-tuo-guan-zai-github-de-hexo-bo-ke-qian-yi-dao-ge-ren-yun-fu-wu-qi/</id>
-    <published>2023-01-09T02:00:00.000Z</published>
-    <updated>2024-01-12T09:14:32.927Z</updated>
-    
-    
-    <summary type="html">防止Github有朝一日不再提供免费服务或彻底被墙</summary>
-    
-    
-    
-    <category term="博客搭建" scheme="http://epya15.fun/categories/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/"/>
-    
-    
-    <category term="博客" scheme="http://epya15.fun/tags/%E5%8D%9A%E5%AE%A2/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>博客搭建教程9 - 使用scp命令从Windows向linux传输文件</title>
-    <link href="http://epya15.fun/2023/01/09/backup/bo-ke-da-jian-jiao-cheng-9-shi-yong-scp-ming-ling-cong-windows-xiang-linux-chuan-shu-wen-jian/"/>
-    <id>http://epya15.fun/2023/01/09/backup/bo-ke-da-jian-jiao-cheng-9-shi-yong-scp-ming-ling-cong-windows-xiang-linux-chuan-shu-wen-jian/</id>
-    <published>2023-01-09T01:00:00.000Z</published>
-    <updated>2024-01-12T09:14:32.914Z</updated>
-    
-    
-    <summary type="html">如果你还在用微信同步文件，那可以了解一下scp命令</summary>
-    
-    
-    
-    
-    <category term="博客" scheme="http://epya15.fun/tags/%E5%8D%9A%E5%AE%A2/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>博客搭建教程8 - 在CentOS云服务器利用Nginx搭建Hexo博客</title>
-    <link href="http://epya15.fun/2023/01/09/backup/bo-ke-da-jian-jiao-cheng-8-jie-hong-linux/"/>
-    <id>http://epya15.fun/2023/01/09/backup/bo-ke-da-jian-jiao-cheng-8-jie-hong-linux/</id>
-    <published>2023-01-09T00:00:00.000Z</published>
-    <updated>2024-01-12T09:14:32.962Z</updated>
+    <title>测试文档</title>
+    <link href="http://epya15.fun/2023/01/09/ce-shi-wen-dang/"/>
+    <id>http://epya15.fun/2023/01/09/ce-shi-wen-dang/</id>
+    <published>2023-01-08T17:00:00.000Z</published>
+    <updated>2024-02-02T05:53:42.229Z</updated>
     
     
       
       
         
         
-    <summary type="html">&lt;p&gt;关于图形界面：&lt;br&gt;有的云服务器将CentOS系统的图形界面阉割，如果想和Windows系统一样看到图形界面，需要额外进行安装。&lt;br&gt;但是要注意，虽然图形界面在交互上比命令行更加直观，但是会占用大约500MB的内存，这也就意味着，如果你购买的服务器内存小于500MB，一</summary>
-        
-      
-    
-    
-    
-    <category term="博客搭建" scheme="http://epya15.fun/categories/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/"/>
-    
-    
-    <category term="博客" scheme="http://epya15.fun/tags/%E5%8D%9A%E5%AE%A2/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>博客搭建教程7 - 为博客网站选择合适的云服务器</title>
-    <link href="http://epya15.fun/2023/01/09/backup/bo-ke-da-jian-jiao-cheng-7-wei-bo-ke-wang-zhan-xuan-ze-he-gua-de-yun-fu-wu-qi/"/>
-    <id>http://epya15.fun/2023/01/09/backup/bo-ke-da-jian-jiao-cheng-7-wei-bo-ke-wang-zhan-xuan-ze-he-gua-de-yun-fu-wu-qi/</id>
-    <published>2023-01-08T23:00:00.000Z</published>
-    <updated>2024-01-12T09:14:32.860Z</updated>
-    
-    
-    <summary type="html">拥有一台自己的服务器，首先需要准备几百元的预算，再视情况增加投入。</summary>
-    
-    
-    
-    <category term="博客搭建" scheme="http://epya15.fun/categories/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/"/>
-    
-    
-    <category term="博客" scheme="http://epya15.fun/tags/%E5%8D%9A%E5%AE%A2/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>博客搭建教程6 - 为Github部署的Hexo博客更换新域名</title>
-    <link href="http://epya15.fun/2023/01/09/backup/bo-ke-da-jian-jiao-cheng-6-wei-github-bu-shu-de-hexo-bo-ke-geng-huan-xin-yu-ming/"/>
-    <id>http://epya15.fun/2023/01/09/backup/bo-ke-da-jian-jiao-cheng-6-wei-github-bu-shu-de-hexo-bo-ke-geng-huan-xin-yu-ming/</id>
-    <published>2023-01-08T22:00:00.000Z</published>
-    <updated>2024-01-12T09:14:32.892Z</updated>
-    
-    
-    <summary type="html">短小好记的域名通常不便宜，但还是有捡漏的机会，又或许你最在意的那个名字根本没有人注册过。</summary>
-    
-    
-    
-    <category term="博客搭建" scheme="http://epya15.fun/categories/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/"/>
-    
-    
-    <category term="博客" scheme="http://epya15.fun/tags/%E5%8D%9A%E5%AE%A2/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>博客搭建教程5 - 为Hexo博客安装插件</title>
-    <link href="http://epya15.fun/2023/01/09/backup/bo-ke-da-jian-jiao-cheng-5-wei-hexo-bo-ke-an-zhuang-cha-jian/"/>
-    <id>http://epya15.fun/2023/01/09/backup/bo-ke-da-jian-jiao-cheng-5-wei-hexo-bo-ke-an-zhuang-cha-jian/</id>
-    <published>2023-01-08T21:00:00.000Z</published>
-    <updated>2024-01-12T09:14:32.994Z</updated>
-    
-    
-    <summary type="html">文档正在筹备，可以跳过。</summary>
-    
-    
-    
-    <category term="博客搭建" scheme="http://epya15.fun/categories/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/"/>
-    
-    
-    <category term="博客" scheme="http://epya15.fun/tags/%E5%8D%9A%E5%AE%A2/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>博客搭建教程4 - 更换Hexo博客主题</title>
-    <link href="http://epya15.fun/2023/01/09/backup/bo-ke-da-jian-jiao-cheng-4-geng-huan-hexo-bo-ke-zhu-ti/"/>
-    <id>http://epya15.fun/2023/01/09/backup/bo-ke-da-jian-jiao-cheng-4-geng-huan-hexo-bo-ke-zhu-ti/</id>
-    <published>2023-01-08T20:00:00.000Z</published>
-    <updated>2024-01-12T09:14:33.089Z</updated>
-    
-    
-    <summary type="html">截止至2023/2/6，Hexo已经拥有375款主题。</summary>
-    
-    
-    
-    <category term="博客搭建" scheme="http://epya15.fun/categories/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/"/>
-    
-    
-    <category term="博客" scheme="http://epya15.fun/tags/%E5%8D%9A%E5%AE%A2/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>博客搭建教程3 - 初识Node.js和Hexo</title>
-    <link href="http://epya15.fun/2023/01/09/backup/bo-ke-da-jian-jiao-cheng-3-chu-shi-node.js-he-hexo/"/>
-    <id>http://epya15.fun/2023/01/09/backup/bo-ke-da-jian-jiao-cheng-3-chu-shi-node.js-he-hexo/</id>
-    <published>2023-01-08T19:00:00.000Z</published>
-    <updated>2024-01-12T09:14:32.829Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;本篇内容比较简单，同样参考这位博主的文章&lt;br&gt;&lt;a</summary>
+    <summary type="html">&lt;p&gt;撒大声地&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/oO0OoOo/cpblog-hexo/main/source/images/202401091427211.png&quot; class=&quot;lazyload</summary>
         
       
     

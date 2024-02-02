@@ -11,7 +11,7 @@
   <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-  <title>博客搭建教程3 - 初识Node.js和Hexo | 赛朋博客</title>
+  <title>博客搭建教程11 - 使用linux+nginx建站每次云服务器重启后的例行检查操作 | 赛朋博客</title>
 
   <link rel="icon" type="image/jpeg" href="/favicon.jpg">
   <link rel="stylesheet" href="https://at.alicdn.com/t/font_1911880_c1nvbyezg17.css">
@@ -647,14 +647,14 @@
 
 
 <div class="post-detail-header" id="thumbnail_canvas" style="background-repeat: no-repeat; background-size: cover; 
-  background-position: center center;position: relative;background-image:url('https://pic4.zhimg.com/v2-8d3c4ce9c9fba8a59a092eecba504585_1440w.jpg')">
+  background-position: center center;position: relative;background-image:url('https://img2.baidu.com/it/u=2273045471,518867457&fm=253&fmt=auto&app=138&f=PNG?w=822&h=500')">
   <div class="post-detail-header-mask"></div>
   <canvas id="header_canvas"style="position:absolute;bottom:0;pointer-events:none;"></canvas>
   
   <div class="post-detail-header_info-box">
     <div class="title-box">
       <span class="title">
-        博客搭建教程3 - 初识Node.js和Hexo
+        博客搭建教程11 - 使用linux+nginx建站每次云服务器重启后的例行检查操作
       </span>
     </div>
     
@@ -669,8 +669,8 @@
         <span class="post-detail-header_categories">
           <i class="iconfont iconbookmark1"></i> category：
           
-            <a href="/categories/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/" class="post-detail-header_category">
-              博客搭建
+            <a href="/" class="post-detail-header_category">
+              
             </a>
           
         </span>
@@ -700,17 +700,18 @@
   <div class="main-content">
     <article class="post post-detail">
       <div class="post-content">
-        <p>本篇内容比较简单，同样参考这位博主的文章<br><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/105715224">https://zhuanlan.zhihu.com/p/105715224</a></p>
-<p>按照上述流程做完后，基于Github Page的博客就已经搭建好了，你可以在浏览器上输入自己的Github仓库地址，就可以看到搭建好的Hexo博客了。</p>
-<p>接下来的教程里，我们将继续做如下几件事情来加深对网站的理解，增强管理能力，这些并非必要项，而且每篇教程都是独立的，可以选择有需要的部分阅读，未来博主也会随时扩充。<br>接下来教程的内容大致如下，看看有没有你比较关心的：<br>1.选择自己喜欢的Hexo主题美化博客<br>2.购买一个自己喜欢的域名，解析域名，并取代现在github访问的方式<br>3.了解网站备案，选择云服务器，搭建资源服实现图床<br>4.将博客部署在云服务器上<br>5.学习Markdown常用语法<br>6.使用宝塔管理自己的服务器<br>7.知识财产保护与侵权行为</p>
+        <p>重启服务器后的例行操作  </p>
+<p>1.检查防火墙<br>检查防火墙状态：systemctl status firewalld<br>若出现绿色的active(running)，说明防火墙已经启动，否则<br>systemctl start firewalld开启防火墙，没有任何提示即开启成功<br>如果没有反应，或者等待1分钟后出现timeout，需要先kill掉现在的防火墙进程再重新开启<br>kill防火墙进程：pkill -f firewalld<br>然后再重新systemctl start firewalld开启防火墙，没有任何提示即开启成功  </p>
+<p>2.检查nginx端口（比如80端口）<br>firewall-cmd –query-port&#x3D;80&#x2F;tcp<br>返回yes即没问题，否则打开80端口<br>firewall-cmd –add-port&#x3D;80&#x2F;tcp –permanent<br>开启后需再次重启防火墙，才能生效<br>firewall-cmd –reload  </p>
+<p>3.检查nginx服务<br>开启nginx：nginx<br>（nginx关闭命令：nginx -s stop）<br>（nginx重启命令：nginx -s reload）<br>在其它机器上访问服务器IP:端口号，如果出现nginx页面，就表示开启成功（出现40x 页面也无所谓）<br>如果开启nginx提示端口被占用，需要杀死占用这个端口的进程<br>可以使用一个快捷的方法，直接杀死指定端口的所有进程，比如80端口<br>kill -9 $(lsof -i:80 -t)<br>或者可以仔细查看是哪个进程占用了80端口<br>查看80端口使用情况<br>netstat -lnp|grep 80<br>比如正在被nginx占用，记住显示的进程号，比如1053<br>停掉nginx<br>systemctl stop nginx<br>强制杀掉1053进程<br>kill -9 1053<br>再查询<br>netstat -lnp|grep 80<br>没结果说明已经不占用了<br>接着重新开启nginx服务  </p>
 
       </div>
       <div class="post-tags-categories">
         
         <div class="tags">
           
-            <a href="/tags/%E5%8D%9A%E5%AE%A2/" class="">
-              博客
+            <a href="/" class="">
+              
             </a>
           
         </div>
@@ -724,7 +725,7 @@
     </li>
     <li class="post-copyright-link">
     <strong>link:  </strong>
-    <a href="/2023/01/09/backup/bo-ke-da-jian-jiao-cheng-3-chu-shi-node.js-he-hexo/" target="_blank" title="博客搭建教程3 - 初识Node.js和Hexo">http://epya15.fun/2023/01/09/backup/bo-ke-da-jian-jiao-cheng-3-chu-shi-node.js-he-hexo/</a>
+    <a href="/posts_backup/博客搭建教程11 - 使用linux+nginx建站每次云服务器重启后的例行检查操作.html" target="_blank" title="博客搭建教程11 - 使用linux+nginx建站每次云服务器重启后的例行检查操作">http://epya15.fun/posts_backup/博客搭建教程11 - 使用linux+nginx建站每次云服务器重启后的例行检查操作.html</a>
     </li>
     <li class="post-copyright-license">
       <strong>Copyright notice:   </strong>
@@ -742,44 +743,7 @@
 
 
 
-  
-  <div class="post-nav-prev post-nav-item">
-    <div class="post-nav-img" style="background-size: cover; 
-      background-position: center center;">
-      <img class="lazyload lazyload placeholder" src="https://img1.baidu.com/it/u=4061327327,3801077277&fm=253&fmt=auto&app=138&f=JPEG?w=800&h=500" class="lazyload placeholder" data-srcset="https://img1.baidu.com/it/u=4061327327,3801077277&fm=253&fmt=auto&app=138&f=JPEG?w=800&h=500" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" alt="">
-    </div>
-    <a href="/2023/01/09/backup/bo-ke-da-jian-jiao-cheng-4-geng-huan-hexo-bo-ke-zhu-ti/" class="post-nav-link">
-      <div class="title">
-        <i class="fas fa-angle-left"></i> Prev:
-        <div class="title-text">博客搭建教程4 - 更换Hexo博客主题</div>
-      </div>
-      
-      <!-- <div class="content">
-        在这里选择喜欢的主题https://hexo.io/themes/
-在Hexo博客仓库目录里可以看到_configs.y
-      </div> -->
-    </a>
-  </div>
 
-
-
-  
-  <div class="post-nav-next post-nav-item">
-    <div class="post-nav-img" style="background-size: cover; 
-      background-position: center center;">
-      <img class="lazyload lazyload placeholder" src="https://nimg.ws.126.net/?url=http%3A%2F%2Fdingyue.ws.126.net%2F2021%2F0620%2F21391327j00quyoyu000dc000hs00anc.jpg&thumbnail=660x2147483647&quality=80&type=jpg" class="lazyload placeholder" data-srcset="https://nimg.ws.126.net/?url=http%3A%2F%2Fdingyue.ws.126.net%2F2021%2F0620%2F21391327j00quyoyu000dc000hs00anc.jpg&thumbnail=660x2147483647&quality=80&type=jpg" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" src="" alt="">
-    </div>
-    <a href="/2023/01/09/backup/bo-ke-da-jian-jiao-cheng-2-chuang-jian-git-cang-ku/" class="post-nav-link">
-      <div class="title">
-        Next: <i class="fas fa-angle-right"></i>
-        <div class="title-text">博客搭建教程2 - 创建Git仓库</div>
-      </div>
-      <!-- <div class="content">
-        在阅读本章前，我们默认你已经了解了Git的概念。
-本章内容比较简单，网上相关文章很多，这里推荐这位博主的文章，因为cyp
-      </div> -->
-    </a>
-  </div>
 
 </div>
 
@@ -900,29 +864,68 @@
   <div class="layout_sticky">    
     
       
-<section class="widget side_toc">
-  
+        
+    <section class="widget side_category">
+      
   <header>
     
-      <i style="color: " class="fas fa-list fa-fw" aria-hidden="true"></i><span class='name'>本文目录</span>
+      <a style="color: " href='/blog/categories/'><i class="fas fa-folder-open fa-fw" aria-hidden="true"></i><span class='name'>文章分类</span></a>
     
   </header>
 
 
-  <div class='content'>
-    <div class="toc-main">
-      <div class="toc-content">
-        <!--  -->
-        <div class="toc"></div>
+      <div class='content'>
+        <ul class="entry navigation">
+          
+            <li><a class="flat-box"
+              title="/categories/Android/" href="/categories/Android/"
+              id="categoriesAndroid"
+              ><div class='name'>Android</div><div class='badge'>(2)</div></a></li>
+          
+            <li><a class="flat-box child"
+              title="/categories/Android/Unity/" href="/categories/Android/Unity/"
+              id="categoriesAndroidUnity"
+              ><div class='name'>Unity</div><div class='badge'>(2)</div></a></li>
+          
+            <li><a class="flat-box"
+              title="/categories/sdk/" href="/categories/sdk/"
+              id="categoriessdk"
+              ><div class='name'>sdk</div><div class='badge'>(1)</div></a></li>
+          
+            <li><a class="flat-box"
+              title="/categories/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/" href="/categories/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/"
+              id="categoriesE58D9AE5AEA2E690ADE5BBBA"
+              ><div class='name'>博客搭建</div><div class='badge'>(2)</div></a></li>
+          
+            <li><a class="flat-box"
+              title="/categories/%E5%BE%80%E6%9C%9F%E5%B0%81%E9%9D%A2/" href="/categories/%E5%BE%80%E6%9C%9F%E5%B0%81%E9%9D%A2/"
+              id="categoriesE5BE80E69C9FE5B081E99DA2"
+              ><div class='name'>往期封面</div><div class='badge'>(2)</div></a></li>
+          
+        </ul>
       </div>
-    </div>
-  </div>
-</section>
-<!-- 手机端目录按钮 -->
-<div id="toc-mobile-btn">
-  <i class="fas fa-list-ul" aria-hidden="true"></i>
-</div>
+    </section>
+  
+  
+      
+      
+        
+<section class="widget side_tagcloud">
+    
+  <header>
+    
+      <a style="color: " href='/tags/'><i class="fas fa-tags fa-fw" aria-hidden="true"></i><span class='name'>标签</span></a>
+    
+  </header>
 
+
+    <div class='content'>
+    <a href="/tags/Android/" style="font-size: 19px; color: #777">Android</a> <a href="/tags/Unity/" style="font-size: 14px; color: #999">Unity</a> <a href="/tags/sdk/" style="font-size: 14px; color: #999">sdk</a> <a href="/tags/%E5%8D%9A%E5%AE%A2/" style="font-size: 24px; color: #555">博客</a> <a href="/tags/%E6%89%93%E5%8C%85/" style="font-size: 14px; color: #999">打包</a> <a href="/tags/%E7%94%9F%E6%B4%BB/" style="font-size: 19px; color: #777">生活</a>
+    </div>
+</section>
+
+  
+      
       
   <section class="widget side_recent_post">
     
@@ -1048,6 +1051,134 @@
     </div>
   </section>
 
+      
+  <section class="widget side_archives">
+    
+    <header><a style="color: red" href='/archives/'><i class="fas fa-archive fa-fw" aria-hidden="true"></i><span class='name'>归档</span></a></header><div class="content"><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/02/"><span class="card-archive-list-date">February 2024</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/01/"><span class="card-archive-list-date">January 2024</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/04/"><span class="card-archive-list-date">April 2023</span><span class="card-archive-list-count">2</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/02/"><span class="card-archive-list-date">February 2023</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/01/"><span class="card-archive-list-date">January 2023</span><span class="card-archive-list-count">3</span></a></li></ul></div>
+  </section>
+
+      <section class="widget side_webinfo">
+  
+  <header>
+    
+      <i style="color: " class="fas fa-chart-line fa-fw" aria-hidden="true"></i><span class='name'>站点信息</span>
+    
+  </header>
+
+
+  <div class='content'>
+    <div class="webinfo">
+      
+        <div class="webinfo-item">
+          <div>文章数目：</div>
+          <div>8 篇</div>
+        </div>
+      
+
+      
+        <div class="webinfo-item">
+          <div>已运行时间：</div>
+          <div id="webinfo-runtime-count" publish_date="03/24/2020 21:34:09"></div>
+        </div>
+        <script>
+          var BirthDay = new Date(new Date('2023/01/08'));
+          var today = new Date();
+          var timeold = (today.getTime() - BirthDay.getTime());
+          var daysold = Math.floor(timeold / (24 * 60 * 60 * 1000));
+          document.getElementById('webinfo-runtime-count').innerHTML = daysold + ' 天';
+        </script>
+      
+
+
+      
+        <div class="webinfo-item">
+          <div>本站总字数：</div>
+          <div>8.9k 字</div>
+        </div>
+      
+
+      
+        <div class="webinfo-item">
+          <div>本站访客数：</div>
+          
+          <div><span id="busuanzi_value_site_uv"><i class="fas fa-fan fa-spin fa-fw" aria-hidden="true"></i></span> 人</div>
+          
+        </div>
+      
+
+      
+        <div class="webinfo-item">
+          <div>本站总访问量：</div>
+          
+          <div><span id="busuanzi_value_site_pv"><i class="fas fa-fan fa-spin fa-fw" aria-hidden="true"></i></span> 次</div>
+          
+        </div>
+      
+
+      
+        <div class="webinfo-item">
+          <div>最后活动时间：</div>
+          
+            <div id="last-update" style="display: none;">Fri Feb 02 2024 13:55:36 GMT+0800 (中国标准时间)</div>
+            <div id="last-update-show">2024-02-02 日</div>
+          
+        </div>
+        
+        <script>
+          function timeago(dateTimeStamp) {
+              var minute = 1000 * 60; //把分，时，天，周，半个月，一个月用毫秒表示
+              var hour = minute * 60;
+              var day = hour * 24;
+              var week = day * 7;
+              var month = day * 30;
+              var now = new Date().getTime(); //获取当前时间毫秒
+              var diffValue = now - dateTimeStamp; //时间差
+              if (diffValue < 0) {
+                  return;
+              }
+              var minC = diffValue / minute; //计算时间差的分，时，天，周，月
+              var hourC = diffValue / hour;
+              var dayC = diffValue / day;
+              var weekC = diffValue / week;
+              var monthC = diffValue / month;
+              if (monthC >= 1 && monthC <= 3) {
+                  result = " " + parseInt(monthC) + " 月前"
+              } else if (weekC >= 1 && weekC <= 3) {
+                  result = " " + parseInt(weekC) + " 周前"
+              } else if (dayC >= 1 && dayC <= 6) {
+                  result = " " + parseInt(dayC) + " 天前"
+              } else if (hourC >= 1 && hourC <= 23) {
+                  result = " " + parseInt(hourC) + " 小时前"
+              } else if (minC >= 1 && minC <= 59) {
+                  result = " " + parseInt(minC) + " 分钟前"
+              } else if (diffValue >= 0 && diffValue <= minute) {
+                  result = "刚刚"
+              } else {
+                  var datetime = new Date();
+                  datetime.setTime(dateTimeStamp);
+                  var Nyear = datetime.getFullYear();
+                  var Nmonth = datetime.getMonth() + 1 < 10 ? "0" + (datetime.getMonth() + 1) : datetime.getMonth() + 1;
+                  var Ndate = datetime.getDate() < 10 ? "0" + datetime.getDate() : datetime.getDate();
+                  var Nhour = datetime.getHours() < 10 ? "0" + datetime.getHours() : datetime.getHours();
+                  var Nminute = datetime.getMinutes() < 10 ? "0" + datetime.getMinutes() : datetime.getMinutes();
+                  var Nsecond = datetime.getSeconds() < 10 ? "0" + datetime.getSeconds() : datetime.getSeconds();
+                  result = Nyear + "-" + Nmonth + "-" + Ndate
+              }
+              return result;
+          }
+          var lastUpDate = document.getElementById('last-update').innerHTML;
+          try {
+            document.getElementById('last-update-show').innerHTML = timeago(new Date(lastUpDate));
+          } catch (error) {
+            document.getElementById('last-update-show').innerHTML = '2024-02-02 日';
+          }
+        </script>
+        
+      
+    </div>
+  </div>
+</section>
+      
     
   </div>
 </aside>

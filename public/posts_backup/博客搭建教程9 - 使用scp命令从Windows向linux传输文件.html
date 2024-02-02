@@ -11,7 +11,7 @@
   <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-  <title>博客搭建教程12 - 更换云服务器完成数据迁移 | 赛朋博客</title>
+  <title>博客搭建教程9 - 使用scp命令从Windows向linux传输文件 | 赛朋博客</title>
 
   <link rel="icon" type="image/jpeg" href="/favicon.jpg">
   <link rel="stylesheet" href="https://at.alicdn.com/t/font_1911880_c1nvbyezg17.css">
@@ -647,14 +647,14 @@
 
 
 <div class="post-detail-header" id="thumbnail_canvas" style="background-repeat: no-repeat; background-size: cover; 
-  background-position: center center;position: relative;background-image:url('https://zhongces3.sina.com.cn/products/201904/740d84b4db27bb0b7303adf092f44cbc.jpeg')">
+  background-position: center center;position: relative;background-image:url('https://gss0.baidu.com/70cFfyinKgQFm2e88IuM_a/baike/pic/item/64380cd7912397ddea52b9315582b2b7d0a287df.jpg')">
   <div class="post-detail-header-mask"></div>
   <canvas id="header_canvas"style="position:absolute;bottom:0;pointer-events:none;"></canvas>
   
   <div class="post-detail-header_info-box">
     <div class="title-box">
       <span class="title">
-        博客搭建教程12 - 更换云服务器完成数据迁移
+        博客搭建教程9 - 使用scp命令从Windows向linux传输文件
       </span>
     </div>
     
@@ -665,15 +665,6 @@
         </span>
       
 
-      
-        <span class="post-detail-header_categories">
-          <i class="iconfont iconbookmark1"></i> category：
-          
-            <a href="/categories/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/" class="post-detail-header_category">
-              博客搭建
-            </a>
-          
-        </span>
       
 
       
@@ -700,15 +691,22 @@
   <div class="main-content">
     <article class="post post-detail">
       <div class="post-content">
-        <p>文档正在筹备</p>
+        <p>Windows使用scp向linux服务器传输文件,可参考这篇博客<br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/tugenhua0707/p/8278772.html">https://www.cnblogs.com/tugenhua0707/p/8278772.html</a></p>
+<p>比如传送一个Windows桌面上的视频到服务器，输入下面指令并回车<br>scp D:\Users\Administrator\Desktop\video.mp4 <a href="mailto:&#x72;&#111;&#111;&#x74;&#64;&#50;&#x30;&#x38;&#x2e;&#56;&#55;&#x2e;&#x32;&#48;&#x31;&#46;&#x31;&#54;&#52;">&#x72;&#111;&#111;&#x74;&#64;&#50;&#x30;&#x38;&#x2e;&#56;&#55;&#x2e;&#x32;&#48;&#x31;&#46;&#x31;&#54;&#52;</a>:&#x2F;usr&#x2F;local<br>会提示这个：</p>
+<div class="img-wrap"><div class="img-bg"><img class="img lazyload placeholder" src="/images/scpwindowsfirstlink.png" class="lazyload placeholder" data-srcset="/images/scpwindowsfirstlink.png" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" style="width:80%;"/></div></div>
+<p>这是因为首次连接，双方机器还互相陌生，需要打个招呼，只需输入yes并回车</p>
+<div class="img-wrap"><div class="img-bg"><img class="img lazyload placeholder" src="/images/scpwindowslinkok.png" class="lazyload placeholder" data-srcset="/images/scpwindowslinkok.png" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" style="width:80%;"/></div></div>
+<p>接下来输入远程服务器的密码<br>注意由于上面我们使用了向root传输数据的命令，因此该密码必须是linux服务器root用户的密码，如果你使用的是云服务器，那么在云服务器控制台&#x2F;实例页面中能看到<br>如果出现下面的图说明传输成功，博主传输了一个59MB视频，时间消耗29s，平均速度为2MB&#x2F;s  </p>
+<div class="img-wrap"><div class="img-bg"><img class="img lazyload placeholder" src="/images/scptransferdemo.png" class="lazyload placeholder" data-srcset="/images/scptransferdemo.png" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" style="width:80%;"/></div></div>  
+<p>接下来到服务器&#x2F;usr&#x2F;local目录下查看这个文件就可以了。</p>
 
       </div>
       <div class="post-tags-categories">
         
         <div class="tags">
           
-            <a href="/tags/%E5%8D%9A%E5%AE%A2/" class="">
-              博客
+            <a href="/" class="">
+              
             </a>
           
         </div>
@@ -722,7 +720,7 @@
     </li>
     <li class="post-copyright-link">
     <strong>link:  </strong>
-    <a href="/2023/01/09/backup/bo-ke-da-jian-jiao-cheng-12-geng-huan-yun-fu-wu-qi-wan-cheng-shu-ju-qian-yi/" target="_blank" title="博客搭建教程12 - 更换云服务器完成数据迁移">http://epya15.fun/2023/01/09/backup/bo-ke-da-jian-jiao-cheng-12-geng-huan-yun-fu-wu-qi-wan-cheng-shu-ju-qian-yi/</a>
+    <a href="/posts_backup/博客搭建教程9 - 使用scp命令从Windows向linux传输文件.html" target="_blank" title="博客搭建教程9 - 使用scp命令从Windows向linux传输文件">http://epya15.fun/posts_backup/博客搭建教程9 - 使用scp命令从Windows向linux传输文件.html</a>
     </li>
     <li class="post-copyright-license">
       <strong>Copyright notice:   </strong>
@@ -740,43 +738,7 @@
 
 
 
-  
-  <div class="post-nav-prev post-nav-item">
-    <div class="post-nav-img" style="background-size: cover; 
-      background-position: center center;">
-      <img class="lazyload lazyload placeholder" src="https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2017/8/9/5e1040cd64eefde3ecb5e0c809cdd3e5~tplv-t2oaga2asx-zoom-crop-mark:3024:3024:3024:1702.awebp" class="lazyload placeholder" data-srcset="https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2017/8/9/5e1040cd64eefde3ecb5e0c809cdd3e5~tplv-t2oaga2asx-zoom-crop-mark:3024:3024:3024:1702.awebp" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" alt="">
-    </div>
-    <a href="/2023/01/09/backup/bo-ke-da-jian-jiao-cheng-13-xie-bo-ke-shi-yong-wang-zhan-da-he-ji/" class="post-nav-link">
-      <div class="title">
-        <i class="fas fa-angle-left"></i> Prev:
-        <div class="title-text">博客搭建教程13 - 写博客实用网站大合集</div>
-      </div>
-      
-      <!-- <div class="content">
-        无版权图片网站合集https://zhuanlan.zhihu.com/p/99543178无版权视频素材网站合集htt
-      </div> -->
-    </a>
-  </div>
 
-
-
-  
-  <div class="post-nav-next post-nav-item">
-    <div class="post-nav-img" style="background-size: cover; 
-      background-position: center center;">
-      <img class="lazyload lazyload placeholder" src="https://img2.baidu.com/it/u=2273045471,518867457&fm=253&fmt=auto&app=138&f=PNG?w=822&h=500" class="lazyload placeholder" data-srcset="https://img2.baidu.com/it/u=2273045471,518867457&fm=253&fmt=auto&app=138&f=PNG?w=822&h=500" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" src="" alt="">
-    </div>
-    <a href="/2023/01/09/backup/bo-ke-da-jian-jiao-cheng-11-shi-yong-linux-nginx-jian-zhan-mei-ci-yun-fu-wu-qi-chong-qi-hou-de-li-xing-jian-cha-cao-zuo/" class="post-nav-link">
-      <div class="title">
-        Next: <i class="fas fa-angle-right"></i>
-        <div class="title-text">博客搭建教程11 - 使用linux+nginx建站每次云服务器重启后的例行检查操作</div>
-      </div>
-      <!-- <div class="content">
-        重启服务器后的例行操作  
-1.检查防火墙检查防火墙状态：systemctl status firewalld若出现绿色
-      </div> -->
-    </a>
-  </div>
 
 </div>
 
@@ -897,29 +859,68 @@
   <div class="layout_sticky">    
     
       
-<section class="widget side_toc">
-  
+        
+    <section class="widget side_category">
+      
   <header>
     
-      <i style="color: " class="fas fa-list fa-fw" aria-hidden="true"></i><span class='name'>本文目录</span>
+      <a style="color: " href='/blog/categories/'><i class="fas fa-folder-open fa-fw" aria-hidden="true"></i><span class='name'>文章分类</span></a>
     
   </header>
 
 
-  <div class='content'>
-    <div class="toc-main">
-      <div class="toc-content">
-        <!--  -->
-        <div class="toc"></div>
+      <div class='content'>
+        <ul class="entry navigation">
+          
+            <li><a class="flat-box"
+              title="/categories/Android/" href="/categories/Android/"
+              id="categoriesAndroid"
+              ><div class='name'>Android</div><div class='badge'>(2)</div></a></li>
+          
+            <li><a class="flat-box child"
+              title="/categories/Android/Unity/" href="/categories/Android/Unity/"
+              id="categoriesAndroidUnity"
+              ><div class='name'>Unity</div><div class='badge'>(2)</div></a></li>
+          
+            <li><a class="flat-box"
+              title="/categories/sdk/" href="/categories/sdk/"
+              id="categoriessdk"
+              ><div class='name'>sdk</div><div class='badge'>(1)</div></a></li>
+          
+            <li><a class="flat-box"
+              title="/categories/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/" href="/categories/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/"
+              id="categoriesE58D9AE5AEA2E690ADE5BBBA"
+              ><div class='name'>博客搭建</div><div class='badge'>(2)</div></a></li>
+          
+            <li><a class="flat-box"
+              title="/categories/%E5%BE%80%E6%9C%9F%E5%B0%81%E9%9D%A2/" href="/categories/%E5%BE%80%E6%9C%9F%E5%B0%81%E9%9D%A2/"
+              id="categoriesE5BE80E69C9FE5B081E99DA2"
+              ><div class='name'>往期封面</div><div class='badge'>(2)</div></a></li>
+          
+        </ul>
       </div>
-    </div>
-  </div>
-</section>
-<!-- 手机端目录按钮 -->
-<div id="toc-mobile-btn">
-  <i class="fas fa-list-ul" aria-hidden="true"></i>
-</div>
+    </section>
+  
+  
+      
+      
+        
+<section class="widget side_tagcloud">
+    
+  <header>
+    
+      <a style="color: " href='/tags/'><i class="fas fa-tags fa-fw" aria-hidden="true"></i><span class='name'>标签</span></a>
+    
+  </header>
 
+
+    <div class='content'>
+    <a href="/tags/Android/" style="font-size: 19px; color: #777">Android</a> <a href="/tags/Unity/" style="font-size: 14px; color: #999">Unity</a> <a href="/tags/sdk/" style="font-size: 14px; color: #999">sdk</a> <a href="/tags/%E5%8D%9A%E5%AE%A2/" style="font-size: 24px; color: #555">博客</a> <a href="/tags/%E6%89%93%E5%8C%85/" style="font-size: 14px; color: #999">打包</a> <a href="/tags/%E7%94%9F%E6%B4%BB/" style="font-size: 19px; color: #777">生活</a>
+    </div>
+</section>
+
+  
+      
       
   <section class="widget side_recent_post">
     
@@ -1045,6 +1046,134 @@
     </div>
   </section>
 
+      
+  <section class="widget side_archives">
+    
+    <header><a style="color: red" href='/archives/'><i class="fas fa-archive fa-fw" aria-hidden="true"></i><span class='name'>归档</span></a></header><div class="content"><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/02/"><span class="card-archive-list-date">February 2024</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/01/"><span class="card-archive-list-date">January 2024</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/04/"><span class="card-archive-list-date">April 2023</span><span class="card-archive-list-count">2</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/02/"><span class="card-archive-list-date">February 2023</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/01/"><span class="card-archive-list-date">January 2023</span><span class="card-archive-list-count">3</span></a></li></ul></div>
+  </section>
+
+      <section class="widget side_webinfo">
+  
+  <header>
+    
+      <i style="color: " class="fas fa-chart-line fa-fw" aria-hidden="true"></i><span class='name'>站点信息</span>
+    
+  </header>
+
+
+  <div class='content'>
+    <div class="webinfo">
+      
+        <div class="webinfo-item">
+          <div>文章数目：</div>
+          <div>8 篇</div>
+        </div>
+      
+
+      
+        <div class="webinfo-item">
+          <div>已运行时间：</div>
+          <div id="webinfo-runtime-count" publish_date="03/24/2020 21:34:09"></div>
+        </div>
+        <script>
+          var BirthDay = new Date(new Date('2023/01/08'));
+          var today = new Date();
+          var timeold = (today.getTime() - BirthDay.getTime());
+          var daysold = Math.floor(timeold / (24 * 60 * 60 * 1000));
+          document.getElementById('webinfo-runtime-count').innerHTML = daysold + ' 天';
+        </script>
+      
+
+
+      
+        <div class="webinfo-item">
+          <div>本站总字数：</div>
+          <div>8.9k 字</div>
+        </div>
+      
+
+      
+        <div class="webinfo-item">
+          <div>本站访客数：</div>
+          
+          <div><span id="busuanzi_value_site_uv"><i class="fas fa-fan fa-spin fa-fw" aria-hidden="true"></i></span> 人</div>
+          
+        </div>
+      
+
+      
+        <div class="webinfo-item">
+          <div>本站总访问量：</div>
+          
+          <div><span id="busuanzi_value_site_pv"><i class="fas fa-fan fa-spin fa-fw" aria-hidden="true"></i></span> 次</div>
+          
+        </div>
+      
+
+      
+        <div class="webinfo-item">
+          <div>最后活动时间：</div>
+          
+            <div id="last-update" style="display: none;">Fri Feb 02 2024 13:55:36 GMT+0800 (中国标准时间)</div>
+            <div id="last-update-show">2024-02-02 日</div>
+          
+        </div>
+        
+        <script>
+          function timeago(dateTimeStamp) {
+              var minute = 1000 * 60; //把分，时，天，周，半个月，一个月用毫秒表示
+              var hour = minute * 60;
+              var day = hour * 24;
+              var week = day * 7;
+              var month = day * 30;
+              var now = new Date().getTime(); //获取当前时间毫秒
+              var diffValue = now - dateTimeStamp; //时间差
+              if (diffValue < 0) {
+                  return;
+              }
+              var minC = diffValue / minute; //计算时间差的分，时，天，周，月
+              var hourC = diffValue / hour;
+              var dayC = diffValue / day;
+              var weekC = diffValue / week;
+              var monthC = diffValue / month;
+              if (monthC >= 1 && monthC <= 3) {
+                  result = " " + parseInt(monthC) + " 月前"
+              } else if (weekC >= 1 && weekC <= 3) {
+                  result = " " + parseInt(weekC) + " 周前"
+              } else if (dayC >= 1 && dayC <= 6) {
+                  result = " " + parseInt(dayC) + " 天前"
+              } else if (hourC >= 1 && hourC <= 23) {
+                  result = " " + parseInt(hourC) + " 小时前"
+              } else if (minC >= 1 && minC <= 59) {
+                  result = " " + parseInt(minC) + " 分钟前"
+              } else if (diffValue >= 0 && diffValue <= minute) {
+                  result = "刚刚"
+              } else {
+                  var datetime = new Date();
+                  datetime.setTime(dateTimeStamp);
+                  var Nyear = datetime.getFullYear();
+                  var Nmonth = datetime.getMonth() + 1 < 10 ? "0" + (datetime.getMonth() + 1) : datetime.getMonth() + 1;
+                  var Ndate = datetime.getDate() < 10 ? "0" + datetime.getDate() : datetime.getDate();
+                  var Nhour = datetime.getHours() < 10 ? "0" + datetime.getHours() : datetime.getHours();
+                  var Nminute = datetime.getMinutes() < 10 ? "0" + datetime.getMinutes() : datetime.getMinutes();
+                  var Nsecond = datetime.getSeconds() < 10 ? "0" + datetime.getSeconds() : datetime.getSeconds();
+                  result = Nyear + "-" + Nmonth + "-" + Ndate
+              }
+              return result;
+          }
+          var lastUpDate = document.getElementById('last-update').innerHTML;
+          try {
+            document.getElementById('last-update-show').innerHTML = timeago(new Date(lastUpDate));
+          } catch (error) {
+            document.getElementById('last-update-show').innerHTML = '2024-02-02 日';
+          }
+        </script>
+        
+      
+    </div>
+  </div>
+</section>
+      
     
   </div>
 </aside>

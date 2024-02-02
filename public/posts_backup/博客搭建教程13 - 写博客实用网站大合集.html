@@ -11,7 +11,7 @@
   <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-  <title>赛朋博客</title>
+  <title>博客搭建教程13 - 写博客实用网站大合集 | 赛朋博客</title>
 
   <link rel="icon" type="image/jpeg" href="/favicon.jpg">
   <link rel="stylesheet" href="https://at.alicdn.com/t/font_1911880_c1nvbyezg17.css">
@@ -634,1218 +634,156 @@
 </header>
         <!-- 内容区域 -->
         
-  <!-- 首页轮播 -->
+ <!-- prismjs 代码高亮 -->
+ 
+
+
+<div class="bg-dark-floor" style="position: fixed;left: 0;top: 0;width: 100%;height: 100%;z-index: -1;"></div>
+
+
+  <!-- 文章详情页顶部图片和标题 -->
+
+
+
+
+<div class="post-detail-header" id="thumbnail_canvas" style="background-repeat: no-repeat; background-size: cover; 
+  background-position: center center;position: relative;background-image:url('https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2017/8/9/5e1040cd64eefde3ecb5e0c809cdd3e5~tplv-t2oaga2asx-zoom-crop-mark:3024:3024:3024:1702.awebp')">
+  <div class="post-detail-header-mask"></div>
+  <canvas id="header_canvas"style="position:absolute;bottom:0;pointer-events:none;"></canvas>
   
-
-  <link href="/js/vue-typed-js/index.css" rel="stylesheet">
-
-
-
-
-
-
-<div class="swiper-length" style="display: none;">0</div>
-<div id="appSwiper"
-  class="swiper-no-swiping"
-  @mouseenter="stopAutoPlay()" 
-  @mouseleave="startAutoPlay()"
->
-  <swiper v-cloak ref="mySwiper" :options="swiperOptions" @slideChangeTransitionEnd="slideChangeTransitionEnd">
-    
-      <swiper-slide>
-        <div class="item swiper-lazy" data-background="https://i.328888.xyz/2023/02/08/rQNjH.jpeg" style="background-size: 300000px; 
-          background-position: left center;" style="position: relative;">
-          <div class="swiper-bgmask" style="position: absolute;top: 0;left: 0;width: 100%;height: 100%;"></div>
-            <div class="flag">
-              
-              <div class="swiper-video">
-                <video class="full-video" poster="https://i.328888.xyz/2023/02/08/rQNjH.jpeg" autoplay loop muted style="width: 100%;height:100%;object-fit: cover;">
-                  <source style="width: 100%;height: 100vh;" src="/images/cover_20230207.mp4">
-                </video>
-                <div class="swiper-video-maskBox"></div>
-              </div>
-              
-              <div class="img-mask swiper-lazy swiper-default-bgImg" data-background="https://i.328888.xyz/2023/02/08/rQNjH.jpeg" style="height: 100%; background-size: cover; 
-                background-position: center center;">
-                <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>   
-              </div>
-              <div class="flag-text">
-                <div class="flag-text-content">
-                  <div class="title ani animated" swiper-animate-effect="fadeInDown" swiper-animate-duration="0.2s" swiper-animate-delay="0.1s">沙特猫</div>
-                  
-                      <div class="excerpt ani animated" swiper-animate-effect="fadeInDown" swiper-animate-duration="0.2s" swiper-animate-delay="0.1s"></div>
-                    
-                </div>
-                <div style="display: flex;" class="flag-text-btns">
-                  
-                    <div class="ani animated" swiper-animate-effect="fadeInDown" swiper-animate-duration="0.2s" swiper-animate-delay="0.1s"><a target="_blank" rel="noopener" href="http://cypunberk.cn/2023/02/07/wang-qi-feng-mian-2023-02-07-sha-te-mao/" class="read-more swiper-btn-color" style="display: inline-block; z-index:1;">关于封面</a></div>
-                  
-                  
-                </div>
-              </div>
-            </div>
-          </div>
-      </swiper-slide>
-    
-  </swiper>
-  
-    <div id="scroll-down" @click="toPostContent()">
-      <a href="javascript:;">
-        <i class="fas fa-angle-down scroll-down-effects"></i>
-      </a>
+  <div class="post-detail-header_info-box">
+    <div class="title-box">
+      <span class="title">
+        博客搭建教程13 - 写博客实用网站大合集
+      </span>
     </div>
-  
-  <canvas id="header_canvas"style="position:absolute;bottom:0;width:100%;pointer-events:none;"></canvas>
-  
-    <svg class="hans-container" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none"><defs><path id="hans-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z"></path></defs><g class="hans-parallax"><use xlink:href="#hans-wave" x="50" y="0" fill="rgba(224,233,239,.5)"></use><use xlink:href="#hans-wave" x="50" y="3" fill="rgba(224,233,239,.5)"></use><use xlink:href="#hans-wave" x="50" y="6" fill="rgba(224,233,239,.5)"></use></g></svg>
     
+    
+      
+        <span class="post-detail-header_date">
+          <i class="fas fa-calendar"></i> Published in：2023-01-09 |
+        </span>
+      
+
+      
+        <span class="post-detail-header_categories">
+          <i class="iconfont iconbookmark1"></i> category：
+          
+            <a href="/" class="post-detail-header_category">
+              
+            </a>
+          
+        </span>
+      
+
+      
+          
+            <span class="reading">
+              <i class="fas fa-eye"></i> reading：<span id="busuanzi_value_page_pv"></span>
+            </span>
+          
+      
+    
+  </div>
+  
+  
+    <script src="/js/bubble/bubble.js"></script>
+  
 </div>
 
 
-<style>.hans-parallax>use{animation:hans-wave-move 12s linear infinite}.hans-parallax>use:nth-child(1){animation-delay:-2s}.hans-parallax>use:nth-child(2){animation-delay:-2s;animation-duration:5s}.hans-parallax>use:nth-child(3){animation-delay:-4s;animation-duration:3s}@keyframes hans-wave-move{0%{transform:translate(-90px,0)}100%{transform:translate(85px,0)}}</style>
-<style>
-  .hans-container {
-    position: absolute!important;
-    bottom: 0;
-    width: 100%;
-    height: 120px;
-    z-index: 100;
-    pointer-events:none;
-  }
-</style>
 
 
-<script>
-  var autoplay = JSON.parse('true');
-  var delay = '5000';
-  var loop = JSON.parse('true') ? false : JSON.parse('true');
-  var effect = 'slide';
-  var swiperLength = parseInt(document.querySelector(".swiper-length").innerText);
-  var defaultDesc = '';
-  defaultDesc = defaultDesc.split(',');
-  var defaultDescTypedLoop = JSON.parse('true');
-  var vm = new Vue({
-    el: '#appSwiper',
-    data: {
-      defaultDesc: defaultDesc,
-      defaultDescTypedLoop,
-      swiperOptions: {
-        pagination: {
-          el: '.swiper-pagination',
-          clickable: true // 允许点击小圆点跳转
-        },
-        loop: loop ? true : false,
-        effect, // fade
-        autoplay: (autoplay && swiperLength > 1) ? {
-  　　　　delay,
-  　　　　disableOnInteraction: false // 手动切换之后继续自动轮播
-    　　} : false,
-        navigation: {
-          nextEl: '.swiper-button-next',
-          prevEl: '.swiper-button-prev',
-        },
-        lazy: {
-          loadPrevNext: true,
-        },
-        on:{
-          init: function() {
-            swiperAnimateCache(this); //隐藏动画元素 
-            swiperAnimate(this); //初始化完成开始动画
-          }, 
-          slideChangeTransitionEnd: function(){ 
-            swiperAnimate(this); //每个slide切换结束时也运行当前slide动画
-          } 
-        }
-        // Some Swiper option/callback...
-      }
-    },
-    computed: {
-      swiper() {
-        return this.$refs.mySwiper.$swiper
-      }
-    },
-    mounted() {
-      // console.log('Current Swiper instance object', this.swiper)
-      // this.swiper.slideTo(0, 1000, false)
-    },
-    methods: {
-      stopAutoPlay() {
-        (autoplay && swiperLength > 1) && this.swiper.autoplay.stop();
-      },
-      startAutoPlay() {
-        (autoplay && swiperLength > 1) && this.swiper.autoplay.start();
-      },
-      slideChangeTransitionEnd() {
-        console.log('1');
-      },
-      toPostContent() {
-        const fullHeight = $(window).height() - 60;
-        $('html,body').animate({scrollTop: fullHeight},500);
-      }
-    },
-    created() {}
-  })
+
+<div class="post-detail-content post-row" 
+  style="padding-top: 0px;">
+  <div class="main-content">
+    <article class="post post-detail">
+      <div class="post-content">
+        <p>无版权图片网站合集<br><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/99543178">https://zhuanlan.zhihu.com/p/99543178</a><br>无版权视频素材网站合集<br><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/431221694">https://zhuanlan.zhihu.com/p/431221694</a><br>在线图片压缩，超简洁<br><a target="_blank" rel="noopener" href="https://tinypng.com/">https://tinypng.com/</a><br>在线视频压缩，超简洁<br><a target="_blank" rel="noopener" href="https://yasuo.xunjiepdf.com/video/">https://yasuo.xunjiepdf.com/video/</a><br>在线视频旋转，超简洁<br><a target="_blank" rel="noopener" href="https://app.xunjieshipin.com/video-rotation/">https://app.xunjieshipin.com/video-rotation/</a><br>在线RGB颜色选择器<br><a target="_blank" rel="noopener" href="http://tools.jb51.net/static/colorpicker/">http://tools.jb51.net/static/colorpicker/</a><br>图床<br><a target="_blank" rel="noopener" href="https://imgloc.com/">https://imgloc.com/</a></p>
+
+      </div>
+      <div class="post-tags-categories">
+        
+        <div class="tags">
+          
+            <a href="/" class="">
+              
+            </a>
+          
+        </div>
+        
+      </div>
+      
+        <div class="copyright">
+  <ul class="post-copyright">
+    <li class="post-copyright-author">
+    <strong>author:  </strong>cypunberk.admin</a>
+    </li>
+    <li class="post-copyright-link">
+    <strong>link:  </strong>
+    <a href="/posts_backup/博客搭建教程13 - 写博客实用网站大合集.html" target="_blank" title="博客搭建教程13 - 写博客实用网站大合集">http://epya15.fun/posts_backup/博客搭建教程13 - 写博客实用网站大合集.html</a>
+    </li>
+    <li class="post-copyright-license">
+      <strong>Copyright notice:   </strong>
+      All articles on this website, unless otherwise stated, adopt <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">CC BY-NC-ND 4.0</a>
+      reprint policy. If reproduced, please indicate source!
+    </li>
+  </ul>
+<div>
+      
+    </article>
+    <!-- 上一篇文章和下一篇文章 -->
+    
+      <!-- 文章详情页的上一页和下一页 -->
+<div class="post-nav">
+
+
+
+
+
+</div>
+
+    
+    
+
+    <!-- 打赏 -->
+    
+
+    <!-- 分享 -->
+    
+      <!-- https://github.com/overtrue/share.js -->
+<!-- 文章详情页的分享 -->
+<div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+
+<script src="/js/shareJs/social-share.min.js"></script>
 </script>
 
 <style>
-#appSwiper {
-  position: relative;
-  user-select: none;
-  overflow: hidden;
-}
-.default-excerpt {
-  font-size: 1.6rem;
-  margin-top: 1rem;
-  font-family: Titillium Web,'PingFang SC','Hiragino Sans GB','Microsoft JhengHei','Microsoft YaHei',sans-serif;
-}
-.bottom-one-btn {
-  margin-top: 15px;
-}
-.swiper-container {
-  overflow: hidden;
-  z-index: 0;
-}
-.swiper-slide {
-  height: 350px;
-  position: relative;
-}
-.swiper-button-prev,
-.swiper-button-next {
-  padding: 10px 10px;
-  transition: background 0.2s;
-}
-.swiper-button-prev:hover,
-.swiper-button-next:hover {
-  background: rgba(0, 0, 0, 0.2);
-}
-.swiper-slide .item {
-  width: 100%;
-  height: 100%;
-}
-.flag {
-  position: relative;
-  width: 70%;
-  margin: 0 auto;
-  color: #ffffff;
-  height: 100%;
-  background: #000;
-}
-.flag img {
-  min-height: 100%;
-}
-.flag-text {
-  position: absolute;
-  top: 50px;
-  left: 50px;
-  width: 80%;
-  height: 280px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  z-index: 9999;
-}
-.flag-text .title {
-  font-size: 1.8rem;
-  font-family: -apple-system,BlinkMacSystemFont;
-}
-.flag-text .title a {
-  color: #fff;
-  transition: color 0.3s;
-}
-.flag-text .title a:hover {
-  color: #5CACEE;
-}
-.flag-text .excerpt {
-  color: #eee;
-  font-family: Ubuntu,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Cantarell,Fira Sans,Droid Sans,Helvetica Neue,sans-serif;
-  width: 70%;
-  line-height: 30px;
-  height: 150px;
-  margin-top: 2%;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 5;
-  overflow: hidden;
-}
-.swiper-pagination-bullet-active {
-  opacity: 1;
-  background-color: #42b983;
-}
-.img-mask {
-  opacity:0.6; filter: alpha(opacity=60);
-}
-.flag-text .read-more {
-  margin-bottom: 30px;
-  padding: 5px 15px;
-  color: #ffffff;
-  border-radius: 20px;
-}
-#scroll-down {
-  position: absolute;
-  bottom: 10px;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 2.5rem;
-  color: #fff;
-  cursor: pointer;
-  z-index: 2;
-}
-#scroll-down a {
-  color: #fff;
-}
-@-webkit-keyframes rightan
-  {
-  
-  0%
-  {
-    transform: translateY(0);
-    opacity: 0.5;
+  .social-share {
+    margin: 20px 0;
   }
-  50% {
-    transform: translateY(-30px);
-    opacity: 1;
-  }
-  100%
-  {
-    transform: translateY(0);
-    opacity: 0.5;
-  }
-}
-.scroll-down-effects {
-  animation: rightan 1.5s infinite;
-}
-/* 当头部导航设置为背景透明的时候 */
-
-  .swiper-slide {
-    height: 400px;
-  }
-  .flag-text {
-    top: 80px;
-  }
-
-
-@media (min-width: 992px) {
-  .swiper-button-prev {
-    margin-left: 15%;
-    transform: translateX(-180%);
-  }
-  .swiper-button-next {
-    margin-right: 15%;
-    transform: translateX(180%);
-  }
-  .flag-text .title {
-    width: 80%;
-    line-height: 35px;
-    max-height: 70px;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 2;
-    overflow: hidden;
-  }
-}
-@media screen and (max-width: 1200px) { 
-  .flag {
-    width: 80%;
-  }
-  .swiper-button-prev {
-    margin-left: 10%;
-    transform: translateX(-180%);
-  }
-  .swiper-button-next {
-    margin-right: 10%;
-    transform: translateX(180%);
-  }
-}
-@media (max-width: 992px) {
-  .flag {
-    width: 100%;
-  }
-  .flag-text .title {
-    font-size: 1.5rem;
-    margin-top: 50px;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 2;
-    overflow: hidden;
-  }
-  .flag-text {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 80%;
-    height: 100%;
-    margin-left: 50%;
-    transform: translateX(-50%);
-  }
-  .flag-text .excerpt {
-    width: 100%;
-    line-height: 25px;
-    height: 125px;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 5;
-    overflow: hidden;
-  }
-  .flag-text .read-more {
-    margin-bottom: 80px;
-  }
-}
-@media (max-width: 992px) and (min-width: 551px) {
-  .flag-text .excerpt {
-    width: 70%;
-  }
-}
-@media (max-width: 551px) {
-  .swiper-slide {
-    height: 250px;
-  }
-  .flag-text .title {
-    line-height: 30px;
-    max-height: 60px;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 2;
-    overflow: hidden;
-    margin-top: 20px;
-  }
-  .flag-text .excerpt {
-    font-size: 1rem;
-    line-height: 20px;
-    height: 80px;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 4;
-  }
-  .flag-text .excerpt { 
-    margin-top: 10px;
-  }
-  .flag-text .read-more {
-    margin-top: 10px;
-    margin-bottom: 50px;
-  }
-  .swiper-button-prev,
-  .swiper-button-next {
-    transform: scale(0.5);
-  }
-  .swiper-button-prev {
-    left: 0;
-  }
-  .swiper-button-next {
-    right: 0;
-  }
-}
-/* 当头部导航设置为背景透明的时候 */
-
-  @media (max-width: 992px) {
-    .flag-text {
-      top: 60px;
-      height: 80%;
-    }
-  }
-  @media (max-width: 551px) {
-    .swiper-slide {
-      height: 310px;
-    }
-  }
-
-
-/* 文字或者按钮居中显示 */
-
-  .flag-text {
-    left: 10%;
-  }
-  .flag-text .flag-text-content {
-    width: 100%;
-    text-align: center;
-  }
-  .flag-text .title {
-    width: 100%;
-    text-align: center;
-  }
-  .flag-text .excerpt { 
-    width: 100%;
-    text-align: center;
-  }
-  .bottom-one-btn {
-    display: flex;
-    justify-content: center;
-  }
-  .default-excerpt {
-    display: flex;
-    justify-content: center;
-    font-size: 1.6rem;
-    font-family: Titillium Web,'PingFang SC','Hiragino Sans GB','Microsoft JhengHei','Microsoft YaHei',sans-serif;
-  }
-  .flag-text-btns {
-    justify-content: center;
-  }
-  @media (min-width: 992px) {
-    .flag-text .excerpt {
-      line-height: 30px;
-      display: -webkit-box;
-      -webkit-box-orient: vertical;
-      -webkit-line-clamp: 5;
-      overflow: hidden;
-    }
-  }
-  @media (max-width: 992px) {
-    .flag-text {
-      margin-left: 0;
-      transform: translateX(0);
-    }
-  }
-
-
-
-
-/* 全屏显示 */
-
-  .flag {
-    width: 100%;
-  }
-  .swiper-slide {
-    height: calc(100vh - 60px);
-    
-      height: 100vh;
-    
-  }
-  .flag-text {
-    top: 50%;
-    left: 15%;
-    transform: translateY(-50%);
-    width: 70%;
-    height: auto;
-  }
-  .flag-text .title {
-    font-size: 2.8rem;
-    line-height: 1.5em;
-    max-height: none;
-    /* overflow: visible; */
-  }
-  .flag-text .excerpt {
-    font-size: 1.25rem;
-    height: 150px;
-  }
-  .flag-text .read-more {
-    margin-top: 10px;
-  }
-  .swiper-button-prev,
-  .swiper-button-next {
-    margin-top: -60px!important;
-  }
-  .swiper-btn-color,
-  .swiper-btn-color2 {
-    background-color: transparent;
-    border: 1px solid #fff;
-  }
-  .swiper-btn-color:hover,
-  .swiper-btn-color2:hover {
-    background-color: #5CACEE;
-    border: 1px solid #5CACEE!important;
-  }
-  .flag-text-btns {
-    justify-content: center;
-  }
-  .swiper-button-prev {
-    margin-left: 10px;
-    transform: translateX(0);
-    border-radius: 50%;
-    padding: 0;
-    width: 50px;
-    height: 50px;
-  }
-  .swiper-button-next {
-    margin-right: 10px;
-    transform: translateX(0);
-    border-radius: 50%;
-    padding: 0;
-    width: 50px;
-    height: 50px;
-  }
-  .swiper-button-next:after, .swiper-button-prev:after {
-    font-size: 1.2rem;
-  }
-  @media (min-width: 992px) {
-    .flag-text .excerpt {
-      line-height: 35px;
-      height: 175px;
-    }
-    .default-excerpt {
-      min-height: 150px;
-    }
-    .typed-element {
-      align-items: unset;
-    }
-  }
-  @media (max-width: 992px) {
-    .flag-text {
-      margin-left: 0;
-      height: 60%;
-      top: 55%;
-    }
-    .flag-text .title {
-      font-size: 2.4rem;
-      margin-top: 0;
-      display: -webkit-box;
-      -webkit-box-orient: vertical;
-      -webkit-line-clamp: 2;
-      overflow: hidden;
-    }
-    .flag-text .excerpt {
-      line-height: 35px;
-      height: 185px;
-    }
-    .flag-text .read-more {
-      margin-top: 20px;
-    }
-  }
-  @media (max-width: 551px) {
-    .flag-text {
-      height: 60%;
-    }
-    .flag-text .title {
-      font-size: 2.2rem;
-    }
-    .flag-text .excerpt {
-      line-height: 30px;
-    }
-    .flag-text .read-more {
-      margin-top: 50px;
-      padding: 10px 30px;
-    }
-    .swiper-button-prev {
-      margin-left: 0;
-    }
-    .swiper-button-next {
-      margin-right: 0;
-    }
-    .default-excerpt {
-      margin-top: 1rem;
-    }
-  }
-
-
-/* video */
-.swiper-video {
-  width: 100%;
-  height: 100%;
-}
-.swiper-video video {
-  pointer-events: none;
-}
-.swiper-video-maskBox{
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
-  background-color: #000;
-  opacity: 0.2;
-  z-index: 1;
-}
-@media (min-width: 992px) {
-  
-    .swiper-video {
-      display: block;
-    }
-    .swiper-default-bgImg {
-      display: none;  
-    }
-  
-}
-@media (max-width: 992px) {
-  .swiper-video {
-    display: none;
-  }
-  .swiper-default-bgImg {
-    display: block;  
-  }
-}
-/* video-end */
 </style>
 
 
-<div id="l_main">
-  <div class="l_content">
-    <!-- 自定义的内容 -->
     
-    <!-- 首页座右铭 -->
     
-    <!-- 首页公告 -->
+    <!-- 评论 -->
+    <!-- 评论 -->
+
+  <div id="myComment">
     
-    <!-- 首页文章置顶 -->
+      <div id="gitment-container"></div>
+
     
-
-
-
-    <div class="bg-floor" id="home-bg-floor" style="position: fixed;left: 0;top: 0;width: 100%;height: 100%;z-index: -2;"></div>
-    <!-- 每一篇文章卡片 -->
-    <!-- hash算法 -->
-
-<section class="posts">
-  
-    
-    <article class="post reveal" style="flex-direction: row-reverse;   ">
-      <div class="post-main">
-        <div class="post-info">
-          <div class="post-time">
-            <i class="fas fa-clock" aria-hidden="true"></i>
-            <span class="post-time">2023-01-09</span>
-          </div>
-          <div class="post-title">
-            <a class="post-title-link" href="/2023/01/09/backup/bo-ke-da-jian-jiao-cheng-12-geng-huan-yun-fu-wu-qi-wan-cheng-shu-ju-qian-yi/">博客搭建教程12 - 更换云服务器完成数据迁移</a>
-          </div>
-          <div class="post-meta">
-            <div class="post-tags">
-              <!-- 文章详情页的标签 -->
-
-    <i class="iconfont icontag"></i>
-    <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%8D%9A%E5%AE%A2/" rel="tag">博客</a></li></ul>
-
-            </div>
-            <div class="post-categories">
-              <!-- 文章详情页的分类 -->
-
-<div class="article-category">
-  <i class="iconfont iconbookmark1"></i>
-  <a class="article-category-link" href="/categories/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/">博客搭建</a>
-</div>
-
-
-            </div>
-          </div>
-          <div class="post-img-mobile">
-            <a href="/2023/01/09/backup/bo-ke-da-jian-jiao-cheng-12-geng-huan-yun-fu-wu-qi-wan-cheng-shu-ju-qian-yi/" style="background-size: cover; 
-              background-position: center center;">
-              <img class="lazyload lazyload placeholder" src="https://zhongces3.sina.com.cn/products/201904/740d84b4db27bb0b7303adf092f44cbc.jpeg" class="lazyload placeholder" data-srcset="https://zhongces3.sina.com.cn/products/201904/740d84b4db27bb0b7303adf092f44cbc.jpeg" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" alt="">
-            </a>
-          </div>
-          <div class="post-content">
-            文档正在筹备，主要讲述将一台已经部署好网站的云服务器的资料转移至其它云服务器上。
-          </div>
-        </div>
-        <div class="post-more">
-          <a href="/2023/01/09/backup/bo-ke-da-jian-jiao-cheng-12-geng-huan-yun-fu-wu-qi-wan-cheng-shu-ju-qian-yi/">
-            <i class="iconfont iconmore" pointer style="float: right;  " title="阅读更多"></i>
-          </a>
-        </div>
-      </div>
-      <div class="post-img">
-        <a href="/2023/01/09/backup/bo-ke-da-jian-jiao-cheng-12-geng-huan-yun-fu-wu-qi-wan-cheng-shu-ju-qian-yi/" style="background-size: cover; 
-          background-position: center center;">
-          <img class="lazyload lazyload placeholder" src="https://zhongces3.sina.com.cn/products/201904/740d84b4db27bb0b7303adf092f44cbc.jpeg" class="lazyload placeholder" data-srcset="https://zhongces3.sina.com.cn/products/201904/740d84b4db27bb0b7303adf092f44cbc.jpeg" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" alt="">
-        </a>
-      </div>
-    </article>
-  
-    
-    <article class="post reveal" style="   ">
-      <div class="post-main">
-        <div class="post-info">
-          <div class="post-time">
-            <i class="fas fa-clock" aria-hidden="true"></i>
-            <span class="post-time">2023-01-09</span>
-          </div>
-          <div class="post-title">
-            <a class="post-title-link" href="/2023/01/09/backup/bo-ke-da-jian-jiao-cheng-11-shi-yong-linux-nginx-jian-zhan-mei-ci-yun-fu-wu-qi-chong-qi-hou-de-li-xing-jian-cha-cao-zuo/">博客搭建教程11 - 使用linux+nginx建站每次云服务器重启后的例行检查操作</a>
-          </div>
-          <div class="post-meta">
-            <div class="post-tags">
-              <!-- 文章详情页的标签 -->
-
-    <i class="iconfont icontag"></i>
-    <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%8D%9A%E5%AE%A2/" rel="tag">博客</a></li></ul>
-
-            </div>
-            <div class="post-categories">
-              <!-- 文章详情页的分类 -->
-
-<div class="article-category">
-  <i class="iconfont iconbookmark1"></i>
-  <a class="article-category-link" href="/categories/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/">博客搭建</a>
-</div>
-
-
-            </div>
-          </div>
-          <div class="post-img-mobile">
-            <a href="/2023/01/09/backup/bo-ke-da-jian-jiao-cheng-11-shi-yong-linux-nginx-jian-zhan-mei-ci-yun-fu-wu-qi-chong-qi-hou-de-li-xing-jian-cha-cao-zuo/" style="background-size: cover; 
-              background-position: center center;">
-              <img class="lazyload lazyload placeholder" src="https://img2.baidu.com/it/u=2273045471,518867457&fm=253&fmt=auto&app=138&f=PNG?w=822&h=500" class="lazyload placeholder" data-srcset="https://img2.baidu.com/it/u=2273045471,518867457&fm=253&fmt=auto&app=138&f=PNG?w=822&h=500" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" alt="">
-            </a>
-          </div>
-          <div class="post-content">
-            将一些需要检查的点统一记录下来作为备忘录。
-          </div>
-        </div>
-        <div class="post-more">
-          <a href="/2023/01/09/backup/bo-ke-da-jian-jiao-cheng-11-shi-yong-linux-nginx-jian-zhan-mei-ci-yun-fu-wu-qi-chong-qi-hou-de-li-xing-jian-cha-cao-zuo/">
-            <i class="iconfont iconmore" pointer style="  " title="阅读更多"></i>
-          </a>
-        </div>
-      </div>
-      <div class="post-img">
-        <a href="/2023/01/09/backup/bo-ke-da-jian-jiao-cheng-11-shi-yong-linux-nginx-jian-zhan-mei-ci-yun-fu-wu-qi-chong-qi-hou-de-li-xing-jian-cha-cao-zuo/" style="background-size: cover; 
-          background-position: center center;">
-          <img class="lazyload lazyload placeholder" src="https://img2.baidu.com/it/u=2273045471,518867457&fm=253&fmt=auto&app=138&f=PNG?w=822&h=500" class="lazyload placeholder" data-srcset="https://img2.baidu.com/it/u=2273045471,518867457&fm=253&fmt=auto&app=138&f=PNG?w=822&h=500" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" alt="">
-        </a>
-      </div>
-    </article>
-  
-    
-    <article class="post reveal" style="flex-direction: row-reverse;   ">
-      <div class="post-main">
-        <div class="post-info">
-          <div class="post-time">
-            <i class="fas fa-clock" aria-hidden="true"></i>
-            <span class="post-time">2023-01-09</span>
-          </div>
-          <div class="post-title">
-            <a class="post-title-link" href="/2023/01/09/backup/bo-ke-da-jian-jiao-cheng-10-jiang-tuo-guan-zai-github-de-hexo-bo-ke-qian-yi-dao-ge-ren-yun-fu-wu-qi/">博客搭建教程10 - 将托管在Github的Hexo博客迁移到个人云服务器</a>
-          </div>
-          <div class="post-meta">
-            <div class="post-tags">
-              <!-- 文章详情页的标签 -->
-
-    <i class="iconfont icontag"></i>
-    <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%8D%9A%E5%AE%A2/" rel="tag">博客</a></li></ul>
-
-            </div>
-            <div class="post-categories">
-              <!-- 文章详情页的分类 -->
-
-<div class="article-category">
-  <i class="iconfont iconbookmark1"></i>
-  <a class="article-category-link" href="/categories/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/">博客搭建</a>
-</div>
-
-
-            </div>
-          </div>
-          <div class="post-img-mobile">
-            <a href="/2023/01/09/backup/bo-ke-da-jian-jiao-cheng-10-jiang-tuo-guan-zai-github-de-hexo-bo-ke-qian-yi-dao-ge-ren-yun-fu-wu-qi/" style="background-size: cover; 
-              background-position: center center;">
-              <img class="lazyload lazyload placeholder" src="https://www.easeus.com.cn/attachment/chuanshu/qinayi-15.png" class="lazyload placeholder" data-srcset="https://www.easeus.com.cn/attachment/chuanshu/qinayi-15.png" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" alt="">
-            </a>
-          </div>
-          <div class="post-content">
-            防止Github有朝一日不再提供免费服务或彻底被墙
-          </div>
-        </div>
-        <div class="post-more">
-          <a href="/2023/01/09/backup/bo-ke-da-jian-jiao-cheng-10-jiang-tuo-guan-zai-github-de-hexo-bo-ke-qian-yi-dao-ge-ren-yun-fu-wu-qi/">
-            <i class="iconfont iconmore" pointer style="float: right;  " title="阅读更多"></i>
-          </a>
-        </div>
-      </div>
-      <div class="post-img">
-        <a href="/2023/01/09/backup/bo-ke-da-jian-jiao-cheng-10-jiang-tuo-guan-zai-github-de-hexo-bo-ke-qian-yi-dao-ge-ren-yun-fu-wu-qi/" style="background-size: cover; 
-          background-position: center center;">
-          <img class="lazyload lazyload placeholder" src="https://www.easeus.com.cn/attachment/chuanshu/qinayi-15.png" class="lazyload placeholder" data-srcset="https://www.easeus.com.cn/attachment/chuanshu/qinayi-15.png" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" alt="">
-        </a>
-      </div>
-    </article>
-  
-    
-    <article class="post reveal" style="   ">
-      <div class="post-main">
-        <div class="post-info">
-          <div class="post-time">
-            <i class="fas fa-clock" aria-hidden="true"></i>
-            <span class="post-time">2023-01-09</span>
-          </div>
-          <div class="post-title">
-            <a class="post-title-link" href="/2023/01/09/backup/bo-ke-da-jian-jiao-cheng-9-shi-yong-scp-ming-ling-cong-windows-xiang-linux-chuan-shu-wen-jian/">博客搭建教程9 - 使用scp命令从Windows向linux传输文件</a>
-          </div>
-          <div class="post-meta">
-            <div class="post-tags">
-              <!-- 文章详情页的标签 -->
-
-    <i class="iconfont icontag"></i>
-    <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%8D%9A%E5%AE%A2/" rel="tag">博客</a></li></ul>
-
-            </div>
-            <div class="post-categories">
-              <!-- 文章详情页的分类 -->
-
-
-            </div>
-          </div>
-          <div class="post-img-mobile">
-            <a href="/2023/01/09/backup/bo-ke-da-jian-jiao-cheng-9-shi-yong-scp-ming-ling-cong-windows-xiang-linux-chuan-shu-wen-jian/" style="background-size: cover; 
-              background-position: center center;">
-              <img class="lazyload lazyload placeholder" src="https://gss0.baidu.com/70cFfyinKgQFm2e88IuM_a/baike/pic/item/64380cd7912397ddea52b9315582b2b7d0a287df.jpg" class="lazyload placeholder" data-srcset="https://gss0.baidu.com/70cFfyinKgQFm2e88IuM_a/baike/pic/item/64380cd7912397ddea52b9315582b2b7d0a287df.jpg" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" alt="">
-            </a>
-          </div>
-          <div class="post-content">
-            如果你还在用微信同步文件，那可以了解一下scp命令
-          </div>
-        </div>
-        <div class="post-more">
-          <a href="/2023/01/09/backup/bo-ke-da-jian-jiao-cheng-9-shi-yong-scp-ming-ling-cong-windows-xiang-linux-chuan-shu-wen-jian/">
-            <i class="iconfont iconmore" pointer style="  " title="阅读更多"></i>
-          </a>
-        </div>
-      </div>
-      <div class="post-img">
-        <a href="/2023/01/09/backup/bo-ke-da-jian-jiao-cheng-9-shi-yong-scp-ming-ling-cong-windows-xiang-linux-chuan-shu-wen-jian/" style="background-size: cover; 
-          background-position: center center;">
-          <img class="lazyload lazyload placeholder" src="https://gss0.baidu.com/70cFfyinKgQFm2e88IuM_a/baike/pic/item/64380cd7912397ddea52b9315582b2b7d0a287df.jpg" class="lazyload placeholder" data-srcset="https://gss0.baidu.com/70cFfyinKgQFm2e88IuM_a/baike/pic/item/64380cd7912397ddea52b9315582b2b7d0a287df.jpg" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" alt="">
-        </a>
-      </div>
-    </article>
-  
-    
-    <article class="post reveal" style="flex-direction: row-reverse;   ">
-      <div class="post-main">
-        <div class="post-info">
-          <div class="post-time">
-            <i class="fas fa-clock" aria-hidden="true"></i>
-            <span class="post-time">2023-01-09</span>
-          </div>
-          <div class="post-title">
-            <a class="post-title-link" href="/2023/01/09/backup/bo-ke-da-jian-jiao-cheng-8-jie-hong-linux/">博客搭建教程8 - 在CentOS云服务器利用Nginx搭建Hexo博客</a>
-          </div>
-          <div class="post-meta">
-            <div class="post-tags">
-              <!-- 文章详情页的标签 -->
-
-    <i class="iconfont icontag"></i>
-    <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%8D%9A%E5%AE%A2/" rel="tag">博客</a></li></ul>
-
-            </div>
-            <div class="post-categories">
-              <!-- 文章详情页的分类 -->
-
-<div class="article-category">
-  <i class="iconfont iconbookmark1"></i>
-  <a class="article-category-link" href="/categories/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/">博客搭建</a>
-</div>
-
-
-            </div>
-          </div>
-          <div class="post-img-mobile">
-            <a href="/2023/01/09/backup/bo-ke-da-jian-jiao-cheng-8-jie-hong-linux/" style="background-size: cover; 
-              background-position: center center;">
-              <img class="lazyload lazyload placeholder" src="https://img-blog.csdnimg.cn/img_convert/ce4a8a59fdfee8f3106a3a0851558c76.png" class="lazyload placeholder" data-srcset="https://img-blog.csdnimg.cn/img_convert/ce4a8a59fdfee8f3106a3a0851558c76.png" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" alt="">
-            </a>
-          </div>
-          <div class="post-content">
-            关于图形界面：有的云服务器将CentOS系统的图形界面阉割，如果想和Windows系统一样看到图形界面，需要额外进行安装。但是要注意，虽然图形界面在交互上比命令行更加直观，但是会占用大约500MB的内存，这也就意味着，如果你购买的服务器内存
-          </div>
-        </div>
-        <div class="post-more">
-          <a href="/2023/01/09/backup/bo-ke-da-jian-jiao-cheng-8-jie-hong-linux/">
-            <i class="iconfont iconmore" pointer style="float: right;  " title="阅读更多"></i>
-          </a>
-        </div>
-      </div>
-      <div class="post-img">
-        <a href="/2023/01/09/backup/bo-ke-da-jian-jiao-cheng-8-jie-hong-linux/" style="background-size: cover; 
-          background-position: center center;">
-          <img class="lazyload lazyload placeholder" src="https://img-blog.csdnimg.cn/img_convert/ce4a8a59fdfee8f3106a3a0851558c76.png" class="lazyload placeholder" data-srcset="https://img-blog.csdnimg.cn/img_convert/ce4a8a59fdfee8f3106a3a0851558c76.png" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" alt="">
-        </a>
-      </div>
-    </article>
-  
-    
-    <article class="post reveal" style="   ">
-      <div class="post-main">
-        <div class="post-info">
-          <div class="post-time">
-            <i class="fas fa-clock" aria-hidden="true"></i>
-            <span class="post-time">2023-01-09</span>
-          </div>
-          <div class="post-title">
-            <a class="post-title-link" href="/2023/01/09/backup/bo-ke-da-jian-jiao-cheng-7-wei-bo-ke-wang-zhan-xuan-ze-he-gua-de-yun-fu-wu-qi/">博客搭建教程7 - 为博客网站选择合适的云服务器</a>
-          </div>
-          <div class="post-meta">
-            <div class="post-tags">
-              <!-- 文章详情页的标签 -->
-
-    <i class="iconfont icontag"></i>
-    <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%8D%9A%E5%AE%A2/" rel="tag">博客</a></li></ul>
-
-            </div>
-            <div class="post-categories">
-              <!-- 文章详情页的分类 -->
-
-<div class="article-category">
-  <i class="iconfont iconbookmark1"></i>
-  <a class="article-category-link" href="/categories/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/">博客搭建</a>
-</div>
-
-
-            </div>
-          </div>
-          <div class="post-img-mobile">
-            <a href="/2023/01/09/backup/bo-ke-da-jian-jiao-cheng-7-wei-bo-ke-wang-zhan-xuan-ze-he-gua-de-yun-fu-wu-qi/" style="background-size: cover; 
-              background-position: center center;">
-              <img class="lazyload lazyload placeholder" src="https://www.5iqiqu.com/images/news/66/66372-20200515145359325-1759450153.jpg" class="lazyload placeholder" data-srcset="https://www.5iqiqu.com/images/news/66/66372-20200515145359325-1759450153.jpg" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" alt="">
-            </a>
-          </div>
-          <div class="post-content">
-            拥有一台自己的服务器，首先需要准备几百元的预算，再视情况增加投入。
-          </div>
-        </div>
-        <div class="post-more">
-          <a href="/2023/01/09/backup/bo-ke-da-jian-jiao-cheng-7-wei-bo-ke-wang-zhan-xuan-ze-he-gua-de-yun-fu-wu-qi/">
-            <i class="iconfont iconmore" pointer style="  " title="阅读更多"></i>
-          </a>
-        </div>
-      </div>
-      <div class="post-img">
-        <a href="/2023/01/09/backup/bo-ke-da-jian-jiao-cheng-7-wei-bo-ke-wang-zhan-xuan-ze-he-gua-de-yun-fu-wu-qi/" style="background-size: cover; 
-          background-position: center center;">
-          <img class="lazyload lazyload placeholder" src="https://www.5iqiqu.com/images/news/66/66372-20200515145359325-1759450153.jpg" class="lazyload placeholder" data-srcset="https://www.5iqiqu.com/images/news/66/66372-20200515145359325-1759450153.jpg" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" alt="">
-        </a>
-      </div>
-    </article>
-  
-    
-    <article class="post reveal" style="flex-direction: row-reverse;   ">
-      <div class="post-main">
-        <div class="post-info">
-          <div class="post-time">
-            <i class="fas fa-clock" aria-hidden="true"></i>
-            <span class="post-time">2023-01-09</span>
-          </div>
-          <div class="post-title">
-            <a class="post-title-link" href="/2023/01/09/backup/bo-ke-da-jian-jiao-cheng-6-wei-github-bu-shu-de-hexo-bo-ke-geng-huan-xin-yu-ming/">博客搭建教程6 - 为Github部署的Hexo博客更换新域名</a>
-          </div>
-          <div class="post-meta">
-            <div class="post-tags">
-              <!-- 文章详情页的标签 -->
-
-    <i class="iconfont icontag"></i>
-    <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%8D%9A%E5%AE%A2/" rel="tag">博客</a></li></ul>
-
-            </div>
-            <div class="post-categories">
-              <!-- 文章详情页的分类 -->
-
-<div class="article-category">
-  <i class="iconfont iconbookmark1"></i>
-  <a class="article-category-link" href="/categories/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/">博客搭建</a>
-</div>
-
-
-            </div>
-          </div>
-          <div class="post-img-mobile">
-            <a href="/2023/01/09/backup/bo-ke-da-jian-jiao-cheng-6-wei-github-bu-shu-de-hexo-bo-ke-geng-huan-xin-yu-ming/" style="background-size: cover; 
-              background-position: center center;">
-              <img class="lazyload lazyload placeholder" src="http://img.idcicp.com//attached/20210708/6376133546709039089257812.jpg" class="lazyload placeholder" data-srcset="http://img.idcicp.com//attached/20210708/6376133546709039089257812.jpg" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" alt="">
-            </a>
-          </div>
-          <div class="post-content">
-            短小好记的域名通常不便宜，但还是有捡漏的机会，又或许你最在意的那个名字根本没有人注册过。
-          </div>
-        </div>
-        <div class="post-more">
-          <a href="/2023/01/09/backup/bo-ke-da-jian-jiao-cheng-6-wei-github-bu-shu-de-hexo-bo-ke-geng-huan-xin-yu-ming/">
-            <i class="iconfont iconmore" pointer style="float: right;  " title="阅读更多"></i>
-          </a>
-        </div>
-      </div>
-      <div class="post-img">
-        <a href="/2023/01/09/backup/bo-ke-da-jian-jiao-cheng-6-wei-github-bu-shu-de-hexo-bo-ke-geng-huan-xin-yu-ming/" style="background-size: cover; 
-          background-position: center center;">
-          <img class="lazyload lazyload placeholder" src="http://img.idcicp.com//attached/20210708/6376133546709039089257812.jpg" class="lazyload placeholder" data-srcset="http://img.idcicp.com//attached/20210708/6376133546709039089257812.jpg" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" alt="">
-        </a>
-      </div>
-    </article>
-  
-    
-    <article class="post reveal" style="   ">
-      <div class="post-main">
-        <div class="post-info">
-          <div class="post-time">
-            <i class="fas fa-clock" aria-hidden="true"></i>
-            <span class="post-time">2023-01-09</span>
-          </div>
-          <div class="post-title">
-            <a class="post-title-link" href="/2023/01/09/backup/bo-ke-da-jian-jiao-cheng-5-wei-hexo-bo-ke-an-zhuang-cha-jian/">博客搭建教程5 - 为Hexo博客安装插件</a>
-          </div>
-          <div class="post-meta">
-            <div class="post-tags">
-              <!-- 文章详情页的标签 -->
-
-    <i class="iconfont icontag"></i>
-    <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%8D%9A%E5%AE%A2/" rel="tag">博客</a></li></ul>
-
-            </div>
-            <div class="post-categories">
-              <!-- 文章详情页的分类 -->
-
-<div class="article-category">
-  <i class="iconfont iconbookmark1"></i>
-  <a class="article-category-link" href="/categories/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/">博客搭建</a>
-</div>
-
-
-            </div>
-          </div>
-          <div class="post-img-mobile">
-            <a href="/2023/01/09/backup/bo-ke-da-jian-jiao-cheng-5-wei-hexo-bo-ke-an-zhuang-cha-jian/" style="background-size: cover; 
-              background-position: center center;">
-              <img class="lazyload lazyload placeholder" src="https://img-blog.csdnimg.cn/img_convert/a13ddd89488d90cf62d1ca8ece66d1d3.png" class="lazyload placeholder" data-srcset="https://img-blog.csdnimg.cn/img_convert/a13ddd89488d90cf62d1ca8ece66d1d3.png" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" alt="">
-            </a>
-          </div>
-          <div class="post-content">
-            文档正在筹备，可以跳过。
-          </div>
-        </div>
-        <div class="post-more">
-          <a href="/2023/01/09/backup/bo-ke-da-jian-jiao-cheng-5-wei-hexo-bo-ke-an-zhuang-cha-jian/">
-            <i class="iconfont iconmore" pointer style="  " title="阅读更多"></i>
-          </a>
-        </div>
-      </div>
-      <div class="post-img">
-        <a href="/2023/01/09/backup/bo-ke-da-jian-jiao-cheng-5-wei-hexo-bo-ke-an-zhuang-cha-jian/" style="background-size: cover; 
-          background-position: center center;">
-          <img class="lazyload lazyload placeholder" src="https://img-blog.csdnimg.cn/img_convert/a13ddd89488d90cf62d1ca8ece66d1d3.png" class="lazyload placeholder" data-srcset="https://img-blog.csdnimg.cn/img_convert/a13ddd89488d90cf62d1ca8ece66d1d3.png" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" alt="">
-        </a>
-      </div>
-    </article>
-  
-    
-    <article class="post reveal" style="flex-direction: row-reverse;   ">
-      <div class="post-main">
-        <div class="post-info">
-          <div class="post-time">
-            <i class="fas fa-clock" aria-hidden="true"></i>
-            <span class="post-time">2023-01-09</span>
-          </div>
-          <div class="post-title">
-            <a class="post-title-link" href="/2023/01/09/backup/bo-ke-da-jian-jiao-cheng-4-geng-huan-hexo-bo-ke-zhu-ti/">博客搭建教程4 - 更换Hexo博客主题</a>
-          </div>
-          <div class="post-meta">
-            <div class="post-tags">
-              <!-- 文章详情页的标签 -->
-
-    <i class="iconfont icontag"></i>
-    <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%8D%9A%E5%AE%A2/" rel="tag">博客</a></li></ul>
-
-            </div>
-            <div class="post-categories">
-              <!-- 文章详情页的分类 -->
-
-<div class="article-category">
-  <i class="iconfont iconbookmark1"></i>
-  <a class="article-category-link" href="/categories/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/">博客搭建</a>
-</div>
-
-
-            </div>
-          </div>
-          <div class="post-img-mobile">
-            <a href="/2023/01/09/backup/bo-ke-da-jian-jiao-cheng-4-geng-huan-hexo-bo-ke-zhu-ti/" style="background-size: cover; 
-              background-position: center center;">
-              <img class="lazyload lazyload placeholder" src="https://img1.baidu.com/it/u=4061327327,3801077277&fm=253&fmt=auto&app=138&f=JPEG?w=800&h=500" class="lazyload placeholder" data-srcset="https://img1.baidu.com/it/u=4061327327,3801077277&fm=253&fmt=auto&app=138&f=JPEG?w=800&h=500" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" alt="">
-            </a>
-          </div>
-          <div class="post-content">
-            截止至2023/2/6，Hexo已经拥有375款主题。
-          </div>
-        </div>
-        <div class="post-more">
-          <a href="/2023/01/09/backup/bo-ke-da-jian-jiao-cheng-4-geng-huan-hexo-bo-ke-zhu-ti/">
-            <i class="iconfont iconmore" pointer style="float: right;  " title="阅读更多"></i>
-          </a>
-        </div>
-      </div>
-      <div class="post-img">
-        <a href="/2023/01/09/backup/bo-ke-da-jian-jiao-cheng-4-geng-huan-hexo-bo-ke-zhu-ti/" style="background-size: cover; 
-          background-position: center center;">
-          <img class="lazyload lazyload placeholder" src="https://img1.baidu.com/it/u=4061327327,3801077277&fm=253&fmt=auto&app=138&f=JPEG?w=800&h=500" class="lazyload placeholder" data-srcset="https://img1.baidu.com/it/u=4061327327,3801077277&fm=253&fmt=auto&app=138&f=JPEG?w=800&h=500" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" alt="">
-        </a>
-      </div>
-    </article>
-  
-    
-    <article class="post reveal" style="   ">
-      <div class="post-main">
-        <div class="post-info">
-          <div class="post-time">
-            <i class="fas fa-clock" aria-hidden="true"></i>
-            <span class="post-time">2023-01-09</span>
-          </div>
-          <div class="post-title">
-            <a class="post-title-link" href="/2023/01/09/backup/bo-ke-da-jian-jiao-cheng-3-chu-shi-node.js-he-hexo/">博客搭建教程3 - 初识Node.js和Hexo</a>
-          </div>
-          <div class="post-meta">
-            <div class="post-tags">
-              <!-- 文章详情页的标签 -->
-
-    <i class="iconfont icontag"></i>
-    <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%8D%9A%E5%AE%A2/" rel="tag">博客</a></li></ul>
-
-            </div>
-            <div class="post-categories">
-              <!-- 文章详情页的分类 -->
-
-<div class="article-category">
-  <i class="iconfont iconbookmark1"></i>
-  <a class="article-category-link" href="/categories/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/">博客搭建</a>
-</div>
-
-
-            </div>
-          </div>
-          <div class="post-img-mobile">
-            <a href="/2023/01/09/backup/bo-ke-da-jian-jiao-cheng-3-chu-shi-node.js-he-hexo/" style="background-size: cover; 
-              background-position: center center;">
-              <img class="lazyload lazyload placeholder" src="https://pic4.zhimg.com/v2-8d3c4ce9c9fba8a59a092eecba504585_1440w.jpg" class="lazyload placeholder" data-srcset="https://pic4.zhimg.com/v2-8d3c4ce9c9fba8a59a092eecba504585_1440w.jpg" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" alt="">
-            </a>
-          </div>
-          <div class="post-content">
-            本篇内容比较简单，同样参考这位博主的文章https://zhuanlan.zhihu.com/p/105715224
-按照上述流程做完后，基于Github Page的博客就已经搭建好了，你可以在浏览器上输入自己的Github仓库地址，就可以
-          </div>
-        </div>
-        <div class="post-more">
-          <a href="/2023/01/09/backup/bo-ke-da-jian-jiao-cheng-3-chu-shi-node.js-he-hexo/">
-            <i class="iconfont iconmore" pointer style="  " title="阅读更多"></i>
-          </a>
-        </div>
-      </div>
-      <div class="post-img">
-        <a href="/2023/01/09/backup/bo-ke-da-jian-jiao-cheng-3-chu-shi-node.js-he-hexo/" style="background-size: cover; 
-          background-position: center center;">
-          <img class="lazyload lazyload placeholder" src="https://pic4.zhimg.com/v2-8d3c4ce9c9fba8a59a092eecba504585_1440w.jpg" class="lazyload placeholder" data-srcset="https://pic4.zhimg.com/v2-8d3c4ce9c9fba8a59a092eecba504585_1440w.jpg" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" alt="">
-        </a>
-      </div>
-    </article>
-  
-</section>
-    <!-- 翻页 -->
-    
-  <!-- <nav class="page-nav">
-    <a class="extend prev" rel="prev" href="/">Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/">Next</a>
-  </nav> -->
-  <div class="page-nav">
-    
-      <a href="/"
-         class="page-nav-pre">
-         <i class="fas fa-angle-left"></i><span class="ml-5">Prev</span>
-      </a>
-    
-    <div class="page-info">
-        <div class="page-info-text">2 / 3</div>
-    </div>
-    
-      <a href="/page/3/"
-         class="page-nav-next">
-          <span class="mr-5">Next</span><i class="fas fa-angle-right"></i>
-      </a>
-      
   </div>
+
+<!-- comment script in themes\hexo-theme-bamboo\layout\_partial\scripts\index.ejs -->
+
 
   </div>
 
+  <!-- 目录 -->
   
 <aside id='l_side'>
   
@@ -1954,7 +892,7 @@
             <li><a class="flat-box"
               title="/categories/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/" href="/categories/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/"
               id="categoriesE58D9AE5AEA2E690ADE5BBBA"
-              ><div class='name'>博客搭建</div><div class='badge'>(15)</div></a></li>
+              ><div class='name'>博客搭建</div><div class='badge'>(2)</div></a></li>
           
             <li><a class="flat-box"
               title="/categories/%E5%BE%80%E6%9C%9F%E5%B0%81%E9%9D%A2/" href="/categories/%E5%BE%80%E6%9C%9F%E5%B0%81%E9%9D%A2/"
@@ -2113,7 +1051,7 @@
       
   <section class="widget side_archives">
     
-    <header><a style="color: red" href='/archives/'><i class="fas fa-archive fa-fw" aria-hidden="true"></i><span class='name'>归档</span></a></header><div class="content"><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/02/"><span class="card-archive-list-date">February 2024</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/01/"><span class="card-archive-list-date">January 2024</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/04/"><span class="card-archive-list-date">April 2023</span><span class="card-archive-list-count">2</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/02/"><span class="card-archive-list-date">February 2023</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/01/"><span class="card-archive-list-date">January 2023</span><span class="card-archive-list-count">18</span></a></li></ul></div>
+    <header><a style="color: red" href='/archives/'><i class="fas fa-archive fa-fw" aria-hidden="true"></i><span class='name'>归档</span></a></header><div class="content"><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/02/"><span class="card-archive-list-date">February 2024</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/01/"><span class="card-archive-list-date">January 2024</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/04/"><span class="card-archive-list-date">April 2023</span><span class="card-archive-list-count">2</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/02/"><span class="card-archive-list-date">February 2023</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/01/"><span class="card-archive-list-date">January 2023</span><span class="card-archive-list-count">3</span></a></li></ul></div>
   </section>
 
       <section class="widget side_webinfo">
@@ -2130,7 +1068,7 @@
       
         <div class="webinfo-item">
           <div>文章数目：</div>
-          <div>23 篇</div>
+          <div>8 篇</div>
         </div>
       
 
@@ -2152,7 +1090,7 @@
       
         <div class="webinfo-item">
           <div>本站总字数：</div>
-          <div>15.7k 字</div>
+          <div>8.9k 字</div>
         </div>
       
 
@@ -2178,7 +1116,7 @@
         <div class="webinfo-item">
           <div>最后活动时间：</div>
           
-            <div id="last-update" style="display: none;">Fri Feb 02 2024 13:54:23 GMT+0800 (中国标准时间)</div>
+            <div id="last-update" style="display: none;">Fri Feb 02 2024 13:55:36 GMT+0800 (中国标准时间)</div>
             <div id="last-update-show">2024-02-02 日</div>
           
         </div>
@@ -2242,13 +1180,160 @@
   </div>
 </aside>
 
+
+  <!-- 图片放大 Wrap images with fancybox support -->
+  <script src="/js/wrapImage.js"></script>
 </div>
-<!-- 花瓣和雪花飘落 -->
-<!-- 雪花和花瓣特效 -->
+
+<!-- 文章详情页背景图 -->
+<div id="appBgSwiper" style="position: fixed;left: 0;top: 0;width: 100%;height: 100%;z-index: -2;"
+	:style="{'background-color': bgColor ? bgColor : 'transparent'}">
+	<transition-group tag="ul" :name="names">
+		<li v-for='(image,index) in img' :key='index' v-show="index === mark" class="bg-swiper-box">
+			<img :src="image" class="bg-swiper-img no-lazy">
+		</li>
+	</transition-group>
+</div>
+<script>
+	var vm = new Vue({
+		el: '#appBgSwiper',
+		data: {
+			names: '' || 'fade' || 'fade', // translate-fade fade
+			mark: 0,
+			img: [],
+			bgColor: '',
+			time: null
+		},
+		methods: {   //添加方法
+			change(i, m) {
+				if (i > m) {
+					// this.names = 'fade';
+				} else if (i < m) {
+					// this.names = 'fade';
+				} else {
+					return;
+				}
+				this.mark = i;
+			},
+			prev() {
+				// this.names = 'fade';
+				this.mark--;
+				if (this.mark === -1) {
+					this.mark = 3;
+					return
+				}
+			},
+			next() {
+				// this.names = 'fade';
+				this.mark++;
+				if (this.mark === this.img.length) {
+					this.mark = 0;
+					return
+				}
+			},
+			autoPlay() {
+				// this.names = 'fade';
+				this.mark++;
+				if (this.mark === this.img.length) {
+					this.mark = 0;
+					return
+				}
+			},
+			play() {
+				let bgImgDelay = '' || '180000'
+				let delay = parseInt(bgImgDelay) || 180000;
+				this.time = setInterval(this.autoPlay, delay);
+			},
+			enter() {
+				clearInterval(this.time);
+			},
+			leave() {
+				this.play();
+			}
+		},
+		created() {
+			this.play()
+		},
+		beforeDestroy() {
+			clearInterval(this.time);
+		},
+		mounted() {
+			let prop = '' || 'url(&#34;/medias/pageBg2.jpg&#34;)';
+			let isImg = prop.includes('.bmp') || prop.includes('.jpg') || prop.includes('.png') || prop.includes('.tif') || prop.includes('.gif') || prop.includes('.pcx') || prop.includes('.tga') || prop.includes('.exif') || prop.includes('.fpx') || prop.includes('.psd') || prop.includes('.cdr') || prop.includes('.pcd') || prop.includes('.dxf') || prop.includes('.ufo') || prop.includes('.eps') || prop.includes('.ai') || prop.includes('.raw') || prop.includes('.WMF') || prop.includes('.webp') || prop.includes('.jpeg') || prop.includes('http://') || prop.includes('https://')
+			if (isImg) {
+				let img = prop.split(',');
+				let configRoot = '/'
+				let arrImg = [];
+				img.forEach(el => {
+					var Expression = /http(s)?:\/\/([\w-]+\.)+[\w-]+(\/[\w- .\/?%&=]*)?/;
+					var objExp = new RegExp(Expression);
+
+					if (objExp.test(el)) {
+						// http or https
+						arrImg.push(el);
+					} else {
+						// 非http or https开头
+						// 本地文件
+						let firstStr = el.charAt(0);
+						if (firstStr == '/') {
+							el = el.substr(1); // 删除第一个字符 '/',因为 configRoot最后一个字符为 /
+						}
+						el = configRoot + el;
+						arrImg.push(el);
+					}
+				})
+				this.img = arrImg;
+			} else {
+				this.bgColor = prop;
+			}
+		}
+	})
+</script>
+
+<style>
+	.bg-swiper-box {
+		position: absolute;
+		display: block;
+		width: 100%;
+		height: 100%;
+	}
+
+	.bg-swiper-img {
+		object-fit: cover;
+		width: 100%;
+		height: 100%;
+	}
+</style>
 
 
 
-<!-- 灯笼 -->
+
+  <script>
+  function loadMermaid() {
+    if (document.getElementsByClassName('mermaid').length) {
+      if (window.mermaidJsLoad) mermaid.init()
+      else {
+        loadScript('https://unpkg.com/mermaid/dist/mermaid.min.js').then(() => {
+          window.mermaidJsLoad = true
+          mermaid.initialize({
+            theme: 'default',
+          })
+          if ('true') {
+            mermaid.init();
+          }
+        })
+      }
+    }
+  };
+  document.addEventListener("DOMContentLoaded", function () {
+    loadMermaid();
+  })
+
+  document.addEventListener('pjax:complete', function () {
+    loadMermaid();
+  })
+  
+</script>
 
 
       </main>
