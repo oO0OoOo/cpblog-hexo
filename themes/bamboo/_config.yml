@@ -431,7 +431,7 @@ motto:
   on: true
   title: '欢迎来到Cypunberk'
   content: '「怎样思想，就有怎样的生活。」—— 愛默生'
-  background: 'url("https://i.328888.xyz/2023/02/07/rsVFw.jpeg")' # url("xxx") or red or #000 or rgba() ..
+  background: 'url("/images/mottoBg.webp")' # url("xxx") or red or #000 or rgba() ..
 
 # 首页公告
 notice:
