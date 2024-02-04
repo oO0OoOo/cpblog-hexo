@@ -415,9 +415,9 @@
 <p>需要注意的是，只有1到4级标题才会被文章目录收录。</p>
 <p>以下为Bamboo主题的定制标题样式，依赖额外js代码实现，不属于基础的Markdown语法：  </p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123;% title h1, 这是一级标题 %&#125;</span><br><span class="line">&#123;% title h6, 这是六级标题, red %&#125;</span><br><span class="line">&#123;% titleB h5, 这是五级标题, #895546 %&#125;</span><br></pre></td></tr></table></figure>
-<h1 class="bamboo-h " id="这是一级标题11taanygb83">这是一级标题</h1><br/>
-<h6 class="bamboo-h red" id="这是六级标题13563i61cob">这是六级标题</h6><br/>
-<h5 class="bamboo-h-b" id="这是五级标题6qedpf68m60" style="color:#895546!important">这是五级标题</h5><div></div>  
+<h1 class="bamboo-h " id="这是一级标题2834t85b8yl">这是一级标题</h1><br/>
+<h6 class="bamboo-h red" id="这是六级标题10p3yyn6hxw">这是六级标题</h6><br/>
+<h5 class="bamboo-h-b" id="这是五级标题108xubkjbba" style="color:#895546!important">这是五级标题</h5><div></div>  
 
 <h3 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&gt;这是一个块引用</span><br><span class="line">&gt;&gt;这是一个二层块引用</span><br><span class="line">&gt;</span><br><span class="line">&gt;返回到第一层</span><br></pre></td></tr></table></figure>
 
