@@ -6,7 +6,6 @@ document.addEventListener("DOMContentLoaded", function () { // 这个表示在ht
 		gradientStop: "#422",
         blur:1,
         compose: 'source-over',
-        bubbleFunc:() => `hsla(${Math.random() * 50}, 100%, 50%, .1)`
-		fillFunc: () => `hsla(0, 100%, 50%, ${Math.random() * 0.25})`
+        bubbleFunc:() => `hsla(${Math.random() * 50}, 100%, 100%, .1)`
       });
 })
