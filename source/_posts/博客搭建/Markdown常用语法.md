@@ -7,7 +7,7 @@ categories:
   - 博客搭建
 date: 2023-01-09 15:00:00
 excerpt: 'Markdown语法'
-bgImg: '/images/bg/591039294a193.jpg'
+bgImg: "/images/bg/591039294a193.jpg"
 ---
 
 本文记录了书写博文时常用的Markdown语法和Html标签
