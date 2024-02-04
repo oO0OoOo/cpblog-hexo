@@ -2,9 +2,10 @@ document.addEventListener("DOMContentLoaded", function () { // 这个表示在ht
     bubbly({
         colorStart: '#E6F7FF',
         colorStop: '#E6EEFF',
+		gradientStart: "#111",
+		gradientStop: "#422",
         blur:1,
         compose: 'source-over',
-		shadowColor: "#0ff"
         bubbleFunc:() => `hsla(${Math.random() * 50}, 100%, 50%, .1)`
       });
 })
