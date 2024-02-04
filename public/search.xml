@@ -415,9 +415,9 @@
 <p>需要注意的是，只有1到4级标题才会被文章目录收录。</p>
 <p>以下为Bamboo主题的定制标题样式，依赖额外js代码实现，不属于基础的Markdown语法：  </p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123;% title h1, 这是一级标题 %&#125;</span><br><span class="line">&#123;% title h6, 这是六级标题, red %&#125;</span><br><span class="line">&#123;% titleB h5, 这是五级标题, #895546 %&#125;</span><br></pre></td></tr></table></figure>
-<h1 class="bamboo-h " id="这是一级标题1t5f86907g1">这是一级标题</h1><br/>
-<h6 class="bamboo-h red" id="这是六级标题62bjme5hzw">这是六级标题</h6><br/>
-<h5 class="bamboo-h-b" id="这是五级标题4sibf9eelmc" style="color:#895546!important">这是五级标题</h5><div></div>  
+<h1 class="bamboo-h " id="这是一级标题28vqhdjt8ta">这是一级标题</h1><br/>
+<h6 class="bamboo-h red" id="这是六级标题h5zxj99cz1">这是六级标题</h6><br/>
+<h5 class="bamboo-h-b" id="这是五级标题2mvawtqvnkc" style="color:#895546!important">这是五级标题</h5><div></div>  
 
 <h3 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&gt;这是一个块引用</span><br><span class="line">&gt;&gt;这是一个二层块引用</span><br><span class="line">&gt;</span><br><span class="line">&gt;返回到第一层</span><br></pre></td></tr></table></figure>
 
@@ -534,8 +534,14 @@
 <div class="timenode"><div class="meta"><p><p>2020-08-08 <a href="https://github.com/yuang01/hexo-theme-bamboo">1.0.0 -&gt; 1.0.0</a></p>
 </p></div><div class="body"><p>进行工作A<br>进行工作B</p></div></div></div>
 
-<h2 id="多媒体"><a href="#多媒体" class="headerlink" title="多媒体"></a>多媒体</h2><h3 id="图片"><a href="#图片" class="headerlink" title="图片"></a>图片</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;img src=&quot;https://www.baidu.com/img/bd_logo1.png?where=super&quot; width=&quot;50%&quot; height=&quot;50%&quot; /&gt; </span><br></pre></td></tr></table></figure>
+<h2 id="多媒体"><a href="#多媒体" class="headerlink" title="多媒体"></a>多媒体</h2><h3 id="图片"><a href="#图片" class="headerlink" title="图片"></a>图片</h3><p>网络图片</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;img src=&quot;https://www.baidu.com/img/bd_logo1.png?where=super&quot; width=&quot;50%&quot; height=&quot;50%&quot; /&gt; </span><br></pre></td></tr></table></figure>
 <p>效果：<br><img src="https://www.baidu.com/img/bd_logo1.png?where=super" class="lazyload placeholder" data-srcset="https://www.baidu.com/img/bd_logo1.png?where=super" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" width="50%" height="50%" /> </p>
+<p>本地图片</p>
+<img src="images/bg/5910391f5ba57.jpg" class="lazyload placeholder" data-srcset="images/bg/5910391f5ba57.jpg" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif">
+
+
+
 <h3 id="网站小窗"><a href="#网站小窗" class="headerlink" title="网站小窗"></a>网站小窗</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;iframe name=&quot;斗鱼首页&quot; width=&quot;100%&quot; height=&quot;540px&quot; frameborder=&quot;0&quot; src=&quot;https://www.douyu.com/&quot;&gt;&lt;/iframe&gt;</span><br></pre></td></tr></table></figure>
 <p>效果：</p>
 <iframe name="斗鱼首页" width="100%" height="540px" frameborder="0" src="https://www.douyu.com/"></iframe>  

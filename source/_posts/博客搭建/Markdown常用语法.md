@@ -286,14 +286,23 @@ Mr.Cindy，你好：
 
 ## 多媒体
 ### 图片
+
+网络图片
+
 ```
 <img src="https://www.baidu.com/img/bd_logo1.png?where=super" width="50%" height="50%" /> 
 ```
 效果：
 <img src="https://www.baidu.com/img/bd_logo1.png?where=super" width="50%" height="50%" /> 
 
+本地图片
+
+<img src="images/bg/5910391f5ba57.jpg">
+
+
 
 ### 网站小窗
+
 ```
 <iframe name="斗鱼首页" width="100%" height="540px" frameborder="0" src="https://www.douyu.com/"></iframe>
 ```
