@@ -832,10 +832,13 @@ wordcount:
 import:
   link:
     - <link href="/custom/index.css" rel="stylesheet">
+    - <link href="/bubbly-bg/bubbly.css" rel="stylesheet">
     # - <link href="xxx.css"  rel="stylesheet">
     - 
     - 
   script: 
+    - <script src="/bubbly-bg/bubbly.js"></script>
+    - <script src="/bubbly-bg/index.js"></script>
     # - <script src="xxx.js"></script>
     - 
     - 
