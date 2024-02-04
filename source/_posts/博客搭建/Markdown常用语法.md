@@ -297,7 +297,7 @@ Mr.Cindy，你好：
 
 本地图片
 
-<img src="images/bg/5910391f5ba57.jpg">
+<img src="/images/bg/5910391f5ba57.jpg">
 
 
 
