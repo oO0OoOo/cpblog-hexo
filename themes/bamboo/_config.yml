@@ -831,7 +831,7 @@ wordcount:
 # 自己嵌入css或者script
 import:
   link:
-    #- <link href="/custom/index.css" rel="stylesheet">
+    - <link href="/custom/index.css" rel="stylesheet">
     #- <link href="/bubbly-bg/bubbly.css" rel="stylesheet">
     # - <link href="xxx.css"  rel="stylesheet">
     - 

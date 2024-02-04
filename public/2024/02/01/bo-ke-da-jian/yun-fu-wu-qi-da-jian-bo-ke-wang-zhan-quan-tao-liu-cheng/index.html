@@ -67,6 +67,8 @@
     <!-- import link -->
     
         
+            <link href="/custom/index.css" rel="stylesheet">
+        
             
         
             
@@ -786,7 +788,7 @@
 </blockquote>
 <p>生成ssh密钥</p>
 <blockquote>
-<p>ssh-keygen -t ecdsa -b 521 -C ‘<a href="mailto:&#121;&#x6f;&#117;&#x72;&#x6d;&#97;&#x69;&#108;&#97;&#x64;&#x64;&#x72;&#x65;&#115;&#115;&#x40;&#103;&#109;&#x61;&#x69;&#108;&#46;&#x63;&#111;&#109;">&#121;&#x6f;&#117;&#x72;&#x6d;&#97;&#x69;&#108;&#97;&#x64;&#x64;&#x72;&#x65;&#115;&#115;&#x40;&#103;&#109;&#x61;&#x69;&#108;&#46;&#x63;&#111;&#109;</a>‘ -f ~&#x2F;.ssh&#x2F;id_ecdsa</p>
+<p>ssh-keygen -t ecdsa -b 521 -C ‘<a href="mailto:&#x79;&#111;&#x75;&#x72;&#x6d;&#x61;&#x69;&#x6c;&#x61;&#x64;&#x64;&#114;&#x65;&#x73;&#x73;&#x40;&#x67;&#x6d;&#97;&#x69;&#x6c;&#46;&#x63;&#111;&#109;">&#x79;&#111;&#x75;&#x72;&#x6d;&#x61;&#x69;&#x6c;&#x61;&#x64;&#x64;&#114;&#x65;&#x73;&#x73;&#x40;&#x67;&#x6d;&#97;&#x69;&#x6c;&#46;&#x63;&#111;&#109;</a>‘ -f ~&#x2F;.ssh&#x2F;id_ecdsa</p>
 </blockquote>
 <p>连按3次回车</p>
 <p>接着提取公钥</p>
@@ -796,12 +798,12 @@
 <p>将公钥填到github的ssh列表中（在网页端配置，具体过程略）</p>
 <p>输入</p>
 <blockquote>
-<p>ssh -T <a href="mailto:&#x67;&#105;&#x74;&#x40;&#x67;&#105;&#116;&#104;&#x75;&#x62;&#x2e;&#99;&#x6f;&#109;">&#x67;&#105;&#x74;&#x40;&#x67;&#105;&#116;&#104;&#x75;&#x62;&#x2e;&#99;&#x6f;&#109;</a></p>
+<p>ssh -T <a href="mailto:&#103;&#x69;&#116;&#64;&#x67;&#105;&#116;&#104;&#x75;&#98;&#x2e;&#x63;&#x6f;&#x6d;">&#103;&#x69;&#116;&#64;&#x67;&#105;&#116;&#104;&#x75;&#98;&#x2e;&#x63;&#x6f;&#x6d;</a></p>
 </blockquote>
 <p>提示Successfully即为完成配置</p>
 <p>进入www&#x2F;wwwroot目录，克隆自己的git仓库，本地仓库名比如为cpblog</p>
 <blockquote>
-<p>git clone <a href="mailto:&#x67;&#x69;&#x74;&#64;&#x67;&#x69;&#x74;&#104;&#x75;&#x62;&#46;&#x63;&#111;&#109;">&#x67;&#x69;&#x74;&#64;&#x67;&#x69;&#x74;&#104;&#x75;&#x62;&#46;&#x63;&#111;&#109;</a>:xxxxxxx&#x2F;xxxxxx.github.io.git cpblog</p>
+<p>git clone <a href="mailto:&#x67;&#x69;&#x74;&#x40;&#103;&#105;&#116;&#104;&#x75;&#x62;&#x2e;&#99;&#111;&#109;">&#x67;&#x69;&#x74;&#x40;&#103;&#105;&#116;&#104;&#x75;&#x62;&#x2e;&#99;&#111;&#109;</a>:xxxxxxx&#x2F;xxxxxx.github.io.git cpblog</p>
 </blockquote>
 <h3 id="6-本地环境安装"><a href="#6-本地环境安装" class="headerlink" title="6.本地环境安装"></a>6.本地环境安装</h3><p>本地电脑环境简介</p>
 <p>（Windows系统，需要git，nodejs，hexo，不需要Nginx）</p>
@@ -1264,7 +1266,7 @@
 			clearInterval(this.time);
 		},
 		mounted() {
-			let prop = '' || 'url(&#34;/medias/pageBg2.jpg&#34;)';
+			let prop = 'https://raw.githubusercontent.com/oO0OoOo/cpblog-hexo/main/source/images/202402021405279.jpg' || 'url(&#34;/medias/pageBg2.jpg&#34;)';
 			let isImg = prop.includes('.bmp') || prop.includes('.jpg') || prop.includes('.png') || prop.includes('.tif') || prop.includes('.gif') || prop.includes('.pcx') || prop.includes('.tga') || prop.includes('.exif') || prop.includes('.fpx') || prop.includes('.psd') || prop.includes('.cdr') || prop.includes('.pcd') || prop.includes('.dxf') || prop.includes('.ufo') || prop.includes('.eps') || prop.includes('.ai') || prop.includes('.raw') || prop.includes('.WMF') || prop.includes('.webp') || prop.includes('.jpeg') || prop.includes('http://') || prop.includes('https://')
 			if (isImg) {
 				let img = prop.split(',');
