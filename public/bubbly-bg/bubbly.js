@@ -19,8 +19,8 @@ window.bubbly = function (t) {
   var i = r.getContext("2d");
   (i.shadowColor = n.shadowColor || "#fff"), (i.shadowBlur = n.blur || 4);
   var l = i.createLinearGradient(0, 0, e, a);
-  l.addColorStop(0, n.colorStart || "#2AE"),
-    l.addColorStop(1, n.colorStop || "#17B");
+  l.addColorStop(0, n.colorStart || "#EA2"),
+    l.addColorStop(1, n.colorStop || "#B71");
   for (
     var c = n.bubbles || Math.floor(0.02 * (e + a)), u = [], d = 0;
     d < c;
