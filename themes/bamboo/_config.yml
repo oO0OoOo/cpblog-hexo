@@ -431,7 +431,7 @@ motto:
   on: true
   title: '欢迎来到Cypunberk'
   content: '「怎样思想，就有怎样的生活。」—— 愛默生'
-  background: white # url("xxx") or red or #000 or rgba() ..
+  background: 'url("https://i.328888.xyz/2023/02/07/rsVFw.jpeg")' # url("xxx") or red or #000 or rgba() ..
 
 # 首页公告
 notice:
@@ -832,13 +832,13 @@ wordcount:
 import:
   link:
     - <link href="/custom/index.css" rel="stylesheet">
-    - <link href="/bubbly-bg/bubbly.css" rel="stylesheet">
+    #- <link href="/bubbly-bg/bubbly.css" rel="stylesheet">
     # - <link href="xxx.css"  rel="stylesheet">
     - 
     - 
   script: 
-    - <script src="/bubbly-bg/bubbly.js"></script>
-    - <script src="/bubbly-bg/index.js"></script>
+    #- <script src="/bubbly-bg/bubbly.js"></script>
+    #- <script src="/bubbly-bg/index.js"></script>
     # - <script src="xxx.js"></script>
     - 
     - 
