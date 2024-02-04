@@ -7,11 +7,9 @@ categories:
   - 博客搭建
 date: 2023-01-09 15:00:00
 excerpt: 'Markdown语法'
-img: https://raw.githubusercontent.com/oO0OoOo/cpblog-hexo/main/source/images/5910392d25805.jpg
+img: 'https://raw.githubusercontent.com/oO0OoOo/cpblog-hexo/main/source/images/bg/5910392d25805.jpg'
 bgImg: [
-    'https://pica.zhimg.com/80/v2-292e6340491bd97f9d014d6be3371c04_1440w.jpg',
-    'https://pica.zhimg.com/80/v2-9659f2305acb80f25ced33aa980092c1_1440w.jpg',
-    'https://api.btstu.cn/sjbz/api.php',
+    'https://raw.githubusercontent.com/oO0OoOo/cpblog-hexo/main/source/images/bg/5910391f5ba57.jpg,
 ]
 ---
 
