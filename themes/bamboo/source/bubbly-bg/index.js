@@ -4,6 +4,6 @@ document.addEventListener("DOMContentLoaded", function () { // 这个表示在ht
         colorStop: '#ffe9e4',
         blur:1,
         compose: 'source-over',
-        bubbleFunc:() => `hsla(${Math.random() * 50}, 100%, 50%, .3)`
+        bubbleFunc:() => `hsla(${Math.random() * 50}, 100%, 50%, .01)`
       });
 })
