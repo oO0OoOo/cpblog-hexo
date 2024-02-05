@@ -299,7 +299,7 @@ Mr.Cindy，你好：
 
 ![想输入的提示名字，可不输入](images/invalid_referer_tip.png)
 
-<img src="./(images/invalid_referer_tip.png" title="图片标题" alt="没有加载时显示的内容" style="zoom:25%;" />
+<img src="./images/invalid_referer_tip.png" title="图片标题" alt="没有加载时显示的内容" style="zoom:25%;" />
 
 ### 网站小窗
 
