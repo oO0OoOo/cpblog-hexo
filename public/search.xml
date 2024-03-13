@@ -1,21 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title></title>
+    <title>解决Unity打包访问google超时问题</title>
     <url>/2024/03/13/jie-jue-unity-da-bao-fang-wen-google-chao-shi-wen-ti/</url>
-    <content><![CDATA[<p>title: 解决Unity打包访问google超时问题<br>author: cypunberk.admin<br>tags:</p>
-<ul>
-<li><p>Android</p>
-</li>
-<li><p>打包<br>categories:</p>
-</li>
-<li><p>Android</p>
-</li>
-<li><p>Unity<br>date: 2023-04-20 13:51:00</p>
-<p>img: <a href="https://raw.githubusercontent.com/oO0OoOo/cpblog-hexo/main/source/images/591039263be09.jpg">https://raw.githubusercontent.com/oO0OoOo/cpblog-hexo/main/source/images/591039263be09.jpg</a></p>
-</li>
-</ul>
-<h6 id="问题现象"><a href="#问题现象" class="headerlink" title="问题现象"></a>问题现象</h6><p>Unity打Android包时卡在以下步骤，拖慢打包速度，但最终可以打包成功。</p>
+    <content><![CDATA[<h6 id="问题现象"><a href="#问题现象" class="headerlink" title="问题现象"></a>问题现象</h6><p>Unity打Android包时卡在以下步骤，拖慢打包速度，但最终可以打包成功。</p>
 <p><img src="https://raw.githubusercontent.com/oO0OoOo/cpblog-hexo/main/source/images/202403131948046.png" class="lazyload placeholder" data-srcset="https://raw.githubusercontent.com/oO0OoOo/cpblog-hexo/main/source/images/202403131948046.png" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" alt="image-20240313194810990"></p>
 <p><img src="https://raw.githubusercontent.com/oO0OoOo/cpblog-hexo/main/source/images/202403131951553.png" class="lazyload placeholder" data-srcset="https://raw.githubusercontent.com/oO0OoOo/cpblog-hexo/main/source/images/202403131951553.png" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" alt="image-20240313195142535"></p>
 <h6 id="问题原因"><a href="#问题原因" class="headerlink" title="问题原因"></a>问题原因</h6><p>访问google超时，如果想印证是否由访问超时所致，可以将本地断网，若打包速度变快，即为此问题。</p>
@@ -42,6 +30,13 @@
 </blockquote>
 <p>全部完成。</p>
 ]]></content>
+      <categories>
+        <category>Unity</category>
+      </categories>
+      <tags>
+        <tag>Android</tag>
+        <tag>打包</tag>
+      </tags>
   </entry>
   <entry>
     <title>云服务器搭建博客网站全套流程（浓缩版）</title>

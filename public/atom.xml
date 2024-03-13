@@ -6,7 +6,7 @@
   <link href="http://epya15.fun/atom.xml" rel="self"/>
   
   <link href="http://epya15.fun/"/>
-  <updated>2024-03-13T12:15:33.283Z</updated>
+  <updated>2024-03-13T12:18:14.315Z</updated>
   <id>http://epya15.fun/</id>
   
   <author>
@@ -17,23 +17,30 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title></title>
+    <title>解决Unity打包访问google超时问题</title>
     <link href="http://epya15.fun/2024/03/13/jie-jue-unity-da-bao-fang-wen-google-chao-shi-wen-ti/"/>
     <id>http://epya15.fun/2024/03/13/jie-jue-unity-da-bao-fang-wen-google-chao-shi-wen-ti/</id>
-    <published>2024-03-13T11:30:38.465Z</published>
-    <updated>2024-03-13T12:15:33.283Z</updated>
+    <published>2024-03-12T16:00:00.000Z</published>
+    <updated>2024-03-13T12:18:14.315Z</updated>
     
     
       
       
         
         
-    <summary type="html">&lt;p&gt;title: 解决Unity打包访问google超时问题&lt;br&gt;author:</summary>
+    <summary type="html">&lt;h6 id=&quot;问题现象&quot;&gt;&lt;a href=&quot;#问题现象&quot; class=&quot;headerlink&quot; title=&quot;问题现象&quot;&gt;&lt;/a&gt;问题现象&lt;/h6&gt;&lt;p&gt;Unity打Android包时卡在以下步骤，拖慢打包速度，但最终可以打包成功。&lt;/p&gt;
+&lt;p&gt;&lt;img</summary>
         
       
     
     
     
+    <category term="Unity" scheme="http://epya15.fun/categories/Unity/"/>
+    
+    
+    <category term="Android" scheme="http://epya15.fun/tags/Android/"/>
+    
+    <category term="打包" scheme="http://epya15.fun/tags/%E6%89%93%E5%8C%85/"/>
     
   </entry>
   

@@ -1,17 +1,15 @@
+---
 title: 解决Unity打包访问google超时问题
-author: cypunberk.admin
+author: epya15
 tags:
   - Android
-
   - 打包
-    categories:
-
-  - Android
-
+categories:
   - Unity
-    date: 2023-04-20 13:51:00
-    
-    img: https://raw.githubusercontent.com/oO0OoOo/cpblog-hexo/main/source/images/591039263be09.jpg
+date: 2024-03-13 00:00:00
+img: https://raw.githubusercontent.com/oO0OoOo/cpblog-hexo/main/source/images/591039263be09.jpg
+excerpt: ''
+---
 
 ###### 问题现象
 Unity打Android包时卡在以下步骤，拖慢打包速度，但最终可以打包成功。
