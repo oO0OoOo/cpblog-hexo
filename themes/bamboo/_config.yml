@@ -581,7 +581,7 @@ danmu:
 # 归档页面图片、描述、视频，全屏 or 'http://xxx'
 archive:
   title: '归档'
-  img: 'https://i.328888.xyz/2023/02/07/roWOJ.jpeg'
+  img: 'https://raw.githubusercontent.com/oO0OoOo/cpblog-hexo/main/source/images/bg/mottoBg.webp'
   desc: ''  #愿你如风，被人温柔以待
   full: false # 设置为true，则图片全屏显示
   video: '' # 如果有值，则在屏幕大于920px的时候，全屏显示视频，为空则显示图片(img)
@@ -593,7 +593,7 @@ archive:
 # 标签页面，配置同上
 tag:
   title: '标签'
-  img: 'https://i.328888.xyz/2023/02/07/roU5X.jpeg' # 标签页上面的图片
+  img: 'https://raw.githubusercontent.com/oO0OoOo/cpblog-hexo/main/source/images/bg/mottoBg.webp' # 标签页上面的图片
   desc: ''  #愿你如风，被人温柔以待
   full: false # 标签页上面的图片是否全屏显示
   video: '' # 如果有值，则在屏幕大于920px的时候，全屏显示视频
@@ -603,7 +603,7 @@ tag:
 # 标签详情页面，配置同上
 tagDetail:
   title: '标签'
-  img: 'https://i.328888.xyz/2023/02/07/roU5X.jpeg'
+  img: 'https://raw.githubusercontent.com/oO0OoOo/cpblog-hexo/main/source/images/bg/mottoBg.webp'
   desc: ''  #愿你如风，被人温柔以待
   full: false
   video: ''
@@ -612,7 +612,7 @@ tagDetail:
 # 分类页面，配置同上
 categories:
   title: '分类'
-  img: 'https://i.328888.xyz/2023/02/07/roADC.jpeg'
+  img: 'https://raw.githubusercontent.com/oO0OoOo/cpblog-hexo/main/source/images/bg/mottoBg.webp'
   desc: ''  #愿你如风，被人温柔以待
   full: false
   video: ''
@@ -622,7 +622,7 @@ categories:
 #分类详情页面，配置同上
 categoryDetail:
   title: '分类'
-  img: 'https://i.328888.xyz/2023/02/07/roADC.jpeg'
+  img: 'https://raw.githubusercontent.com/oO0OoOo/cpblog-hexo/main/source/images/bg/mottoBg.webp'
   desc: ''  #愿你如风，被人温柔以待
   full: false
   video: ''
@@ -631,7 +631,7 @@ categoryDetail:
 # 关于我页面，配置同上
 about:
   title: '关于'
-  img: 'https://i.328888.xyz/2023/02/07/royJE.jpeg'
+  img: 'https://raw.githubusercontent.com/oO0OoOo/cpblog-hexo/main/source/images/bg/mottoBg.webp'
   desc: ''  #愿你如风，被人温柔以待
   full: false
   video: ''
@@ -641,7 +641,7 @@ about:
 # 友情链接页面，配置同上
 friends:
   title: '友链'
-  img: 'https://i.328888.xyz/2023/02/07/royJE.jpeg'
+  img: 'https://raw.githubusercontent.com/oO0OoOo/cpblog-hexo/main/source/images/bg/mottoBg.webp'
   desc: ''  #愿你如风，被人温柔以待
   full: false
   video: ''
