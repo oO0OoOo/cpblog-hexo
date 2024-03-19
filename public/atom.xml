@@ -6,7 +6,7 @@
   <link href="http://epya15.fun/atom.xml" rel="self"/>
   
   <link href="http://epya15.fun/"/>
-  <updated>2024-03-19T13:20:55.894Z</updated>
+  <updated>2024-03-19T13:24:32.729Z</updated>
   <id>http://epya15.fun/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="http://epya15.fun/2024/03/19/you-xiang-lian-tong-tu-de-guang-du-he-shen-du-you-xian-bian-li-lua/"/>
     <id>http://epya15.fun/2024/03/19/you-xiang-lian-tong-tu-de-guang-du-he-shen-du-you-xian-bian-li-lua/</id>
     <published>2024-03-18T16:00:00.000Z</published>
-    <updated>2024-03-19T13:20:55.894Z</updated>
+    <updated>2024-03-19T13:24:32.729Z</updated>
     
     
       
@@ -34,7 +34,7 @@
     
     
     
-    <category term="Unity" scheme="http://epya15.fun/categories/Unity/"/>
+    <category term="算法" scheme="http://epya15.fun/categories/%E7%AE%97%E6%B3%95/"/>
     
     
     <category term="算法" scheme="http://epya15.fun/tags/%E7%AE%97%E6%B3%95/"/>
@@ -46,7 +46,7 @@
     <link href="http://epya15.fun/2024/03/13/jie-jue-unity-da-bao-fang-wen-google-chao-shi-wen-ti/"/>
     <id>http://epya15.fun/2024/03/13/jie-jue-unity-da-bao-fang-wen-google-chao-shi-wen-ti/</id>
     <published>2024-03-12T16:00:00.000Z</published>
-    <updated>2024-03-13T12:18:14.315Z</updated>
+    <updated>2024-03-19T13:28:05.106Z</updated>
     
     
       
@@ -74,36 +74,17 @@
     <link href="http://epya15.fun/2024/02/01/bo-ke-da-jian/yun-fu-wu-qi-da-jian-bo-ke-wang-zhan-quan-tao-liu-cheng/"/>
     <id>http://epya15.fun/2024/02/01/bo-ke-da-jian/yun-fu-wu-qi-da-jian-bo-ke-wang-zhan-quan-tao-liu-cheng/</id>
     <published>2024-02-01T08:00:00.000Z</published>
-    <updated>2024-02-05T03:10:41.507Z</updated>
+    <updated>2024-03-19T13:27:46.399Z</updated>
     
     
     <summary type="html">不涉及概念解释，主要记录具体操作，以及写博文全套工具链用法</summary>
     
     
     
+    <category term="博客搭建" scheme="http://epya15.fun/categories/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/"/>
+    
     
     <category term="博客" scheme="http://epya15.fun/tags/%E5%8D%9A%E5%AE%A2/"/>
-    
-  </entry>
-  
-  <entry>
-    <title></title>
-    <link href="http://epya15.fun/2024/01/12/dui-chao-guo-2g-de-apk-chong-xin-jin-xing-4-zi-jie-dui-qi-bing-zuo-v1-v2-qian-ming/"/>
-    <id>http://epya15.fun/2024/01/12/dui-chao-guo-2g-de-apk-chong-xin-jin-xing-4-zi-jie-dui-qi-bing-zuo-v1-v2-qian-ming/</id>
-    <published>2024-01-12T08:40:49.751Z</published>
-    <updated>2024-02-02T06:20:16.246Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;title: 对超过2G的apk重新进行4字节对齐并做v1+v2签名&lt;br&gt;author:</summary>
-        
-      
-    
-    
-    
     
   </entry>
   
@@ -112,7 +93,7 @@
     <link href="http://epya15.fun/2024/01/09/unity-yu-ios-gong-cheng-qiao-jie-jie-shao/"/>
     <id>http://epya15.fun/2024/01/09/unity-yu-ios-gong-cheng-qiao-jie-jie-shao/</id>
     <published>2024-01-09T07:15:34.000Z</published>
-    <updated>2024-02-02T06:19:10.509Z</updated>
+    <updated>2024-03-19T13:27:30.495Z</updated>
     
     
     <summary type="html">Unity与iOS。</summary>
@@ -122,7 +103,7 @@
     <category term="sdk" scheme="http://epya15.fun/categories/sdk/"/>
     
     
-    <category term="博客" scheme="http://epya15.fun/tags/%E5%8D%9A%E5%AE%A2/"/>
+    <category term="iOS" scheme="http://epya15.fun/tags/iOS/"/>
     
   </entry>
   
@@ -131,7 +112,7 @@
     <link href="http://epya15.fun/2023/04/20/android-yu-unity-jiao-hu-zhi-androidjavaproxy-hui-diao-de-shi-yong/"/>
     <id>http://epya15.fun/2023/04/20/android-yu-unity-jiao-hu-zhi-androidjavaproxy-hui-diao-de-shi-yong/</id>
     <published>2023-04-20T06:46:00.000Z</published>
-    <updated>2024-01-12T09:14:33.017Z</updated>
+    <updated>2024-03-19T13:23:25.788Z</updated>
     
     
       
@@ -158,48 +139,32 @@
   </entry>
   
   <entry>
-    <title>往期封面2023/02/07 沙特猫</title>
-    <link href="http://epya15.fun/2023/02/07/feng-mian/wang-qi-feng-mian-2023-02-07-sha-te-mao/"/>
-    <id>http://epya15.fun/2023/02/07/feng-mian/wang-qi-feng-mian-2023-02-07-sha-te-mao/</id>
-    <published>2023-02-07T15:17:00.000Z</published>
-    <updated>2024-01-12T09:14:32.873Z</updated>
-    
-    
-    <summary type="html">它的父母是流浪猫，但它是家猫。</summary>
-    
-    
-    
-    <category term="往期封面" scheme="http://epya15.fun/categories/%E5%BE%80%E6%9C%9F%E5%B0%81%E9%9D%A2/"/>
-    
-    
-    <category term="生活" scheme="http://epya15.fun/tags/%E7%94%9F%E6%B4%BB/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>往期封面2023/01/18 熊猫兔珍贵影像资料</title>
-    <link href="http://epya15.fun/2023/01/18/feng-mian/wang-qi-feng-mian-2023-01-18-xiong-mao-tu-zhen-gui-ying-xiang-zi-liao/"/>
-    <id>http://epya15.fun/2023/01/18/feng-mian/wang-qi-feng-mian-2023-01-18-xiong-mao-tu-zhen-gui-ying-xiang-zi-liao/</id>
-    <published>2023-01-17T17:05:00.000Z</published>
-    <updated>2024-02-02T05:53:16.385Z</updated>
+    <title>对超过2G的apk重新进行4字节对齐并做v1+v2签名</title>
+    <link href="http://epya15.fun/2023/04/20/dui-chao-guo-2g-de-apk-chong-xin-jin-xing-4-zi-jie-dui-qi-bing-zuo-v1-v2-qian-ming/"/>
+    <id>http://epya15.fun/2023/04/20/dui-chao-guo-2g-de-apk-chong-xin-jin-xing-4-zi-jie-dui-qi-bing-zuo-v1-v2-qian-ming/</id>
+    <published>2023-04-20T05:51:00.000Z</published>
+    <updated>2024-03-19T13:28:00.640Z</updated>
     
     
       
       
         
         
-    <summary type="html">&lt;video width=&quot;540&quot; controls loop src=&quot;/images/histcover1_rabbit01.mp4&quot; /&gt;  
-
-&lt;video width=&quot;540&quot; controls loop</summary>
+    <summary type="html">&lt;h6 id=&quot;工具准备&quot;&gt;&lt;a href=&quot;#工具准备&quot; class=&quot;headerlink&quot; title=&quot;工具准备&quot;&gt;&lt;/a&gt;工具准备&lt;/h6&gt;&lt;ul&gt;
+&lt;li&gt;zipalign2G.exe文件下载: &lt;i class=&quot;fa fa-download&quot;&gt;&lt;/i&gt; &lt;a</summary>
         
       
     
     
     
-    <category term="往期封面" scheme="http://epya15.fun/categories/%E5%BE%80%E6%9C%9F%E5%B0%81%E9%9D%A2/"/>
+    <category term="Android" scheme="http://epya15.fun/categories/Android/"/>
+    
+    <category term="Unity" scheme="http://epya15.fun/categories/Android/Unity/"/>
     
     
-    <category term="生活" scheme="http://epya15.fun/tags/%E7%94%9F%E6%B4%BB/"/>
+    <category term="Android" scheme="http://epya15.fun/tags/Android/"/>
+    
+    <category term="打包" scheme="http://epya15.fun/tags/%E6%89%93%E5%8C%85/"/>
     
   </entry>
   
@@ -223,19 +188,18 @@
   </entry>
   
   <entry>
-    <title>测试文档</title>
-    <link href="http://epya15.fun/2023/01/09/ce-shi-wen-dang/"/>
-    <id>http://epya15.fun/2023/01/09/ce-shi-wen-dang/</id>
+    <title>hello world</title>
+    <link href="http://epya15.fun/2023/01/09/hello-world/"/>
+    <id>http://epya15.fun/2023/01/09/hello-world/</id>
     <published>2023-01-08T17:00:00.000Z</published>
-    <updated>2024-02-04T09:18:30.570Z</updated>
+    <updated>2024-03-19T13:26:24.261Z</updated>
     
     
       
       
         
         
-    <summary type="html">&lt;p&gt;撒大声地&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;/images/202402011754207.png&quot; class=&quot;lazyload placeholder&quot; data-srcset=&quot;/images/202402011754207.png&quot;</summary>
+    <summary type="html">&lt;p&gt;“Across the Great Wall we can reach every corner in the</summary>
         
       
     

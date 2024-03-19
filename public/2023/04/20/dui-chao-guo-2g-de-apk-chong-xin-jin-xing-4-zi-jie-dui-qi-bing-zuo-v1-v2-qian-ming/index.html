@@ -11,7 +11,7 @@
   <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-  <title>往期封面2023/02/07 沙特猫 | 赛朋博客</title>
+  <title>对超过2G的apk重新进行4字节对齐并做v1+v2签名 | 赛朋博客</title>
 
   <link rel="icon" type="image/jpeg" href="/favicon.jpg">
   <link rel="stylesheet" href="https://at.alicdn.com/t/font_1911880_c1nvbyezg17.css">
@@ -649,21 +649,21 @@
 
 
 <div class="post-detail-header" id="thumbnail_canvas" style="background-repeat: no-repeat; background-size: cover; 
-  background-position: center center;position: relative;background-image:url('https://i.328888.xyz/2023/02/08/rQNjH.jpeg')">
+  background-position: center center;position: relative;background-image:url('https://raw.githubusercontent.com/oO0OoOo/cpblog-hexo/main/source/images/bg/591039263be09.jpg')">
   <div class="post-detail-header-mask"></div>
   <canvas id="header_canvas"style="position:absolute;bottom:0;pointer-events:none;"></canvas>
   
   <div class="post-detail-header_info-box">
     <div class="title-box">
       <span class="title">
-        往期封面2023/02/07 沙特猫
+        对超过2G的apk重新进行4字节对齐并做v1+v2签名
       </span>
     </div>
     
     
       
         <span class="post-detail-header_date">
-          <i class="fas fa-calendar"></i> Published in：2023-02-07 |
+          <i class="fas fa-calendar"></i> Published in：2023-04-20 |
         </span>
       
 
@@ -671,8 +671,12 @@
         <span class="post-detail-header_categories">
           <i class="iconfont iconbookmark1"></i> category：
           
-            <a href="/categories/%E5%BE%80%E6%9C%9F%E5%B0%81%E9%9D%A2/" class="post-detail-header_category">
-              往期封面
+            <a href="/categories/Android/" class="post-detail-header_category">
+              Android
+            </a>
+          
+            <a href="/categories/Android/Unity/" class="post-detail-header_category">
+              Unity
             </a>
           
         </span>
@@ -702,19 +706,42 @@
   <div class="main-content">
     <article class="post post-detail">
       <div class="post-content">
-        <p>沙特猫影集精选  </p>
-<div class="video"><video controls preload><source src='/images/coverres_20230207_01.mp4' type='video/mp4'>Your browser does not support the video tag.</video></div>  
-<div class="video"><video controls preload><source src='/images/coverres_20230207_02.mp4' type='video/mp4'>Your browser does not support the video tag.</video></div>  
-<div class="video"><video controls preload><source src='/images/coverres_20230207_03.mp4' type='video/mp4'>Your browser does not support the video tag.</video></div>  
-<div class="video"><video controls preload><source src='/images/coverres_20230207_04.mp4' type='video/mp4'>Your browser does not support the video tag.</video></div>  
-<div class="video"><video controls preload><source src='/images/cover_20230207.mp4' type='video/mp4'>Your browser does not support the video tag.</video></div>  
+        <h6 id="工具准备"><a href="#工具准备" class="headerlink" title="工具准备"></a>工具准备</h6><ul>
+<li>zipalign2G.exe文件下载: <i class="fa fa-download"></i> <a target="_blank" rel="noopener" href="https://download.csdn.net/download/liyingzai/13216149?spm=1001.2101.3001.6650.8&utm_medium=distribute.pc_relevant.none-task-download-2~default~OPENSEARCH~Rate-8-13216149-blog-8109883.235%5Ev29%5Epc_relevant_default_base3&depth_1-utm_source=distribute.pc_relevant.none-task-download-2~default~OPENSEARCH~Rate-8-13216149-blog-8109883.235%5Ev29%5Epc_relevant_default_base3&utm_relevant_index=8">zipalign2G.exe</a> </li>
+<li>apksigner.jar（一般位于AndroidSDK的build-tools文件夹内）</li>
+<li>keystore文件，key-alias，key-password信息</li>
+</ul>
+<h6 id="操作步骤"><a href="#操作步骤" class="headerlink" title="操作步骤"></a>操作步骤</h6><p>假设zipalign2G.exe，apksigner.jar，apk包，keystore的绝对路径位于D:\<br>1.对apk重新进行4字节对齐，命令如下  </p>
+<blockquote>
+<p>D:\zipalign2G.exe -f -v 4 D:\input.apk D:\output_aligned.apk  </p>
+</blockquote>
+<p>提示Verification succesful即为成功</p>
+<p>2.进行v1+v2签名，命令如下  </p>
+<blockquote>
+<p>java -jar D:\apksigner.jar sign –ks D:\myapk.keystore –ks-key-alias myaliasname –ks-pass pass:12345678 –key-pass pass:12345678 –out D:\output_signed.apk D:\output_aligned.apk  </p>
+</blockquote>
+<p>3.通过以下命令验证是否签名成功  </p>
+<blockquote>
+<p>java -jar D:\apksigner.jar verify -v D:\output_signed.apk  </p>
+</blockquote>
+<p>若出现  </p>
+<blockquote>
+<p>Verifies<br>Verified using v1 scheme (JAR signing): true<br>Verified using v2 scheme (APK Signature Scheme v2): true  </p>
+</blockquote>
+<p>说明签名成功  </p>
+<p>此时的包就可以安装到Android 11版本以上的手机了。</p>
+
       </div>
       <div class="post-tags-categories">
         
         <div class="tags">
           
-            <a href="/tags/%E7%94%9F%E6%B4%BB/" class="">
-              生活
+            <a href="/tags/Android/" class="">
+              Android
+            </a>
+          
+            <a href="/tags/%E6%89%93%E5%8C%85/" class="">
+              打包
             </a>
           
         </div>
@@ -728,7 +755,7 @@
     </li>
     <li class="post-copyright-link">
     <strong>link:  </strong>
-    <a href="/2023/02/07/feng-mian/wang-qi-feng-mian-2023-02-07-sha-te-mao/" target="_blank" title="往期封面2023/02/07 沙特猫">http://epya15.fun/2023/02/07/feng-mian/wang-qi-feng-mian-2023-02-07-sha-te-mao/</a>
+    <a href="/2023/04/20/dui-chao-guo-2g-de-apk-chong-xin-jin-xing-4-zi-jie-dui-qi-bing-zuo-v1-v2-qian-ming/" target="_blank" title="对超过2G的apk重新进行4字节对齐并做v1+v2签名">http://epya15.fun/2023/04/20/dui-chao-guo-2g-de-apk-chong-xin-jin-xing-4-zi-jie-dui-qi-bing-zuo-v1-v2-qian-ming/</a>
     </li>
     <li class="post-copyright-license">
       <strong>Copyright notice:   </strong>
@@ -750,7 +777,7 @@
   <div class="post-nav-prev post-nav-item">
     <div class="post-nav-img" style="background-size: cover; 
       background-position: center center;">
-      <img class="lazyload lazyload placeholder" src="/medias/1.jpg" class="lazyload placeholder" data-srcset="/medias/1.jpg" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" alt="">
+      <img class="lazyload lazyload placeholder" src="https://raw.githubusercontent.com/oO0OoOo/cpblog-hexo/main/source/images/bg/591039294a193.jpg" class="lazyload placeholder" data-srcset="https://raw.githubusercontent.com/oO0OoOo/cpblog-hexo/main/source/images/bg/591039294a193.jpg" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" alt="">
     </div>
     <a href="/2023/04/20/android-yu-unity-jiao-hu-zhi-androidjavaproxy-hui-diao-de-shi-yong/" class="post-nav-link">
       <div class="title">
@@ -770,27 +797,16 @@
   <div class="post-nav-next post-nav-item">
     <div class="post-nav-img" style="background-size: cover; 
       background-position: center center;">
-      <img class="lazyload lazyload placeholder" src="/images/cover_rebbitbg.jpg" class="lazyload placeholder" data-srcset="/images/cover_rebbitbg.jpg" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" src="" alt="">
+      <img class="lazyload lazyload placeholder" src="/medias/4.jpg" class="lazyload placeholder" data-srcset="/medias/4.jpg" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" src="" alt="">
     </div>
-    <a href="/2023/01/18/feng-mian/wang-qi-feng-mian-2023-01-18-xiong-mao-tu-zhen-gui-ying-xiang-zi-liao/" class="post-nav-link">
+    <a href="/2023/01/09/bo-ke-da-jian/markdown-chang-yong-yu-fa/" class="post-nav-link">
       <div class="title">
         Next: <i class="fas fa-angle-right"></i>
-        <div class="title-text">往期封面2023/01/18 熊猫兔珍贵影像资料</div>
+        <div class="title-text">Markdown常用语法</div>
       </div>
       <!-- <div class="content">
-          
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
+        本文记录了书写博文时常用的Markdown语法和Html标签
+Markdown官方文档：https://markdown
       </div> -->
     </a>
   </div>
@@ -926,7 +942,7 @@
   <div class='content'>
     <div class="toc-main">
       <div class="toc-content">
-        <!--  -->
+        <!-- <ol class="toc"><li class="toc-item toc-level-6"><a class="toc-link" href="#%E5%B7%A5%E5%85%B7%E5%87%86%E5%A4%87"><span class="toc-text">工具准备</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E6%93%8D%E4%BD%9C%E6%AD%A5%E9%AA%A4"><span class="toc-text">操作步骤</span></a></li></ol> -->
         <div class="toc"></div>
       </div>
     </div>
@@ -982,7 +998,7 @@
             <div class="post-img-box">
               <a href="/2024/03/13/jie-jue-unity-da-bao-fang-wen-google-chao-shi-wen-ti/" class="post-img " style="background-size: cover; 
                 background-position: center center;">
-                <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="https://raw.githubusercontent.com/oO0OoOo/cpblog-hexo/main/source/images/591039263be09.jpg" class="lazyload placeholder" data-srcset="https://raw.githubusercontent.com/oO0OoOo/cpblog-hexo/main/source/images/591039263be09.jpg" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" alt="">
+                <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="https://raw.githubusercontent.com/oO0OoOo/cpblog-hexo/main/source/images/bg/591039263be09.jpg" class="lazyload placeholder" data-srcset="https://raw.githubusercontent.com/oO0OoOo/cpblog-hexo/main/source/images/bg/591039263be09.jpg" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" alt="">
               </a>
             </div>
             <div class="post-date-title">
@@ -1003,7 +1019,7 @@
             <div class="post-img-box">
               <a href="/2024/02/01/bo-ke-da-jian/yun-fu-wu-qi-da-jian-bo-ke-wang-zhan-quan-tao-liu-cheng/" class="post-img " style="background-size: cover; 
                 background-position: center center;">
-                <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="/medias/3.jpg" class="lazyload placeholder" data-srcset="/medias/3.jpg" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" alt="">
+                <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="https://raw.githubusercontent.com/oO0OoOo/cpblog-hexo/main/source/images/bg/591039263be09.jpg" class="lazyload placeholder" data-srcset="https://raw.githubusercontent.com/oO0OoOo/cpblog-hexo/main/source/images/bg/591039263be09.jpg" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" alt="">
               </a>
             </div>
             <div class="post-date-title">
@@ -1022,30 +1038,9 @@
             
 
             <div class="post-img-box">
-              <a href="/2024/01/12/dui-chao-guo-2g-de-apk-chong-xin-jin-xing-4-zi-jie-dui-qi-bing-zuo-v1-v2-qian-ming/" class="post-img " style="background-size: cover; 
-                background-position: center center;">
-                <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="/medias/1.jpg" class="lazyload placeholder" data-srcset="/medias/1.jpg" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" alt="">
-              </a>
-            </div>
-            <div class="post-date-title">
-              <div>
-                
-                  <span class="post-date">01-12</span>
-                
-              </div>
-              <a class="post-title" href="/2024/01/12/dui-chao-guo-2g-de-apk-chong-xin-jin-xing-4-zi-jie-dui-qi-bing-zuo-v1-v2-qian-ming/">no title</a>
-            </div>
-          </div>
-        
-          <div class="aside-list-item">
-            
-            
-            
-
-            <div class="post-img-box">
               <a href="/2024/01/09/unity-yu-ios-gong-cheng-qiao-jie-jie-shao/" class="post-img " style="background-size: cover; 
                 background-position: center center;">
-                <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="https://raw.githubusercontent.com/oO0OoOo/cpblog-hexo/main/source/images/591039294a193.jpg" class="lazyload placeholder" data-srcset="https://raw.githubusercontent.com/oO0OoOo/cpblog-hexo/main/source/images/591039294a193.jpg" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" alt="">
+                <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="https://raw.githubusercontent.com/oO0OoOo/cpblog-hexo/main/source/images/bg/591039294a193.jpg" class="lazyload placeholder" data-srcset="https://raw.githubusercontent.com/oO0OoOo/cpblog-hexo/main/source/images/bg/591039294a193.jpg" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" alt="">
               </a>
             </div>
             <div class="post-date-title">
@@ -1055,6 +1050,27 @@
                 
               </div>
               <a class="post-title" href="/2024/01/09/unity-yu-ios-gong-cheng-qiao-jie-jie-shao/">Unity 与 iOS 工程桥接介绍</a>
+            </div>
+          </div>
+        
+          <div class="aside-list-item">
+            
+            
+            
+
+            <div class="post-img-box">
+              <a href="/2023/04/20/android-yu-unity-jiao-hu-zhi-androidjavaproxy-hui-diao-de-shi-yong/" class="post-img " style="background-size: cover; 
+                background-position: center center;">
+                <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="https://raw.githubusercontent.com/oO0OoOo/cpblog-hexo/main/source/images/bg/591039294a193.jpg" class="lazyload placeholder" data-srcset="https://raw.githubusercontent.com/oO0OoOo/cpblog-hexo/main/source/images/bg/591039294a193.jpg" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" alt="">
+              </a>
+            </div>
+            <div class="post-date-title">
+              <div>
+                
+                  <span class="post-date">04-20</span>
+                
+              </div>
+              <a class="post-title" href="/2023/04/20/android-yu-unity-jiao-hu-zhi-androidjavaproxy-hui-diao-de-shi-yong/">Android与Unity交互之AndroidJavaProxy回调的使用</a>
             </div>
           </div>
         

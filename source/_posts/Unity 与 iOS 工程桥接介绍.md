@@ -1,12 +1,12 @@
+---
 title: Unity 与 iOS 工程桥接介绍
 author: epya15
 tags:
-
-  - 博客
+  - iOS
 categories:
   - sdk
 date: 2024-01-09 15:15:34
-img: https://raw.githubusercontent.com/oO0OoOo/cpblog-hexo/main/source/images/591039294a193.jpg
+img: https://raw.githubusercontent.com/oO0OoOo/cpblog-hexo/main/source/images/bg/591039294a193.jpg
 excerpt: 'Unity与iOS。'
 ---
 
