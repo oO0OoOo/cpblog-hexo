@@ -11,7 +11,7 @@
   <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-  <title>图的广度优先遍历（lua） | 赛朋博客</title>
+  <title>Tag: 算法 | 赛朋博客</title>
 
   <link rel="icon" type="image/jpeg" href="/favicon.jpg">
   <link rel="stylesheet" href="https://at.alicdn.com/t/font_1911880_c1nvbyezg17.css">
@@ -636,564 +636,98 @@
 </header>
         <!-- 内容区域 -->
         
- <!-- prismjs 代码高亮 -->
- 
 
+<div class="bg-dark-floor" style="position: fixed;left: 0;top: 0;width: 100%;height: 100%;z-index: -2;"></div>
+<div class="bg-light-floor-tagDetail" style="position: fixed;left: 0;top: 0;width: 100%;height: 100%;z-index: -3;"></div>
 
-<div class="bg-dark-floor" style="position: fixed;left: 0;top: 0;width: 100%;height: 100%;z-index: -1;"></div>
-
-
-  <!-- 文章详情页顶部图片和标题 -->
-
-
-
-
-<div class="post-detail-header" id="thumbnail_canvas" style="background-repeat: no-repeat; background-size: cover; 
-  background-position: center center;position: relative;background-image:url('https://raw.githubusercontent.com/oO0OoOo/cpblog-hexo/main/source/images/591039263be09.jpg')">
-  <div class="post-detail-header-mask"></div>
-  <canvas id="header_canvas"style="position:absolute;bottom:0;pointer-events:none;"></canvas>
+<div class="tag-header" style="background-image: url('https://i.328888.xyz/2023/02/07/roU5X.jpeg');">
+  <div class="tag-header-title">
+    标签
+  </div>
+  <div class="tag-header-desc">
   
-  <div class="post-detail-header_info-box">
-    <div class="title-box">
-      <span class="title">
-        图的广度优先遍历（lua）
-      </span>
-    </div>
-    
-    
-      
-        <span class="post-detail-header_date">
-          <i class="fas fa-calendar"></i> Published in：2024-03-19 |
+        <span class="title">
+        
         </span>
-      
-
-      
-        <span class="post-detail-header_categories">
-          <i class="iconfont iconbookmark1"></i> category：
-          
-            <a href="/categories/Unity/" class="post-detail-header_category">
-              Unity
-            </a>
-          
-        </span>
-      
-
-      
-          
-            <span class="reading">
-              <i class="fas fa-eye"></i> reading：<span id="busuanzi_value_page_pv"></span>
-            </span>
-          
-      
     
   </div>
-  
-  
-    <script src="/js/bubble/bubble.js"></script>
-  
+  <div class="mask-box"></div>
 </div>
 
 
 
+<div class="tag">
+  <div class="tag-name">
+    <div class="name" style="background-color: #F9EBEA;">算法 category</div>
+  </div>
+  <!-- 每一篇文章卡片 -->
+  <!-- hash算法 -->
+
+<section class="posts">
+  
+    
+    <article class="post reveal" style="flex-direction: row-reverse;   ">
+      <div class="post-main">
+        <div class="post-info">
+          <div class="post-time">
+            <i class="fas fa-clock" aria-hidden="true"></i>
+            <span class="post-time">2024-03-19</span>
+          </div>
+          <div class="post-title">
+            <a class="post-title-link" href="/2024/03/19/you-xiang-lian-tong-tu-de-guang-du-you-xian-bian-li/">有向连通图的广度和深度优先遍历（lua）</a>
+          </div>
+          <div class="post-meta">
+            <div class="post-tags">
+              <!-- 文章详情页的标签 -->
+
+    <i class="iconfont icontag"></i>
+    <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li></ul>
+
+            </div>
+            <div class="post-categories">
+              <!-- 文章详情页的分类 -->
+
+<div class="article-category">
+  <i class="iconfont iconbookmark1"></i>
+  <a class="article-category-link" href="/categories/Unity/">Unity</a>
+</div>
 
 
-<div class="post-detail-content post-row" 
-  style="padding-top: 0px;">
-  <div class="main-content">
-    <article class="post post-detail">
-      <div class="post-content">
-        <figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">--定义方法：判断列表是否存在指定元素</span></span><br><span class="line"><span class="keyword">local</span> contains = <span class="function"><span class="keyword">function</span><span class="params">(list, element)</span></span></span><br><span class="line">    <span class="keyword">for</span> i = <span class="number">1</span>, #list <span class="keyword">do</span></span><br><span class="line">        <span class="keyword">if</span> list[i] == element <span class="keyword">then</span></span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="comment">--构建图</span></span><br><span class="line"><span class="keyword">local</span> map = &#123;&#125;</span><br><span class="line">map[<span class="string">&quot;v1&quot;</span>] = &#123;<span class="string">&quot;v2&quot;</span>, <span class="string">&quot;v5&quot;</span>, <span class="string">&quot;v3&quot;</span>, <span class="string">&quot;v8&quot;</span>&#125;</span><br><span class="line">map[<span class="string">&quot;v2&quot;</span>] = &#123;<span class="string">&quot;v1&quot;</span>, <span class="string">&quot;v4&quot;</span>&#125;</span><br><span class="line">map[<span class="string">&quot;v3&quot;</span>] = &#123;<span class="string">&quot;v1&quot;</span>, <span class="string">&quot;v8&quot;</span>, <span class="string">&quot;v6&quot;</span>, <span class="string">&quot;v7&quot;</span>&#125;</span><br><span class="line">map[<span class="string">&quot;v4&quot;</span>] = &#123;<span class="string">&quot;v2&quot;</span>, <span class="string">&quot;v5&quot;</span>&#125;</span><br><span class="line">map[<span class="string">&quot;v5&quot;</span>] = &#123;<span class="string">&quot;v4&quot;</span>, <span class="string">&quot;v3&quot;</span>, <span class="string">&quot;v8&quot;</span>&#125;</span><br><span class="line">map[<span class="string">&quot;v6&quot;</span>] = &#123;<span class="string">&quot;v3&quot;</span>&#125;</span><br><span class="line">map[<span class="string">&quot;v7&quot;</span>] = &#123;<span class="string">&quot;v3&quot;</span>&#125;</span><br><span class="line">map[<span class="string">&quot;v8&quot;</span>] = &#123;<span class="string">&quot;v4&quot;</span>, <span class="string">&quot;v5&quot;</span>&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">local</span> <span class="built_in">output</span> = <span class="string">&quot;&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">local</span> queue = &#123;&#125;		<span class="comment">--数组模拟队列</span></span><br><span class="line">queue[<span class="number">1</span>] = <span class="string">&quot;v1&quot;</span></span><br><span class="line"><span class="keyword">local</span> visited = &#123; queue[<span class="number">1</span>] &#125;		<span class="comment">--存储访问过的结点</span></span><br><span class="line"><span class="keyword">local</span> qPtr = <span class="number">1</span>			<span class="comment">--数组模拟队列，qPtr代表队列头</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">repeat</span></span><br><span class="line">	<span class="keyword">local</span> node = queue[qPtr]</span><br><span class="line">	<span class="keyword">local</span> neighborList = map[node]	<span class="comment">--node的邻接表</span></span><br><span class="line">	<span class="keyword">for</span> i = <span class="number">1</span>, #neighborList <span class="keyword">do</span></span><br><span class="line">		<span class="keyword">if</span> <span class="keyword">not</span> contains(visited, neighborList[i]) <span class="keyword">then</span></span><br><span class="line">			queue[#queue + <span class="number">1</span>] = neighborList[i]</span><br><span class="line">			<span class="built_in">table</span>.<span class="built_in">insert</span>(visited, neighborList[i])</span><br><span class="line">		<span class="keyword">end</span></span><br><span class="line">	<span class="keyword">end</span></span><br><span class="line">	queue[qPtr] = <span class="string">&quot;&quot;</span></span><br><span class="line">	qPtr = qPtr + <span class="number">1</span></span><br><span class="line">	<span class="built_in">output</span> = <span class="built_in">output</span> .. node .. <span class="string">&quot;,&quot;</span></span><br><span class="line"><span class="keyword">until</span>(qPtr &gt; #queue)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">string</span>.<span class="built_in">sub</span>(<span class="built_in">output</span>, <span class="number">1</span>, #<span class="built_in">output</span> - <span class="number">1</span>))</span><br></pre></td></tr></table></figure>
-
-      </div>
-      <div class="post-tags-categories">
-        
-        <div class="tags">
-          
-            <a href="/tags/Android/" class="">
-              Android
+            </div>
+          </div>
+          <div class="post-img-mobile">
+            <a href="/2024/03/19/you-xiang-lian-tong-tu-de-guang-du-you-xian-bian-li/" style="background-size: cover; 
+              background-position: center center;">
+              <img class="lazyload lazyload placeholder" src="https://raw.githubusercontent.com/oO0OoOo/cpblog-hexo/main/source/images/591039263be09.jpg" class="lazyload placeholder" data-srcset="https://raw.githubusercontent.com/oO0OoOo/cpblog-hexo/main/source/images/591039263be09.jpg" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" alt="">
             </a>
-          
-            <a href="/tags/%E6%89%93%E5%8C%85/" class="">
-              打包
-            </a>
-          
+          </div>
+          <div class="post-content">
+            
+广度优先遍历（BFS）从v1结点出发，并访问v1。
+依次访问v1的所有未被访问过的邻接点。
+再从邻接点出发，依次访问它们的邻接点，并使先被访问的顶点的邻接点先于后被访问的顶点的邻接点。重复步骤，直至图中所有已被访问的顶点的邻接点都被访问到
+          </div>
         </div>
-        
+        <div class="post-more">
+          <a href="/2024/03/19/you-xiang-lian-tong-tu-de-guang-du-you-xian-bian-li/">
+            <i class="iconfont iconmore" pointer style="float: right;  " title="阅读更多"></i>
+          </a>
+        </div>
       </div>
-      
-        <div class="copyright">
-  <ul class="post-copyright">
-    <li class="post-copyright-author">
-    <strong>author:  </strong>cypunberk.admin</a>
-    </li>
-    <li class="post-copyright-link">
-    <strong>link:  </strong>
-    <a href="/2024/03/19/tu-de-guang-du-you-xian-bian-li/" target="_blank" title="图的广度优先遍历（lua）">http://epya15.fun/2024/03/19/tu-de-guang-du-you-xian-bian-li/</a>
-    </li>
-    <li class="post-copyright-license">
-      <strong>Copyright notice:   </strong>
-      All articles on this website, unless otherwise stated, adopt <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">CC BY-NC-ND 4.0</a>
-      reprint policy. If reproduced, please indicate source!
-    </li>
-  </ul>
-<div>
-      
-    </article>
-    <!-- 上一篇文章和下一篇文章 -->
-    
-      <!-- 文章详情页的上一页和下一页 -->
-<div class="post-nav">
-
-
-
-
-
-  
-  <div class="post-nav-next post-nav-item">
-    <div class="post-nav-img" style="background-size: cover; 
-      background-position: center center;">
-      <img class="lazyload lazyload placeholder" src="https://raw.githubusercontent.com/oO0OoOo/cpblog-hexo/main/source/images/591039263be09.jpg" class="lazyload placeholder" data-srcset="https://raw.githubusercontent.com/oO0OoOo/cpblog-hexo/main/source/images/591039263be09.jpg" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" src="" alt="">
-    </div>
-    <a href="/2024/03/13/jie-jue-unity-da-bao-fang-wen-google-chao-shi-wen-ti/" class="post-nav-link">
-      <div class="title">
-        Next: <i class="fas fa-angle-right"></i>
-        <div class="title-text">解决Unity打包访问google超时问题</div>
-      </div>
-      <!-- <div class="content">
-        问题现象Unity打Android包时卡在以下步骤，拖慢打包速度，但最终可以打包成功。
-
-
-问题原因访问google超时
-      </div> -->
-    </a>
-  </div>
-
-</div>
-
-    
-    
-
-    <!-- 打赏 -->
-    
-
-    <!-- 分享 -->
-    
-      <!-- https://github.com/overtrue/share.js -->
-<!-- 文章详情页的分享 -->
-<div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
-
-<script src="/js/shareJs/social-share.min.js"></script>
-</script>
-
-<style>
-  .social-share {
-    margin: 20px 0;
-  }
-</style>
-
-
-    
-    
-    <!-- 评论 -->
-    <!-- 评论 -->
-
-  <div id="myComment">
-    
-      <div id="gitment-container"></div>
-
-    
-  </div>
-
-<!-- comment script in themes\hexo-theme-bamboo\layout\_partial\scripts\index.ejs -->
-
-
-  </div>
-
-  <!-- 目录 -->
-  
-<aside id='l_side'>
-  
-    
-      
-        <section class="widget side_blogger">
-  <div class='content'>
-    
-      
-        <a class='avatar flat-box rectangle' href='/about/'>
-          <img src='/medias/logo.jpg'/>
+      <div class="post-img">
+        <a href="/2024/03/19/you-xiang-lian-tong-tu-de-guang-du-you-xian-bian-li/" style="background-size: cover; 
+          background-position: center center;">
+          <img class="lazyload lazyload placeholder" src="https://raw.githubusercontent.com/oO0OoOo/cpblog-hexo/main/source/images/591039263be09.jpg" class="lazyload placeholder" data-srcset="https://raw.githubusercontent.com/oO0OoOo/cpblog-hexo/main/source/images/591039263be09.jpg" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" alt="">
         </a>
-      
-    
-    
-      <div class='text'>
-        
-        
-          <p>今天是最后一天.</p>
-
-        
-        
       </div>
-    
-    
-      <div class="social-wrapper">
-        
-          
-            <a href="/atom.xml"
-              class="social fas fa-rss flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-          
-            <a href="mailto:epya15@gmail.com"
-              class="social fas fa-envelope flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-          
-            <a href="https://github.com/oO0OoOo/oO0OoOo.github.io"
-              class="social fab fa-github flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-          
-            <a href="tencent://AddContact/?fromId=50&amp;fromSubId=1&amp;subcmd=all&amp;uin=747873399"
-              class="social fab fa-qq flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-      </div>
-    
-  </div>
+    </article>
+  
 </section>
-
-      
-    
-  
-  
-  
-
-  <div class="layout_sticky">    
-    
-      
-<section class="widget side_toc">
-  
-  <header>
-    
-      <i style="color: " class="fas fa-list fa-fw" aria-hidden="true"></i><span class='name'>本文目录</span>
-    
-  </header>
-
-
-  <div class='content'>
-    <div class="toc-main">
-      <div class="toc-content">
-        <!--  -->
-        <div class="toc"></div>
-      </div>
-    </div>
-  </div>
-</section>
-<!-- 手机端目录按钮 -->
-<div id="toc-mobile-btn">
-  <i class="fas fa-list-ul" aria-hidden="true"></i>
 </div>
 
-      
-  <section class="widget side_recent_post">
-    
-  <header>
-    
-      <a style="color: " href='/tags/'><i class="fas fa-book fa-fw" aria-hidden="true"></i><span class='name'>最新文章</span></a>
-    
-  </header>
-
-
-    <div class='content'>
-      
-      <!-- hash算法 -->
-      
-      <div class="aside-list">
-        
-          <div class="aside-list-item">
-            
-            
-            
-
-            <div class="post-img-box">
-              <a href="/2024/03/19/tu-de-guang-du-you-xian-bian-li/" class="post-img " style="background-size: cover; 
-                background-position: center center;">
-                <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="https://raw.githubusercontent.com/oO0OoOo/cpblog-hexo/main/source/images/591039263be09.jpg" class="lazyload placeholder" data-srcset="https://raw.githubusercontent.com/oO0OoOo/cpblog-hexo/main/source/images/591039263be09.jpg" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" alt="">
-              </a>
-            </div>
-            <div class="post-date-title">
-              <div>
-                
-                  <span class="post-date">03-19</span>
-                
-              </div>
-              <a class="post-title" href="/2024/03/19/tu-de-guang-du-you-xian-bian-li/">图的广度优先遍历（lua）</a>
-            </div>
-          </div>
-        
-          <div class="aside-list-item">
-            
-            
-            
-
-            <div class="post-img-box">
-              <a href="/2024/03/13/jie-jue-unity-da-bao-fang-wen-google-chao-shi-wen-ti/" class="post-img " style="background-size: cover; 
-                background-position: center center;">
-                <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="https://raw.githubusercontent.com/oO0OoOo/cpblog-hexo/main/source/images/591039263be09.jpg" class="lazyload placeholder" data-srcset="https://raw.githubusercontent.com/oO0OoOo/cpblog-hexo/main/source/images/591039263be09.jpg" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" alt="">
-              </a>
-            </div>
-            <div class="post-date-title">
-              <div>
-                
-                  <span class="post-date">03-13</span>
-                
-              </div>
-              <a class="post-title" href="/2024/03/13/jie-jue-unity-da-bao-fang-wen-google-chao-shi-wen-ti/">解决Unity打包访问google超时问题</a>
-            </div>
-          </div>
-        
-          <div class="aside-list-item">
-            
-            
-            
-
-            <div class="post-img-box">
-              <a href="/2024/02/01/bo-ke-da-jian/yun-fu-wu-qi-da-jian-bo-ke-wang-zhan-quan-tao-liu-cheng/" class="post-img " style="background-size: cover; 
-                background-position: center center;">
-                <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="/medias/3.jpg" class="lazyload placeholder" data-srcset="/medias/3.jpg" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" alt="">
-              </a>
-            </div>
-            <div class="post-date-title">
-              <div>
-                
-                  <span class="post-date">02-01</span>
-                
-              </div>
-              <a class="post-title" href="/2024/02/01/bo-ke-da-jian/yun-fu-wu-qi-da-jian-bo-ke-wang-zhan-quan-tao-liu-cheng/">云服务器搭建博客网站全套流程（浓缩版）</a>
-            </div>
-          </div>
-        
-          <div class="aside-list-item">
-            
-            
-            
-
-            <div class="post-img-box">
-              <a href="/2024/01/12/dui-chao-guo-2g-de-apk-chong-xin-jin-xing-4-zi-jie-dui-qi-bing-zuo-v1-v2-qian-ming/" class="post-img " style="background-size: cover; 
-                background-position: center center;">
-                <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="/medias/1.jpg" class="lazyload placeholder" data-srcset="/medias/1.jpg" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" alt="">
-              </a>
-            </div>
-            <div class="post-date-title">
-              <div>
-                
-                  <span class="post-date">01-12</span>
-                
-              </div>
-              <a class="post-title" href="/2024/01/12/dui-chao-guo-2g-de-apk-chong-xin-jin-xing-4-zi-jie-dui-qi-bing-zuo-v1-v2-qian-ming/">no title</a>
-            </div>
-          </div>
-        
-          <div class="aside-list-item">
-            
-            
-            
-
-            <div class="post-img-box">
-              <a href="/2024/01/09/unity-yu-ios-gong-cheng-qiao-jie-jie-shao/" class="post-img " style="background-size: cover; 
-                background-position: center center;">
-                <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="https://raw.githubusercontent.com/oO0OoOo/cpblog-hexo/main/source/images/591039294a193.jpg" class="lazyload placeholder" data-srcset="https://raw.githubusercontent.com/oO0OoOo/cpblog-hexo/main/source/images/591039294a193.jpg" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" alt="">
-              </a>
-            </div>
-            <div class="post-date-title">
-              <div>
-                
-                  <span class="post-date">01-09</span>
-                
-              </div>
-              <a class="post-title" href="/2024/01/09/unity-yu-ios-gong-cheng-qiao-jie-jie-shao/">Unity 与 iOS 工程桥接介绍</a>
-            </div>
-          </div>
-        
-      </div>
-    </div>
-  </section>
-
-    
-  </div>
-</aside>
-
-
-  <!-- 图片放大 Wrap images with fancybox support -->
-  <script src="/js/wrapImage.js"></script>
-</div>
-
-<!-- 文章详情页背景图 -->
-<div id="appBgSwiper" style="position: fixed;left: 0;top: 0;width: 100%;height: 100%;z-index: -2;"
-	:style="{'background-color': bgColor ? bgColor : 'transparent'}">
-	<transition-group tag="ul" :name="names">
-		<li v-for='(image,index) in img' :key='index' v-show="index === mark" class="bg-swiper-box">
-			<img :src="image" class="bg-swiper-img no-lazy">
-		</li>
-	</transition-group>
-</div>
-<script>
-	var vm = new Vue({
-		el: '#appBgSwiper',
-		data: {
-			names: '' || 'fade' || 'fade', // translate-fade fade
-			mark: 0,
-			img: [],
-			bgColor: '',
-			time: null
-		},
-		methods: {   //添加方法
-			change(i, m) {
-				if (i > m) {
-					// this.names = 'fade';
-				} else if (i < m) {
-					// this.names = 'fade';
-				} else {
-					return;
-				}
-				this.mark = i;
-			},
-			prev() {
-				// this.names = 'fade';
-				this.mark--;
-				if (this.mark === -1) {
-					this.mark = 3;
-					return
-				}
-			},
-			next() {
-				// this.names = 'fade';
-				this.mark++;
-				if (this.mark === this.img.length) {
-					this.mark = 0;
-					return
-				}
-			},
-			autoPlay() {
-				// this.names = 'fade';
-				this.mark++;
-				if (this.mark === this.img.length) {
-					this.mark = 0;
-					return
-				}
-			},
-			play() {
-				let bgImgDelay = '' || '180000'
-				let delay = parseInt(bgImgDelay) || 180000;
-				this.time = setInterval(this.autoPlay, delay);
-			},
-			enter() {
-				clearInterval(this.time);
-			},
-			leave() {
-				this.play();
-			}
-		},
-		created() {
-			this.play()
-		},
-		beforeDestroy() {
-			clearInterval(this.time);
-		},
-		mounted() {
-			let prop = '' || 'https://raw.githubusercontent.com/oO0OoOo/cpblog-hexo/main/source/images/bg/5910391f5ba57.jpg,https://raw.githubusercontent.com/oO0OoOo/cpblog-hexo/main/source/images/bg/5910392d25805.jpg,https://raw.githubusercontent.com/oO0OoOo/cpblog-hexo/main/source/images/bg/591039263be09.jpg,https://raw.githubusercontent.com/oO0OoOo/cpblog-hexo/main/source/images/bg/591039294a193.jpg';
-			let isImg = prop.includes('.bmp') || prop.includes('.jpg') || prop.includes('.png') || prop.includes('.tif') || prop.includes('.gif') || prop.includes('.pcx') || prop.includes('.tga') || prop.includes('.exif') || prop.includes('.fpx') || prop.includes('.psd') || prop.includes('.cdr') || prop.includes('.pcd') || prop.includes('.dxf') || prop.includes('.ufo') || prop.includes('.eps') || prop.includes('.ai') || prop.includes('.raw') || prop.includes('.WMF') || prop.includes('.webp') || prop.includes('.jpeg') || prop.includes('http://') || prop.includes('https://')
-			if (isImg) {
-				let img = prop.split(',');
-				let configRoot = '/'
-				let arrImg = [];
-				img.forEach(el => {
-					var Expression = /http(s)?:\/\/([\w-]+\.)+[\w-]+(\/[\w- .\/?%&=]*)?/;
-					var objExp = new RegExp(Expression);
-
-					if (objExp.test(el)) {
-						// http or https
-						arrImg.push(el);
-					} else {
-						// 非http or https开头
-						// 本地文件
-						let firstStr = el.charAt(0);
-						if (firstStr == '/') {
-							el = el.substr(1); // 删除第一个字符 '/',因为 configRoot最后一个字符为 /
-						}
-						el = configRoot + el;
-						arrImg.push(el);
-					}
-				})
-				this.img = arrImg;
-			} else {
-				this.bgColor = prop;
-			}
-		}
-	})
-</script>
-
-<style>
-	.bg-swiper-box {
-		position: absolute;
-		display: block;
-		width: 100%;
-		height: 100%;
-	}
-
-	.bg-swiper-img {
-		object-fit: cover;
-		width: 100%;
-		height: 100%;
-	}
-</style>
-
-
-
-
-  <script>
-  function loadMermaid() {
-    if (document.getElementsByClassName('mermaid').length) {
-      if (window.mermaidJsLoad) mermaid.init()
-      else {
-        loadScript('https://unpkg.com/mermaid/dist/mermaid.min.js').then(() => {
-          window.mermaidJsLoad = true
-          mermaid.initialize({
-            theme: 'default',
-          })
-          if ('true') {
-            mermaid.init();
-          }
-        })
-      }
-    }
-  };
-  document.addEventListener("DOMContentLoaded", function () {
-    loadMermaid();
-  })
-
-  document.addEventListener('pjax:complete', function () {
-    loadMermaid();
-  })
+<div class="w-70">
   
-</script>
-
+</div>
 
       </main>
     </div>
