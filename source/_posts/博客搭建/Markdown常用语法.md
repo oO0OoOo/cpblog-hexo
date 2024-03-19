@@ -6,8 +6,8 @@ tags:
 categories:
   - 博客搭建
 date: 2023-01-09 15:00:00
+img: 'https://raw.githubusercontent.com/oO0OoOo/cpblog-hexo/main/source/images/bg/5910392d25805.jpg'
 excerpt: 'Markdown语法'
-bgImg: 'https://raw.githubusercontent.com/oO0OoOo/cpblog-hexo/main/source/images/bg/5910392d25805.jpg'
 ---
 
 本文记录了书写博文时常用的Markdown语法和Html标签
