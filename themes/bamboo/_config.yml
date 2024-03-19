@@ -203,7 +203,7 @@ swiper:
   wave: true # 轮播图底下的波浪特效
   # 当没有文章设置swiper: true时候，轮播图会显示以下default默认内容，可自行切换对应内容
   defaultImg: 'https://raw.githubusercontent.com/oO0OoOo/cpblog-hexo/main/source/images/bg/mottoBg.webp' # 图片，没有则随机选取
-  defaultVideo: '/images/bg/cover.mp4' # video，min-width:992px show
+  defaultVideo: '' # video，min-width:992px show
   defaultVideoLoadingImg: '/images/bg/loading.gif' # video loading img -- use .gif img, 视频预加载动画，使用gif图片作为loading，为空则视频没有预加载动画
   defaultTile: '保持呼吸' # 标题
   defaultDesc: [] #描 述，例如 ['煮酒洗净尘嚣，论知交', '万般付之一笑，共偕老']
