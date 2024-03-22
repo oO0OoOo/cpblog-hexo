@@ -14,7 +14,11 @@ excerpt: ''
 
 算法视频讲解，非常易懂
 
-<iframe name="youtube" width="100%" height="540px" frameborder="0" src="https://www.youtube.com/watch?v=JLARzu7coEs"></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/JLARzu7coEs?si=dKwiDKGK7MXyzi9A" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+
+
+源视频链接：https://www.youtube.com/watch?v=JLARzu7coEs
 
 
 
