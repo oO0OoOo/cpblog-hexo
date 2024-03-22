@@ -14,7 +14,7 @@ excerpt: ''
 
 算法视频讲解，非常易懂（若加载失败可点击下方源视频链接）
 
-<iframe width="960" height="640" src="https://www.youtube.com/embed/JLARzu7coEs?si=dKwiDKGK7MXyzi9A" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<iframe width="720" height="480" src="https://www.youtube.com/embed/JLARzu7coEs?si=dKwiDKGK7MXyzi9A" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 
 
