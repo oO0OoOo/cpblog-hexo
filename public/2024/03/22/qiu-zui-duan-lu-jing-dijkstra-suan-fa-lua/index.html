@@ -11,7 +11,7 @@
   <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-  <title>博客搭建教程8 - 在CentOS云服务器利用Nginx搭建Hexo博客 | 赛朋博客</title>
+  <title>求最短路径 - Dijkstra算法（lua） | 赛朋博客</title>
 
   <link rel="icon" type="image/jpeg" href="/favicon.jpg">
   <link rel="stylesheet" href="https://at.alicdn.com/t/font_1911880_c1nvbyezg17.css">
@@ -649,21 +649,21 @@
 
 
 <div class="post-detail-header" id="thumbnail_canvas" style="background-repeat: no-repeat; background-size: cover; 
-  background-position: center center;position: relative;background-image:url('https://img-blog.csdnimg.cn/img_convert/ce4a8a59fdfee8f3106a3a0851558c76.png')">
+  background-position: center center;position: relative;background-image:url('https://raw.githubusercontent.com/oO0OoOo/cpblog-hexo/main/source/images/bg/591039263be09.jpg')">
   <div class="post-detail-header-mask"></div>
   <canvas id="header_canvas"style="position:absolute;bottom:0;pointer-events:none;"></canvas>
   
   <div class="post-detail-header_info-box">
     <div class="title-box">
       <span class="title">
-        博客搭建教程8 - 在CentOS云服务器利用Nginx搭建Hexo博客
+        求最短路径 - Dijkstra算法（lua）
       </span>
     </div>
     
     
       
         <span class="post-detail-header_date">
-          <i class="fas fa-calendar"></i> Published in：2023-01-09 |
+          <i class="fas fa-calendar"></i> Published in：2024-03-22 |
         </span>
       
 
@@ -671,8 +671,8 @@
         <span class="post-detail-header_categories">
           <i class="iconfont iconbookmark1"></i> category：
           
-            <a href="/" class="post-detail-header_category">
-              
+            <a href="/categories/%E7%AE%97%E6%B3%95/" class="post-detail-header_category">
+              算法
             </a>
           
         </span>
@@ -702,24 +702,30 @@
   <div class="main-content">
     <article class="post post-detail">
       <div class="post-content">
-        <p>关于图形界面：<br>有的云服务器将CentOS系统的图形界面阉割，如果想和Windows系统一样看到图形界面，需要额外进行安装。<br>但是要注意，虽然图形界面在交互上比命令行更加直观，但是会占用大约500MB的内存，这也就意味着，如果你购买的服务器内存小于500MB，一定是无法安装图形界面的。实际上，1G内存的服务器也不建议安装图形界面，在实测中，1G内存的服务器运行图形界面会非常卡，打开一个firefox浏览器有概率直接让服务器卡死。而2G及以上的服务器安装图形界面则是无压力的，实测在2G服务器上运行CentOS系统+GNOME桌面，内存占用在50%左右。<br>接下来的教程中都是以命令行的方式操作的，如果你可以接受命令行，那就尽量不要安装图形界面，毕竟它会占用一部分服务器的资源，影响到服务器的性能。<br>如果你实在希望使用图形界面的方式操作，可以按照如下教程安装。<br>在图形界面中打开【终端】也可以执行命令行，实测在1G内存情况下在图形界面执行【终端】是没有问题的。（但不要再开更多窗口了）<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_45115705/article/details/100553983">https://blog.csdn.net/weixin_45115705/article/details/100553983</a></p>
-<p>Q：找不到usr文件夹？<br>A：可以试试点击桌面的【主文件夹】图表，或者找到桌面左上角的【应用程序&#x2F;附件&#x2F;文件】,在打开的资源管理器窗口找到【其他位置】选项，点击后找到【计算机】，再点击即可看到盘根的全部文件夹，usr就在其中。<br>在服务器端或许由于缺少播放视频的插件而无法预览视频，但这本就不是服务器的职责，我们只要确保该文件被平安地放到指定的目录，并且可以被外部网络访问到即可。<br>接下来我们要做的工作就是将该视频部署到某一个网络地址，生成可以被访问的外链。</p>
-<p>在linux安装nginx，可参考这篇文章，博主实测没有问题<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/t8116189520/article/details/81909574">https://blog.csdn.net/t8116189520/article/details/81909574</a><br>Q：我是图形界面门徒，如何在CentOS图形界面系统上输入命令？<br>A：在桌面左上角应用程序中找到【系统工具&#x2F;终端】即可。请注意，通过此种方式运行终端，要注意自己是否拥有root权限，如果不是root用户，需要切到root用户，或者在命令前加sudo指令。否则，你在安装nginx过程中会频繁提示【您需要root权限执行此命令】,【permission denied】，【you need to be root to xxxx】等报错。</p>
-<p>Q：如何获取root权限？<br>A：可以执行su root切到root用户，选择root作为用户名登录，即可获得root权限。如果是图形界面，你可以选择注销当前账号的登录，回到登录界面，然后选择以其他身份登入，以此切换到root账号。</p>
-<p>nginx安装完毕后，为了今后使用方便，将nginx配置到环境变量<br>echo ‘export PATH&#x3D;&#x2F;usr&#x2F;local&#x2F;nginx&#x2F;sbin:$PATH’ &gt;&gt; &#x2F;etc&#x2F;profile<br>并使其生效<br>source &#x2F;etc&#x2F;profile<br>接下来直接输入nginx -v,看看环境变量有没有配置成功</p>
-<p>按照该命令安装nginx后，nginx所在的目录为usr&#x2F;local&#x2F;nginx，该文件夹内的nginx-1.13.7.tar.gz是安装包文件，可以删除了<br>删除的命令是：sudo rm -rf nginx-1.13.7.tar.gz</p>
-<p>配置nginx过程中可能涉及到使用命令行修改文件内容,以下博客介绍的比较好，建议参考<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_51515673/article/details/124390606">https://blog.csdn.net/qq_51515673/article/details/124390606</a>  </p>
-<p>配置完nginx后还需要开启防火墙，并且确保自己设置nginx网站端口是开放的，可参考如下文章<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/szw906689771/article/details/121647887">https://blog.csdn.net/szw906689771/article/details/121647887</a><br>下面的文章介绍了查看端口是否开启的方法：<br><a target="_blank" rel="noopener" href="https://www.muzhuangnet.com/show/78535.html">https://www.muzhuangnet.com/show/78535.html</a><br>比如你要开启8089端口，那么就是下面这句话：<br>firewall-cmd –query-port&#x3D;8089&#x2F;tcp<br>如果返回的是no，则说明端口还没有打开<br>开启8089端口的命令：<br>firewall-cmd –add-port&#x3D;8089&#x2F;tcp –permanent<br>开启后需再次重启防火墙，才能生效<br>firewall-cmd –reload<br>然后再查询一次端口是否打开，如果是yes，就成功了。<br>Q：我还是no，怎么办？<br>A：你在使用云服务器吗？那可能还需要在服务器控制台的安全组中创建规则，在【入方向规则】中添加对应的端口</p>
-<p>开启nginx：nginx -c &#x2F;usr&#x2F;local&#x2F;nginx&#x2F;conf&#x2F;nginx.conf<br>（nginx关闭命令：nginx -s stop）<br>（nginx重启命令：nginx -s reload）<br>如果服务器有安装GNOME图形界面，接下来可以打开服务器的firefox浏览器，在地址栏输入本机公网IP:端口号，看看有没有显示nginx的welcome界面，如果看到了，说明nginx服务启动成功。如果操作系统没有图形界面，可以通过curl命令访问页面。<br>然后在其它机器上访问http:&#x2F;&#x2F;服务器公网IP:端口号，看看能否出现nginx的welcome页面。<br>如果你是严格按照文档配置的nginx，那么现在，&#x2F;usr&#x2F;local&#x2F;nginx&#x2F;html是网站资源的根目录，所有的资源都必须在此目录下才可以被访问到<br>Q：可以更换目录吗？<br>A：可以，只需要修改&#x2F;usr&#x2F;local&#x2F;nginx&#x2F;conf&#x2F;nginx.conf文件重新指定目录即可，可以在网上轻松搜到关于这个文件的修改方法。<br>nginx.conf这个文件有很多用处，在本教程的其它文章中，我们还会涉及到这个文件来实现防盗链功能。<br>接下来我们都以&#x2F;usr&#x2F;local&#x2F;nginx&#x2F;html作为资源根目录来举例。<br>现在做一个测试，我们要在nginx的文件夹下放置一个资源，然后尝试在其它设备上访问<br>首先在服务器的nginx&#x2F;html目录下创建新文件夹Images<br>找一台其它设备，比如一台windows电脑，使用scp指令拷贝一个图片到服务器，例如：（注意图片原路径和ip地址不能照抄）<br>scp myImage.jpg <a href="mailto:&#114;&#x6f;&#111;&#116;&#64;&#x31;&#57;&#x32;&#x2e;&#x31;&#54;&#x38;&#46;&#49;&#46;&#x31;&#x30;&#52;">&#114;&#x6f;&#111;&#116;&#64;&#x31;&#57;&#x32;&#x2e;&#x31;&#54;&#x38;&#46;&#49;&#46;&#x31;&#x30;&#52;</a>:&#x2F;usr&#x2F;local&#x2F;nginx&#x2F;html&#x2F;Images<br>然后在这台windows电脑打开浏览器访问该图片，地址栏中依旧填写本机公网IP:端口号，与此同时在后面加上文件路径，例如192.168.1.104:8089&#x2F;Images&#x2F;myImage.jpg<br>浏览器显示出图片了吗？如果显示出了图片，那么恭喜，你已经完成了第一次网站资源更新。  </p>
-<p>注意：重启服务器时，nginx会重新回到关闭状态，防火墙也可能会关闭，需要留意。  开机后可能需要执行的操作：<br>重新开启防火墙：systemctl start firewalld<br>重新启动nginx：nginx</p>
+        <p>算法视频讲解，非常易懂</p>
+<iframe name="youtube" width="100%" height="540px" frameborder="0" src="https://www.youtube.com/watch?v=JLARzu7coEs"></iframe>
+
+
+
+<h4 id="举例："><a href="#举例：" class="headerlink" title="举例："></a>举例：</h4><p>现有如下有向连通图，求出v1到v9的最短距离</p>
+<p><img src="https://raw.githubusercontent.com/oO0OoOo/cpblog-hexo/main/source/images/202403221147313.png" class="lazyload placeholder" data-srcset="https://raw.githubusercontent.com/oO0OoOo/cpblog-hexo/main/source/images/202403221147313.png" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" alt="image-20240322114757292"></p>
+<p>算法代码</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">--定义方法：判断列表是否存在指定元素</span></span><br><span class="line">	<span class="keyword">local</span> contains = <span class="function"><span class="keyword">function</span><span class="params">(list, element)</span></span></span><br><span class="line">		<span class="keyword">for</span> i = <span class="number">1</span>, #list <span class="keyword">do</span></span><br><span class="line">			<span class="keyword">if</span> list[i] == element <span class="keyword">then</span></span><br><span class="line">				<span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">			<span class="keyword">end</span></span><br><span class="line">		<span class="keyword">end</span></span><br><span class="line">		<span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">	<span class="keyword">end</span></span><br><span class="line">	</span><br><span class="line"><span class="comment">--定义方法：查找目前还未被访问的结点中距离起点最近的结点</span></span><br><span class="line"><span class="keyword">local</span> findMinDisNodeNotVisited = <span class="function"><span class="keyword">function</span><span class="params">(dis2startNode)</span></span></span><br><span class="line">    <span class="keyword">local</span> minDis = <span class="built_in">math</span>.maxinteger</span><br><span class="line">    <span class="keyword">local</span> minDisNode = <span class="literal">nil</span></span><br><span class="line">    <span class="keyword">for</span> node, visitedAndDis <span class="keyword">in</span> <span class="built_in">pairs</span>(dis2startNode) <span class="keyword">do</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> visitedAndDis[<span class="number">1</span>] <span class="keyword">and</span> visitedAndDis[<span class="number">2</span>] &gt;= <span class="number">0</span> <span class="keyword">then</span></span><br><span class="line">            <span class="keyword">if</span> visitedAndDis[<span class="number">2</span>] &lt; minDis <span class="keyword">then</span></span><br><span class="line">                minDis = visitedAndDis[<span class="number">2</span>]</span><br><span class="line">                minDisNode = node</span><br><span class="line">            <span class="keyword">end</span></span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">return</span> minDisNode</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="comment">--构建图（连通图）</span></span><br><span class="line"><span class="keyword">local</span> map = &#123;&#125;</span><br><span class="line">map[<span class="string">&quot;v1&quot;</span>] = &#123;[<span class="string">&quot;v2&quot;</span>] = <span class="number">2</span>, [<span class="string">&quot;v3&quot;</span>] = <span class="number">8</span>, [<span class="string">&quot;v4&quot;</span>] = <span class="number">3</span>&#125;</span><br><span class="line">map[<span class="string">&quot;v2&quot;</span>] = &#123;[<span class="string">&quot;v5&quot;</span>] = <span class="number">4</span>, [<span class="string">&quot;v6&quot;</span>] = <span class="number">7</span>&#125;</span><br><span class="line">map[<span class="string">&quot;v3&quot;</span>] = &#123;[<span class="string">&quot;v1&quot;</span>] = <span class="number">8</span>, [<span class="string">&quot;v6&quot;</span>] = <span class="number">1</span>, [<span class="string">&quot;v7&quot;</span>] = <span class="number">2</span>&#125;</span><br><span class="line">map[<span class="string">&quot;v4&quot;</span>] = &#123;[<span class="string">&quot;v7&quot;</span>] = <span class="number">2</span>&#125;</span><br><span class="line">map[<span class="string">&quot;v5&quot;</span>] = &#123;[<span class="string">&quot;v8&quot;</span>] = <span class="number">3</span>&#125;</span><br><span class="line">map[<span class="string">&quot;v6&quot;</span>] = &#123;[<span class="string">&quot;v3&quot;</span>] = <span class="number">1</span>, [<span class="string">&quot;v8&quot;</span>] = <span class="number">1</span>, [<span class="string">&quot;v9&quot;</span>] = <span class="number">2</span>&#125;</span><br><span class="line">map[<span class="string">&quot;v7&quot;</span>] = &#123;[<span class="string">&quot;v3&quot;</span>] = <span class="number">2</span>, [<span class="string">&quot;v9&quot;</span>] = <span class="number">8</span>&#125;</span><br><span class="line">map[<span class="string">&quot;v8&quot;</span>] = &#123;[<span class="string">&quot;v5&quot;</span>] = <span class="number">3</span>, [<span class="string">&quot;v6&quot;</span>] = <span class="number">1</span>, [<span class="string">&quot;v9&quot;</span>] = <span class="number">3</span>&#125;</span><br><span class="line">map[<span class="string">&quot;v9&quot;</span>] = &#123;[<span class="string">&quot;v6&quot;</span>] = <span class="number">2</span>, [<span class="string">&quot;v7&quot;</span>] = <span class="number">8</span>, [<span class="string">&quot;v8&quot;</span>] = <span class="number">3</span>&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">local</span> dis2startNode = &#123;&#125;	<span class="comment">--记录每个结点距离起点的最小距离，以及是否被访问过，key为结点名，value[1]为是否被访问过，value[2]为距离，距离 &lt; 0代表无限大</span></span><br><span class="line"><span class="keyword">local</span> preNode = &#123;&#125;			<span class="comment">--记录每个结点的前面一个结点，key为结点名，value为结点名</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">local</span> startNode = <span class="string">&quot;v1&quot;</span>		<span class="comment">--指定一个起点</span></span><br><span class="line"><span class="keyword">local</span> endNode = <span class="string">&quot;v9&quot;</span>		<span class="comment">--指定一个终点</span></span><br><span class="line"><span class="keyword">local</span> nodeCount = <span class="number">0</span>			<span class="comment">--map的结点数量（由于map是连通图，所以nodeCount等于map的长度）</span></span><br><span class="line"><span class="keyword">local</span> curNode = startNode	<span class="comment">--存储与起点距离最短的结点</span></span><br><span class="line"><span class="keyword">local</span> visitedNodeCount = <span class="number">0</span>	<span class="comment">--记录已访问过的结点数量，用于优化算法时间</span></span><br><span class="line"></span><br><span class="line"><span class="comment">--初始化数据</span></span><br><span class="line"><span class="keyword">for</span> k, v <span class="keyword">in</span> <span class="built_in">pairs</span>(map) <span class="keyword">do</span></span><br><span class="line">    nodeCount = nodeCount + <span class="number">1</span></span><br><span class="line">    dis2startNode[k] = &#123;<span class="literal">false</span>, <span class="number">-1</span>&#125;	<span class="comment">--在算法开始前，除起点外，所有结点与起点的距离都初始化为无限大，且包含起点都标记为未访问</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">dis2startNode[startNode][<span class="number">2</span>] = <span class="number">0</span>	<span class="comment">--起点与自己的距离初始化为0</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">repeat</span></span><br><span class="line">    curNode = findMinDisNodeNotVisited(dis2startNode)</span><br><span class="line">    <span class="comment">--标记curNode为已访问过</span></span><br><span class="line">    dis2startNode[curNode][<span class="number">1</span>] = <span class="literal">true</span></span><br><span class="line">    visitedNodeCount = visitedNodeCount + <span class="number">1</span></span><br><span class="line">    <span class="keyword">local</span> neighborList = map[curNode]	<span class="comment">--获取curNode的邻接点</span></span><br><span class="line">    <span class="keyword">for</span> neighborNode, disFromCurNode2neighborNode <span class="keyword">in</span> <span class="built_in">pairs</span>(neighborList) <span class="keyword">do</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> dis2startNode[neighborNode][<span class="number">1</span>] <span class="keyword">then</span></span><br><span class="line">            <span class="comment">--判断startNode到curNode的距离 + curNode到neighborNode的距离 是否小于 dis2startNode集合中记录的startNode到neighborNode的距离</span></span><br><span class="line">            <span class="keyword">local</span> startNode2curNode = dis2startNode[curNode][<span class="number">2</span>]	<span class="comment">--startNode到curNode的距离直接从dis2startNode集合取得</span></span><br><span class="line">            <span class="keyword">local</span> startNode2neighborNode = dis2startNode[neighborNode][<span class="number">2</span>]	<span class="comment">--获取dis2startNode中记录的从startNode到neighborNode的距离，&lt;0代表无限大</span></span><br><span class="line">            <span class="keyword">local</span> isShortPath = startNode2neighborNode &lt; <span class="number">0</span> <span class="keyword">or</span> startNode2curNode + disFromCurNode2neighborNode &lt; startNode2neighborNode</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> isShortPath <span class="keyword">then</span></span><br><span class="line">                <span class="comment">--更新dis2startNode集合中neighborNode的值</span></span><br><span class="line">                <span class="keyword">local</span> newDis = startNode2curNode + disFromCurNode2neighborNode</span><br><span class="line">                dis2startNode[neighborNode][<span class="number">2</span>] = newDis</span><br><span class="line">                <span class="comment">--更新preNode集合中的neighborNode的前面点为curNode</span></span><br><span class="line">                preNode[neighborNode] = curNode</span><br><span class="line">            <span class="keyword">end</span></span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">until</span>(visitedNodeCount == nodeCount)	<span class="comment">--当图中全部连通结点均被访问过时，算法结束</span></span><br><span class="line"></span><br><span class="line"><span class="comment">--在preNode集合中取endNode进行回溯，直到找到startNode，再将这条回溯链路反转即为从startNode到endNode的最短路径</span></span><br><span class="line"><span class="keyword">local</span> node = endNode</span><br><span class="line"><span class="keyword">local</span> <span class="built_in">path</span> = &#123;node&#125;		<span class="comment">--记录最短路径的结点</span></span><br><span class="line"><span class="keyword">local</span> length = <span class="number">0</span>		<span class="comment">--总路程</span></span><br><span class="line"><span class="keyword">while</span> <span class="literal">true</span> <span class="keyword">do</span></span><br><span class="line">    <span class="keyword">local</span> pre_node = preNode[node]</span><br><span class="line">    length = length + map[pre_node][node]</span><br><span class="line">    node = pre_node</span><br><span class="line">    <span class="built_in">table</span>.<span class="built_in">insert</span>(<span class="built_in">path</span>, node)</span><br><span class="line">    <span class="keyword">if</span> node == startNode <span class="keyword">then</span></span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="comment">--结果输出</span></span><br><span class="line"><span class="keyword">local</span> <span class="built_in">output</span> = <span class="string">&quot;minimum distance from &quot;</span>..startNode..<span class="string">&quot; to &quot;</span>..endNode .. <span class="string">&quot; is &quot;</span>..length..<span class="string">&quot;. path = &quot;</span></span><br><span class="line"><span class="keyword">for</span> i = #<span class="built_in">path</span>, <span class="number">1</span>, <span class="number">-1</span> <span class="keyword">do</span></span><br><span class="line">    <span class="built_in">output</span> = <span class="built_in">output</span> .. <span class="built_in">path</span>[i] .. <span class="string">&quot; -&gt; &quot;</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">string</span>.<span class="built_in">sub</span>(<span class="built_in">output</span>, <span class="number">1</span>, #<span class="built_in">output</span> - <span class="number">4</span>))</span><br></pre></td></tr></table></figure>
+
+
+
+<p>程序输出：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">minimum distance from v1 to v9 is 10. path = v1 -&gt; v4 -&gt; v7 -&gt; v3 -&gt; v6 -&gt; v9</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/oO0OoOo/cpblog-hexo/main/source/images/202403221146053.png" class="lazyload placeholder" data-srcset="https://raw.githubusercontent.com/oO0OoOo/cpblog-hexo/main/source/images/202403221146053.png" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" alt="image-20240322114611941"></p>
 
       </div>
       <div class="post-tags-categories">
         
         <div class="tags">
           
-            <a href="/" class="">
-              
+            <a href="/tags/%E7%AE%97%E6%B3%95/" class="">
+              算法
             </a>
           
         </div>
@@ -733,7 +739,7 @@
     </li>
     <li class="post-copyright-link">
     <strong>link:  </strong>
-    <a href="/posts_backup/博客搭建教程8-接触Linux.html" target="_blank" title="博客搭建教程8 - 在CentOS云服务器利用Nginx搭建Hexo博客">http://epya15.fun/posts_backup/博客搭建教程8-接触Linux.html</a>
+    <a href="/2024/03/22/qiu-zui-duan-lu-jing-dijkstra-suan-fa-lua/" target="_blank" title="求最短路径 - Dijkstra算法（lua）">http://epya15.fun/2024/03/22/qiu-zui-duan-lu-jing-dijkstra-suan-fa-lua/</a>
     </li>
     <li class="post-copyright-license">
       <strong>Copyright notice:   </strong>
@@ -752,6 +758,26 @@
 
 
 
+
+  
+  <div class="post-nav-next post-nav-item">
+    <div class="post-nav-img" style="background-size: cover; 
+      background-position: center center;">
+      <img class="lazyload lazyload placeholder" src="https://raw.githubusercontent.com/oO0OoOo/cpblog-hexo/main/source/images/bg/591039263be09.jpg" class="lazyload placeholder" data-srcset="https://raw.githubusercontent.com/oO0OoOo/cpblog-hexo/main/source/images/bg/591039263be09.jpg" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" src="" alt="">
+    </div>
+    <a href="/2024/03/19/you-xiang-lian-tong-tu-de-guang-du-he-shen-du-you-xian-bian-li-lua/" class="post-nav-link">
+      <div class="title">
+        Next: <i class="fas fa-angle-right"></i>
+        <div class="title-text">有向连通图的广度和深度优先遍历（lua）</div>
+      </div>
+      <!-- <div class="content">
+        现有如下有向连通图
+广度优先遍历（BFS）从v1结点出发，并访问v1。
+依次访问v1的所有未被访问过的邻接点。
+再从邻接
+      </div> -->
+    </a>
+  </div>
 
 </div>
 
@@ -872,78 +898,29 @@
   <div class="layout_sticky">    
     
       
-        
-    <section class="widget side_category">
-      
+<section class="widget side_toc">
+  
   <header>
     
-      <a style="color: " href='/blog/categories/'><i class="fas fa-folder-open fa-fw" aria-hidden="true"></i><span class='name'>文章分类</span></a>
+      <i style="color: " class="fas fa-list fa-fw" aria-hidden="true"></i><span class='name'>本文目录</span>
     
   </header>
 
 
-      <div class='content'>
-        <ul class="entry navigation">
-          
-            <li><a class="flat-box"
-              title="/categories/Android/" href="/categories/Android/"
-              id="categoriesAndroid"
-              ><div class='name'>Android</div><div class='badge'>(2)</div></a></li>
-          
-            <li><a class="flat-box child"
-              title="/categories/Android/Unity/" href="/categories/Android/Unity/"
-              id="categoriesAndroidUnity"
-              ><div class='name'>Unity</div><div class='badge'>(2)</div></a></li>
-          
-            <li><a class="flat-box"
-              title="/categories/Unity/" href="/categories/Unity/"
-              id="categoriesUnity"
-              ><div class='name'>Unity</div><div class='badge'>(1)</div></a></li>
-          
-            <li><a class="flat-box"
-              title="/categories/sdk/" href="/categories/sdk/"
-              id="categoriessdk"
-              ><div class='name'>sdk</div><div class='badge'>(1)</div></a></li>
-          
-            <li><a class="flat-box"
-              title="/categories/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/" href="/categories/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/"
-              id="categoriesE58D9AE5AEA2E690ADE5BBBA"
-              ><div class='name'>博客搭建</div><div class='badge'>(2)</div></a></li>
-          
-            <li><a class="flat-box"
-              title="/categories/%E5%BE%80%E6%9C%9F%E5%B0%81%E9%9D%A2/" href="/categories/%E5%BE%80%E6%9C%9F%E5%B0%81%E9%9D%A2/"
-              id="categoriesE5BE80E69C9FE5B081E99DA2"
-              ><div class='name'>往期封面</div><div class='badge'>(1)</div></a></li>
-          
-            <li><a class="flat-box"
-              title="/categories/%E7%AE%97%E6%B3%95/" href="/categories/%E7%AE%97%E6%B3%95/"
-              id="categoriesE7AE97E6B395"
-              ><div class='name'>算法</div><div class='badge'>(2)</div></a></li>
-          
-        </ul>
+  <div class='content'>
+    <div class="toc-main">
+      <div class="toc-content">
+        <!-- <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%BE%E4%BE%8B%EF%BC%9A"><span class="toc-text">举例：</span></a></li></ol> -->
+        <div class="toc"></div>
       </div>
-    </section>
-  
-  
-      
-      
-        
-<section class="widget side_tagcloud">
-    
-  <header>
-    
-      <a style="color: " href='/tags/'><i class="fas fa-tags fa-fw" aria-hidden="true"></i><span class='name'>标签</span></a>
-    
-  </header>
-
-
-    <div class='content'>
-    <a href="/tags/Android/" style="font-size: 24px; color: #555">Android</a> <a href="/tags/Unity/" style="font-size: 14px; color: #999">Unity</a> <a href="/tags/iOS/" style="font-size: 14px; color: #999">iOS</a> <a href="/tags/sdk/" style="font-size: 14px; color: #999">sdk</a> <a href="/tags/%E5%8D%9A%E5%AE%A2/" style="font-size: 19px; color: #777">博客</a> <a href="/tags/%E6%89%93%E5%8C%85/" style="font-size: 19px; color: #777">打包</a> <a href="/tags/%E7%94%9F%E6%B4%BB/" style="font-size: 14px; color: #999">生活</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 19px; color: #777">算法</a>
     </div>
+  </div>
 </section>
+<!-- 手机端目录按钮 -->
+<div id="toc-mobile-btn">
+  <i class="fas fa-list-ul" aria-hidden="true"></i>
+</div>
 
-  
-      
       
   <section class="widget side_recent_post">
     
@@ -1069,134 +1046,6 @@
     </div>
   </section>
 
-      
-  <section class="widget side_archives">
-    
-    <header><a style="color: red" href='/archives/'><i class="fas fa-archive fa-fw" aria-hidden="true"></i><span class='name'>归档</span></a></header><div class="content"><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/03/"><span class="card-archive-list-date">March 2024</span><span class="card-archive-list-count">3</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/02/"><span class="card-archive-list-date">February 2024</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/01/"><span class="card-archive-list-date">January 2024</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/04/"><span class="card-archive-list-date">April 2023</span><span class="card-archive-list-count">2</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/01/"><span class="card-archive-list-date">January 2023</span><span class="card-archive-list-count">2</span></a></li></ul></div>
-  </section>
-
-      <section class="widget side_webinfo">
-  
-  <header>
-    
-      <i style="color: " class="fas fa-chart-line fa-fw" aria-hidden="true"></i><span class='name'>站点信息</span>
-    
-  </header>
-
-
-  <div class='content'>
-    <div class="webinfo">
-      
-        <div class="webinfo-item">
-          <div>文章数目：</div>
-          <div>9 篇</div>
-        </div>
-      
-
-      
-        <div class="webinfo-item">
-          <div>已运行时间：</div>
-          <div id="webinfo-runtime-count" publish_date="03/24/2020 21:34:09"></div>
-        </div>
-        <script>
-          var BirthDay = new Date(new Date('2023/01/08'));
-          var today = new Date();
-          var timeold = (today.getTime() - BirthDay.getTime());
-          var daysold = Math.floor(timeold / (24 * 60 * 60 * 1000));
-          document.getElementById('webinfo-runtime-count').innerHTML = daysold + ' 天';
-        </script>
-      
-
-
-      
-        <div class="webinfo-item">
-          <div>本站总字数：</div>
-          <div>10.8k 字</div>
-        </div>
-      
-
-      
-        <div class="webinfo-item">
-          <div>本站访客数：</div>
-          
-          <div><span id="busuanzi_value_site_uv"><i class="fas fa-fan fa-spin fa-fw" aria-hidden="true"></i></span> 人</div>
-          
-        </div>
-      
-
-      
-        <div class="webinfo-item">
-          <div>本站总访问量：</div>
-          
-          <div><span id="busuanzi_value_site_pv"><i class="fas fa-fan fa-spin fa-fw" aria-hidden="true"></i></span> 次</div>
-          
-        </div>
-      
-
-      
-        <div class="webinfo-item">
-          <div>最后活动时间：</div>
-          
-            <div id="last-update" style="display: none;">Fri Mar 22 2024 11:51:34 GMT+0800 (中国标准时间)</div>
-            <div id="last-update-show">2024-03-22 日</div>
-          
-        </div>
-        
-        <script>
-          function timeago(dateTimeStamp) {
-              var minute = 1000 * 60; //把分，时，天，周，半个月，一个月用毫秒表示
-              var hour = minute * 60;
-              var day = hour * 24;
-              var week = day * 7;
-              var month = day * 30;
-              var now = new Date().getTime(); //获取当前时间毫秒
-              var diffValue = now - dateTimeStamp; //时间差
-              if (diffValue < 0) {
-                  return;
-              }
-              var minC = diffValue / minute; //计算时间差的分，时，天，周，月
-              var hourC = diffValue / hour;
-              var dayC = diffValue / day;
-              var weekC = diffValue / week;
-              var monthC = diffValue / month;
-              if (monthC >= 1 && monthC <= 3) {
-                  result = " " + parseInt(monthC) + " 月前"
-              } else if (weekC >= 1 && weekC <= 3) {
-                  result = " " + parseInt(weekC) + " 周前"
-              } else if (dayC >= 1 && dayC <= 6) {
-                  result = " " + parseInt(dayC) + " 天前"
-              } else if (hourC >= 1 && hourC <= 23) {
-                  result = " " + parseInt(hourC) + " 小时前"
-              } else if (minC >= 1 && minC <= 59) {
-                  result = " " + parseInt(minC) + " 分钟前"
-              } else if (diffValue >= 0 && diffValue <= minute) {
-                  result = "刚刚"
-              } else {
-                  var datetime = new Date();
-                  datetime.setTime(dateTimeStamp);
-                  var Nyear = datetime.getFullYear();
-                  var Nmonth = datetime.getMonth() + 1 < 10 ? "0" + (datetime.getMonth() + 1) : datetime.getMonth() + 1;
-                  var Ndate = datetime.getDate() < 10 ? "0" + datetime.getDate() : datetime.getDate();
-                  var Nhour = datetime.getHours() < 10 ? "0" + datetime.getHours() : datetime.getHours();
-                  var Nminute = datetime.getMinutes() < 10 ? "0" + datetime.getMinutes() : datetime.getMinutes();
-                  var Nsecond = datetime.getSeconds() < 10 ? "0" + datetime.getSeconds() : datetime.getSeconds();
-                  result = Nyear + "-" + Nmonth + "-" + Ndate
-              }
-              return result;
-          }
-          var lastUpDate = document.getElementById('last-update').innerHTML;
-          try {
-            document.getElementById('last-update-show').innerHTML = timeago(new Date(lastUpDate));
-          } catch (error) {
-            document.getElementById('last-update-show').innerHTML = '2024-03-22 日';
-          }
-        </script>
-        
-      
-    </div>
-  </div>
-</section>
-      
     
   </div>
 </aside>
