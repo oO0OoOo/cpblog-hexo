@@ -12,9 +12,9 @@ excerpt: ''
 
 
 
-算法视频讲解，非常易懂
+算法视频讲解，非常易懂（若加载失败可点击下方源视频链接）
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/JLARzu7coEs?si=dKwiDKGK7MXyzi9A" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<iframe width="960" height="640" src="https://www.youtube.com/embed/JLARzu7coEs?si=dKwiDKGK7MXyzi9A" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 
 
@@ -139,5 +139,9 @@ print(string.sub(output, 1, #output - 4))
 ```
 minimum distance from v1 to v9 is 10. path = v1 -> v4 -> v7 -> v3 -> v6 -> v9
 ```
+
+
+
+路线演示：
 
 ![image-20240322114611941](https://raw.githubusercontent.com/oO0OoOo/cpblog-hexo/main/source/images/202403221146053.png)
