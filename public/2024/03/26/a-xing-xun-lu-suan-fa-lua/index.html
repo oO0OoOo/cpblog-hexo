@@ -11,7 +11,7 @@
   <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-  <title>博客搭建教程13 - 写博客实用网站大合集 | 赛朋博客</title>
+  <title>A*寻路算法（lua） | 赛朋博客</title>
 
   <link rel="icon" type="image/jpeg" href="/favicon.jpg">
   <link rel="stylesheet" href="https://at.alicdn.com/t/font_1911880_c1nvbyezg17.css">
@@ -649,21 +649,21 @@
 
 
 <div class="post-detail-header" id="thumbnail_canvas" style="background-repeat: no-repeat; background-size: cover; 
-  background-position: center center;position: relative;background-image:url('https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2017/8/9/5e1040cd64eefde3ecb5e0c809cdd3e5~tplv-t2oaga2asx-zoom-crop-mark:3024:3024:3024:1702.awebp')">
+  background-position: center center;position: relative;background-image:url('https://raw.githubusercontent.com/oO0OoOo/cpblog-hexo/main/source/images/bg/591039263be09.jpg')">
   <div class="post-detail-header-mask"></div>
   <canvas id="header_canvas"style="position:absolute;bottom:0;pointer-events:none;"></canvas>
   
   <div class="post-detail-header_info-box">
     <div class="title-box">
       <span class="title">
-        博客搭建教程13 - 写博客实用网站大合集
+        A*寻路算法（lua）
       </span>
     </div>
     
     
       
         <span class="post-detail-header_date">
-          <i class="fas fa-calendar"></i> Published in：2023-01-09 |
+          <i class="fas fa-calendar"></i> Published in：2024-03-26 |
         </span>
       
 
@@ -671,8 +671,8 @@
         <span class="post-detail-header_categories">
           <i class="iconfont iconbookmark1"></i> category：
           
-            <a href="/" class="post-detail-header_category">
-              
+            <a href="/categories/%E7%AE%97%E6%B3%95/" class="post-detail-header_category">
+              算法
             </a>
           
         </span>
@@ -702,15 +702,36 @@
   <div class="main-content">
     <article class="post post-detail">
       <div class="post-content">
-        <p>无版权图片网站合集<br><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/99543178">https://zhuanlan.zhihu.com/p/99543178</a><br>无版权视频素材网站合集<br><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/431221694">https://zhuanlan.zhihu.com/p/431221694</a><br>在线图片压缩，超简洁<br><a target="_blank" rel="noopener" href="https://tinypng.com/">https://tinypng.com/</a><br>在线视频压缩，超简洁<br><a target="_blank" rel="noopener" href="https://yasuo.xunjiepdf.com/video/">https://yasuo.xunjiepdf.com/video/</a><br>在线视频旋转，超简洁<br><a target="_blank" rel="noopener" href="https://app.xunjieshipin.com/video-rotation/">https://app.xunjieshipin.com/video-rotation/</a><br>在线RGB颜色选择器<br><a target="_blank" rel="noopener" href="http://tools.jb51.net/static/colorpicker/">http://tools.jb51.net/static/colorpicker/</a><br>图床<br><a target="_blank" rel="noopener" href="https://imgloc.com/">https://imgloc.com/</a></p>
+        <p>参考资料：</p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/f-society/p/6818665.html">https://www.cnblogs.com/f-society/p/6818665.html</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/a8950fa19b72">https://www.jianshu.com/p/a8950fa19b72</a></p>
+<h4 id="举例："><a href="#举例：" class="headerlink" title="举例："></a>举例：</h4><p>现有如下寻路网格，求从A点（5, 1）到B点（5, 9）的A*路径</p>
+<p><img src="https://raw.githubusercontent.com/oO0OoOo/cpblog-hexo/main/source/images/202403262023420.png" class="lazyload placeholder" data-srcset="https://raw.githubusercontent.com/oO0OoOo/cpblog-hexo/main/source/images/202403262023420.png" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" alt="image-20240326202326374"></p>
+<p>灰色代表不可到达的格子，每次行动可以从格子的周围8个方向行进，代价如下图</p>
+<p><img src="https://raw.githubusercontent.com/oO0OoOo/cpblog-hexo/main/source/images/202403262031588.png" class="lazyload placeholder" data-srcset="https://raw.githubusercontent.com/oO0OoOo/cpblog-hexo/main/source/images/202403262031588.png" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" alt="image-20240326203154565"></p>
+<p>不可穿越斜墙，例如下图中，从P点出发的8个方向里，标记为”NO”的点是不可直接到达的</p>
+<p><img src="https://raw.githubusercontent.com/oO0OoOo/cpblog-hexo/main/source/images/202403262037831.png" class="lazyload placeholder" data-srcset="https://raw.githubusercontent.com/oO0OoOo/cpblog-hexo/main/source/images/202403262037831.png" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" alt="image-20240326203712809"></p>
+<p>算法代码</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">--定义方法，从列表中移除指定元素</span></span><br><span class="line"><span class="keyword">local</span> removeFromList = <span class="function"><span class="keyword">function</span><span class="params">(nodeList, element)</span></span></span><br><span class="line">    <span class="keyword">for</span> i = <span class="number">1</span>, #nodeList <span class="keyword">do</span></span><br><span class="line">        <span class="keyword">if</span> nodeList[i] == element <span class="keyword">then</span></span><br><span class="line">            <span class="built_in">table</span>.<span class="built_in">remove</span>(nodeList, i)</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="comment">--定义方法：在列表中查找指定nodeIndex的元素</span></span><br><span class="line"><span class="keyword">local</span> findNodeByIndex = <span class="function"><span class="keyword">function</span><span class="params">(nodeList, nodeIndex)</span></span></span><br><span class="line">    <span class="keyword">for</span> i = <span class="number">1</span>, #nodeList <span class="keyword">do</span></span><br><span class="line">        <span class="keyword">if</span> nodeList[i].index == nodeIndex <span class="keyword">then</span></span><br><span class="line">            <span class="keyword">return</span> nodeList[i]</span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">nil</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="comment">--定义方法：判断列表是否存在指定元素</span></span><br><span class="line"><span class="keyword">local</span> contains = <span class="function"><span class="keyword">function</span><span class="params">(nodeList, nodeIndex)</span></span></span><br><span class="line">    <span class="keyword">return</span> findNodeByIndex(nodeList, nodeIndex) ~= <span class="literal">nil</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="comment">--定义方法：查找list中F值最小的结点</span></span><br><span class="line"><span class="keyword">local</span> findMinFNode = <span class="function"><span class="keyword">function</span><span class="params">(nodeList)</span></span></span><br><span class="line">    <span class="keyword">local</span> minF = <span class="built_in">math</span>.maxinteger</span><br><span class="line">    <span class="keyword">local</span> minFNode = <span class="literal">nil</span></span><br><span class="line">    <span class="keyword">for</span> i = <span class="number">1</span>, #nodeList <span class="keyword">do</span></span><br><span class="line">        <span class="keyword">local</span> n = nodeList[i]</span><br><span class="line">        <span class="keyword">local</span> F = n.G + n.H</span><br><span class="line">        <span class="keyword">if</span> F &lt; minF <span class="keyword">then</span></span><br><span class="line">            minF = F</span><br><span class="line">            minFNode = n</span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">return</span> minFNode</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="comment">--构造一个node数据结构</span></span><br><span class="line"><span class="keyword">local</span> node = <span class="function"><span class="keyword">function</span><span class="params">(index, preNodeIndex, G, H)</span></span></span><br><span class="line">    <span class="keyword">if</span> index == <span class="literal">nil</span> <span class="keyword">then</span> index = <span class="number">0</span> <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">if</span> preNodeIndex == <span class="literal">nil</span> <span class="keyword">then</span> preNodeIndex = <span class="number">0</span> <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">if</span> G == <span class="literal">nil</span> <span class="keyword">then</span> G = <span class="number">0</span> <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">if</span> H == <span class="literal">nil</span> <span class="keyword">then</span> H = <span class="number">0</span> <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">local</span> n =</span><br><span class="line">    &#123;</span><br><span class="line">        index = index,</span><br><span class="line">        preNodeIndex = preNodeIndex,</span><br><span class="line">        G = G,</span><br><span class="line">        H = H,</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> n</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="comment">--构建9x9地图（用一维数组描述）</span></span><br><span class="line"><span class="keyword">local</span> map = </span><br><span class="line">&#123;</span><br><span class="line">    <span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,</span><br><span class="line">    <span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>,</span><br><span class="line">    <span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">1</span>,</span><br><span class="line">    <span class="number">1</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">1</span>,</span><br><span class="line">    <span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">1</span>,</span><br><span class="line">    <span class="number">1</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">1</span>,</span><br><span class="line">    <span class="number">1</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>,</span><br><span class="line">    <span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">1</span>,</span><br><span class="line">    <span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">local</span> mapH = <span class="number">9</span>				<span class="comment">--地图的横宽（Horizontal）</span></span><br><span class="line"><span class="keyword">local</span> mapV = #map / mapH	<span class="comment">--地图的纵高（Vertical）</span></span><br><span class="line"><span class="keyword">local</span> mapDataLength = #map</span><br><span class="line"></span><br><span class="line"><span class="keyword">local</span> openList = &#123;&#125;		<span class="comment">--搜索域（开启列表，存放待搜索的结点）</span></span><br><span class="line"><span class="keyword">local</span> closeList = &#123;&#125;	<span class="comment">--已搜索域（关闭列表，存放已搜索的结点）</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">local</span> startNodeIndex = <span class="number">37</span>		<span class="comment">--指定一个起点</span></span><br><span class="line"><span class="keyword">local</span> endNodeIndex = <span class="number">45</span>			<span class="comment">--指定一个终点</span></span><br><span class="line"><span class="keyword">local</span> openObliqueCheck = <span class="literal">true</span>	<span class="comment">--是否开启斜墙判断，比如结点的上结点和右节点是墙，那右上结点就算不是墙，也不可通行</span></span><br><span class="line"><span class="keyword">local</span> minFNode = <span class="literal">nil</span>			<span class="comment">--临时变量</span></span><br><span class="line"></span><br><span class="line"><span class="comment">--定义方法：计算一个结点的H值（这里使用曼哈顿距离，H = 当前结点到结束点的水平距离 + 当前结点到结束点的垂直距离）</span></span><br><span class="line"><span class="keyword">local</span> calculateH = <span class="function"><span class="keyword">function</span><span class="params">(nodeIndex)</span></span></span><br><span class="line">    <span class="keyword">local</span> projectedXEnd = (endNodeIndex - <span class="number">1</span>) % mapH + <span class="number">1</span>		<span class="comment">--取endNodeIndex在首行的投影，例如  44-&gt;8  45-&gt;9  46-&gt;1</span></span><br><span class="line">    <span class="keyword">local</span> projectedXNode = (nodeIndex - <span class="number">1</span>) % mapH + <span class="number">1</span>		<span class="comment">--取nodeIndex在首行的投影</span></span><br><span class="line">    <span class="keyword">local</span> projectedYEnd = endNodeIndex - (endNodeIndex - <span class="number">1</span>) % mapH	<span class="comment">--取endNodeIndex在所在行首列的投影，例如  44-&gt;37  45-&gt;37  46-&gt;46</span></span><br><span class="line">    <span class="keyword">local</span> projectedYNode = nodeIndex - (nodeIndex - <span class="number">1</span>) % mapH		<span class="comment">--取nodeIndex在所在行首列的投影</span></span><br><span class="line">    <span class="keyword">local</span> xDis = <span class="built_in">math</span>.<span class="built_in">abs</span>(projectedXEnd - projectedXNode)				<span class="comment">--计算两点的水平距离</span></span><br><span class="line">    <span class="keyword">local</span> yDis = <span class="built_in">math</span>.<span class="built_in">abs</span>(projectedYEnd - projectedYNode) / mapH		<span class="comment">--计算两点垂直距离</span></span><br><span class="line">    <span class="keyword">return</span> xDis + yDis</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="comment">--定义方法：判断一个点是否是可通行的</span></span><br><span class="line"><span class="keyword">local</span> isReachable = <span class="function"><span class="keyword">function</span><span class="params">(nodeIndex)</span></span></span><br><span class="line">    <span class="keyword">return</span> nodeIndex &gt; <span class="number">0</span> <span class="keyword">and</span> nodeIndex &lt;= mapDataLength <span class="keyword">and</span> map[nodeIndex] &gt; <span class="number">0</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="comment">--初始化数据</span></span><br><span class="line"><span class="built_in">table</span>.<span class="built_in">insert</span>(openList, node(startNodeIndex, <span class="number">-1</span>, <span class="number">0</span>, calculateH(startNodeIndex)))	<span class="comment">--首先把起点放进搜索域</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">repeat</span></span><br><span class="line">    <span class="comment">--在openList中查找F（F = G + H）值最低的结点</span></span><br><span class="line">    minFNode = findMinFNode(openList)</span><br><span class="line">    <span class="comment">--遍历这个结点周围一圈8个结点，筛选出可行进的+未在开启列表+未在关闭列表的结点，放入开启列表</span></span><br><span class="line">    <span class="comment">--使用便于理解的命名方式</span></span><br><span class="line">    <span class="keyword">local</span> upLeft = minFNode.index - mapH - <span class="number">1</span>	<span class="comment">--左上点（值&lt;1代表已越界）</span></span><br><span class="line">    <span class="keyword">if</span> upLeft % mapH == <span class="number">0</span> <span class="keyword">then</span> upLeft = <span class="number">-1</span> <span class="keyword">end</span>	<span class="comment">--minFNode位于最左边时，左上点不存在</span></span><br><span class="line">    <span class="keyword">local</span> up = minFNode.index - mapH			<span class="comment">--上点（值&lt;1代表已越界）</span></span><br><span class="line">    <span class="keyword">local</span> upRight = minFNode.index - mapH + <span class="number">1</span>	<span class="comment">--右上点（值&lt;1代表已越界）</span></span><br><span class="line">    <span class="keyword">if</span> upRight % mapH == <span class="number">1</span> <span class="keyword">then</span> upRight = <span class="number">-1</span> <span class="keyword">end</span><span class="comment">--minFNode位于最右边时，右上点不存在</span></span><br><span class="line">    <span class="keyword">local</span> left = minFNode.index - <span class="number">1</span>				<span class="comment">--左点（值&lt;1代表已越界）</span></span><br><span class="line">    <span class="keyword">if</span> left % mapH == <span class="number">0</span> <span class="keyword">then</span> left = <span class="number">-1</span> <span class="keyword">end</span>		<span class="comment">--minFNode位于最左边时，左点不存在</span></span><br><span class="line">    <span class="keyword">local</span> right = minFNode.index + <span class="number">1</span>			<span class="comment">--右点（值&gt;mapDataLength代表已越界）</span></span><br><span class="line">    <span class="keyword">if</span> right % mapH == <span class="number">1</span> <span class="keyword">then</span> right = <span class="number">-1</span> <span class="keyword">end</span>	<span class="comment">--minFNode位于最右边时，右点不存在</span></span><br><span class="line">    <span class="keyword">local</span> bottomLeft = minFNode.index + mapH - <span class="number">1</span><span class="comment">--左下点（值&gt;mapDataLength代表已越界）</span></span><br><span class="line">    <span class="keyword">if</span> bottomLeft % mapH == <span class="number">0</span> <span class="keyword">then</span> bottomLeft = <span class="number">-1</span> <span class="keyword">end</span>	<span class="comment">--minFNode位于最左边时，左下点不存在</span></span><br><span class="line">    <span class="keyword">local</span> bottom = minFNode.index + mapH		<span class="comment">--下点（值&gt;mapDataLength代表已越界）</span></span><br><span class="line">    <span class="keyword">local</span> bottomRight = minFNode.index + mapH + <span class="number">1</span><span class="comment">--右下点（值&gt;mapDataLength代表已越界）</span></span><br><span class="line">    <span class="keyword">if</span> bottomRight % mapH == <span class="number">1</span> <span class="keyword">then</span> bottomRight = <span class="number">-1</span> <span class="keyword">end</span><span class="comment">--minFNode位于最右边时，右下点不存在</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">--放入列表</span></span><br><span class="line">    <span class="keyword">local</span> neighborList = &#123;upLeft, up, upRight, left, right, bottomLeft, bottom, bottomRight&#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">--斜墙判断</span></span><br><span class="line">    <span class="keyword">local</span> obliqueReachableList = &#123;<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>&#125;		<span class="comment">--和neighborList一样按照从左至右，从上至下记录周围结点是否可达</span></span><br><span class="line">    <span class="keyword">if</span> openObliqueCheck <span class="keyword">then</span></span><br><span class="line">        <span class="keyword">local</span> isReachable_up = isReachable(up)</span><br><span class="line">        <span class="keyword">local</span> isReachable_left = isReachable(left)</span><br><span class="line">        <span class="keyword">local</span> isReachable_right = isReachable(right)</span><br><span class="line">        <span class="keyword">local</span> isReachable_bottom = isReachable(bottom)</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">not</span> isReachable_left) <span class="keyword">and</span> (<span class="keyword">not</span> isReachable_up) <span class="keyword">then</span> obliqueReachableList[<span class="number">1</span>] = <span class="number">0</span> <span class="keyword">end</span>		<span class="comment">--左上角不可达</span></span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">not</span> isReachable_up) <span class="keyword">and</span> (<span class="keyword">not</span> isReachable_right) <span class="keyword">then</span> obliqueReachableList[<span class="number">3</span>] = <span class="number">0</span> <span class="keyword">end</span>		<span class="comment">--右上角不可达</span></span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">not</span> isReachable_left) <span class="keyword">and</span> (<span class="keyword">not</span> isReachable_bottom) <span class="keyword">then</span> obliqueReachableList[<span class="number">6</span>] = <span class="number">0</span> <span class="keyword">end</span>	<span class="comment">--左下角不可达</span></span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">not</span> isReachable_bottom) <span class="keyword">and</span> (<span class="keyword">not</span> isReachable_right) <span class="keyword">then</span> obliqueReachableList[<span class="number">8</span>] = <span class="number">0</span> <span class="keyword">end</span>	<span class="comment">--右下角不可达</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> i = #neighborList, <span class="number">1</span>, <span class="number">-1</span> <span class="keyword">do</span></span><br><span class="line">        <span class="comment">--剔除越界的点，剔除不可通行的点，剔除已在开放列表的点，剔除已在关闭列表的点</span></span><br><span class="line">        <span class="keyword">local</span> n = neighborList[i]</span><br><span class="line">        <span class="keyword">local</span> reachable = isReachable(n)</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">not</span> reachable) <span class="keyword">or</span> obliqueReachableList[i] == <span class="number">0</span> <span class="keyword">or</span> contains(openList, n) <span class="keyword">or</span> contains(closeList, n) <span class="keyword">then</span></span><br><span class="line">            <span class="built_in">table</span>.<span class="built_in">remove</span>(neighborList, i)</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            <span class="comment">--计算好G和H值后放入openList中（上下左右步长按1计算，四个角按照1.414计算）</span></span><br><span class="line">            <span class="keyword">local</span> stepValue = <span class="number">1</span></span><br><span class="line">            <span class="keyword">if</span> i == <span class="number">1</span> <span class="keyword">or</span> i == <span class="number">3</span> <span class="keyword">or</span> i == <span class="number">6</span> <span class="keyword">or</span> i == <span class="number">8</span> <span class="keyword">then</span> stepValue = <span class="number">1.414</span> <span class="keyword">end</span></span><br><span class="line">            <span class="keyword">local</span> node = node(n, minFNode.index, minFNode.G + stepValue, calculateH(n))</span><br><span class="line">            <span class="built_in">table</span>.<span class="built_in">insert</span>(openList, node)</span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    <span class="comment">--把minFNode从openList转移到closeList中</span></span><br><span class="line">    removeFromList(openList, minFNode)</span><br><span class="line">    <span class="built_in">table</span>.<span class="built_in">insert</span>(closeList, minFNode)</span><br><span class="line"></span><br><span class="line"><span class="keyword">until</span>(minFNode.index == endNodeIndex <span class="keyword">or</span> #openList == <span class="number">0</span>)	<span class="comment">--当openList为空或者找到终点时，算法结束</span></span><br><span class="line"></span><br><span class="line"><span class="comment">--在closeList中取endNode进行回溯，直到找到startNode，再将这条回溯链路反转即为从startNode到endNode的A*寻路结果</span></span><br><span class="line"><span class="keyword">local</span> nodeIndex = endNodeIndex</span><br><span class="line"><span class="keyword">local</span> <span class="built_in">path</span> = &#123;&#125;		<span class="comment">--记录最短路径的结点</span></span><br><span class="line"><span class="keyword">if</span> contains(closeList, nodeIndex) <span class="keyword">then</span></span><br><span class="line">    <span class="keyword">while</span> <span class="literal">true</span> <span class="keyword">do</span></span><br><span class="line">        node = findNodeByIndex(closeList, nodeIndex)</span><br><span class="line">        <span class="built_in">table</span>.<span class="built_in">insert</span>(<span class="built_in">path</span>, node)</span><br><span class="line">        nodeIndex = node.preNodeIndex</span><br><span class="line">        <span class="keyword">if</span> nodeIndex == <span class="number">-1</span> <span class="keyword">then</span></span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    <span class="comment">--结果输出</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">--定义方法：将一维数组的index转为更容易看的二维坐标</span></span><br><span class="line">    <span class="keyword">local</span> toVectorFormat = <span class="function"><span class="keyword">function</span><span class="params">(index)</span></span></span><br><span class="line">        <span class="keyword">local</span> x = index%mapH</span><br><span class="line">        <span class="keyword">if</span> x == <span class="number">0</span> <span class="keyword">then</span> x = mapH <span class="keyword">end</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;(&quot;</span>..<span class="built_in">math</span>.<span class="built_in">ceil</span>(index/mapH)..<span class="string">&quot;, &quot;</span>..x..<span class="string">&quot;)&quot;</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">local</span> <span class="built_in">output</span> = <span class="string">&quot;A* path from &quot;</span>..toVectorFormat(startNodeIndex)..<span class="string">&quot; to &quot;</span>..toVectorFormat(endNodeIndex)</span><br><span class="line">    .. <span class="string">&quot; distance is &quot;</span>..findNodeByIndex(closeList, endNodeIndex).G..<span class="string">&quot; \n&quot;</span></span><br><span class="line">    <span class="keyword">for</span> i = #<span class="built_in">path</span>, <span class="number">1</span>, <span class="number">-1</span> <span class="keyword">do</span></span><br><span class="line">        <span class="keyword">local</span> str = toVectorFormat(<span class="built_in">path</span>[i].index)</span><br><span class="line">        <span class="built_in">output</span> = <span class="built_in">output</span> .. str .. <span class="string">&quot; -&gt; &quot;</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="built_in">string</span>.<span class="built_in">sub</span>(<span class="built_in">output</span>, <span class="number">1</span>, #<span class="built_in">output</span> - <span class="number">4</span>))</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;no path found in map.&quot;</span>)</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<p>程序输出（不开启斜墙判断）：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">A* path from (5, 1) to (5, 9) distance is 9.656 </span><br><span class="line">(5, 1) -&gt; (5, 2) -&gt; (5, 3) -&gt; (5, 4) -&gt; (5, 5) -&gt; (6, 6) -&gt; (7, 7) -&gt; (6, 8) -&gt; (5, 9)</span><br></pre></td></tr></table></figure>
+
+<p>路线图：</p>
+<p><img src="https://raw.githubusercontent.com/oO0OoOo/cpblog-hexo/main/source/images/202403262035009.png" class="lazyload placeholder" data-srcset="https://raw.githubusercontent.com/oO0OoOo/cpblog-hexo/main/source/images/202403262035009.png" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" alt="image-20240326203547977"></p>
+<p>程序输出（开启斜墙判断）：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">A* path from (5, 1) to (5, 9) distance is 13.07 </span><br><span class="line">(5, 1) -&gt; (5, 2) -&gt; (5, 3) -&gt; (6, 4) -&gt; (7, 4) -&gt; (8, 5) -&gt; (9, 6) -&gt; (9, 7) -&gt; (8, 8) -&gt; (7, 9) -&gt; (6, 9) -&gt; (5, 9)</span><br></pre></td></tr></table></figure>
+
+<p>路线图：</p>
+<p><img src="https://raw.githubusercontent.com/oO0OoOo/cpblog-hexo/main/source/images/202403262039158.png" class="lazyload placeholder" data-srcset="https://raw.githubusercontent.com/oO0OoOo/cpblog-hexo/main/source/images/202403262039158.png" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" alt="image-20240326203925132"></p>
 
       </div>
       <div class="post-tags-categories">
         
         <div class="tags">
           
-            <a href="/" class="">
-              
+            <a href="/tags/%E7%AE%97%E6%B3%95/" class="">
+              算法
             </a>
           
         </div>
@@ -724,7 +745,7 @@
     </li>
     <li class="post-copyright-link">
     <strong>link:  </strong>
-    <a href="/posts_backup/博客搭建教程13 - 写博客实用网站大合集.html" target="_blank" title="博客搭建教程13 - 写博客实用网站大合集">http://epya15.fun/posts_backup/博客搭建教程13 - 写博客实用网站大合集.html</a>
+    <a href="/2024/03/26/a-xing-xun-lu-suan-fa-lua/" target="_blank" title="A*寻路算法（lua）">http://epya15.fun/2024/03/26/a-xing-xun-lu-suan-fa-lua/</a>
     </li>
     <li class="post-copyright-license">
       <strong>Copyright notice:   </strong>
@@ -743,6 +764,28 @@
 
 
 
+
+  
+  <div class="post-nav-next post-nav-item">
+    <div class="post-nav-img" style="background-size: cover; 
+      background-position: center center;">
+      <img class="lazyload lazyload placeholder" src="https://raw.githubusercontent.com/oO0OoOo/cpblog-hexo/main/source/images/bg/591039263be09.jpg" class="lazyload placeholder" data-srcset="https://raw.githubusercontent.com/oO0OoOo/cpblog-hexo/main/source/images/bg/591039263be09.jpg" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" src="" alt="">
+    </div>
+    <a href="/2024/03/22/qiu-zui-duan-lu-jing-dijkstra-suan-fa-lua/" class="post-nav-link">
+      <div class="title">
+        Next: <i class="fas fa-angle-right"></i>
+        <div class="title-text">求最短路径 - Dijkstra算法（lua）</div>
+      </div>
+      <!-- <div class="content">
+        算法视频讲解，非常易懂（若加载失败可点击下方源视频链接）
+
+
+
+
+源视频链接：https://www.youtube.c
+      </div> -->
+    </a>
+  </div>
 
 </div>
 
@@ -863,78 +906,29 @@
   <div class="layout_sticky">    
     
       
-        
-    <section class="widget side_category">
-      
+<section class="widget side_toc">
+  
   <header>
     
-      <a style="color: " href='/blog/categories/'><i class="fas fa-folder-open fa-fw" aria-hidden="true"></i><span class='name'>文章分类</span></a>
+      <i style="color: " class="fas fa-list fa-fw" aria-hidden="true"></i><span class='name'>本文目录</span>
     
   </header>
 
 
-      <div class='content'>
-        <ul class="entry navigation">
-          
-            <li><a class="flat-box"
-              title="/categories/Android/" href="/categories/Android/"
-              id="categoriesAndroid"
-              ><div class='name'>Android</div><div class='badge'>(2)</div></a></li>
-          
-            <li><a class="flat-box child"
-              title="/categories/Android/Unity/" href="/categories/Android/Unity/"
-              id="categoriesAndroidUnity"
-              ><div class='name'>Unity</div><div class='badge'>(2)</div></a></li>
-          
-            <li><a class="flat-box"
-              title="/categories/Unity/" href="/categories/Unity/"
-              id="categoriesUnity"
-              ><div class='name'>Unity</div><div class='badge'>(1)</div></a></li>
-          
-            <li><a class="flat-box"
-              title="/categories/sdk/" href="/categories/sdk/"
-              id="categoriessdk"
-              ><div class='name'>sdk</div><div class='badge'>(1)</div></a></li>
-          
-            <li><a class="flat-box"
-              title="/categories/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/" href="/categories/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/"
-              id="categoriesE58D9AE5AEA2E690ADE5BBBA"
-              ><div class='name'>博客搭建</div><div class='badge'>(2)</div></a></li>
-          
-            <li><a class="flat-box"
-              title="/categories/%E5%BE%80%E6%9C%9F%E5%B0%81%E9%9D%A2/" href="/categories/%E5%BE%80%E6%9C%9F%E5%B0%81%E9%9D%A2/"
-              id="categoriesE5BE80E69C9FE5B081E99DA2"
-              ><div class='name'>往期封面</div><div class='badge'>(1)</div></a></li>
-          
-            <li><a class="flat-box"
-              title="/categories/%E7%AE%97%E6%B3%95/" href="/categories/%E7%AE%97%E6%B3%95/"
-              id="categoriesE7AE97E6B395"
-              ><div class='name'>算法</div><div class='badge'>(3)</div></a></li>
-          
-        </ul>
+  <div class='content'>
+    <div class="toc-main">
+      <div class="toc-content">
+        <!-- <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%BE%E4%BE%8B%EF%BC%9A"><span class="toc-text">举例：</span></a></li></ol> -->
+        <div class="toc"></div>
       </div>
-    </section>
-  
-  
-      
-      
-        
-<section class="widget side_tagcloud">
-    
-  <header>
-    
-      <a style="color: " href='/tags/'><i class="fas fa-tags fa-fw" aria-hidden="true"></i><span class='name'>标签</span></a>
-    
-  </header>
-
-
-    <div class='content'>
-    <a href="/tags/Android/" style="font-size: 24px; color: #555">Android</a> <a href="/tags/Unity/" style="font-size: 14px; color: #999">Unity</a> <a href="/tags/iOS/" style="font-size: 14px; color: #999">iOS</a> <a href="/tags/sdk/" style="font-size: 14px; color: #999">sdk</a> <a href="/tags/%E5%8D%9A%E5%AE%A2/" style="font-size: 19px; color: #777">博客</a> <a href="/tags/%E6%89%93%E5%8C%85/" style="font-size: 19px; color: #777">打包</a> <a href="/tags/%E7%94%9F%E6%B4%BB/" style="font-size: 14px; color: #999">生活</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 24px; color: #555">算法</a>
     </div>
+  </div>
 </section>
+<!-- 手机端目录按钮 -->
+<div id="toc-mobile-btn">
+  <i class="fas fa-list-ul" aria-hidden="true"></i>
+</div>
 
-  
-      
       
   <section class="widget side_recent_post">
     
@@ -1060,134 +1054,6 @@
     </div>
   </section>
 
-      
-  <section class="widget side_archives">
-    
-    <header><a style="color: red" href='/archives/'><i class="fas fa-archive fa-fw" aria-hidden="true"></i><span class='name'>归档</span></a></header><div class="content"><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/03/"><span class="card-archive-list-date">March 2024</span><span class="card-archive-list-count">4</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/02/"><span class="card-archive-list-date">February 2024</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/01/"><span class="card-archive-list-date">January 2024</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/04/"><span class="card-archive-list-date">April 2023</span><span class="card-archive-list-count">2</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/01/"><span class="card-archive-list-date">January 2023</span><span class="card-archive-list-count">2</span></a></li></ul></div>
-  </section>
-
-      <section class="widget side_webinfo">
-  
-  <header>
-    
-      <i style="color: " class="fas fa-chart-line fa-fw" aria-hidden="true"></i><span class='name'>站点信息</span>
-    
-  </header>
-
-
-  <div class='content'>
-    <div class="webinfo">
-      
-        <div class="webinfo-item">
-          <div>文章数目：</div>
-          <div>10 篇</div>
-        </div>
-      
-
-      
-        <div class="webinfo-item">
-          <div>已运行时间：</div>
-          <div id="webinfo-runtime-count" publish_date="03/24/2020 21:34:09"></div>
-        </div>
-        <script>
-          var BirthDay = new Date(new Date('2023/01/08'));
-          var today = new Date();
-          var timeold = (today.getTime() - BirthDay.getTime());
-          var daysold = Math.floor(timeold / (24 * 60 * 60 * 1000));
-          document.getElementById('webinfo-runtime-count').innerHTML = daysold + ' 天';
-        </script>
-      
-
-
-      
-        <div class="webinfo-item">
-          <div>本站总字数：</div>
-          <div>12.6k 字</div>
-        </div>
-      
-
-      
-        <div class="webinfo-item">
-          <div>本站访客数：</div>
-          
-          <div><span id="busuanzi_value_site_uv"><i class="fas fa-fan fa-spin fa-fw" aria-hidden="true"></i></span> 人</div>
-          
-        </div>
-      
-
-      
-        <div class="webinfo-item">
-          <div>本站总访问量：</div>
-          
-          <div><span id="busuanzi_value_site_pv"><i class="fas fa-fan fa-spin fa-fw" aria-hidden="true"></i></span> 次</div>
-          
-        </div>
-      
-
-      
-        <div class="webinfo-item">
-          <div>最后活动时间：</div>
-          
-            <div id="last-update" style="display: none;">Tue Mar 26 2024 20:53:57 GMT+0800 (中国标准时间)</div>
-            <div id="last-update-show">2024-03-26 日</div>
-          
-        </div>
-        
-        <script>
-          function timeago(dateTimeStamp) {
-              var minute = 1000 * 60; //把分，时，天，周，半个月，一个月用毫秒表示
-              var hour = minute * 60;
-              var day = hour * 24;
-              var week = day * 7;
-              var month = day * 30;
-              var now = new Date().getTime(); //获取当前时间毫秒
-              var diffValue = now - dateTimeStamp; //时间差
-              if (diffValue < 0) {
-                  return;
-              }
-              var minC = diffValue / minute; //计算时间差的分，时，天，周，月
-              var hourC = diffValue / hour;
-              var dayC = diffValue / day;
-              var weekC = diffValue / week;
-              var monthC = diffValue / month;
-              if (monthC >= 1 && monthC <= 3) {
-                  result = " " + parseInt(monthC) + " 月前"
-              } else if (weekC >= 1 && weekC <= 3) {
-                  result = " " + parseInt(weekC) + " 周前"
-              } else if (dayC >= 1 && dayC <= 6) {
-                  result = " " + parseInt(dayC) + " 天前"
-              } else if (hourC >= 1 && hourC <= 23) {
-                  result = " " + parseInt(hourC) + " 小时前"
-              } else if (minC >= 1 && minC <= 59) {
-                  result = " " + parseInt(minC) + " 分钟前"
-              } else if (diffValue >= 0 && diffValue <= minute) {
-                  result = "刚刚"
-              } else {
-                  var datetime = new Date();
-                  datetime.setTime(dateTimeStamp);
-                  var Nyear = datetime.getFullYear();
-                  var Nmonth = datetime.getMonth() + 1 < 10 ? "0" + (datetime.getMonth() + 1) : datetime.getMonth() + 1;
-                  var Ndate = datetime.getDate() < 10 ? "0" + datetime.getDate() : datetime.getDate();
-                  var Nhour = datetime.getHours() < 10 ? "0" + datetime.getHours() : datetime.getHours();
-                  var Nminute = datetime.getMinutes() < 10 ? "0" + datetime.getMinutes() : datetime.getMinutes();
-                  var Nsecond = datetime.getSeconds() < 10 ? "0" + datetime.getSeconds() : datetime.getSeconds();
-                  result = Nyear + "-" + Nmonth + "-" + Ndate
-              }
-              return result;
-          }
-          var lastUpDate = document.getElementById('last-update').innerHTML;
-          try {
-            document.getElementById('last-update-show').innerHTML = timeago(new Date(lastUpDate));
-          } catch (error) {
-            document.getElementById('last-update-show').innerHTML = '2024-03-26 日';
-          }
-        </script>
-        
-      
-    </div>
-  </div>
-</section>
-      
     
   </div>
 </aside>

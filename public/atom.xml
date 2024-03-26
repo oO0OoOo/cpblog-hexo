@@ -6,7 +6,7 @@
   <link href="http://epya15.fun/atom.xml" rel="self"/>
   
   <link href="http://epya15.fun/"/>
-  <updated>2024-03-22T04:00:35.216Z</updated>
+  <updated>2024-03-26T12:52:49.516Z</updated>
   <id>http://epya15.fun/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>A*寻路算法（lua）</title>
+    <link href="http://epya15.fun/2024/03/26/a-xing-xun-lu-suan-fa-lua/"/>
+    <id>http://epya15.fun/2024/03/26/a-xing-xun-lu-suan-fa-lua/</id>
+    <published>2024-03-25T16:00:00.000Z</published>
+    <updated>2024-03-26T12:52:49.516Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;参考资料：&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.cnblogs.com/f-society/p/6818665.html&quot;&gt;https://www.cnblogs.com/f-society/p/6818665.html&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="算法" scheme="http://epya15.fun/categories/%E7%AE%97%E6%B3%95/"/>
+    
+    
+    <category term="算法" scheme="http://epya15.fun/tags/%E7%AE%97%E6%B3%95/"/>
+    
+  </entry>
   
   <entry>
     <title>求最短路径 - Dijkstra算法（lua）</title>
