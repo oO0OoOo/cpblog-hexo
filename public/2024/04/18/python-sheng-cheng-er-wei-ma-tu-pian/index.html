@@ -11,7 +11,7 @@
   <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-  <title>博客搭建教程11 - 使用linux+nginx建站每次云服务器重启后的例行检查操作 | 赛朋博客</title>
+  <title>python生成二维码图片 | 赛朋博客</title>
 
   <link rel="icon" type="image/jpeg" href="/favicon.jpg">
   <link rel="stylesheet" href="https://at.alicdn.com/t/font_1911880_c1nvbyezg17.css">
@@ -649,21 +649,21 @@
 
 
 <div class="post-detail-header" id="thumbnail_canvas" style="background-repeat: no-repeat; background-size: cover; 
-  background-position: center center;position: relative;background-image:url('https://img2.baidu.com/it/u=2273045471,518867457&fm=253&fmt=auto&app=138&f=PNG?w=822&h=500')">
+  background-position: center center;position: relative;background-image:url('https://raw.githubusercontent.com/oO0OoOo/cpblog-hexo/main/source/images/bg/591039263be09.jpg')">
   <div class="post-detail-header-mask"></div>
   <canvas id="header_canvas"style="position:absolute;bottom:0;pointer-events:none;"></canvas>
   
   <div class="post-detail-header_info-box">
     <div class="title-box">
       <span class="title">
-        博客搭建教程11 - 使用linux+nginx建站每次云服务器重启后的例行检查操作
+        python生成二维码图片
       </span>
     </div>
     
     
       
         <span class="post-detail-header_date">
-          <i class="fas fa-calendar"></i> Published in：2023-01-09 |
+          <i class="fas fa-calendar"></i> Published in：2024-04-18 |
         </span>
       
 
@@ -671,8 +671,12 @@
         <span class="post-detail-header_categories">
           <i class="iconfont iconbookmark1"></i> category：
           
-            <a href="/" class="post-detail-header_category">
-              
+            <a href="/categories/OpenHarmony/" class="post-detail-header_category">
+              OpenHarmony
+            </a>
+          
+            <a href="/categories/OpenHarmony/Unity/" class="post-detail-header_category">
+              Unity
             </a>
           
         </span>
@@ -702,18 +706,24 @@
   <div class="main-content">
     <article class="post post-detail">
       <div class="post-content">
-        <p>重启服务器后的例行操作  </p>
-<p>1.检查防火墙<br>检查防火墙状态：systemctl status firewalld<br>若出现绿色的active(running)，说明防火墙已经启动，否则<br>systemctl start firewalld开启防火墙，没有任何提示即开启成功<br>如果没有反应，或者等待1分钟后出现timeout，需要先kill掉现在的防火墙进程再重新开启<br>kill防火墙进程：pkill -f firewalld<br>然后再重新systemctl start firewalld开启防火墙，没有任何提示即开启成功  </p>
-<p>2.检查nginx端口（比如80端口）<br>firewall-cmd –query-port&#x3D;80&#x2F;tcp<br>返回yes即没问题，否则打开80端口<br>firewall-cmd –add-port&#x3D;80&#x2F;tcp –permanent<br>开启后需再次重启防火墙，才能生效<br>firewall-cmd –reload  </p>
-<p>3.检查nginx服务<br>开启nginx：nginx<br>（nginx关闭命令：nginx -s stop）<br>（nginx重启命令：nginx -s reload）<br>在其它机器上访问服务器IP:端口号，如果出现nginx页面，就表示开启成功（出现40x 页面也无所谓）<br>如果开启nginx提示端口被占用，需要杀死占用这个端口的进程<br>可以使用一个快捷的方法，直接杀死指定端口的所有进程，比如80端口<br>kill -9 $(lsof -i:80 -t)<br>或者可以仔细查看是哪个进程占用了80端口<br>查看80端口使用情况<br>netstat -lnp|grep 80<br>比如正在被nginx占用，记住显示的进程号，比如1053<br>停掉nginx<br>systemctl stop nginx<br>强制杀掉1053进程<br>kill -9 1053<br>再查询<br>netstat -lnp|grep 80<br>没结果说明已经不占用了<br>接着重新开启nginx服务  </p>
+        <p>安装python环境，将下面代码保存到generateQRcode.py文件</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#pip install qrcode</span></span><br><span class="line"><span class="comment">#用法 py generateQRcode.py &quot;Hello world!&quot; &quot;D:/qrcode.png&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> qrcode</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"></span><br><span class="line">url = <span class="string">&quot;Hello world!&quot;</span></span><br><span class="line">output = <span class="string">&quot;D:/qrcode.png&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> <span class="built_in">len</span>(sys.argv) &gt;= <span class="number">2</span>:</span><br><span class="line">    url = sys.argv[<span class="number">1</span>]</span><br><span class="line"><span class="keyword">if</span> <span class="built_in">len</span>(sys.argv) &gt;= <span class="number">3</span>:</span><br><span class="line">    output = sys.argv[<span class="number">2</span>]</span><br><span class="line"></span><br><span class="line">qr = qrcode.QRCode(version=<span class="number">1</span>, error_correction=qrcode.constants.ERROR_CORRECT_L, box_size=<span class="number">20</span>, border=<span class="number">2</span>)</span><br><span class="line">qr.add_data(url)</span><br><span class="line">qr.make(fit=<span class="literal">True</span>)</span><br><span class="line">img = qr.make_image(fill_color=<span class="string">&quot;black&quot;</span>, back_color=<span class="string">&quot;white&quot;</span>)</span><br><span class="line">img.save(output)</span><br></pre></td></tr></table></figure>
+
+<p>打开cmd窗口键入：</p>
+<p>py generateQRcode.py “Hello world!” “D:&#x2F;qrcode.png”</p>
+<p>即可生成图片。</p>
 
       </div>
       <div class="post-tags-categories">
         
         <div class="tags">
           
-            <a href="/" class="">
-              
+            <a href="/tags/Android/" class="">
+              Android
+            </a>
+          
+            <a href="/tags/%E6%89%93%E5%8C%85/" class="">
+              打包
             </a>
           
         </div>
@@ -727,7 +737,7 @@
     </li>
     <li class="post-copyright-link">
     <strong>link:  </strong>
-    <a href="/posts_backup/博客搭建教程11 - 使用linux+nginx建站每次云服务器重启后的例行检查操作.html" target="_blank" title="博客搭建教程11 - 使用linux+nginx建站每次云服务器重启后的例行检查操作">http://epya15.fun/posts_backup/博客搭建教程11 - 使用linux+nginx建站每次云服务器重启后的例行检查操作.html</a>
+    <a href="/2024/04/18/python-sheng-cheng-er-wei-ma-tu-pian/" target="_blank" title="python生成二维码图片">http://epya15.fun/2024/04/18/python-sheng-cheng-er-wei-ma-tu-pian/</a>
     </li>
     <li class="post-copyright-license">
       <strong>Copyright notice:   </strong>
@@ -746,6 +756,24 @@
 
 
 
+
+  
+  <div class="post-nav-next post-nav-item">
+    <div class="post-nav-img" style="background-size: cover; 
+      background-position: center center;">
+      <img class="lazyload lazyload placeholder" src="https://raw.githubusercontent.com/oO0OoOo/cpblog-hexo/main/source/images/bg/591039263be09.jpg" class="lazyload placeholder" data-srcset="https://raw.githubusercontent.com/oO0OoOo/cpblog-hexo/main/source/images/bg/591039263be09.jpg" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" src="" alt="">
+    </div>
+    <a href="/2024/04/18/win11-zhao-hui-win10-gan-jue/" class="post-nav-link">
+      <div class="title">
+        Next: <i class="fas fa-angle-right"></i>
+        <div class="title-text">win11找回win10感觉</div>
+      </div>
+      <!-- <div class="content">
+        右键菜单改回win10https://zhuanlan.zhihu.com/p/596955289
+Win11如何将开始
+      </div> -->
+    </a>
+  </div>
 
 </div>
 
@@ -866,88 +894,29 @@
   <div class="layout_sticky">    
     
       
-        
-    <section class="widget side_category">
-      
+<section class="widget side_toc">
+  
   <header>
     
-      <a style="color: " href='/blog/categories/'><i class="fas fa-folder-open fa-fw" aria-hidden="true"></i><span class='name'>文章分类</span></a>
+      <i style="color: " class="fas fa-list fa-fw" aria-hidden="true"></i><span class='name'>本文目录</span>
     
   </header>
 
 
-      <div class='content'>
-        <ul class="entry navigation">
-          
-            <li><a class="flat-box"
-              title="/categories/Android/" href="/categories/Android/"
-              id="categoriesAndroid"
-              ><div class='name'>Android</div><div class='badge'>(2)</div></a></li>
-          
-            <li><a class="flat-box child"
-              title="/categories/Android/Unity/" href="/categories/Android/Unity/"
-              id="categoriesAndroidUnity"
-              ><div class='name'>Unity</div><div class='badge'>(2)</div></a></li>
-          
-            <li><a class="flat-box"
-              title="/categories/OpenHarmony/" href="/categories/OpenHarmony/"
-              id="categoriesOpenHarmony"
-              ><div class='name'>OpenHarmony</div><div class='badge'>(3)</div></a></li>
-          
-            <li><a class="flat-box child"
-              title="/categories/OpenHarmony/Unity/" href="/categories/OpenHarmony/Unity/"
-              id="categoriesOpenHarmonyUnity"
-              ><div class='name'>Unity</div><div class='badge'>(3)</div></a></li>
-          
-            <li><a class="flat-box"
-              title="/categories/Unity/" href="/categories/Unity/"
-              id="categoriesUnity"
-              ><div class='name'>Unity</div><div class='badge'>(1)</div></a></li>
-          
-            <li><a class="flat-box"
-              title="/categories/sdk/" href="/categories/sdk/"
-              id="categoriessdk"
-              ><div class='name'>sdk</div><div class='badge'>(1)</div></a></li>
-          
-            <li><a class="flat-box"
-              title="/categories/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/" href="/categories/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/"
-              id="categoriesE58D9AE5AEA2E690ADE5BBBA"
-              ><div class='name'>博客搭建</div><div class='badge'>(2)</div></a></li>
-          
-            <li><a class="flat-box"
-              title="/categories/%E5%BE%80%E6%9C%9F%E5%B0%81%E9%9D%A2/" href="/categories/%E5%BE%80%E6%9C%9F%E5%B0%81%E9%9D%A2/"
-              id="categoriesE5BE80E69C9FE5B081E99DA2"
-              ><div class='name'>往期封面</div><div class='badge'>(1)</div></a></li>
-          
-            <li><a class="flat-box"
-              title="/categories/%E7%AE%97%E6%B3%95/" href="/categories/%E7%AE%97%E6%B3%95/"
-              id="categoriesE7AE97E6B395"
-              ><div class='name'>算法</div><div class='badge'>(3)</div></a></li>
-          
-        </ul>
+  <div class='content'>
+    <div class="toc-main">
+      <div class="toc-content">
+        <!--  -->
+        <div class="toc"></div>
       </div>
-    </section>
-  
-  
-      
-      
-        
-<section class="widget side_tagcloud">
-    
-  <header>
-    
-      <a style="color: " href='/tags/'><i class="fas fa-tags fa-fw" aria-hidden="true"></i><span class='name'>标签</span></a>
-    
-  </header>
-
-
-    <div class='content'>
-    <a href="/tags/Android/" style="font-size: 24px; color: #555">Android</a> <a href="/tags/Unity/" style="font-size: 14px; color: #999">Unity</a> <a href="/tags/iOS/" style="font-size: 14px; color: #999">iOS</a> <a href="/tags/sdk/" style="font-size: 14px; color: #999">sdk</a> <a href="/tags/%E5%8D%9A%E5%AE%A2/" style="font-size: 16.5px; color: #888">博客</a> <a href="/tags/%E6%89%93%E5%8C%85/" style="font-size: 21.5px; color: #666">打包</a> <a href="/tags/%E7%94%9F%E6%B4%BB/" style="font-size: 14px; color: #999">生活</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 19px; color: #777">算法</a>
     </div>
+  </div>
 </section>
+<!-- 手机端目录按钮 -->
+<div id="toc-mobile-btn">
+  <i class="fas fa-list-ul" aria-hidden="true"></i>
+</div>
 
-  
-      
       
   <section class="widget side_recent_post">
     
@@ -1073,134 +1042,6 @@
     </div>
   </section>
 
-      
-  <section class="widget side_archives">
-    
-    <header><a style="color: red" href='/archives/'><i class="fas fa-archive fa-fw" aria-hidden="true"></i><span class='name'>归档</span></a></header><div class="content"><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/04/"><span class="card-archive-list-date">April 2024</span><span class="card-archive-list-count">3</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/03/"><span class="card-archive-list-date">March 2024</span><span class="card-archive-list-count">4</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/02/"><span class="card-archive-list-date">February 2024</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/01/"><span class="card-archive-list-date">January 2024</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/04/"><span class="card-archive-list-date">April 2023</span><span class="card-archive-list-count">2</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/01/"><span class="card-archive-list-date">January 2023</span><span class="card-archive-list-count">2</span></a></li></ul></div>
-  </section>
-
-      <section class="widget side_webinfo">
-  
-  <header>
-    
-      <i style="color: " class="fas fa-chart-line fa-fw" aria-hidden="true"></i><span class='name'>站点信息</span>
-    
-  </header>
-
-
-  <div class='content'>
-    <div class="webinfo">
-      
-        <div class="webinfo-item">
-          <div>文章数目：</div>
-          <div>13 篇</div>
-        </div>
-      
-
-      
-        <div class="webinfo-item">
-          <div>已运行时间：</div>
-          <div id="webinfo-runtime-count" publish_date="03/24/2020 21:34:09"></div>
-        </div>
-        <script>
-          var BirthDay = new Date(new Date('2023/01/08'));
-          var today = new Date();
-          var timeold = (today.getTime() - BirthDay.getTime());
-          var daysold = Math.floor(timeold / (24 * 60 * 60 * 1000));
-          document.getElementById('webinfo-runtime-count').innerHTML = daysold + ' 天';
-        </script>
-      
-
-
-      
-        <div class="webinfo-item">
-          <div>本站总字数：</div>
-          <div>13.3k 字</div>
-        </div>
-      
-
-      
-        <div class="webinfo-item">
-          <div>本站访客数：</div>
-          
-          <div><span id="busuanzi_value_site_uv"><i class="fas fa-fan fa-spin fa-fw" aria-hidden="true"></i></span> 人</div>
-          
-        </div>
-      
-
-      
-        <div class="webinfo-item">
-          <div>本站总访问量：</div>
-          
-          <div><span id="busuanzi_value_site_pv"><i class="fas fa-fan fa-spin fa-fw" aria-hidden="true"></i></span> 次</div>
-          
-        </div>
-      
-
-      
-        <div class="webinfo-item">
-          <div>最后活动时间：</div>
-          
-            <div id="last-update" style="display: none;">Thu Apr 18 2024 16:52:39 GMT+0800 (中国标准时间)</div>
-            <div id="last-update-show">2024-04-18 日</div>
-          
-        </div>
-        
-        <script>
-          function timeago(dateTimeStamp) {
-              var minute = 1000 * 60; //把分，时，天，周，半个月，一个月用毫秒表示
-              var hour = minute * 60;
-              var day = hour * 24;
-              var week = day * 7;
-              var month = day * 30;
-              var now = new Date().getTime(); //获取当前时间毫秒
-              var diffValue = now - dateTimeStamp; //时间差
-              if (diffValue < 0) {
-                  return;
-              }
-              var minC = diffValue / minute; //计算时间差的分，时，天，周，月
-              var hourC = diffValue / hour;
-              var dayC = diffValue / day;
-              var weekC = diffValue / week;
-              var monthC = diffValue / month;
-              if (monthC >= 1 && monthC <= 3) {
-                  result = " " + parseInt(monthC) + " 月前"
-              } else if (weekC >= 1 && weekC <= 3) {
-                  result = " " + parseInt(weekC) + " 周前"
-              } else if (dayC >= 1 && dayC <= 6) {
-                  result = " " + parseInt(dayC) + " 天前"
-              } else if (hourC >= 1 && hourC <= 23) {
-                  result = " " + parseInt(hourC) + " 小时前"
-              } else if (minC >= 1 && minC <= 59) {
-                  result = " " + parseInt(minC) + " 分钟前"
-              } else if (diffValue >= 0 && diffValue <= minute) {
-                  result = "刚刚"
-              } else {
-                  var datetime = new Date();
-                  datetime.setTime(dateTimeStamp);
-                  var Nyear = datetime.getFullYear();
-                  var Nmonth = datetime.getMonth() + 1 < 10 ? "0" + (datetime.getMonth() + 1) : datetime.getMonth() + 1;
-                  var Ndate = datetime.getDate() < 10 ? "0" + datetime.getDate() : datetime.getDate();
-                  var Nhour = datetime.getHours() < 10 ? "0" + datetime.getHours() : datetime.getHours();
-                  var Nminute = datetime.getMinutes() < 10 ? "0" + datetime.getMinutes() : datetime.getMinutes();
-                  var Nsecond = datetime.getSeconds() < 10 ? "0" + datetime.getSeconds() : datetime.getSeconds();
-                  result = Nyear + "-" + Nmonth + "-" + Ndate
-              }
-              return result;
-          }
-          var lastUpDate = document.getElementById('last-update').innerHTML;
-          try {
-            document.getElementById('last-update-show').innerHTML = timeago(new Date(lastUpDate));
-          } catch (error) {
-            document.getElementById('last-update-show').innerHTML = '2024-04-18 日';
-          }
-        </script>
-        
-      
-    </div>
-  </div>
-</section>
-      
     
   </div>
 </aside>

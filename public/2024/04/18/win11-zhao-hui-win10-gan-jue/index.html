@@ -11,7 +11,7 @@
   <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-  <title>鸿蒙cmd | 赛朋博客</title>
+  <title>win11找回win10感觉 | 赛朋博客</title>
 
   <link rel="icon" type="image/jpeg" href="/favicon.jpg">
   <link rel="stylesheet" href="https://at.alicdn.com/t/font_1911880_c1nvbyezg17.css">
@@ -656,7 +656,7 @@
   <div class="post-detail-header_info-box">
     <div class="title-box">
       <span class="title">
-        鸿蒙cmd
+        win11找回win10感觉
       </span>
     </div>
     
@@ -706,44 +706,10 @@
   <div class="main-content">
     <article class="post post-detail">
       <div class="post-content">
-        <h3 id="鸿蒙概念"><a href="#鸿蒙概念" class="headerlink" title="鸿蒙概念"></a>鸿蒙概念</h3><ol>
-<li>鸿蒙系统分为套壳鸿蒙和鸿蒙NEXT，鸿蒙NEXT不再兼容安卓apk，鸿蒙NEXT预计2024 Q4发布，本文涉及的鸿蒙系统均指鸿蒙NEXT系统</li>
-<li>鸿蒙标准英文名称：OpenHarmony，HarmonyOS</li>
-<li>鸿蒙系统手机不支持.apk安装，没有Android文件夹，无法直接在电脑查看沙箱目录文件</li>
-<li>鸿蒙app后缀名：.hap，安装hap可通过cmd命令实现：hap install xxxx</li>
-<li>hap包最大2.7GB（Android和iOS最大4GB）</li>
-<li>鸿蒙Unity宏：UNITY_OPENHARMONY，若令其在Unity编辑器生效需切换到鸿蒙平台</li>
-<li>鸿蒙app开发需使用华为提供的DevEco Studio，DevEco Studio仅能在华为官网完成开发者认证后下载</li>
-<li>团结2022可直出鸿蒙包，但也可以导出DevEco Studio工程，从DevEco Studio出包</li>
-<li>团结2022也支持鸿蒙手机连接编辑器进行Profiler和FrameDebugger调试</li>
-<li>鸿蒙手机不能随意升级系统，手机系统版本需和DevEco Studio版本一同升级</li>
-<li>鸿蒙平台开发语言为ts，是基于js的封装，团结2022提供了桥接类进行C#与ts的交互，用法与AndroidJavaClass类似</li>
-<li>鸿蒙的沙箱文件无法通过cmd或Windows文件浏览器进行更改，因此鸿蒙无法像安卓一样能直接替换包体内lua代码实现快速调试</li>
-<li>鸿蒙有类似苹果的证书概念，开发者打出的hap包只能在证书内指定的设备上安装</li>
-</ol>
-<h3 id="鸿蒙CMD"><a href="#鸿蒙CMD" class="headerlink" title="鸿蒙CMD"></a>鸿蒙CMD</h3><p>鸿蒙hdc命令：hdc</p>
-<ol>
-<li>找到HarmonySDK的toolchains目录，配置环境变量PATH，例如D:\HarmonySDK\openharmony\10\toolchains</li>
-<li>列出已连接的鸿蒙设备：hdc list targets</li>
-<li>安装hap：hdc install D:\w02.hap</li>
-<li>进入shell：hdc shell</li>
-<li>退出shell：exit</li>
-<li>全局放开Debug日志，关闭日志限流，打出private日志(每次重启手机后执行一次)：</li>
-</ol>
-<p>hdc shell hilog -b D hilog -Q pidoff hilog -p off</p>
-<ol>
-<li>进入沙箱路径：</li>
-</ol>
-<p>hdc shell ps -ef|grep com.qianxunshe.dp</p>
-<p><img src="https://senshingames.feishu.cn/space/api/box/stream/download/asynccode/?code=ZjA2ZWE0Y2Q5ZTAzZTcwMzFjNWI3ZmUxM2Y0NTRkMzhfODZlTkR5MThwMmRkZ08xVk01aUF3NG5mS0s3cXNBc2hfVG9rZW46UDR1Y2JYcVVQbzR4M2p4bzI1cWNTZ0RsbkNmXzE3MTM0MjE1NTg6MTcxMzQyNTE1OF9WNA" class="lazyload placeholder" data-srcset="https://senshingames.feishu.cn/space/api/box/stream/download/asynccode/?code=ZjA2ZWE0Y2Q5ZTAzZTcwMzFjNWI3ZmUxM2Y0NTRkMzhfODZlTkR5MThwMmRkZ08xVk01aUF3NG5mS0s3cXNBc2hfVG9rZW46UDR1Y2JYcVVQbzR4M2p4bzI1cWNTZ0RsbkNmXzE3MTM0MjE1NTg6MTcxMzQyNTE1OF9WNA" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" alt="img"></p>
-<p>nsenter -t 11355 -m &#x2F;bin&#x2F;sh</p>
-<p><img src="https://senshingames.feishu.cn/space/api/box/stream/download/asynccode/?code=Zjk2Zjk1OTA1MDYyNjJjYWQ1NTY0MGM2ZTkwNGQ2OWJfVGREMHE3SmZSdHdkT0RpWkVHelBmb01HMnh3ZGJRSnFfVG9rZW46SWtnT2JZTEk5bzEwYk14VUlveWM1V1ZZbk5lXzE3MTM0MjE1NTg6MTcxMzQyNTE1OF9WNA" class="lazyload placeholder" data-srcset="https://senshingames.feishu.cn/space/api/box/stream/download/asynccode/?code=Zjk2Zjk1OTA1MDYyNjJjYWQ1NTY0MGM2ZTkwNGQ2OWJfVGREMHE3SmZSdHdkT0RpWkVHelBmb01HMnh3ZGJRSnFfVG9rZW46SWtnT2JZTEk5bzEwYk14VUlveWM1V1ZZbk5lXzE3MTM0MjE1NTg6MTcxMzQyNTE1OF9WNA" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" alt="img"></p>
-<p>cd &#x2F;data&#x2F;storage&#x2F;el2&#x2F;base&#x2F;haps&#x2F;entry&#x2F;files</p>
-<ol>
-<li>抓取日志</li>
-</ol>
-<p>hdc shell hilog -r</p>
-<p>hdc hilog &gt;D:\log.txt</p>
+        <p>右键菜单改回win10<br><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/596955289">https://zhuanlan.zhihu.com/p/596955289</a></p>
+<p>Win11如何将开始菜单从中间移到左边<br><a target="_blank" rel="noopener" href="https://www.jb51.net/os/win11/781228.html">https://www.jb51.net/os/win11/781228.html</a></p>
+<p>win11 桌面显示我的电脑<br><a target="_blank" rel="noopener" href="http://www.aichunjing.com/xtjc/22734.html">http://www.aichunjing.com/xtjc/22734.html</a></p>
+<p>关闭拖拽窗口的分屏提示<br><a target="_blank" rel="noopener" href="https://zhidao.baidu.com/question/1764158381988262068.html">https://zhidao.baidu.com/question/1764158381988262068.html</a></p>
 
       </div>
       <div class="post-tags-categories">
@@ -769,7 +735,7 @@
     </li>
     <li class="post-copyright-link">
     <strong>link:  </strong>
-    <a href="/2024/04/18/hong-meng-cmd/" target="_blank" title="鸿蒙cmd">http://epya15.fun/2024/04/18/hong-meng-cmd/</a>
+    <a href="/2024/04/18/win11-zhao-hui-win10-gan-jue/" target="_blank" title="win11找回win10感觉">http://epya15.fun/2024/04/18/win11-zhao-hui-win10-gan-jue/</a>
     </li>
     <li class="post-copyright-license">
       <strong>Copyright notice:   </strong>
@@ -787,6 +753,25 @@
 
 
 
+  
+  <div class="post-nav-prev post-nav-item">
+    <div class="post-nav-img" style="background-size: cover; 
+      background-position: center center;">
+      <img class="lazyload lazyload placeholder" src="https://raw.githubusercontent.com/oO0OoOo/cpblog-hexo/main/source/images/bg/591039263be09.jpg" class="lazyload placeholder" data-srcset="https://raw.githubusercontent.com/oO0OoOo/cpblog-hexo/main/source/images/bg/591039263be09.jpg" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" alt="">
+    </div>
+    <a href="/2024/04/18/python-sheng-cheng-er-wei-ma-tu-pian/" class="post-nav-link">
+      <div class="title">
+        <i class="fas fa-angle-left"></i> Prev:
+        <div class="title-text">python生成二维码图片</div>
+      </div>
+      
+      <!-- <div class="content">
+        安装python环境，将下面代码保存到generateQRcode.py文件
+123456789101112131415
+      </div> -->
+    </a>
+  </div>
+
 
 
   
@@ -795,15 +780,14 @@
       background-position: center center;">
       <img class="lazyload lazyload placeholder" src="https://raw.githubusercontent.com/oO0OoOo/cpblog-hexo/main/source/images/bg/591039263be09.jpg" class="lazyload placeholder" data-srcset="https://raw.githubusercontent.com/oO0OoOo/cpblog-hexo/main/source/images/bg/591039263be09.jpg" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" src="" alt="">
     </div>
-    <a href="/2024/03/26/a-xing-xun-lu-suan-fa-lua/" class="post-nav-link">
+    <a href="/2024/04/18/hong-meng-ji-chu/" class="post-nav-link">
       <div class="title">
         Next: <i class="fas fa-angle-right"></i>
-        <div class="title-text">A*寻路算法（lua）</div>
+        <div class="title-text">鸿蒙cmd</div>
       </div>
       <!-- <div class="content">
-        参考资料：
-https://www.cnblogs.com/f-society/p/6818665.html
-https
+        鸿蒙概念
+鸿蒙系统分为套壳鸿蒙和鸿蒙NEXT，鸿蒙NEXT不再兼容安卓apk，鸿蒙NEXT预计2024 Q4发布，本文涉
       </div> -->
     </a>
   </div>
@@ -939,7 +923,7 @@ https
   <div class='content'>
     <div class="toc-main">
       <div class="toc-content">
-        <!-- <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%B8%BF%E8%92%99%E6%A6%82%E5%BF%B5"><span class="toc-text">鸿蒙概念</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%B8%BF%E8%92%99CMD"><span class="toc-text">鸿蒙CMD</span></a></li></ol> -->
+        <!--  -->
         <div class="toc"></div>
       </div>
     </div>
@@ -972,7 +956,7 @@ https
             
 
             <div class="post-img-box">
-              <a href="/2024/04/18/hong-meng-cmd/" class="post-img " style="background-size: cover; 
+              <a href="/2024/04/18/python-sheng-cheng-er-wei-ma-tu-pian/" class="post-img " style="background-size: cover; 
                 background-position: center center;">
                 <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="https://raw.githubusercontent.com/oO0OoOo/cpblog-hexo/main/source/images/bg/591039263be09.jpg" class="lazyload placeholder" data-srcset="https://raw.githubusercontent.com/oO0OoOo/cpblog-hexo/main/source/images/bg/591039263be09.jpg" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" alt="">
               </a>
@@ -983,7 +967,49 @@ https
                   <span class="post-date">04-18</span>
                 
               </div>
-              <a class="post-title" href="/2024/04/18/hong-meng-cmd/">鸿蒙cmd</a>
+              <a class="post-title" href="/2024/04/18/python-sheng-cheng-er-wei-ma-tu-pian/">python生成二维码图片</a>
+            </div>
+          </div>
+        
+          <div class="aside-list-item">
+            
+            
+            
+
+            <div class="post-img-box">
+              <a href="/2024/04/18/win11-zhao-hui-win10-gan-jue/" class="post-img " style="background-size: cover; 
+                background-position: center center;">
+                <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="https://raw.githubusercontent.com/oO0OoOo/cpblog-hexo/main/source/images/bg/591039263be09.jpg" class="lazyload placeholder" data-srcset="https://raw.githubusercontent.com/oO0OoOo/cpblog-hexo/main/source/images/bg/591039263be09.jpg" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" alt="">
+              </a>
+            </div>
+            <div class="post-date-title">
+              <div>
+                
+                  <span class="post-date">04-18</span>
+                
+              </div>
+              <a class="post-title" href="/2024/04/18/win11-zhao-hui-win10-gan-jue/">win11找回win10感觉</a>
+            </div>
+          </div>
+        
+          <div class="aside-list-item">
+            
+            
+            
+
+            <div class="post-img-box">
+              <a href="/2024/04/18/hong-meng-ji-chu/" class="post-img " style="background-size: cover; 
+                background-position: center center;">
+                <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="https://raw.githubusercontent.com/oO0OoOo/cpblog-hexo/main/source/images/bg/591039263be09.jpg" class="lazyload placeholder" data-srcset="https://raw.githubusercontent.com/oO0OoOo/cpblog-hexo/main/source/images/bg/591039263be09.jpg" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" alt="">
+              </a>
+            </div>
+            <div class="post-date-title">
+              <div>
+                
+                  <span class="post-date">04-18</span>
+                
+              </div>
+              <a class="post-title" href="/2024/04/18/hong-meng-ji-chu/">鸿蒙cmd</a>
             </div>
           </div>
         
@@ -1026,48 +1052,6 @@ https
                 
               </div>
               <a class="post-title" href="/2024/03/22/qiu-zui-duan-lu-jing-dijkstra-suan-fa-lua/">求最短路径 - Dijkstra算法（lua）</a>
-            </div>
-          </div>
-        
-          <div class="aside-list-item">
-            
-            
-            
-
-            <div class="post-img-box">
-              <a href="/2024/03/19/you-xiang-lian-tong-tu-de-guang-du-he-shen-du-you-xian-bian-li-lua/" class="post-img " style="background-size: cover; 
-                background-position: center center;">
-                <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="https://raw.githubusercontent.com/oO0OoOo/cpblog-hexo/main/source/images/bg/591039263be09.jpg" class="lazyload placeholder" data-srcset="https://raw.githubusercontent.com/oO0OoOo/cpblog-hexo/main/source/images/bg/591039263be09.jpg" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" alt="">
-              </a>
-            </div>
-            <div class="post-date-title">
-              <div>
-                
-                  <span class="post-date">03-19</span>
-                
-              </div>
-              <a class="post-title" href="/2024/03/19/you-xiang-lian-tong-tu-de-guang-du-he-shen-du-you-xian-bian-li-lua/">有向连通图的广度和深度优先遍历（lua）</a>
-            </div>
-          </div>
-        
-          <div class="aside-list-item">
-            
-            
-            
-
-            <div class="post-img-box">
-              <a href="/2024/03/13/jie-jue-unity-da-bao-fang-wen-google-chao-shi-wen-ti/" class="post-img " style="background-size: cover; 
-                background-position: center center;">
-                <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="https://raw.githubusercontent.com/oO0OoOo/cpblog-hexo/main/source/images/bg/591039263be09.jpg" class="lazyload placeholder" data-srcset="https://raw.githubusercontent.com/oO0OoOo/cpblog-hexo/main/source/images/bg/591039263be09.jpg" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" alt="">
-              </a>
-            </div>
-            <div class="post-date-title">
-              <div>
-                
-                  <span class="post-date">03-13</span>
-                
-              </div>
-              <a class="post-title" href="/2024/03/13/jie-jue-unity-da-bao-fang-wen-google-chao-shi-wen-ti/">解决Unity打包访问google超时问题</a>
             </div>
           </div>
         
