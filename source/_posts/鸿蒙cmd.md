@@ -1,0 +1,60 @@
+---
+title: 鸿蒙cmd
+author: cypunberk.admin
+tags:
+  - Android
+  - 打包
+categories:
+  - OpenHarmony
+  - Unity
+date: 2024-04-18 00:00:00
+img: https://raw.githubusercontent.com/oO0OoOo/cpblog-hexo/main/source/images/bg/591039263be09.jpg
+---
+### 鸿蒙概念
+
+1. 鸿蒙系统分为套壳鸿蒙和鸿蒙NEXT，鸿蒙NEXT不再兼容安卓apk，鸿蒙NEXT预计2024 Q4发布，本文涉及的鸿蒙系统均指鸿蒙NEXT系统
+2. 鸿蒙标准英文名称：OpenHarmony，HarmonyOS
+3. 鸿蒙系统手机不支持.apk安装，没有Android文件夹，无法直接在电脑查看沙箱目录文件
+4. 鸿蒙app后缀名：.hap，安装hap可通过cmd命令实现：hap install xxxx
+5. hap包最大2.7GB（Android和iOS最大4GB）
+6. 鸿蒙Unity宏：UNITY_OPENHARMONY，若令其在Unity编辑器生效需切换到鸿蒙平台
+7. 鸿蒙app开发需使用华为提供的DevEco Studio，DevEco Studio仅能在华为官网完成开发者认证后下载
+8. 团结2022可直出鸿蒙包，但也可以导出DevEco Studio工程，从DevEco Studio出包
+9. 团结2022也支持鸿蒙手机连接编辑器进行Profiler和FrameDebugger调试
+10. 鸿蒙手机不能随意升级系统，手机系统版本需和DevEco Studio版本一同升级
+11. 鸿蒙平台开发语言为ts，是基于js的封装，团结2022提供了桥接类进行C#与ts的交互，用法与AndroidJavaClass类似
+12. 鸿蒙的沙箱文件无法通过cmd或Windows文件浏览器进行更改，因此鸿蒙无法像安卓一样能直接替换包体内lua代码实现快速调试
+13. 鸿蒙有类似苹果的证书概念，开发者打出的hap包只能在证书内指定的设备上安装
+
+
+
+### 鸿蒙CMD
+
+鸿蒙hdc命令：hdc
+
+1. 找到HarmonySDK的toolchains目录，配置环境变量PATH，例如D:\HarmonySDK\openharmony\10\toolchains
+2. 列出已连接的鸿蒙设备：hdc list targets
+3. 安装hap：hdc install D:\w02.hap
+4. 进入shell：hdc shell
+5. 退出shell：exit
+6. 全局放开Debug日志，关闭日志限流，打出private日志(每次重启手机后执行一次)：
+
+hdc shell hilog -b D hilog -Q pidoff hilog -p off
+
+1. 进入沙箱路径： 
+
+hdc shell ps -ef|grep com.qianxunshe.dp
+
+![img](https://senshingames.feishu.cn/space/api/box/stream/download/asynccode/?code=ZjA2ZWE0Y2Q5ZTAzZTcwMzFjNWI3ZmUxM2Y0NTRkMzhfODZlTkR5MThwMmRkZ08xVk01aUF3NG5mS0s3cXNBc2hfVG9rZW46UDR1Y2JYcVVQbzR4M2p4bzI1cWNTZ0RsbkNmXzE3MTM0MjE1NTg6MTcxMzQyNTE1OF9WNA)
+
+nsenter -t 11355 -m /bin/sh
+
+![img](https://senshingames.feishu.cn/space/api/box/stream/download/asynccode/?code=Zjk2Zjk1OTA1MDYyNjJjYWQ1NTY0MGM2ZTkwNGQ2OWJfVGREMHE3SmZSdHdkT0RpWkVHelBmb01HMnh3ZGJRSnFfVG9rZW46SWtnT2JZTEk5bzEwYk14VUlveWM1V1ZZbk5lXzE3MTM0MjE1NTg6MTcxMzQyNTE1OF9WNA)
+
+cd /data/storage/el2/base/haps/entry/files
+
+1. 抓取日志
+
+hdc shell hilog -r
+
+hdc hilog >D:\log.txt
