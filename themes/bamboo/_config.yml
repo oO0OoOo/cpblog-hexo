@@ -56,7 +56,7 @@ sidebar:
   widget_library:
     side_blogger:
       on: true
-      avatar: /images/bg/logo.jpg
+      avatar: https://raw.githubusercontent.com/oO0OoOo/cpblog-hexo/main/source/images/bg/logo.jpg
       shape: rectangle # circle, rectangle
       url: /about/
       title: 
