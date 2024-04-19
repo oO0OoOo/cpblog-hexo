@@ -208,7 +208,7 @@ swiper:
   defaultTile: '保持呼吸' # 标题
   defaultDesc: [] #描 述，例如 ['煮酒洗净尘嚣，论知交', '万般付之一笑，共偕老']
   defaultLeftBtnText: '关于封面' # 左边按钮文字, 空字符串则不显示
-  defaultLeftBtnLink: 'http://cypunberk.cn/2023/02/07/wang-qi-feng-mian-2023-02-07-sha-te-mao/' # 左边按钮链接 
+  defaultLeftBtnLink: 'http://epya15.fun/2023/01/09/hello-world/' # 左边按钮链接 
   defaultRightBtnText: '' # 右边按钮的文字，空字符串则不显示  '下载主题'
   defaultRightBtnLink: 'https://gitee.com/yuang01/hexo-theme-bamboo/repository/archive/dev.zip' # 右边的按钮的链接
   defaultDescTyped: true # defaultDesc文字是否开启打字特效  is typed
