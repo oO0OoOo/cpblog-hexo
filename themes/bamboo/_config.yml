@@ -278,7 +278,7 @@ postNav:
 copy:
   on: false
   title: '成功'
-  content: '代码已复制，请遵守相关授权协议。'
+  content: '代码已复制'
 
 # 输入框打字特效
 inputEffects:
@@ -435,13 +435,13 @@ motto:
 
 # 首页公告
 notice:
-  on: false
+  on: true
   seamless: false # 为true时，则无缝不停止滚动，false是会停一下的滚动
   waitTime: 5000 #seamless为false时，停多长时间（毫秒）
   title: '公告'
   background: '/medias/notice_bg.png' # url("xxx") or red or #000 or rgba() ..
   list: # list相当于数组对象，[{title:'xx',date: 'xx', url: 'xxx', color: 'red'}]根据自己实际情况，增加或者删除
-     - title: '#站点正在施工'
+     - title: '#由于借用Github当图床，站内图片需要挂梯子才能加载'
        date: '2023-01-08'
        url: '/archives'   # 可以为空, 也可以是本地页面地址如 '/archives'
        color: red   # 字体颜色
