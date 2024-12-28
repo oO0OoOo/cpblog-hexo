@@ -429,7 +429,7 @@ copyright:
 # 首页座右铭
 motto:
   on: true
-  title: '欢迎来到epya15'
+  title: '欢迎来到epya15.fun'
   content: '「怎样思想，就有怎样的生活。」—— 愛默生'
   background: 'url("https://img10.360buyimg.com/ddimg/jfs/t1/166587/8/21344/72069/6088c24fEda5fdeb6/f9730ab637b7ca47.png")' # url("xxx") or red or #000 or rgba() ..
 
