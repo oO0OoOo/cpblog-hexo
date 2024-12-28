@@ -12,6 +12,6 @@ git commit -m "conventional update by deploy.sh"
 git push
 
 echo "===================  Step3  < server git pull >  ==================="
-ssh root@45.207.39.244 bash /www/wwwroot/cpblog-hexo/shell/deploy-server.sh
+ssh root@154.197.27.121 bash /www/wwwroot/epya15.fun/cpblog/shell/deploy-server.sh
 
 echo "===================           Finished           ==================="

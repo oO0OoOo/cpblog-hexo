@@ -215,11 +215,17 @@
     <title>云服务器搭建博客网站全套流程（浓缩版）</title>
     <url>/2024/02/01/bo-ke-da-jian/yun-fu-wu-qi-da-jian-bo-ke-wang-zhan-quan-tao-liu-cheng/</url>
     <content><![CDATA[<h3 id="1-配置安全组"><a href="#1-配置安全组" class="headerlink" title="1.配置安全组"></a>1.配置安全组</h3><p>租用云服务器，安装centOS 7系统，配置安全组，放开【入方向规则】指定或全部端口以正常安装宝塔运维工具</p>
+<p><img src="C:\Users\epya1\AppData\Roaming\Typora\typora-user-images\image-20241229032225624.png" class="lazyload placeholder" data-srcset="C:\Users\epya1\AppData\Roaming\Typora\typora-user-images\image-20241229032225624.png" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" alt="image-20241229032225624"></p>
+<p><img src="C:\Users\epya1\AppData\Roaming\Typora\typora-user-images\image-20241229032245260.png" class="lazyload placeholder" data-srcset="C:\Users\epya1\AppData\Roaming\Typora\typora-user-images\image-20241229032245260.png" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" alt="image-20241229032245260"></p>
 <h3 id="2-安装宝塔"><a href="#2-安装宝塔" class="headerlink" title="2.安装宝塔"></a>2.安装宝塔</h3><p>使用在线安装或者键入命令</p>
 <blockquote>
 <p>yum install -y wget &amp;&amp; wget -O install.sh <a href="https://download.bt.cn/install/install_6.0.sh">https://download.bt.cn/install/install_6.0.sh</a> &amp;&amp; sh install.sh ed8484bec</p>
+<p>装好后会告诉登录地址和账号密码</p>
 </blockquote>
-<h3 id="3-安装Nginx"><a href="#3-安装Nginx" class="headerlink" title="3.安装Nginx"></a>3.安装Nginx</h3><p>&#x2F;&#x2F;一键安装全部依赖</p>
+<p><img src="C:\Users\epya1\AppData\Roaming\Typora\typora-user-images\image-20241229033410038.png" class="lazyload placeholder" data-srcset="C:\Users\epya1\AppData\Roaming\Typora\typora-user-images\image-20241229033410038.png" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" alt="image-20241229033410038"></p>
+<h3 id="3-安装Nginx"><a href="#3-安装Nginx" class="headerlink" title="3.安装Nginx"></a>3.安装Nginx</h3><p>建议使用宝塔安装</p>
+<p>下面是命令安装的方式</p>
+<p>&#x2F;&#x2F;一键安装全部依赖</p>
 <blockquote>
 <p>yum -y install gcc zlib zlib-devel pcre-devel opensslopenssl-devel</p>
 </blockquote>
@@ -271,7 +277,10 @@
 <p>location &#x2F; {<br>    root   &#x2F;www&#x2F;wwwroot&#x2F;cpblog-hexo&#x2F;public;<br>    index  index.html index.htm;<br>}</p>
 <p>#防盗链设置，只允许自己网站访问自己的多媒体资源<br>location ~*.(png|jpg|jpeg|gif|mp4){<br>    root &#x2F;www&#x2F;wwwroot&#x2F;epya15.fun;<br>    valid_referers none blocked <a href="http://www.epya15.fun/">www.epya15.fun</a> epya15.fun;<br>    if ($invalid_referer) {<br>        #return 403;    #可以返回403，盗链网页显示的是一个裂开的图<br>        rewrite ^&#x2F; &#x2F;images&#x2F;invalid_referer_tip.png break;  #返回一个自己定制的图片<br>    }<br>}</p>
 </blockquote>
-<h3 id="4-配置防火墙"><a href="#4-配置防火墙" class="headerlink" title="4.配置防火墙"></a>4.配置防火墙</h3><p>&#x2F;&#x2F;查看防火墙开启状态</p>
+<h3 id="4-配置防火墙"><a href="#4-配置防火墙" class="headerlink" title="4.配置防火墙"></a>4.配置防火墙</h3><p>建议在宝塔上设置</p>
+<p>如果没有防火墙，可以先装一下</p>
+<p>yum install firewalld</p>
+<p>&#x2F;&#x2F;查看防火墙开启状态</p>
 <blockquote>
 <p>systemctl status firewalld</p>
 </blockquote>
@@ -296,20 +305,25 @@
 <p>firewall-cmd –reload</p>
 </blockquote>
 <p>在云服武器上ping 百度看看能不能ping通，在其它电脑上ping云服务器看看能不能ping通</p>
+<p>4.5 登录阿里云，让阿里云域名DNS解析到当前服务器的IP</p>
+<p><img src="C:\Users\epya1\AppData\Roaming\Typora\typora-user-images\image-20241229040946813.png" class="lazyload placeholder" data-srcset="C:\Users\epya1\AppData\Roaming\Typora\typora-user-images\image-20241229040946813.png" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" alt="image-20241229040946813"></p>
+<p>过一会，用其他电脑ping一下这个域名，看看定向到的IP是否正确</p>
+<p><img src="C:\Users\epya1\AppData\Roaming\Typora\typora-user-images\image-20241229041532953.png" class="lazyload placeholder" data-srcset="C:\Users\epya1\AppData\Roaming\Typora\typora-user-images\image-20241229041532953.png" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" alt="image-20241229041532953"></p>
+<p>4.6用宝塔的Lets Encrypt申请免费SSL证书</p>
 <h3 id="5-云服务器安装git及ssh免密"><a href="#5-云服务器安装git及ssh免密" class="headerlink" title="5.云服务器安装git及ssh免密"></a>5.云服务器安装git及ssh免密</h3><p>云服务器只负责拉取，不负责推送。</p>
 <p>先安装git</p>
 <blockquote>
 <p>yum –y install git</p>
 </blockquote>
 <p>键入git指令验证是否安装成功</p>
-<p>新建文件夹作为网站根目录</p>
+<p>新建文件夹作为网站根目录（如果已经用宝塔建站，则忽略此步）</p>
 <blockquote>
 <p>mkdir www&#x2F;wwwroot</p>
 <p>chmod 777 www&#x2F;wwwroot</p>
 </blockquote>
 <p>生成ssh密钥</p>
 <blockquote>
-<p>ssh-keygen -t ecdsa -b 521 -C ‘<a href="mailto:&#121;&#x6f;&#117;&#114;&#x6d;&#x61;&#x69;&#x6c;&#x61;&#x64;&#x64;&#x72;&#101;&#115;&#115;&#64;&#103;&#x6d;&#x61;&#105;&#x6c;&#x2e;&#x63;&#x6f;&#109;">&#121;&#x6f;&#117;&#114;&#x6d;&#x61;&#x69;&#x6c;&#x61;&#x64;&#x64;&#x72;&#101;&#115;&#115;&#64;&#103;&#x6d;&#x61;&#105;&#x6c;&#x2e;&#x63;&#x6f;&#109;</a>‘ -f ~&#x2F;.ssh&#x2F;id_ecdsa</p>
+<p>ssh-keygen -t ecdsa -b 521 -C ‘<a href="mailto:&#121;&#111;&#117;&#114;&#109;&#x61;&#105;&#108;&#x61;&#100;&#100;&#114;&#101;&#x73;&#x73;&#64;&#103;&#x6d;&#97;&#105;&#108;&#46;&#99;&#111;&#109;">&#121;&#111;&#117;&#114;&#109;&#x61;&#105;&#108;&#x61;&#100;&#100;&#114;&#101;&#x73;&#x73;&#64;&#103;&#x6d;&#97;&#105;&#108;&#46;&#99;&#111;&#109;</a>‘ -f ~&#x2F;.ssh&#x2F;id_ecdsa</p>
 </blockquote>
 <p>连按3次回车</p>
 <p>接着提取公钥</p>
@@ -319,12 +333,12 @@
 <p>将公钥填到github的ssh列表中（在网页端配置，具体过程略）</p>
 <p>输入</p>
 <blockquote>
-<p>ssh -T <a href="mailto:&#x67;&#x69;&#x74;&#64;&#x67;&#105;&#x74;&#104;&#117;&#98;&#46;&#99;&#111;&#x6d;">&#x67;&#x69;&#x74;&#64;&#x67;&#105;&#x74;&#104;&#117;&#98;&#46;&#99;&#111;&#x6d;</a></p>
+<p>ssh -T <a href="mailto:&#x67;&#105;&#x74;&#x40;&#x67;&#105;&#x74;&#104;&#117;&#98;&#46;&#99;&#111;&#109;">&#x67;&#105;&#x74;&#x40;&#x67;&#105;&#x74;&#104;&#117;&#98;&#46;&#99;&#111;&#109;</a></p>
 </blockquote>
 <p>提示Successfully即为完成配置</p>
 <p>进入www&#x2F;wwwroot目录，克隆自己的git仓库，本地仓库名比如为cpblog</p>
 <blockquote>
-<p>git clone <a href="mailto:&#103;&#105;&#116;&#x40;&#x67;&#105;&#116;&#x68;&#117;&#98;&#46;&#x63;&#x6f;&#109;">&#103;&#105;&#116;&#x40;&#x67;&#105;&#116;&#x68;&#117;&#98;&#46;&#x63;&#x6f;&#109;</a>:xxxxxxx&#x2F;xxxxxx.github.io.git cpblog</p>
+<p>git clone <a href="mailto:&#x67;&#x69;&#x74;&#x40;&#103;&#105;&#x74;&#104;&#117;&#x62;&#x2e;&#99;&#x6f;&#x6d;">&#x67;&#x69;&#x74;&#x40;&#103;&#105;&#x74;&#104;&#117;&#x62;&#x2e;&#99;&#x6f;&#x6d;</a>:xxxxxxx&#x2F;xxxxxx.github.io.git cpblog</p>
 </blockquote>
 <h3 id="6-本地环境安装"><a href="#6-本地环境安装" class="headerlink" title="6.本地环境安装"></a>6.本地环境安装</h3><p>本地电脑环境简介</p>
 <p>（Windows系统，需要git，nodejs，hexo，不需要Nginx）</p>
@@ -381,6 +395,15 @@
 <p>Typora 和PicGo有很好的适性，只要拖拽一张图片到Typora里，就能自动上传到github</p>
 <p><a href="https://zhuanlan.zhihu.com/p/280758822">https://zhuanlan.zhihu.com/p/280758822</a></p>
 <p>最后提供一个飞书云文档转markdown工具<br><a href="https://feishu2md.onrender.com/">https://feishu2md.onrender.com/</a>  </p>
+<p>9。配置SSL证书</p>
+<p>使用certbot可以申请免费的3个月的证书（每3个月需要续一次）</p>
+<p><a href="https://blog.csdn.net/weixin_46739493/article/details/143327399">https://blog.csdn.net/weixin_46739493/article/details/143327399</a></p>
+<p>yum install certbot -y</p>
+<p>如果网站在运行，先把nginx停掉</p>
+<p>nginx -s stop</p>
+<p>certbot certonly –standalone -d epya15.fun</p>
+<p><img src="E:\Users\Administrator\Desktop\搜狗截图20241227005218.png" class="lazyload placeholder" data-srcset="E:\Users\Administrator\Desktop\搜狗截图20241227005218.png" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" alt="搜狗截图20241227005218"></p>
+<p>宝塔安装nginx带http2</p>
 ]]></content>
       <categories>
         <category>博客搭建</category>
