@@ -6,7 +6,6 @@ tags:
 categories:
   - sdk
 date: 2024-01-09 15:15:34
-img: https://raw.githubusercontent.com/oO0OoOo/cpblog-hexo/main/source/images/bg/591039294a193.jpg
 excerpt: 'Unity与iOS。'
 ---
 

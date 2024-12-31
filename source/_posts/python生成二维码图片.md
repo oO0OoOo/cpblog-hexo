@@ -8,7 +8,6 @@ categories:
   - OpenHarmony
   - Unity
 date: 2024-04-18 00:00:00
-img: https://raw.githubusercontent.com/oO0OoOo/cpblog-hexo/main/source/images/bg/5910392d25805.jpg
 ---
 安装python环境，将下面代码保存到generateQRcode.py文件
 

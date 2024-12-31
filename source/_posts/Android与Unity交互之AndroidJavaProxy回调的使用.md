@@ -9,7 +9,6 @@ categories:
   - Android
   - Unity
 date: 2023-04-20 14:46:00
-img: https://raw.githubusercontent.com/oO0OoOo/cpblog-hexo/main/source/images/bg/591039294a193.jpg
 ---
 以实际需求为例，比如要实现一个Android原生的Dialog弹窗，通过Unity调用使其打开，同时注册弹窗上【确定】和【返回】键的点击回调。  
 首先创建一个C#类，继承自AndroidJavaProxy  
@@ -35,7 +34,7 @@ public class DialogClickCallback : AndroidJavaProxy
         }
     }
 ```
-  
+
 接下来在Android工程内新建java接口
 ```java
 package com.aaa.bbb.listener;
