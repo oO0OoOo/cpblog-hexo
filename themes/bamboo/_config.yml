@@ -706,10 +706,10 @@ color_scheme:
     # 也可以是颜色字符串（例如'#C7EDCC', 或者rgba(0 ,0 ,0, 0.8) 那么会使用该颜色作为背景）
     # 空字符串则背景颜色为透明
     bgImg: [
-        'https://raw.githubusercontent.com/oO0OoOo/cpblog-hexo/main/source/images/bg/5910391f5ba57.jpg',
-        'https://raw.githubusercontent.com/oO0OoOo/cpblog-hexo/main/source/images/bg/5910392d25805.jpg',
-        'https://raw.githubusercontent.com/oO0OoOo/cpblog-hexo/main/source/images/bg/591039263be09.jpg',
-        'https://raw.githubusercontent.com/oO0OoOo/cpblog-hexo/main/source/images/bg/591039294a193.jpg',
+        '/images/bg/bg-h1.jpg',
+        '/images/bg/bg-h2.jpg',
+        '/images/bg/bg-h3.jpg',
+        '/images/bg/bg-h4.jpg',
     ]
     # 背景图幻灯片模式--延迟时间
     # 如果bgImg设置为数组，数组里面是多个图片地址,则 bgImgDelay表示背景图幻灯片的 延迟间隔时间
