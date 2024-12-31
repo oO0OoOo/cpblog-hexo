@@ -56,12 +56,12 @@ sidebar:
   widget_library:
     side_blogger:
       on: true
-      avatar: https://raw.githubusercontent.com/oO0OoOo/cpblog-hexo/main/source/images/bg/logo.jpg
+      avatar: https://epya15.fun/images/bg/logo.jpg
       shape: rectangle # circle, rectangle
       url: /about/
       title: 
-      subtitle: 今天是最后一天.
-      jinrishici: false # Poetry Today. You can set a string, and it will be displayed when loading fails.
+      subtitle: 牛丸是人类最伟大的发明
+      jinrishici: true # Poetry Today. You can set a string, and it will be displayed when loading fails.
       fontFammily: '-apple-system,BlinkMacSystemFont,PingFang SC,Segoe UI,Microsoft YaHei,Hiragino Sans GB,Helvetica Neue,Helvetica,Arial,sans-serif'
       background: '#fff'
       order:  # 卡片排序, 数值越小，越在上面
@@ -206,7 +206,7 @@ swiper:
   defaultVideo: '/images/bg/cover.mp4' # video，min-width:992px show
   defaultVideoLoadingImg: '/images/bg/cover.jpg' # video loading img -- use .gif img, 视频预加载动画，使用gif图片作为loading，为空则视频没有预加载动画
   defaultTile: '' # 标题
-  defaultDesc: ['像这样细细地听，如河口', '凝神倾听自己的源头', '像这样深深地嗅．嗅一朵小花', '直到知觉化为乌有', '像这样，在蔚蓝的空气里', '溶进了无底的渴望', '像这样，在床单的蔚蓝里', '孩子遥望记忆的远方'] #描 述，例如 ['煮酒洗净尘嚣，论知交', '万般付之一笑，共偕老']
+  defaultDesc: [] #描 述，例如 ['像这样细细地听，如河口', '凝神倾听自己的源头', '像这样深深地嗅．嗅一朵小花', '直到知觉化为乌有', '像这样，在蔚蓝的空气里', '溶进了无底的渴望', '像这样，在床单的蔚蓝里', '孩子遥望记忆的远方']
   defaultLeftBtnText: '' # 左边按钮文字, 空字符串则不显示
   defaultLeftBtnLink: 'http://epya15.fun/2023/01/09/hello-world/' # 左边按钮链接 
   defaultRightBtnText: '' # 右边按钮的文字，空字符串则不显示  '下载主题'
@@ -429,7 +429,7 @@ copyright:
 # 首页座右铭
 motto:
   on: true
-  title: '欢迎来到epya15.fun'
+  title: '欢迎来到牛丸星球'
   content: '「怎样思想，就有怎样的生活。」—— 愛默生'
   background: 'url("https://img10.360buyimg.com/ddimg/jfs/t1/166587/8/21344/72069/6088c24fEda5fdeb6/f9730ab637b7ca47.png")' # url("xxx") or red or #000 or rgba() ..
 

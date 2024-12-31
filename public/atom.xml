@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>赛朋博客</title>
+  <title>牛丸星球</title>
   
   
   <link href="http://epya15.fun/atom.xml" rel="self"/>
@@ -10,7 +10,7 @@
   <id>http://epya15.fun/</id>
   
   <author>
-    <name>cypunberk.admin</name>
+    <name>epya15.fun</name>
     
   </author>
   
