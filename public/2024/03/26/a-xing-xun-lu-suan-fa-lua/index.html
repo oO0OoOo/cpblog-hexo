@@ -706,13 +706,13 @@
 <p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/f-society/p/6818665.html">https://www.cnblogs.com/f-society/p/6818665.html</a></p>
 <p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/a8950fa19b72">https://www.jianshu.com/p/a8950fa19b72</a></p>
 <h4 id="举例："><a href="#举例：" class="headerlink" title="举例："></a>举例：</h4><p>现有如下寻路网格，求从A点（5, 1）到B点（5, 9）的A*路径</p>
-<img src="/2024/03/26/a-xing-xun-lu-suan-fa-lua/202403262023420.png" class="lazyload placeholder" data-srcset="/2024/03/26/a-xing-xun-lu-suan-fa-lua/202403262023420.png" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" class=" lazyload placeholder" width="202403262023420">
+<img src="A星寻路算法（lua）/202403262023420.png" class="lazyload placeholder" data-srcset="A星寻路算法（lua）/202403262023420.png" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" alt="202403262023420" style="zoom:50%;" />
 
 <p>灰色代表不可到达的格子，每次行动可以从格子的周围8个方向行进，代价如下图</p>
-<img src="/2024/03/26/a-xing-xun-lu-suan-fa-lua/202403262031588.png" class="lazyload placeholder" data-srcset="/2024/03/26/a-xing-xun-lu-suan-fa-lua/202403262031588.png" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" class=" lazyload placeholder" width="202403262031588">
+<img src="A星寻路算法（lua）/202403262031588.png" class="lazyload placeholder" data-srcset="A星寻路算法（lua）/202403262031588.png" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" alt="202403262031588" style="zoom:33%;" />
 
 <p>不可穿越斜墙，例如下图中，从P点出发的8个方向里，标记为”NO”的点是不可直接到达的</p>
-<img src="/2024/03/26/a-xing-xun-lu-suan-fa-lua/202403262037831.png" class="lazyload placeholder" data-srcset="/2024/03/26/a-xing-xun-lu-suan-fa-lua/202403262037831.png" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" class=" lazyload placeholder" width="202403262037831">
+<img src="A星寻路算法（lua）/202403262037831.png" class="lazyload placeholder" data-srcset="A星寻路算法（lua）/202403262037831.png" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" alt="202403262037831" style="zoom:33%;" />
 
 
 
@@ -723,7 +723,7 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">A* path from (5, 1) to (5, 9) distance is 9.656 </span><br><span class="line">(5, 1) -&gt; (5, 2) -&gt; (5, 3) -&gt; (5, 4) -&gt; (5, 5) -&gt; (6, 6) -&gt; (7, 7) -&gt; (6, 8) -&gt; (5, 9)</span><br></pre></td></tr></table></figure>
 
 <p>路线图：</p>
-<img src="/2024/03/26/a-xing-xun-lu-suan-fa-lua/202403262035009.png" class="lazyload placeholder" data-srcset="/2024/03/26/a-xing-xun-lu-suan-fa-lua/202403262035009.png" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" class=" lazyload placeholder" width="202403262035009">
+<img src="A星寻路算法（lua）/202403262035009.png" class="lazyload placeholder" data-srcset="A星寻路算法（lua）/202403262035009.png" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" alt="202403262035009" style="zoom:50%;" />
 
 
 
@@ -731,7 +731,7 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">A* path from (5, 1) to (5, 9) distance is 13.07 </span><br><span class="line">(5, 1) -&gt; (5, 2) -&gt; (5, 3) -&gt; (6, 4) -&gt; (7, 4) -&gt; (8, 5) -&gt; (9, 6) -&gt; (9, 7) -&gt; (8, 8) -&gt; (7, 9) -&gt; (6, 9) -&gt; (5, 9)</span><br></pre></td></tr></table></figure>
 
 <p>路线图：</p>
-<img src="/2024/03/26/a-xing-xun-lu-suan-fa-lua/202403262039158.png" class="lazyload placeholder" data-srcset="/2024/03/26/a-xing-xun-lu-suan-fa-lua/202403262039158.png" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" class=" lazyload placeholder" width="202403262039158">
+<img src="A星寻路算法（lua）/202403262039158.png" class="lazyload placeholder" data-srcset="A星寻路算法（lua）/202403262039158.png" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" alt="202403262039158" style="zoom:50%;" />
 
       </div>
       <div class="post-tags-categories">
