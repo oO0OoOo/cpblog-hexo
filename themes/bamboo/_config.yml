@@ -206,7 +206,7 @@ swiper:
   defaultVideo: '/images/bg/cover.mp4' # video，min-width:992px show
   defaultVideoLoadingImg: '/images/bg/cover.jpg' # video loading img -- use .gif img, 视频预加载动画，使用gif图片作为loading，为空则视频没有预加载动画
   defaultTile: '' # 标题
-  defaultDesc: ['像这样细细地听，如河口', '像这样细细地听，如河口', '像这样深深地嗅．嗅一朵小花', '直到知觉化为乌有', '像这样，在蔚蓝的空气里', '溶进了无底的渴望', '像这样，在床单的蔚蓝里', '孩子遥望记忆的远方'] #描 述，例如 ['煮酒洗净尘嚣，论知交', '万般付之一笑，共偕老']
+  defaultDesc: ['像这样细细地听，如河口', '凝神倾听自己的源头', '像这样深深地嗅．嗅一朵小花', '直到知觉化为乌有', '像这样，在蔚蓝的空气里', '溶进了无底的渴望', '像这样，在床单的蔚蓝里', '孩子遥望记忆的远方'] #描 述，例如 ['煮酒洗净尘嚣，论知交', '万般付之一笑，共偕老']
   defaultLeftBtnText: '' # 左边按钮文字, 空字符串则不显示
   defaultLeftBtnLink: 'http://epya15.fun/2023/01/09/hello-world/' # 左边按钮链接 
   defaultRightBtnText: '' # 右边按钮的文字，空字符串则不显示  '下载主题'
