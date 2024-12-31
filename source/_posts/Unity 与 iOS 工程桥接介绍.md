@@ -15,23 +15,23 @@ excerpt: 'Unity与iOS。'
 
 1. 在 Mac 上启动 Unity，在 Unity 的 BuildSettings 界面选择 iOS 平台，点击 Build 按钮后即开始导出 XCode 工程。或调用 Unity 命令行工具完成此步操作。
 
-<img src="Unity 与 iOS 工程桥接介绍/202401091514334.png" alt="202401091514334" style="zoom:50%;" />
+![202401091514334](Unity 与 iOS 工程桥接介绍/202401091514334.png)
 
 导出后的 Xcode 工程结构如下图
 
-<img src="Unity 与 iOS 工程桥接介绍/202401091514088.png" alt="202401091514088" style="zoom:50%;" />
+![202401091514088](Unity 与 iOS 工程桥接介绍/202401091514088.png)
 
 2.双击 Unity-iPhone.xcodeproj，打开 Xcode，在 Xcode 顶部栏点击 Product/Archive 开始构建档案。或调用 Xcode 命令行工具完成此步操作。
 
-<img src="Unity 与 iOS 工程桥接介绍/202401091514353.png" alt="202401091514353" style="zoom:50%;" />
+![202401091514353](Unity 与 iOS 工程桥接介绍/202401091514353.png)
 
 3.在 Xcode 顶部栏点击 Window/Organizer 进行分发，根据出包需求选择不同的证书导出对应 ipa 安装包文件。或调用 Xcode 命令行工具完成此步操作。
 
-<img src="Unity 与 iOS 工程桥接介绍/202401091514124.png" alt="202401091514124" style="zoom:50%;" />
+![202401091514124](Unity 与 iOS 工程桥接介绍/202401091514124.png)
 
 最终导出的 ipa 文件和日志文件如下图
 
-<img src="Unity 与 iOS 工程桥接介绍/202401091514818.png" alt="202401091514818" style="zoom:50%;" />
+![202401091514818](Unity 与 iOS 工程桥接介绍/202401091514818.png)
 
 总结：对于使用 Unity 开发的游戏，每次打包都相当于重新产生一个 Xcode 工程。当游戏的美术资源，代码文件，配置文件发生变更后，通常需要重新导出一份新的 Xcode 工程。
 
@@ -422,15 +422,15 @@ public class IosMessageReceiver : MonoBehaviour
 
 1. Unity 的 ProjectSettings 可以设置项目层面的参数。
 
-<img src="Unity 与 iOS 工程桥接介绍/202401091515516.png" alt="202401091515516" style="zoom:33%;" />
+![202401091515516](Unity 与 iOS 工程桥接介绍/202401091515516.png)
 
 1. 在 Unity 内选中*.framework 文件，可以设置依赖的其它 framework。
 
-<img src="Unity 与 iOS 工程桥接介绍/202401091515023.png" alt="202401091515023" style="zoom:50%;" />
+![202401091515023](Unity 与 iOS 工程桥接介绍/202401091515023.png)
 
 1. 选中*.mm 文件，可以填写编译选项
 
-<img src="Unity 与 iOS 工程桥接介绍/202401091515486.png" alt="202401091515486" style="zoom:50%;" />
+![202401091515486](Unity 与 iOS 工程桥接介绍/202401091515486.png)
 
 以上是能通过 Unity 编辑器直接设置的部分，接下来是使用代码挂接 Unity 的打包后处理钩子函数实现更多参数注入。
 

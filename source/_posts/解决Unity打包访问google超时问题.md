@@ -14,9 +14,9 @@ excerpt: ''
 ###### 问题现象
 Unity打Android包时卡在以下步骤，拖慢打包速度，但最终可以打包成功。
 
-<img src="解决Unity打包访问google超时问题/image-20250101034059376.png" alt="image-20250101034059376" style="zoom:67%;" />
+![image-20250101034059376](解决Unity打包访问google超时问题/image-20250101034059376.png)
 
-<img src="解决Unity打包访问google超时问题/image-20250101034106846.png" alt="image-20250101034106846" style="zoom:67%;" />
+![image-20250101034106846](解决Unity打包访问google超时问题/image-20250101034106846.png)
 
 ###### 问题原因
 
@@ -50,7 +50,7 @@ Unity打Android包时卡在以下步骤，拖慢打包速度，但最终可以�
 
 先到Unity的Preference窗口查看Android SDK Tools的路径，如下图
 
-<img src="解决Unity打包访问google超时问题/202403132004046.png" alt="202403132004046" style="zoom:50%;" />
+![202403132004046](解决Unity打包访问google超时问题/202403132004046.png)
 
 
 

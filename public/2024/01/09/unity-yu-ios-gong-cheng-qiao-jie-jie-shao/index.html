@@ -705,19 +705,19 @@
         <h3 id="Unity-侧"><a href="#Unity-侧" class="headerlink" title="Unity 侧"></a>Unity 侧</h3><h4 id="ipa-包体构建流程"><a href="#ipa-包体构建流程" class="headerlink" title="ipa 包体构建流程"></a>ipa 包体构建流程</h4><ol>
 <li>在 Mac 上启动 Unity，在 Unity 的 BuildSettings 界面选择 iOS 平台，点击 Build 按钮后即开始导出 XCode 工程。或调用 Unity 命令行工具完成此步操作。</li>
 </ol>
-<img src="Unity 与 iOS 工程桥接介绍/202401091514334.png" class="lazyload placeholder" data-srcset="Unity 与 iOS 工程桥接介绍/202401091514334.png" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" alt="202401091514334" style="zoom:50%;" />
+<img src="/2024/01/09/unity-yu-ios-gong-cheng-qiao-jie-jie-shao/202401091514334.png" class="lazyload placeholder" data-srcset="/2024/01/09/unity-yu-ios-gong-cheng-qiao-jie-jie-shao/202401091514334.png" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" class=" lazyload placeholder" width="202401091514334">
 
 <p>导出后的 Xcode 工程结构如下图</p>
-<img src="Unity 与 iOS 工程桥接介绍/202401091514088.png" class="lazyload placeholder" data-srcset="Unity 与 iOS 工程桥接介绍/202401091514088.png" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" alt="202401091514088" style="zoom:50%;" />
+<img src="/2024/01/09/unity-yu-ios-gong-cheng-qiao-jie-jie-shao/202401091514088.png" class="lazyload placeholder" data-srcset="/2024/01/09/unity-yu-ios-gong-cheng-qiao-jie-jie-shao/202401091514088.png" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" class=" lazyload placeholder" width="202401091514088">
 
 <p>2.双击 Unity-iPhone.xcodeproj，打开 Xcode，在 Xcode 顶部栏点击 Product&#x2F;Archive 开始构建档案。或调用 Xcode 命令行工具完成此步操作。</p>
-<img src="Unity 与 iOS 工程桥接介绍/202401091514353.png" class="lazyload placeholder" data-srcset="Unity 与 iOS 工程桥接介绍/202401091514353.png" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" alt="202401091514353" style="zoom:50%;" />
+<img src="/2024/01/09/unity-yu-ios-gong-cheng-qiao-jie-jie-shao/202401091514353.png" class="lazyload placeholder" data-srcset="/2024/01/09/unity-yu-ios-gong-cheng-qiao-jie-jie-shao/202401091514353.png" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" class=" lazyload placeholder" width="202401091514353">
 
 <p>3.在 Xcode 顶部栏点击 Window&#x2F;Organizer 进行分发，根据出包需求选择不同的证书导出对应 ipa 安装包文件。或调用 Xcode 命令行工具完成此步操作。</p>
-<img src="Unity 与 iOS 工程桥接介绍/202401091514124.png" class="lazyload placeholder" data-srcset="Unity 与 iOS 工程桥接介绍/202401091514124.png" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" alt="202401091514124" style="zoom:50%;" />
+<img src="/2024/01/09/unity-yu-ios-gong-cheng-qiao-jie-jie-shao/202401091514124.png" class="lazyload placeholder" data-srcset="/2024/01/09/unity-yu-ios-gong-cheng-qiao-jie-jie-shao/202401091514124.png" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" class=" lazyload placeholder" width="202401091514124">
 
 <p>最终导出的 ipa 文件和日志文件如下图</p>
-<img src="Unity 与 iOS 工程桥接介绍/202401091514818.png" class="lazyload placeholder" data-srcset="Unity 与 iOS 工程桥接介绍/202401091514818.png" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" alt="202401091514818" style="zoom:50%;" />
+<img src="/2024/01/09/unity-yu-ios-gong-cheng-qiao-jie-jie-shao/202401091514818.png" class="lazyload placeholder" data-srcset="/2024/01/09/unity-yu-ios-gong-cheng-qiao-jie-jie-shao/202401091514818.png" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" class=" lazyload placeholder" width="202401091514818">
 
 <p>总结：对于使用 Unity 开发的游戏，每次打包都相当于重新产生一个 Xcode 工程。当游戏的美术资源，代码文件，配置文件发生变更后，通常需要重新导出一份新的 Xcode 工程。</p>
 <h4 id="Unity-工程目录结构简介"><a href="#Unity-工程目录结构简介" class="headerlink" title="Unity 工程目录结构简介"></a>Unity 工程目录结构简介</h4><p>不同游戏的 Unity 目录结构不同，其中 Unity 对一些目录做了特殊定义，此类文件夹不能更名，否则 Unity 会识别不到。</p>
@@ -769,17 +769,17 @@
 <ol>
 <li>Unity 的 ProjectSettings 可以设置项目层面的参数。</li>
 </ol>
-<img src="Unity 与 iOS 工程桥接介绍/202401091515516.png" class="lazyload placeholder" data-srcset="Unity 与 iOS 工程桥接介绍/202401091515516.png" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" alt="202401091515516" style="zoom:33%;" />
+<img src="/2024/01/09/unity-yu-ios-gong-cheng-qiao-jie-jie-shao/202401091515516.png" class="lazyload placeholder" data-srcset="/2024/01/09/unity-yu-ios-gong-cheng-qiao-jie-jie-shao/202401091515516.png" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" class=" lazyload placeholder" width="202401091515516">
 
 <ol>
 <li>在 Unity 内选中*.framework 文件，可以设置依赖的其它 framework。</li>
 </ol>
-<img src="Unity 与 iOS 工程桥接介绍/202401091515023.png" class="lazyload placeholder" data-srcset="Unity 与 iOS 工程桥接介绍/202401091515023.png" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" alt="202401091515023" style="zoom:50%;" />
+<img src="/2024/01/09/unity-yu-ios-gong-cheng-qiao-jie-jie-shao/202401091515023.png" class="lazyload placeholder" data-srcset="/2024/01/09/unity-yu-ios-gong-cheng-qiao-jie-jie-shao/202401091515023.png" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" class=" lazyload placeholder" width="202401091515023">
 
 <ol>
 <li>选中*.mm 文件，可以填写编译选项</li>
 </ol>
-<img src="Unity 与 iOS 工程桥接介绍/202401091515486.png" class="lazyload placeholder" data-srcset="Unity 与 iOS 工程桥接介绍/202401091515486.png" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" alt="202401091515486" style="zoom:50%;" />
+<img src="/2024/01/09/unity-yu-ios-gong-cheng-qiao-jie-jie-shao/202401091515486.png" class="lazyload placeholder" data-srcset="/2024/01/09/unity-yu-ios-gong-cheng-qiao-jie-jie-shao/202401091515486.png" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" class=" lazyload placeholder" width="202401091515486">
 
 <p>以上是能通过 Unity 编辑器直接设置的部分，接下来是使用代码挂接 Unity 的打包后处理钩子函数实现更多参数注入。</p>
 <p>在 Assets&#x2F;Scripts&#x2F;Editor 文件夹下创建 XcodeBuildPostprocess.cs（名字随意）</p>
