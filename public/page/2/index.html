@@ -675,12 +675,14 @@
                 <div class="flag-text-content">
                   <div class="title ani animated" swiper-animate-effect="fadeInDown" swiper-animate-duration="0.2s" swiper-animate-delay="0.1s"></div>
                   
-                      <div class="excerpt ani animated" swiper-animate-effect="fadeInDown" swiper-animate-duration="0.2s" swiper-animate-delay="0.1s"></div>
+                    <div class="ani animated default-excerpt" swiper-animate-effect="fadeInDown" swiper-animate-duration="0.2s" swiper-animate-delay="0.1s">
+                      <vue-typed-js :strings="defaultDesc" :loop="defaultDescTypedLoop" :type-speed="100" :back-speed="50">
+                        <h1 class="typing"></h1>
+                      </vue-typed-js>
+                    </div>
                     
                 </div>
                 <div style="display: flex;" class="flag-text-btns">
-                  
-                    <div class="ani animated" swiper-animate-effect="fadeInDown" swiper-animate-duration="0.2s" swiper-animate-delay="0.1s"><a href="http://epya15.fun/2023/01/09/hello-world/" class="read-more swiper-btn-color" style="display: inline-block; z-index:1;">你好 世界</a></div>
                   
                   
                 </div>
@@ -723,7 +725,7 @@
   var loop = JSON.parse('true') ? false : JSON.parse('true');
   var effect = 'slide';
   var swiperLength = parseInt(document.querySelector(".swiper-length").innerText);
-  var defaultDesc = '';
+  var defaultDesc = '煮酒洗净尘嚣，论知交,万般付之一笑，共偕老';
   defaultDesc = defaultDesc.split(',');
   var defaultDescTypedLoop = JSON.parse('true');
   var vm = new Vue({
@@ -1826,7 +1828,7 @@ keystore文件，key-alias，key-passwor
         <div class="webinfo-item">
           <div>最后活动时间：</div>
           
-            <div id="last-update" style="display: none;">Wed Jan 01 2025 02:42:00 GMT+0800 (中国标准时间)</div>
+            <div id="last-update" style="display: none;">Wed Jan 01 2025 02:43:42 GMT+0800 (中国标准时间)</div>
             <div id="last-update-show">2025-01-01 日</div>
           
         </div>
