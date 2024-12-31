@@ -202,12 +202,12 @@ swiper:
   bubble: false # 轮播图是否显示气泡,也可以打开底下的花瓣或者雪花特效 sakura（花瓣）: true snow(雪花): true
   wave: true # 轮播图底下的波浪特效
   # 当没有文章设置swiper: true时候，轮播图会显示以下default默认内容，可自行切换对应内容
-  defaultImg: 'https://epya15.fun/images/bg/cover.jpg' # 图片，没有则随机选取
-  defaultVideo: '/images/bg/cover3.mp4' # video，min-width:992px show
-  defaultVideoLoadingImg: '/images/bg/loading.gif' # video loading img -- use .gif img, 视频预加载动画，使用gif图片作为loading，为空则视频没有预加载动画
-  defaultTile: '保持呼吸' # 标题
+  defaultImg: '/images/bg/cover.jpg' # 图片，没有则随机选取
+  defaultVideo: '/images/bg/cover.mp4' # video，min-width:992px show
+  defaultVideoLoadingImg: '/images/bg/cover.jpg' # video loading img -- use .gif img, 视频预加载动画，使用gif图片作为loading，为空则视频没有预加载动画
+  defaultTile: '' # 标题
   defaultDesc: [] #描 述，例如 ['煮酒洗净尘嚣，论知交', '万般付之一笑，共偕老']
-  defaultLeftBtnText: '关于封面' # 左边按钮文字, 空字符串则不显示
+  defaultLeftBtnText: '你好 世界' # 左边按钮文字, 空字符串则不显示
   defaultLeftBtnLink: 'http://epya15.fun/2023/01/09/hello-world/' # 左边按钮链接 
   defaultRightBtnText: '' # 右边按钮的文字，空字符串则不显示  '下载主题'
   defaultRightBtnLink: 'https://gitee.com/yuang01/hexo-theme-bamboo/repository/archive/dev.zip' # 右边的按钮的链接
