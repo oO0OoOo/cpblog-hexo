@@ -8,7 +8,7 @@ categories:
   - Android
   - Unity
 date: 2023-04-20 13:51:00
-img: https://raw.githubusercontent.com/oO0OoOo/cpblog-hexo/main/source/images/bg/591039263be09.jpg
+img: /images/bg/bg-h1.jpg
 ---
 ###### 工具准备
 - zipalign2G.exe文件下载: <i class="fa fa-download"></i> [zipalign2G.exe](https://download.csdn.net/download/liyingzai/13216149?spm=1001.2101.3001.6650.8&utm_medium=distribute.pc_relevant.none-task-download-2%7Edefault%7EOPENSEARCH%7ERate-8-13216149-blog-8109883.235%5Ev29%5Epc_relevant_default_base3&depth_1-utm_source=distribute.pc_relevant.none-task-download-2%7Edefault%7EOPENSEARCH%7ERate-8-13216149-blog-8109883.235%5Ev29%5Epc_relevant_default_base3&utm_relevant_index=8) 

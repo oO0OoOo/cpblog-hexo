@@ -430,7 +430,7 @@ copyright:
 motto:
   on: true
   title: '欢迎来到牛丸星球'
-  content: '「牛丸是人类最伟大的发明。」 \n                       — 可能有名人说过'
+  content: '「牛丸是人类最伟大的发明。」 — 可能有名人说过'
   background: 'url("https://img10.360buyimg.com/ddimg/jfs/t1/166587/8/21344/72069/6088c24fEda5fdeb6/f9730ab637b7ca47.png")' # url("xxx") or red or #000 or rgba() ..
 
 # 首页公告
