@@ -430,7 +430,7 @@ copyright:
 motto:
   on: true
   title: '欢迎来到牛丸星球'
-  content: '「牛丸是人类最伟大的发明。」—— 可能有名人说过'
+  content: '「牛丸是人类最伟大的发明。」 \n                       — 可能有名人说过'
   background: 'url("https://img10.360buyimg.com/ddimg/jfs/t1/166587/8/21344/72069/6088c24fEda5fdeb6/f9730ab637b7ca47.png")' # url("xxx") or red or #000 or rgba() ..
 
 # 首页公告
@@ -846,21 +846,10 @@ import:
 
 # 文章图片,不指定 img:xxx 的时候随机取下面的图片
 imgs:
-- '/medias/1.jpg'
-- '/medias/2.jpg'
-- '/medias/3.jpg'
-- '/medias/4.jpg'
-- '/medias/5.jpg'
-- '/medias/6.jpg'
-- '/medias/7.jpg'
-- '/medias/8.jpg'
-- '/medias/9.jpg'
-- '/medias/10.jpg'
-- '/medias/11.jpg'
-- '/medias/12.jpg'
-- '/medias/13.jpg'
-- '/medias/14.jpg'
-- '/medias/15.jpg'
+- '/images/bg/bg-h1.jpg'
+- '/images/bg/bg-h2.jpg'
+- '/images/bg/bg-h3.jpg'
+- '/images/bg/bg-h4.jpg'
 
 CDN:
   valine: /js/valine/index.js # https://unpkg.com/valine/dist/Valine.min.js ==> 用这个官方链接则没有 博主标识功能
