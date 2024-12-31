@@ -291,7 +291,7 @@ ribbon:
 # live-2d(左下角动画人物)
 live2d:
   on: true # 控制显示或者隐藏
-  modelId: 0 # 0 or 1 or 2 or 3 or 4 or 5 or 6
+  modelId: 1 # 0 or 1 or 2 or 3 or 4 or 5 or 6
   open: false # 默认展开，false则收缩，通过点左下角的方块点击，控制展开或者收缩
 
 # 首页雪花飘落效果--冬天
@@ -353,9 +353,9 @@ music:
   loop: 'all'       # 音频循环播放, 可选值: 'all', 'one', 'none'
   order: 'random'   # 音频循环顺序, 可选值: 'list', 'random'
   preload: 'auto'   # 预加载，可选值: 'none', 'metadata', 'auto'
-  volume: 0.7       # 默认音量，请注意播放器会记忆用户设置，用户手动设置音量后默认音量即失效
+  volume: 0.3       # 默认音量，请注意播放器会记忆用户设置，用户手动设置音量后默认音量即失效
   listFolded: true  # 列表默认折叠
-  hideLrc: false    # 隐藏歌词
+  hideLrc: true    # 隐藏歌词
 
 # 关于我
 baseInfo:

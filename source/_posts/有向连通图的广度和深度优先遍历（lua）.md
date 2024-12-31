@@ -11,9 +11,7 @@ excerpt: ''
 
 #### 现有如下有向连通图
 
-
-
-![screenshot-20240319-162836](https://raw.githubusercontent.com/oO0OoOo/cpblog-hexo/main/source/images/202403191630468.png)
+![202403191630468](有向连通图的广度和深度优先遍历（lua）/202403191630468.png)
 
 
 

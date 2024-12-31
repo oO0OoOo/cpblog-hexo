@@ -20,7 +20,7 @@
   
   
     <script>
-        var themeModelId = '0';
+        var themeModelId = '1';
         if (themeModelId) {
             localStorage.setItem('modelId', themeModelId);
         }
@@ -1017,12 +1017,16 @@
 <style>
 .aplayer .aplayer-lrc p {
   
+  display: none;
+  
   font-size: 12px;
   font-weight: 700;
   line-height: 16px !important;
 }
 
 .aplayer .aplayer-lrc p.aplayer-lrc-current {
+  
+  display: none;
   
   font-size: 15px;
   color: #42b983;
@@ -1050,7 +1054,7 @@
   loop='all'
   order='random'
   preload='auto'
-  volume='0.7'
+  volume='0.3'
   list-folded='true'
 >
 </meting-js>

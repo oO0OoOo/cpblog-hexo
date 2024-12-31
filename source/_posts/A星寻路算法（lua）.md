@@ -23,17 +23,15 @@ https://www.jianshu.com/p/a8950fa19b72
 
 现有如下寻路网格，求从A点（5, 1）到B点（5, 9）的A*路径
 
-
-
-![image-20240326202326374](https://raw.githubusercontent.com/oO0OoOo/cpblog-hexo/main/source/images/202403262023420.png)
+![202403262023420](A星寻路算法（lua）/202403262023420.png)
 
 灰色代表不可到达的格子，每次行动可以从格子的周围8个方向行进，代价如下图
 
-![image-20240326203154565](https://raw.githubusercontent.com/oO0OoOo/cpblog-hexo/main/source/images/202403262031588.png)
+![202403262031588](A星寻路算法（lua）/202403262031588.png)
 
 不可穿越斜墙，例如下图中，从P点出发的8个方向里，标记为"NO"的点是不可直接到达的
 
-![image-20240326203712809](https://raw.githubusercontent.com/oO0OoOo/cpblog-hexo/main/source/images/202403262037831.png)
+![202403262037831](A星寻路算法（lua）/202403262037831.png)
 
 
 
@@ -238,7 +236,7 @@ A* path from (5, 1) to (5, 9) distance is 9.656
 
 路线图：
 
-![image-20240326203547977](https://raw.githubusercontent.com/oO0OoOo/cpblog-hexo/main/source/images/202403262035009.png)
+![202403262035009](A星寻路算法（lua）/202403262035009.png)
 
 
 
@@ -251,4 +249,4 @@ A* path from (5, 1) to (5, 9) distance is 13.07
 
 路线图：
 
-![image-20240326203925132](https://raw.githubusercontent.com/oO0OoOo/cpblog-hexo/main/source/images/202403262039158.png)
+![202403262039158](A星寻路算法（lua）/202403262039158.png)

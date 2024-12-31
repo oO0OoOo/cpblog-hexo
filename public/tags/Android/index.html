@@ -20,7 +20,7 @@
   
   
     <script>
-        var themeModelId = '0';
+        var themeModelId = '1';
         if (themeModelId) {
             localStorage.setItem('modelId', themeModelId);
         }
@@ -873,8 +873,10 @@ win11 桌面显
             问题现象Unity打Android包时卡在以下步骤，拖慢打包速度，但最终可以打包成功。
 
 
+
+
 问题原因访问google超时，如果想印证是否由访问超时所致，可以将本地断网，若打包速度变快，即为此问题。
-解决方法更改gradle文件的maven地
+解决方法更改gradle文件的mave
           </div>
         </div>
         <div class="post-more">
@@ -1295,12 +1297,16 @@ keystore文件，key-alias，key-passwor
 <style>
 .aplayer .aplayer-lrc p {
   
+  display: none;
+  
   font-size: 12px;
   font-weight: 700;
   line-height: 16px !important;
 }
 
 .aplayer .aplayer-lrc p.aplayer-lrc-current {
+  
+  display: none;
   
   font-size: 15px;
   color: #42b983;
@@ -1328,7 +1334,7 @@ keystore文件，key-alias，key-passwor
   loop='all'
   order='random'
   preload='auto'
-  volume='0.7'
+  volume='0.3'
   list-folded='true'
 >
 </meting-js>

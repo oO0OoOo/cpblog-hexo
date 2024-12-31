@@ -18,3 +18,5 @@ excerpt: ''
 “Across the Great Wall we can reach every corner in the world”
 
 你好世界
+
+<video src="../images/bg/归档/cover.mp4"></video>

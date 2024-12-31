@@ -20,7 +20,7 @@
   
   
     <script>
-        var themeModelId = '0';
+        var themeModelId = '1';
         if (themeModelId) {
             localStorage.setItem('modelId', themeModelId);
         }
@@ -766,8 +766,9 @@ https://www.jianshu.com/p/a8950fa19b72
 源视频链接：https://www.youtube.com/watch?v=JLARzu7coEs
 举例：现有如下有向连通图，求出v1到v9的最短距离
 
+
 算法代码
-12345
+1234
           </div>
         </div>
         <div class="post-more">
@@ -822,9 +823,12 @@ https://www.jianshu.com/p/a8950fa19b72
           </div>
           <div class="post-content">
             现有如下有向连通图
+
+
+
 广度优先遍历（BFS）从v1结点出发，并访问v1。
 依次访问v1的所有未被访问过的邻接点。
-再从邻接点出发，依次访问它们的邻接点，并使先被访问的顶点的邻接点先于后被访问的顶点的邻接点。重复步骤，直至图中所有已被访问的顶点
+再从邻接点出发，依次访问它们的邻接点，并使先被访问的顶点的邻接点先于后被访问的顶点的邻接点。重复步骤，直至图中所有已被访问
           </div>
         </div>
         <div class="post-more">
@@ -1133,12 +1137,16 @@ https://www.jianshu.com/p/a8950fa19b72
 <style>
 .aplayer .aplayer-lrc p {
   
+  display: none;
+  
   font-size: 12px;
   font-weight: 700;
   line-height: 16px !important;
 }
 
 .aplayer .aplayer-lrc p.aplayer-lrc-current {
+  
+  display: none;
   
   font-size: 15px;
   color: #42b983;
@@ -1166,7 +1174,7 @@ https://www.jianshu.com/p/a8950fa19b72
   loop='all'
   order='random'
   preload='auto'
-  volume='0.7'
+  volume='0.3'
   list-folded='true'
 >
 </meting-js>

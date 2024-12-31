@@ -20,7 +20,7 @@
   
   
     <script>
-        var themeModelId = '0';
+        var themeModelId = '1';
         if (themeModelId) {
             localStorage.setItem('modelId', themeModelId);
         }
@@ -734,10 +734,8 @@
 <ol>
 <li>进入沙箱路径：</li>
 </ol>
-<p>hdc shell ps -ef|grep com.qianxunshe.dp</p>
-<p><img src="https://senshingames.feishu.cn/space/api/box/stream/download/asynccode/?code=ZjA2ZWE0Y2Q5ZTAzZTcwMzFjNWI3ZmUxM2Y0NTRkMzhfODZlTkR5MThwMmRkZ08xVk01aUF3NG5mS0s3cXNBc2hfVG9rZW46UDR1Y2JYcVVQbzR4M2p4bzI1cWNTZ0RsbkNmXzE3MTM0MjE1NTg6MTcxMzQyNTE1OF9WNA" class="lazyload placeholder" data-srcset="https://senshingames.feishu.cn/space/api/box/stream/download/asynccode/?code=ZjA2ZWE0Y2Q5ZTAzZTcwMzFjNWI3ZmUxM2Y0NTRkMzhfODZlTkR5MThwMmRkZ08xVk01aUF3NG5mS0s3cXNBc2hfVG9rZW46UDR1Y2JYcVVQbzR4M2p4bzI1cWNTZ0RsbkNmXzE3MTM0MjE1NTg6MTcxMzQyNTE1OF9WNA" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" alt="img"></p>
+<p>hdc shell ps -ef|grep com.aaa.bbb</p>
 <p>nsenter -t 11355 -m &#x2F;bin&#x2F;sh</p>
-<p><img src="https://senshingames.feishu.cn/space/api/box/stream/download/asynccode/?code=Zjk2Zjk1OTA1MDYyNjJjYWQ1NTY0MGM2ZTkwNGQ2OWJfVGREMHE3SmZSdHdkT0RpWkVHelBmb01HMnh3ZGJRSnFfVG9rZW46SWtnT2JZTEk5bzEwYk14VUlveWM1V1ZZbk5lXzE3MTM0MjE1NTg6MTcxMzQyNTE1OF9WNA" class="lazyload placeholder" data-srcset="https://senshingames.feishu.cn/space/api/box/stream/download/asynccode/?code=Zjk2Zjk1OTA1MDYyNjJjYWQ1NTY0MGM2ZTkwNGQ2OWJfVGREMHE3SmZSdHdkT0RpWkVHelBmb01HMnh3ZGJRSnFfVG9rZW46SWtnT2JZTEk5bzEwYk14VUlveWM1V1ZZbk5lXzE3MTM0MjE1NTg6MTcxMzQyNTE1OF9WNA" srcset="https://img-blog.csdnimg.cn/img_convert/44f00537358e467d63aa3ea2652ab005.gif" alt="img"></p>
 <p>cd &#x2F;data&#x2F;storage&#x2F;el2&#x2F;base&#x2F;haps&#x2F;entry&#x2F;files</p>
 <ol>
 <li>抓取日志</li>
@@ -1540,12 +1538,16 @@ https
 <style>
 .aplayer .aplayer-lrc p {
   
+  display: none;
+  
   font-size: 12px;
   font-weight: 700;
   line-height: 16px !important;
 }
 
 .aplayer .aplayer-lrc p.aplayer-lrc-current {
+  
+  display: none;
   
   font-size: 15px;
   color: #42b983;
@@ -1573,7 +1575,7 @@ https
   loop='all'
   order='random'
   preload='auto'
-  volume='0.7'
+  volume='0.3'
   list-folded='true'
 >
 </meting-js>

@@ -26,9 +26,7 @@ excerpt: ''
 
 现有如下有向连通图，求出v1到v9的最短距离
 
-![image-20240322114757292](https://raw.githubusercontent.com/oO0OoOo/cpblog-hexo/main/source/images/202403221147313.png)
-
-
+![202403221147313](求最短路径 - Dijkstra算法（lua）/202403221147313.png)
 
 算法代码
 
@@ -144,4 +142,4 @@ minimum distance from v1 to v9 is 10. path = v1 -> v4 -> v7 -> v3 -> v6 -> v9
 
 路线演示：
 
-![image-20240322114611941](https://raw.githubusercontent.com/oO0OoOo/cpblog-hexo/main/source/images/202403221146053.png)
+![202403221146053](求最短路径 - Dijkstra算法（lua）/202403221146053.png)
