@@ -60,7 +60,7 @@ sidebar:
       shape: rectangle # circle, rectangle
       url: /about/
       title: 
-      subtitle: 牛丸是人类最伟大的发明
+      subtitle: 
       jinrishici: true # Poetry Today. You can set a string, and it will be displayed when loading fails.
       fontFammily: '-apple-system,BlinkMacSystemFont,PingFang SC,Segoe UI,Microsoft YaHei,Hiragino Sans GB,Helvetica Neue,Helvetica,Arial,sans-serif'
       background: '#fff'
@@ -430,7 +430,7 @@ copyright:
 motto:
   on: true
   title: '欢迎来到牛丸星球'
-  content: '「怎样思想，就有怎样的生活。」—— 愛默生'
+  content: '「牛丸是人类最伟大的发明。」—— 可能有名人说过'
   background: 'url("https://img10.360buyimg.com/ddimg/jfs/t1/166587/8/21344/72069/6088c24fEda5fdeb6/f9730ab637b7ca47.png")' # url("xxx") or red or #000 or rgba() ..
 
 # 首页公告
