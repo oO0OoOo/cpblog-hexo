@@ -342,11 +342,11 @@ baiduPush: true
 
 # 音乐
 music:
-  on: false
+  on: true
   autoHide: true    # hide automaticaly
-  server: tencent   # require music platform: netease, tencent, kugou, xiami, baidu
+  server: netease   # require music platform: netease, tencent, kugou, xiami, baidu
   type: playlist    # require song, playlist, album, search, artist
-  id: 8062553743    # require song id / playlist id / album id / search keyword
+  id: 13076706744    # require song id / playlist id / album id / search keyword
   fixed: true       # 开启吸底模式，建议开启
   autoplay: false   # 是否自动播放, 有些浏览器会禁用自动播放，目前edge可以自动播放
   theme: '#42b983'
